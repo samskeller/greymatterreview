@@ -44,4 +44,4 @@ class GreyMatterHandler(Handler):
 
 # Make the app go!
 app = webapp2.WSGIApplication([
-    ('/greymatterreview', GreyMatterHandler)], debug=True)
+    ('/?', GreyMatterHandler)], debug=True)
