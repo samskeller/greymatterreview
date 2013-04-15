@@ -1,0 +1,25 @@
+body {
+	background:#80959F;
+	font-family: ‘Courier New’, Courier, monospace;
+	height:100%;
+}
+
+h2 {
+	color:#50656F;
+	font-weight:bold;
+	padding:0;
+	top:0;
+}
+
+#top {
+	position:absolute;
+	top:0;
+	left:0;
+	display:block;
+	margin:0 auto;
+	text-align:center;
+	width:100%;
+	border-radius:15px;
+	background-color:#BFBFBF;
+	height:8%;
+}
