@@ -9,6 +9,8 @@ h2 {
 	font-weight:bold;
 	padding:0;
 	top:0;
+	margin-top:3px;
+	display:inline;
 }
 
 #top {
@@ -21,5 +23,22 @@ h2 {
 	width:100%;
 	border-radius:15px;
 	background-color:#BFBFBF;
-	height:8%;
+	height:6%;
+}
+
+#register {
+	float:right;
+	top:0;
+	padding:0;
+	margin-top:0.5%;
+	margin-right:1%;
+	letter-spacing:1px;
+	border:1px solid #000000;
+	background:#30AACF;
+	color:white;
+	font:bold 12px 'Trebuchet MS';
+	padding:4px;
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
 }
