@@ -7,7 +7,30 @@
 <body>
 	<div id="top">
 		<h2>Grey Matter Review</h2>
-		<span id="register">Register</span>
 	</div>
+	<form method="post">
+	<div id="signin">
+		<label>Log in</label>
+		<br>
+		<input id="inputusername" type="text" value="{{username}}">
+		<br>
+		<input type="text" id="inputpassword" value="{{password}}">
+		<br>
+		<input type="submit" id="register" value="Log in"> 
+	</div>
+	<br>
+	<div id="signup">
+		<label id="signuplabel">Sign Up</label>
+		<br>
+		<input type="text" name="newusername">
+		<br>
+		<input type="text" name="newemail">
+		<br>
+		<input type="text" name="newpassword">
+		<br>	
+		<input type="submit" id="register" value="Sign up">
+	</div>
+	</form>
+		
 </body>
 </html>
