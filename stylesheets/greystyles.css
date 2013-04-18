@@ -44,13 +44,52 @@ h2 {
 	left:70%;
 }
 
-#register {
+#firstname {
+	width:62px;
+}
+
+#lastname {
+	width:62px;
+}
+
+#inputusername {
+	width:140px;
+}
+
+#inputpassword {
+	width:140px;
+}
+
+#newemail {
+	width:140px;
+}
+
+#newpassword {
+	width:140px;
+}
+
+#loginbutton {
 	float:right;
 	margin-top:5%;
 	margin-right:1%;
 	letter-spacing:1px;
 	border:1px solid #000000;
 	background:#30AACF;
+	color:white;
+	font:bold 12px 'Trebuchet MS';
+	padding:4px;
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+#register {
+	background:#FF0019;
+	float:right;
+	margin-top:5%;
+	margin-right:1%;
+	letter-spacing:1px;
+	border:1px solid #000000;
 	color:white;
 	font:bold 12px 'Trebuchet MS';
 	padding:4px;
