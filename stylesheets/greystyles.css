@@ -26,6 +26,42 @@ h2 {
 	height:6%;
 }
 
+#inputForms {
+	left:50%;
+	position:relative;
+}
+
+#description {
+	left:10%;
+	width:43%;
+	top:30%;
+	font-family: "Blackletter";
+	position:absolute;
+	text-align:center;
+}
+
+#links {
+	left:30%;
+	top:95%;
+	position:absolute;
+}
+
+.link {
+	font-size:16px;
+	display:inline;
+	padding:20px;
+	text-decoration:none;
+	color:#4821BD;
+}
+
+a.link:visited{
+	color:#4821BD;
+}
+
+#mission {
+	font-size:30px;
+}
+
 #signin {
 	background-color:#CCCCCC;
 	padding:10px;
