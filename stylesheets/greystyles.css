@@ -11,6 +11,8 @@ h2 {
 	top:0;
 	margin-top:3px;
 	display:inline;
+	float:left;
+	margin-left:20px;
 }
 
 #top {
@@ -42,7 +44,7 @@ h2 {
 
 #links {
 	left:30%;
-	top:95%;
+	top:92%;
 	position:absolute;
 }
 
@@ -58,8 +60,13 @@ a.link:visited{
 	color:#4821BD;
 }
 
-#mission {
+#mission_title {
 	font-size:30px;
+	font-weight:bold;
+}
+
+#mission_content {
+	font-size:28px;
 }
 
 #signin {
@@ -129,7 +136,7 @@ a.link:visited{
 	background:#30AACF;
 	color:white;
 	font:bold 18px 'Trebuchet MS';
-	padding:4px;
+	padding:3px;
 	cursor:pointer;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
