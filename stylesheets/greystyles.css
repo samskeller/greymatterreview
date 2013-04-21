@@ -1,15 +1,18 @@
 body {
-	background:#80959F;
+	background:url('concert.jpeg') no-repeat center center fixed;
+	background-size:cover;
+	-moz-background-size:cover;
+	-webkit-background-size:cover;
 	font-family: 'Calibri';
 	height:100%;
 }
 
 h2 {
-	color:#50656F;
+	color:#D7D7D7;
 	font-weight:bold;
 	padding:0;
 	top:0;
-	margin-top:3px;
+	margin-top:6px;
 	display:inline;
 	float:left;
 	margin-left:20px;
@@ -24,8 +27,8 @@ h2 {
 	text-align:center;
 	width:100%;
 	border-radius:15px;
-	background-color:#BFBFBF;
-	height:6%;
+	background-color:#4F4F4F;
+	height:7%;
 }
 
 #inputForms {
@@ -34,9 +37,9 @@ h2 {
 }
 
 #description {
-	left:10%;
-	width:43%;
-	top:30%;
+	left:8%;
+	width:45%;
+	top:15%;
 	font-family: "Blackletter";
 	position:absolute;
 	text-align:center;
@@ -53,11 +56,11 @@ h2 {
 	display:inline;
 	padding:20px;
 	text-decoration:none;
-	color:#4821BD;
+	color:#A891ED;
 }
 
 a.link:visited{
-	color:#4821BD;
+	color:#A891ED;
 }
 
 #mission_title {
