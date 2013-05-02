@@ -102,18 +102,26 @@ a.link:visited{
 	font-size:24px;
 }
 
-#firstname {
-	width:42%;
+#username {
+	width:95%;
 	height:25px;
 	margin:2%;
 	font-size:16px;
 }
 
-#lastname {
-	width:42%;
-	height:25px;
-	margin:2%;
-	font-size:16px;
+#logout {
+	float:right;
+	text-decoration:none;
+	position:relative;
+	font:bold 18px 'Trebuchet MS';
+	color:green;
+}
+
+#error {
+	position:absolute;
+	color:red;
+	top:85%;
+	left:70%;
 }
 
 .login {

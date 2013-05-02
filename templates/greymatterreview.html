@@ -14,12 +14,14 @@
 	<div id="signin">
 		<label id="signinlabel">Log in</label>
 		<br>
-		<input class="login" type="text" placeholder="Username" value="{{username}}">
+		<input class="login" name ="username" type="text" placeholder="Username" value="{{username}}">
 		<br>
-		<input class="login" type="text" placeholder="Password" value="{{password}}">
+		<input class="login" name="password" type="password" placeholder="Password" value="{{password}}">
 		<br>
 		<input type="submit" id="loginbutton" value="Log in"> 
 	</div>
+	</form>
+	<form method="post">
 	<br>
 	<div id="description">
 		<label id="mission_title">Share your taste in music with your friends</label>
@@ -27,15 +29,20 @@
 	<div id="signup">
 		<label id="signuplabel">Sign Up</label>
 		<br>
-		<input id="firstname" type="text" placeholder="First Name">
-		<input id="lastname" type="text" placeholder="Last Name">
+		<input id="username" name="newusername" type="text" placeholder="Username">
 		<br>
-		<input class="signup" type="text" placeholder="Email">
+		<input class="signup" name="newemail" type="text" placeholder="Email">
 		<br>
-		<input class="signup" type="text" placeholder="New Password">
+		<input class="signup" name="newpassword" type="password" placeholder="New Password">
 		<br>	
 		<input type="submit" id="register" value="Sign up">
 	</div>
+	</form>
+	</div>
+	<div id="error">
+	{{error_username}}
+	{{error_password}}
+	{{error_email}}
 	</div>
 	<div id="links">
 		<a href="/" class="link">About</a>
