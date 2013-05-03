@@ -200,7 +200,33 @@ class GreyMatterHandler(Handler):
 		  
 					self.redirect('/home')
 		elif login:
-			self.response.out.write("hey sam")
+			error = False
+			self.username = self.request.get('username')
+			self.password = self.request.get('password')
+		
+			parameters = {'username' : self.username}
+		
+			if not validate_username(self.username):
+				error = True
+				parameters['error_username'] = "That's not a valid username" 
+			if not validate_password(self.password):
+				error = True
+				parameters['error_password'] = "That's not a valid password"
+		
+			if error:
+				self.render("greymatterreview.html", **parameters)
+			else:
+		
+				u = User.login(self.username, self.password)
+				
+				if u:
+					self.response.headers['Content-Type'] = 'text/plain'
+					self.setCookie('user_id', str(u.key().id()))
+				
+					self.redirect('/home')
+				else:
+					parameters['login_error'] = "Invalid login"
+					self.render("greymatterreview.html", **parameters)
 				
 	def setCookie(self, name, value):
 		cookie = make_secure_val(value)
@@ -230,7 +256,7 @@ class LoginHandler(GreyMatterHandler):
 		self.username = self.request.get('username')
 		self.password = self.request.get('password')
 		
-		parameters = {'usernane' : self.username}
+		parameters = {'username' : self.username}
 		
 		if not validate_username(self.username):
 			error = True
