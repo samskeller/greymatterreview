@@ -159,42 +159,48 @@ class GreyMatterHandler(Handler):
 			self.render("greymatterreview.html")
 	
 	def post(self):
-		error = False
-		self.username = self.request.get('newusername')
-		self.password = self.request.get('newpassword')
-		self.verify = self.request.get('verify')
-		self.email = self.request.get('email')
-		
-		parameters = {'username' : self.username, 'email' : self.email}
-		
-		if not validate_username(self.username):
-			error = True
-			parameters['error_username'] = "That's not a valid username" 
-		if not validate_password(self.password):
-			error = True
-			parameters['error_password'] = "That's not a valid password"
-		
-		if not validate_email(self.email):
-			error = True
-			parameters['error_email'] = "That's not a valid email"
-			
-		if error:
-			self.render("greymatterreview.html", **parameters)
-		else:
-		
-			u = User.get_by_name(self.username)
+	
+		login = self.request.get('loginbutton')
+		signup = self.request.get('signupbutton')
+		if signup:
+			error = False
+			self.username = self.request.get('newusername')
+			self.password = self.request.get('newpassword')
+			self.verify = self.request.get('verify')
+			self.email = self.request.get('email')
 	   
-			if u:
-				##redirect
-				self.render('greymatterreview.html', error_username = "That user already exists")
+			parameters = {'username' : self.username, 'email' : self.email}
+	   
+			if not validate_username(self.username):
+				error = True
+				parameters['error_username'] = "That's not a valid username" 
+			if not validate_password(self.password):
+				error = True
+				parameters['error_password'] = "That's not a valid password"
+	   
+			if not validate_email(self.email):
+				error = True
+				parameters['error_email'] = "That's not a valid email"
+		   
+			if error:
+				self.render("greymatterreview.html", **parameters)
 			else:
-				u = User.register(username=self.username, password=self.password, email=self.email)
-		   
-				u.put()
-		   
-				self.setCookie('user_id', str(u.key().id()))
-		   
-				self.redirect('/home')
+	   
+				u = User.get_by_name(self.username)
+	  
+				if u:
+					##redirect
+					self.render('greymatterreview.html', error_username = "That user already exists")
+				else:
+					u = User.register(username=self.username, password=self.password, email=self.email)
+		  
+					u.put()
+		  
+					self.setCookie('user_id', str(u.key().id()))
+		  
+					self.redirect('/home')
+		elif login:
+			self.response.out.write("hey sam")
 				
 	def setCookie(self, name, value):
 		cookie = make_secure_val(value)
