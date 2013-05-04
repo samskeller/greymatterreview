@@ -18,6 +18,9 @@
 		<br>
 		<input class="login" name="password" type="password" placeholder="Password" value="{{password}}">
 		<br>
+		<div id="loginerror">
+		{{login_error}}
+		</div>
 		<input type="submit" id="loginbutton" value="Log in" name="loginbutton"> 
 	</div>
 	</form>
@@ -29,21 +32,20 @@
 	<div id="signup">
 		<label id="signuplabel">Sign Up</label>
 		<br>
-		<input id="username" name="newusername" type="text" placeholder="Username">
+		<input id="username" name="newusername" type="text" placeholder="Username" value="{{newusernamevalue}}">
 		<br>
-		<input class="signup" name="newemail" type="text" placeholder="Email">
+		<input class="signup" name="newemail" type="text" placeholder="Email" value="{{newemailvalue}}">
 		<br>
-		<input class="signup" name="newpassword" type="password" placeholder="New Password">
+		<input class="signup" name="newpassword" type="password" placeholder="New Password" value="{{newpasswordvalue}}">
 		<br>	
+		<div id="signuperror">
+		{{error_username}}
+		{{error_password}}
+		{{error_email}}
+		</div>
 		<input type="submit" id="register" value="Sign up" name="signupbutton">
 	</div>
 	</form>
-	</div>
-	<div id="error">
-	{{error_username}}
-	{{error_password}}
-	{{error_email}}
-	{{login_error}}
 	</div>
 	<div id="links">
 		<a href="/" class="link">About</a>

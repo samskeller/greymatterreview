@@ -84,13 +84,6 @@ def validate_password(password):
 		if match:
 			return True
 
-def validate_passwords(password, verify):
-	"""
-	validating that our passwords match.
-	"""
-	if password == verify:
-		return True
-
 def validate_email(email):
 	"""
 	validating the email for our fake signup
@@ -166,21 +159,19 @@ class GreyMatterHandler(Handler):
 			error = False
 			self.username = self.request.get('newusername')
 			self.password = self.request.get('newpassword')
-			self.verify = self.request.get('verify')
-			self.email = self.request.get('email')
+			self.email = self.request.get('newemail')
 	   
-			parameters = {'username' : self.username, 'email' : self.email}
+			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
 	   
 			if not validate_username(self.username):
 				error = True
-				parameters['error_username'] = "That's not a valid username" 
-			if not validate_password(self.password):
+				parameters['error_username'] = "Invalid username" 
+			elif not validate_password(self.password):
 				error = True
-				parameters['error_password'] = "That's not a valid password"
-	   
-			if not validate_email(self.email):
+				parameters['error_password'] = "Invalid password"
+			elif not validate_email(self.email):
 				error = True
-				parameters['error_email'] = "That's not a valid email"
+				parameters['error_email'] = "Invalid email"
 		   
 			if error:
 				self.render("greymatterreview.html", **parameters)
@@ -206,27 +197,16 @@ class GreyMatterHandler(Handler):
 		
 			parameters = {'username' : self.username}
 		
-			if not validate_username(self.username):
-				error = True
-				parameters['error_username'] = "That's not a valid username" 
-			if not validate_password(self.password):
-				error = True
-				parameters['error_password'] = "That's not a valid password"
-		
-			if error:
-				self.render("greymatterreview.html", **parameters)
+			u = User.login(self.username, self.password)
+				
+			if u:
+				self.response.headers['Content-Type'] = 'text/plain'
+				self.setCookie('user_id', str(u.key().id()))
+		   
+				self.redirect('/home')
 			else:
-		
-				u = User.login(self.username, self.password)
-				
-				if u:
-					self.response.headers['Content-Type'] = 'text/plain'
-					self.setCookie('user_id', str(u.key().id()))
-				
-					self.redirect('/home')
-				else:
-					parameters['login_error'] = "Invalid login"
-					self.render("greymatterreview.html", **parameters)
+				parameters['login_error'] = "Invalid login"
+				self.render("greymatterreview.html", **parameters)
 				
 	def setCookie(self, name, value):
 		cookie = make_secure_val(value)

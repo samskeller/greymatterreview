@@ -117,11 +117,18 @@ a.link:visited{
 	color:green;
 }
 
-#error {
-	position:absolute;
+#loginerror {
+ 	position:absolute;
+	left:8%;
+	top:80%;
 	color:red;
-	top:85%;
-	left:70%;
+}
+
+#signuperror {
+	top:83%;
+	left:7%;
+	color:red;
+	position:absolute;
 }
 
 .login {
