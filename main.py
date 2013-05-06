@@ -263,7 +263,7 @@ class LoginHandler(GreyMatterHandler):
 class HomeHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("home.html")
+			self.render("home.html", username=self.user.username)
 		else:
 			self.redirect('/')
 		
