@@ -5,8 +5,30 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
         </head>
-<body>
-	<h2>Welcome, user!</h2>
+<body style="background:#E6E6E6;">
+	<div id="top">
+		<h2 id="title">Grey Matter Review</h2>
+	</div>
+	<br>
+	<br>
+	<h2 id="welcomemessage">Welcome, user!</h2>
 	<a id="logout" href="/logout">Logout</a>
+	<br>
+	<br>
+	<div id="Tabs">
+	  <ul>
+		  <li id="tab1_li" onclick="tab('tab1')"><a href="#">Feed</a></li>
+		  <li id="tab2_li" onclick="tab('tab2')"><a href="#">Profile</a></li>
+		  <li id="tab3_li" onclick="tab('tab3')"><a href="#">Artists</a></li>
+	  </ul>
+	  <div id="content">
+		  <div id="tab1">
+			  <p>Some content!</p>
+		  </div>
+		  <div id="tab2" style="display:none;">
+			  <p>TAB 2</p>
+		  </div>
+	  </div>
+	</div>
 </body>
 </html>

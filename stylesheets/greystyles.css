@@ -113,8 +113,8 @@ a.link:visited{
 	float:right;
 	text-decoration:none;
 	position:relative;
-	font:bold 18px 'Trebuchet MS';
-	color:green;
+	font:bold 22px 'Trebuchet MS';
+	color:#22EE22;
 }
 
 #loginerror {
@@ -174,3 +174,57 @@ a.link:visited{
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 }
+
+#welcomemessage {
+	color:#444444;
+}
+
+#Tabs ul{
+	list-style-type: none;
+	padding:0px;
+	margin:auto 0;
+}
+
+#Tabs ul li{
+	display:inline-block;
+	clear:none;
+	float:left;
+	height:38px;
+}
+
+#Tabs ul li a{
+	position:relative;
+	margin-top:16px;
+	padding-top:15px;
+	display:block;
+	line-height:58px;
+	height:44px;
+	font:bold 24px 'Trebuchet MS';
+	padding-left:10px;
+	background:#AAAAAA;
+	border:2px solid;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	width:170px;
+	color:#555555;
+	font-weight:bold;
+	text-align:center;
+	text-decoration:none;
+}
+
+#Tabs #content {
+	clear:both;
+	overflow:hidden;
+	line-height:22px;
+	position:relative;
+	top:40px;
+	left:5%;
+	margin-right:10%;
+	height:150px;
+	border:1px solid;
+}
+
+p {
+	padding-left: 15px;
+}
+
