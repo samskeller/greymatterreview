@@ -117,6 +117,10 @@ a.link:visited{
 	color:#22EE22;
 }
 
+#logout:hover{
+	color:#FF7F24;
+}
+
 #loginerror {
  	position:absolute;
 	left:8%;
@@ -210,6 +214,11 @@ a.link:visited{
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
+}
+
+#Tabs ul li a:hover{
+	background:#555555;
+	color:#AAAAAA;
 }
 
 #Tabs #content {
