@@ -249,7 +249,7 @@ a.link:visited{
 	background-image: linear-gradient(to bottom, #555566 0%, #828282 100%);
 	border:2px solid #222222;
 	width:170px;
-	color:#FFFFFF;
+	color:#EFEFEF;
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
@@ -283,7 +283,7 @@ a.link:visited{
 	background-image: linear-gradient(to top, #FFFFFF 0%, #C7C7C7 100%);
 }
 
-#Tabs #content {
+#Tabs #allcontent {
 	margin:0px;
 	padding:0px 20px 0px 20px;
 	clear:both;
@@ -313,6 +313,8 @@ a.link:visited{
 	background-repeat:repeat-x;    
     background-position:bottombottom;
 }
+
+#content_2, #content_3 {display:none;}
 
 p {
 	padding-left: 15px;
