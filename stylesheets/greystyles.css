@@ -229,10 +229,27 @@ a.link:visited{
 	height:100%;
 	font:bold 24px 'Trebuchet MS';
 	padding-left:10px;
-	background:#AAAAAA;
+	padding-bottom:10px;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #555566 0%, #828282 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #555566 0%, #828282 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #555566 0%, #828282 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555566), color-stop(1, #828282));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #555566 0%, #828282 100%);
+
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #555566 0%, #828282 100%);
 	border:2px solid #222222;
 	width:170px;
-	color:#555555;
+	color:#FFFFFF;
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
@@ -244,8 +261,26 @@ a.link:visited{
 }
 
 #Tabs ul.tabslist li a.active{
+	color:#555555;
 	background-color:#FFFFFF;
 	border-bottom:2px solid #FFFFFF;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFFFFF), color-stop(1, #C7C7C7));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to top, #FFFFFF 0%, #C7C7C7 100%);
 }
 
 #Tabs #content {
@@ -258,7 +293,25 @@ a.link:visited{
 	left:5%;
 	margin-right:10%;
 	height:90%;
-	background:#FFFFFF;
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #FFFFFF 0%, #D4D4D4 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #FFFFFF 0%, #D4D4D4 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #FFFFFF 0%, #D4D4D4 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #D4D4D4));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #D4D4D4 100%);
+
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #D4D4D4 100%);
+	background-repeat:repeat-x;    
+    background-position:bottombottom;
 }
 
 p {
