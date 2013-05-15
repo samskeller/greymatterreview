@@ -5,9 +5,18 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
         </head>
-        <script src="/scripts/jquery-1.9.1.min.js">
         <script>
-        </script>
+        function tabSwitch(active, number) {  
+      
+    		for (var i=1; i < number+1; i++) {  
+      			document.getElementById("content_"+i).style.display = 'none';  
+      			document.getElementById("tab_"+i).className = '';  
+    		}  
+    		document.getElementById("content_"+active).style.display = 'block';  
+    		document.getElementById("tab_"+active).className = 'active';      
+      
+		}  
+		</script>
 <body id="homebody">
 	<div id="top">
 		<a id="title" href="/home">Grey Matter Review</a>
@@ -20,9 +29,9 @@
 	<br>
 	<div id="Tabs">
 	  <ul class="tabslist">
-		  <li><a id="tab_1" href="#">Feed</a></li>
-		  <li><a id="tab_2" href="#" class="active">Profile</a></li>
-		  <li><a id="tab_3" href="#">Artists</a></li>
+		  <li><a href="javascript:tabSwitch(1,3);" id="tab_1">Feed</a></li>
+		  <li><a href="javascript:tabSwitch(2,3);" id="tab_2" class="active">Profile</a></li>
+		  <li><a href="javascript:tabSwitch(3,3);" id="tab_3">Artists</a></li>
 	  </ul>
 	  <div id="allcontent">
 		  <div id="content_1" class="content">
@@ -31,7 +40,11 @@
 		  <div id="content_2" class="content">
 			  <p>Second content!</p>
 		  </div>
+		  <div id="content_3" class="content">
+		  	  <p>Third content!</p>
+		  </div>
 	  </div>
 	</div>
+	<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 </body>
 </html>
