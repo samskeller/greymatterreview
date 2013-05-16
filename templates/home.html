@@ -29,8 +29,8 @@
 	<br>
 	<div id="Tabs">
 	  <ul class="tabslist">
-		  <li><a href="javascript:tabSwitch(1,3);" id="tab_1">Feed</a></li>
-		  <li><a href="javascript:tabSwitch(2,3);" id="tab_2" class="active">Profile</a></li>
+		  <li><a href="javascript:tabSwitch(1,3);" id="tab_1" class="active">Feed</a></li>
+		  <li><a href="javascript:tabSwitch(2,3);" id="tab_2">Profile</a></li>
 		  <li><a href="javascript:tabSwitch(3,3);" id="tab_3">Artists</a></li>
 	  </ul>
 	  <div id="allcontent">
@@ -38,7 +38,10 @@
 			  <p>Some content!</p>
 		  </div>
 		  <div id="content_2" class="content">
-			  <p>Second content!</p>
+		  	<h2 id="profie_name">{{username}}</h2>
+			<div id="profile_image">
+				<img src="/stylesheets/Unknown-person.gif" alt="Unknown Person" width="80%" height="52%">
+		  	</div>
 		  </div>
 		  <div id="content_3" class="content">
 		  	  <p>Third content!</p>

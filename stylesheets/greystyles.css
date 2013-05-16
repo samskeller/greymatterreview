@@ -316,6 +316,17 @@ a.link:visited{
 
 #content_2, #content_3 {display:none;}
 
+#profie_name {
+	padding-left:40px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+#profile_image {
+	padding-left:20px;
+	width:22%;
+	display:inline-block;
+}
+
 p {
 	padding-left: 15px;
 }
