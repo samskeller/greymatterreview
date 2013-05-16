@@ -203,7 +203,7 @@ a.link:visited{
 
 #Tabs {
 	margin: 0px auto 0px auto;
-	width:100%;
+	width:90%;
 	height:400px;
 }
 
@@ -290,8 +290,6 @@ a.link:visited{
 	overflow:hidden;
 	line-height:22px;
 	position:relative;
-	left:5%;
-	margin-right:10%;
 	height:90%;
 	/* IE10 Consumer Preview */ 
 	background-image: -ms-linear-gradient(top, #FFFFFF 0%, #D4D4D4 100%);
@@ -327,25 +325,32 @@ a.link:visited{
 	display:inline-block;
 }
 
-#search_field {
-	width:18%;
-	margin-left:7%;
-	margin-top:1%;
-	font-size:16px;
+#searching {
+	position:relative;
+	float:right;
+	width:30%;
+	padding-top:1%;
 	display:inline;
 }
 
+#search_field {
+	width:70%;
+	margin-top:1%;
+	font-size:16px;
+	display:inline;
+	float:left;
+}
+
 #search_btn {
-	width:6%;
+	width:25%;
 	position:relative;
-	top:2px;
-	margin-left:0.6%;
+	top:0px;
+	float:right;
 	letter-spacing:1px;
 	border:1px solid #000000;
 	background:#30AACF;
 	color:white;
 	font:bold 18px 'Trebuchet MS';
-	padding:3px;
 	cursor:pointer;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
