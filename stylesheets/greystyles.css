@@ -38,7 +38,7 @@ body {
 	text-align:center;
 	width:100%;
 	border-radius:15px;
-	background-color:#4F4F4F;
+	background-color:#323232;
 	height:7%;
 }
 
@@ -201,6 +201,24 @@ a.link:visited{
 	margin-left:20px;
 }
 
+#new_review {
+	width:7%;
+	margin:0 auto;
+	left:-61%;
+	margin-top:8px;
+	white-space:normal;
+	position:relative;
+	height:12%;
+	letter-spacing:1px;
+	border:1px solid #000000;
+	background:#FF0019;
+	color:white;
+	font:bold 14px 'Trebuchet MS';
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
 #Tabs {
 	margin: 0px auto 0px auto;
 	width:90%;
@@ -211,7 +229,8 @@ a.link:visited{
 	padding:0px;
 	margin:0px;
 	margin-top:5px;
-	margin-bottom:6px;
+	width:50%;
+	float:left;
 }
 
 #Tabs ul.tabslist li{
