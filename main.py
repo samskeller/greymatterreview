@@ -266,6 +266,13 @@ class HomeHandler(GreyMatterHandler):
 			self.render("home.html", username=self.user.username)
 		else:
 			self.redirect('/')
+			
+class NewReviewHandler(GreyMatterHandler):
+	def get(self):
+		if self.user:
+			self.render("newreview.html")
+		else:
+			self.redirect("/")
 		
 class LogoutHandler(GreyMatterHandler):
 	def get(self):
@@ -275,4 +282,5 @@ class LogoutHandler(GreyMatterHandler):
 
 # Make the app go!
 app = webapp2.WSGIApplication([
-    ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler)], debug=True)
+    ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
+    ('/newreview', NewReviewHandler)], debug=True)

@@ -30,7 +30,7 @@ body {
 }
 
 #top {
-	position:absolute;
+	position:fixed;
 	top:0;
 	left:0;
 	display:block;
@@ -39,7 +39,7 @@ body {
 	width:100%;
 	border-radius:15px;
 	background-color:#323232;
-	height:7%;
+	height:40px;
 }
 
 #inputForms {
@@ -202,7 +202,8 @@ a.link:visited{
 }
 
 #new_review {
-	width:10%;
+	text-decoration:none;
+	padding:10px;
 	margin:0 auto;
 	left:-63%;
 	margin-top:8px;
@@ -380,3 +381,61 @@ p {
 	padding-left: 15px;
 }
 
+#homebutton {
+	padding-left:3%;
+	text-decoration:none;
+	font:bold 18px 'Trebuchet MS';
+	cursor:pointer;
+	letter-spacing:1.2px;
+}
+
+#newreviewfield {
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	height:10%;
+	border:2px solid #000000;
+	background:#FFFFFF;
+}
+
+#reviewlabel {
+	font: bold 18px 'Trebuchet MS';
+	margin-left:2%;
+}
+
+#reviewbody {
+	margin-left:2%;
+	margin-right:2%;
+	width:95%;
+	height:300px;
+	margin-bottom:10px;
+	margin-top:5px;
+	resize:none;
+}
+
+#artistlabel {
+	font: bold 18px 'Trebuchet MS';
+	margin-left:2%;
+}
+
+#reviewartist {
+	margin-left:2%;
+	margin-right:2%;
+	width: 95%;
+	margin-bottom:2%;
+	font-size:16px;
+}
+
+#newreviewbtn {
+	margin-bottom:10px;
+	margin-left:89.9%;
+	letter-spacing:1px;
+	border:1px solid #000000;
+	background:#30AACF;
+	color:white;
+	font:bold 18px 'Trebuchet MS';
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
