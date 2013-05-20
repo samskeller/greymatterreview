@@ -141,6 +141,32 @@ class User(db.Model):
 		if user and validatePassword(username, password, user.hashedPassword):
 			return user
 
+# Our Artist class
+class Artist(db.Model):
+	name = db.StringProperty(required = True)
+	genre = db.StringProperty(required = True)
+	
+	@classmethod
+	def get_artist(cls, artist):
+		return Artist.all().filter('artist =', artist).get()
+		
+# Our Album class
+class Album(db.Model):
+	title = db.StringProperty(required = True)
+	artist = db.StringProperty(required = True)
+	dateReleased = db.DateProperty(required = True)
+	genre = db.StringProperty(required = True)
+	
+	@classmethod
+	def get_album(cls, album):
+		return Album.all().filter('album =', album).get()
+
+# Our Review class
+class Review(db.Model):
+	album = db.StringProperty(required = True)
+	artist = db.StringProperty(required = True)
+	reviewer = db.StringProperty(required = True)
+	reviewDate = db.DateTimeProperty(auto_now_add = True)
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
