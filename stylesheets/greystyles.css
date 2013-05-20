@@ -387,6 +387,7 @@ p {
 	font:bold 18px 'Trebuchet MS';
 	cursor:pointer;
 	letter-spacing:1.2px;
+	color:#EEAD0E;
 }
 
 #newreviewfield {
@@ -422,9 +423,10 @@ p {
 #reviewartist {
 	margin-left:2%;
 	margin-right:2%;
-	width: 95%;
+	width: 85%;
 	margin-bottom:2%;
 	font-size:16px;
+	display:inline;
 }
 
 #newreviewbtn {
@@ -438,4 +440,22 @@ p {
 	cursor:pointer;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
+}
+
+#artistlookupbtn {
+	letter-spacing:1px;
+	margin-right:10px;
+	border:1px solid #000000;
+	background:#FF0019;
+	color:white;
+	font:bold 18px 'Trebuchet MS';
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}
+
+#artistlisting {
+	text-decoration:none;
+	list-style-type: none;
+	cursor:pointer;
 }

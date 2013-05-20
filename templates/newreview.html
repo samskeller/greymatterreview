@@ -15,12 +15,26 @@
 	<a id="logout" href="/logout">Logout</a>
 	<br>
 	<br>
+	<form method="post">
 	<div id="newreviewfield">
 		<label id="artistlabel">Enter the Artist</label>
-		<input type="text" id="reviewartist">
+		<br>
+		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
+		<br>
+		{% if artists != None: %}
+			<ul>
+			{% for artist in artists %}
+				<li id="artistlisting">{{artist.name}}</li>
+			{% endfor %}
+			</ul>
+      	{% elif errorMessage != "": %}
+			<p>{{errorMessage}}</p>
+		{% endif %}
+      	
 		<label id="reviewlabel">Type your review</label>
 		<textarea id="reviewbody"></textarea>
-		<input type="submit" name="newreview" id="newreviewbtn">
+		<input type="submit" name="newreviewbtn" id="newreviewbtn">
 	</div>
+	</form>
 </body>
 </html>

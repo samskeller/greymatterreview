@@ -147,8 +147,8 @@ class Artist(db.Model):
 	genre = db.StringProperty(required = True)
 	
 	@classmethod
-	def get_artist(cls, artist):
-		return Artist.all().filter('artist =', artist).get()
+	def get_artists(cls, artist):
+		return Artist.all().filter('name =', artist).fetch(5)
 		
 # Our Album class
 class Album(db.Model):
@@ -159,7 +159,7 @@ class Album(db.Model):
 	
 	@classmethod
 	def get_album(cls, album):
-		return Album.all().filter('album =', album).get()
+		return Album.all().filter('album =', album).fetch(5)
 
 # Our Review class
 class Review(db.Model):
@@ -296,9 +296,29 @@ class HomeHandler(GreyMatterHandler):
 class NewReviewHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("newreview.html")
+			self.render("newreview.html", artists=None, errorMessage="")
 		else:
 			self.redirect("/")
+			
+	def post(self):
+		search = self.request.get('artistlookupbtn')
+		review = self.request.get('newreviewbtn')
+		artistName = self.request.get('reviewartist')
+		
+		if search and artistName != "":
+			artists = Artist.get_artists(artistName)
+			
+			if artists:
+				self.render("newreview.html", artists=artists, errorMessage="")
+			else:
+				self.render("newreview.html", artists=None, errorMessage="Sorry, " \
+					+ "no artists were found with that name")
+		elif search and artistName == "":
+			self.render("newreview.html", artists=None, errorMessage="Please enter " \
+				+ "an artist to search for")
+		else:
+			self.redirect("/")
+		
 		
 class LogoutHandler(GreyMatterHandler):
 	def get(self):
