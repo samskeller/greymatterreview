@@ -338,10 +338,16 @@ def searchGracenote(album):
 def parseXML(xml):
 	d = minidom.parseString(xml)
 	album = d.getElementsByTagName("TITLE")
-	albumTitle = album[0].firstChild.wholeText
+	if len(album) > 0:
+		albumTitle = album[0].firstChild.wholeText
+	else:
+		return ("", "")
 	
 	artist = d.getElementsByTagName("ARTIST")
-	artistName = artist[0].firstChild.wholeText
+	if len(artist) > 0:
+		artistName = artist[0].firstChild.wholeText
+	else:
+		return ("", "")
 	
 	
 	return (artistName, albumTitle)
