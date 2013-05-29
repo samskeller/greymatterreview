@@ -216,7 +216,6 @@ a.link:visited{
 	text-decoration:none;
 	padding:6px;
 	margin:0 auto;
-	left:-63%;
 	margin-top:8px;
 	white-space:normal;
 	position:relative;
@@ -240,28 +239,31 @@ a.link:visited{
 	padding:0px;
 	margin-bottom:-2px;
 	margin-top:5px;
-	width:50%;
-	float:left;
-	padding-left:15%;
+	width:340px;
+	height:50px;
+	padding-left:120px;
+	padding-top:10px;
+	margin-top:10px;
+	display:inline;
 }
 
 #Tabs ul.tabslist li{
+	position:relative;
 	display:inline;
 	list-style:none;
-	height:20%;
-	float:left;
 	background: #FFFFFF transparent;
 }
 
 #Tabs ul.tabslist li a{
 	position:relative;
-	padding-top:15px;
-	display:block;
-	height:100%;
+	display:inline-block;
+	padding-top:10px;
+	margin-bottom:20px;
 	font:bold 14px 'Trebuchet MS';
-	padding-bottom:8px;
+	padding-bottom:6px;
 	border:2px solid #AAAAAA;
-	width:120px;
+	width:100px;
+	height:20px;
 	color:#EFEFEF;
 	font-weight:bold;
 	text-align:center;
@@ -279,26 +281,24 @@ a.link:visited{
 	background-color:#FFFFFF;
 	border:2px solid #000000;
 	/* IE10 Consumer Preview */ 
-	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+	background-image: -ms-linear-gradient(bottom, #D6CCC5 0%, #EFEFEF 100%);
 
 	/* Mozilla Firefox */ 
-	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+	background-image: -moz-linear-gradient(bottom, #D6CCC5 0%, #EFEFEF 100%);
 
 	/* Opera */ 
-	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+	background-image: -o-linear-gradient(bottom, #D6CCC5 0%, #EFEFEF 100%);
 
 	/* Webkit (Safari/Chrome 10) */ 
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFFFFF), color-stop(1, #C7C7C7));
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #D6CCC5), color-stop(1, #EFEFEF));
 
 	/* Webkit (Chrome 11+) */ 
-	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #C7C7C7 100%);
+	background-image: -webkit-linear-gradient(bottom, #D6CCC5 0%, #EFEFEF 100%);
 
 	/* W3C Markup, IE10 Release Preview */ 
-	background-image: linear-gradient(to top, #FFFFFF 0%, #C7C7C7 100%);
-}
+	background-image: linear-gradient(to top, #D6CCC5 0%, #EFEFEF 100%);}
 
 #Tabs #allcontent {
-	border:2px solid #000000;
 	margin:0px;
 	padding:0px 20px 0px 20px;
 	clear:both;
@@ -343,25 +343,25 @@ a.link:visited{
 
 #searching {
 	position:relative;
-	left:0%;
-	width:20%;
+	left:3%;
+	width:525px;
 	padding-top:1%;
 	display:inline-block;
 }
 
 #search_field {
-	width:70%;
+	width:240px;
 	margin-top:1%;
+	margin-left:35%;
 	font-size:16px;
 	display:inline;
 }
 
 #search_btn {
-	width:35%;
-	position:absolute;
-	top:25%;
-	float:right;
-	left:80%;
+	position:relative;
+	width:13%;
+	top:0%;
+	left:5%;
 	letter-spacing:1px;
 	border:1px solid #000000;
 	background:#30AACF;
@@ -452,5 +452,17 @@ p {
 #artistlisting {
 	text-decoration:none;
 	list-style-type: none;
+	cursor:pointer;
+}
+
+#searchresult {
+	border:1px solid #000000;
+	width:300px;
+	margin-left:50px;
+	margin-bottom:20px;
+}
+
+#searchresult:hover{
+	background:#CCCCCC;
 	cursor:pointer;
 }

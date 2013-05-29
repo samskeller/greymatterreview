@@ -17,12 +17,15 @@
 	<br>
 	<form method="post">
 	<div id="newreviewfield">
-		<label id="artistlabel">Enter the Artist</label>
+		<label id="artistlabel">Enter the Album Name</label>
 		<br>
 		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 		<br>
-		{% if count != 0: %}
-			<p>{{count}}</p>
+		{% if title != "" and artist != "": %}
+			<div id="searchresult">
+			<p>Artist: {{artist}}</p>
+			<p>Album: {{title}}</p>
+			</div>
       	{% elif errorMessage != "": %}
 			<p>{{errorMessage}}</p>
 		{% endif %}
