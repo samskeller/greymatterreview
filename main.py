@@ -22,8 +22,10 @@ import jinja2
 import os
 import random
 import re
+import urllib2
 from string import letters
 from google.appengine.ext import db
+from xml.dom import minidom
 
 secretKey = "BwWuOrchjptblMWljjbOxzapj"
 
@@ -306,19 +308,37 @@ class NewReviewHandler(GreyMatterHandler):
 		artistName = self.request.get('reviewartist')
 		
 		if search and artistName != "":
-			artists = Artist.get_artists(artistName)
+			#artists = Artist.get_artists(artistName)
+			xml = searchGracenote(artistName)
+			count = parseXML(xml)
 			
-			if artists:
-				self.render("newreview.html", artists=artists, errorMessage="")
+			if count > 0:
+				self.render("newreview.html", count=count, errorMessage="")
 			else:
-				self.render("newreview.html", artists=None, errorMessage="Sorry, " \
+				self.render("newreview.html", count=0, errorMessage="Sorry, " \
 					+ "no artists were found with that name")
 		elif search and artistName == "":
-			self.render("newreview.html", artists=None, errorMessage="Please enter " \
+			self.render("newreview.html", count=0, errorMessage="Please enter " \
 				+ "an artist to search for")
 		else:
 			self.redirect("/")
-		
+
+artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>14927872-D2E7F8302A9A80E880DAB24AED14F349</CLIENT><USER>261861459897504262-32B4533EE06618819EB2273F4652E5F7</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{0}</TEXT></QUERY></QUERIES>"
+
+def searchGracenote(artist):
+	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=artistQuery.format(artist), \
+		headers={'Content-type': 'application/xml'})
+	
+	albumSearch = urllib2.urlopen(req)
+	
+	return albumSearch.read()
+
+def parseXML(xml):
+	d = minidom.parseString(xml)
+	count = d.getElementsByTagName("COUNT")
+	actualCount = count[0].firstChild.wholeText
+	
+	return actualCount
 		
 class LogoutHandler(GreyMatterHandler):
 	def get(self):

@@ -21,12 +21,8 @@
 		<br>
 		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 		<br>
-		{% if artists != None: %}
-			<ul>
-			{% for artist in artists %}
-				<li id="artistlisting">{{artist.name}}</li>
-			{% endfor %}
-			</ul>
+		{% if count != 0: %}
+			<p>{{count}}</p>
       	{% elif errorMessage != "": %}
 			<p>{{errorMessage}}</p>
 		{% endif %}
