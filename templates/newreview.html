@@ -5,6 +5,16 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
         </head>
+        <script>
+        function albumSwitch(active, number) {  
+      
+    		for (var i=0; i < number; i++) {  
+      			document.getElementById("searchresult_"+i).className = 'searchresult';  
+    		}  
+    		document.getElementById("searchresult_"+active).className = 'searchresultactive';      
+      
+		}  
+		</script>
 <body id="homebody">
 	<div id="top">
 		<a id="title" href="/home">Grey Matter Review</a>
@@ -21,15 +31,17 @@
 		<br>
 		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 		<br>
-		{% if title != "" and artist != "": %}
-			<div id="searchresult">
-			<p>Artist: {{artist}}</p>
-			<p>Album: {{title}}</p>
-			</div>
+		{% if albums|length > 0: %}
+			{% for album in albums: %}
+				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
+					<p>Artist: {{album['artistName']}}</p>
+					<p>Album: {{album['albumTitle']}}</p>
+				</a></div>
+			{% endfor %}
       	{% elif errorMessage != "": %}
 			<p>{{errorMessage}}</p>
 		{% endif %}
-      	
+      	<br>
 		<label id="reviewlabel">Type your review</label>
 		<textarea id="reviewbody"></textarea>
 		<input type="submit" name="newreviewbtn" id="newreviewbtn">

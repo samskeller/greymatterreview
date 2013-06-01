@@ -455,14 +455,33 @@ p {
 	cursor:pointer;
 }
 
-#searchresult {
+.searchresult {
 	border:1px solid #000000;
-	width:300px;
+	width:200px;
 	margin-left:50px;
 	margin-bottom:20px;
+	display:inline-block;
 }
 
-#searchresult:hover{
+.searchresult:hover{
 	background:#CCCCCC;
 	cursor:pointer;
+}
+
+.searchresulta {
+	text-decoration:none;
+	color:black;
+}
+.searchresultactive {
+	border:1px solid #000000;
+	width:200px;
+	margin-left:50px;
+	margin-bottom:20px;
+	display:inline-block;
+	background-color:#EECC44;
+}
+
+#albumArt {
+	left:100px;
+	position:relative;
 }

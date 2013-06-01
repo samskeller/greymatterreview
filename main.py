@@ -26,7 +26,7 @@ import urllib2
 from string import letters
 from google.appengine.ext import db
 from xml.dom import minidom
-from gracenoteIDs import clientID, userID
+from gracenoteIDs import clientID, userID, albumSearchCover
 
 secretKey = "BwWuOrchjptblMWljjbOxzapj"
 
@@ -299,7 +299,7 @@ class HomeHandler(GreyMatterHandler):
 class NewReviewHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("newreview.html", title="", artist="", errorMessage="")
+			self.render("newreview.html", title="", artist="", url="", errorMessage="")
 		else:
 			self.redirect("/")
 			
@@ -309,48 +309,68 @@ class NewReviewHandler(GreyMatterHandler):
 		albumName = self.request.get('reviewartist')
 		
 		if search and albumName != "":
-			#artists = Artist.get_artists(artistName)
 			xml = searchGracenote(albumName)
-			(artist, album) = parseXML(xml)
+			albums = parseXML(xml)
 			
-			if album and album != "" and artist and artist != "":
-				self.render("newreview.html", title=album, artist=artist, errorMessage="")
+			if len(albums) > 0:
+				self.render("newreview.html", albums=albums, errorMessage="")
 			else:
-				self.render("newreview.html", title="", artist="", errorMessage="Sorry, " \
+				self.render("newreview.html", title="", artist="", url="", errorMessage="Sorry, " \
 					+ "no artists were found with that name")
 		elif search and artistName == "":
-			self.render("newreview.html", title="", artist="", errorMessage="Please enter " \
+			self.render("newreview.html", title="", artist="", url="", errorMessage="Please enter " \
 				+ "an artist to search for")
 		else:
 			self.redirect("/")
 
 artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{2}</TEXT></QUERY></QUERIES>"
-albumQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><MODE>SINGLE_BEST_COVER</MODE><TEXT TYPE=\"ALBUM_TITLE\">{2}</TEXT></QUERY></QUERIES>"
 
 def searchGracenote(album):
-	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumQuery.format(clientID, userID, album), \
+	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
 		headers={'Content-type': 'application/xml'})
 	
 	albumSearch = urllib2.urlopen(req)
 	
 	return albumSearch.read()
+	
+def parseAlbumEntry(album):
+	albumDict = {}
+	artist = album.getElementsByTagName("ARTIST")
+	albumTitle = album.getElementsByTagName("TITLE")
+	url = album.getElementsByTagName("URL")
+
+	if len(albumTitle) > 0:
+		albumDict['albumTitle'] = albumTitle[0].firstChild.wholeText
+	else:
+		albumDict['albumTitle'] = ""
+	
+	if len(artist) > 0:
+		albumDict['artistName'] = artist[0].firstChild.wholeText
+	else:
+		albumDict['artistName'] = ""
+	
+	if len(url) > 0:
+		albumDict['url'] = url[0].firstChild.wholeText
+	else:
+		albumDict['url'] = ""
+	
+	return albumDict
 
 def parseXML(xml):
+	albumList = []
+	
 	d = minidom.parseString(xml)
-	album = d.getElementsByTagName("TITLE")
-	if len(album) > 0:
-		albumTitle = album[0].firstChild.wholeText
-	else:
-		return ("", "")
+	albums = d.getElementsByTagName("ALBUM")
+	if len(albums) < 1:
+		return albumList
 	
-	artist = d.getElementsByTagName("ARTIST")
-	if len(artist) > 0:
-		artistName = artist[0].firstChild.wholeText
-	else:
-		return ("", "")
+	for album in albums:
+		albumDict = parseAlbumEntry(album)
+		
+		if albumDict not in albumList:
+			albumList.append(albumDict)
 	
-	
-	return (artistName, albumTitle)
+	return albumList
 		
 class LogoutHandler(GreyMatterHandler):
 	def get(self):
