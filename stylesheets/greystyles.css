@@ -53,6 +53,11 @@ body {
 	height:40px;
 }
 
+#toplogo {
+	display:inline;
+	float:right;
+}
+
 #inputForms {
 	left:50%;
 	position:relative;
