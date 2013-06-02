@@ -36,7 +36,7 @@ body {
 	margin-top:6px;
 	display:inline;
 	float:left;
-	margin-left:20px;
+	margin-left:10px;
 	font-size:24px;
 }
 
@@ -48,14 +48,14 @@ body {
 	margin:0 auto;
 	text-align:center;
 	width:100%;
-	border-radius:15px;
 	background-color:#111111;
 	height:40px;
 }
 
 #toplogo {
 	display:inline;
-	float:right;
+	padding-left:20px;
+	float:left;
 }
 
 #inputForms {
@@ -344,6 +344,15 @@ a.link:visited{
 	padding-left:20px;
 	width:22%;
 	display:inline-block;
+}
+
+#profilefeed {
+	position:relative;
+	width:600px;
+	left:200px;
+	border:1px solid #FF0000;
+	height:400px;
+	display:inline;
 }
 
 #searching {
