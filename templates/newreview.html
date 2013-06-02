@@ -32,6 +32,9 @@
 		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 		<br>
 		{% if albums|length > 0: %}
+			<label id="reviewlabel">Select an album</label>
+			<br>
+			<br>
 			{% for album in albums: %}
 				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
 					<p>Artist: {{album['artistName']}}</p>
