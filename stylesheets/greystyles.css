@@ -50,6 +50,7 @@ body {
 	width:100%;
 	background-color:#111111;
 	height:40px;
+	z-index:100;
 }
 
 #toplogo {
@@ -237,7 +238,7 @@ a.link:visited{
 #Tabs {
 	margin: 0px auto 0px auto;
 	width:1000px;
-	height:400px;
+	height:95%;
 }
 
 #Tabs ul.tabslist{
@@ -307,10 +308,10 @@ a.link:visited{
 	margin:0px;
 	padding:0px 20px 0px 20px;
 	clear:both;
-	overflow:hidden;
+	overflow:auto;
 	line-height:22px;
 	position:relative;
-	height:90%;
+	height:100%;
 	/* IE10 Consumer Preview */ 
 	background-image: -ms-linear-gradient(top left, #D6CCC5 0%, #EFEFEF 100%);
 
@@ -345,20 +346,22 @@ a.link:visited{
 	padding-top:0px;
 	padding-bottom:0px;
 	width:180px;
+	display:block;
 }
 #profile_image {
 	padding-left:20px;
 	width:200px;
-	display:inline-block;
+	display:block;
 }
 
 #profilefeed {
 	position:relative;
-	margin-top:20px;
-	border:1px solid #000000;
+	border:1px dashed #000000;
 	display:inline-block;
 	width:600px;
-	height:250px;
+	height:300px;
+	top:-140px;
+	margin-left:50px;
 }
 
 #searching {

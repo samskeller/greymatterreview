@@ -304,6 +304,9 @@ class NewReviewHandler(GreyMatterHandler):
 			self.redirect("/")
 			
 	def post(self):
+		if not self.user:
+			self.redirect("/")
+		
 		search = self.request.get('artistlookupbtn')
 		review = self.request.get('newreviewbtn')
 		albumName = self.request.get('reviewartist')
