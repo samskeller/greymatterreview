@@ -26,11 +26,11 @@
 	<a id="logout" href="/logout">Logout</a>
 	<br>
 	<br>
-	<form method="post">
+	<form method="post" action="/newreview">
 	<div id="newreviewfield">
 		<label id="artistlabel">Enter the Album Name</label>
 		<br>
-		<input type="text" id="reviewartist" name="reviewartist"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
+		<input type="text" id="inputAlbum" name="inputAlbum"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 		<br>
 		{% if albums|length > 0: %}
 			<label id="reviewlabel">Select an album</label>
@@ -47,7 +47,7 @@
 		{% endif %}
       	<br>
 		<label id="reviewlabel">Type your review</label>
-		<textarea id="reviewbody"></textarea>
+		<textarea id="reviewbody" name="reviewbody"></textarea>
 		<input type="submit" name="newreviewbtn" id="newreviewbtn">
 	</div>
 	</form>

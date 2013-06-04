@@ -170,6 +170,11 @@ class Review(db.Model):
 	artist = db.StringProperty(required = True)
 	reviewer = db.StringProperty(required = True)
 	reviewDate = db.DateTimeProperty(auto_now_add = True)
+	reviewText = db.TextProperty(required = True)
+	
+	@classmethod
+	def get_reviews_by_user(cls, user):
+		return Review.all().filter('reviewer = ', user).fetch(5)
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -292,14 +297,16 @@ class LoginHandler(GreyMatterHandler):
 class HomeHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("home.html", username=self.user.username)
+			reviews = Review.get_reviews_by_user(self.user.username)
+			number = len(reviews)
+			self.render("home.html", username=self.user.username, length=number, reviews=reviews)
 		else:
 			self.redirect('/')
 			
 class NewReviewHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("newreview.html", title="", artist="", url="", errorMessage="")
+			self.render("newreview.html", url="", errorMessage="")
 		else:
 			self.redirect("/")
 			
@@ -308,23 +315,32 @@ class NewReviewHandler(GreyMatterHandler):
 			self.redirect("/")
 		
 		search = self.request.get('artistlookupbtn')
-		review = self.request.get('newreviewbtn')
-		albumName = self.request.get('reviewartist')
+		inputAlbum = self.request.get('inputAlbum')
+		submitReview = self.request.get('newreviewbtn')
+		review = self.request.get('reviewbody')
+		artist = self.request.get('artist')
+		album = self.request.get('album')
 		
-		if search and albumName != "":
-			xml = searchGracenote(albumName)
+		if search and inputAlbum != "":
+			xml = searchGracenote(inputAlbum)
 			albums = parseXML(xml)
 			
 			if len(albums) > 0:
 				self.render("newreview.html", albums=albums, errorMessage="")
 			else:
-				self.render("newreview.html", title="", artist="", url="", errorMessage="Sorry, " \
+				self.render("newreview.html", url="", errorMessage="Sorry, " \
 					+ "no artists were found with that name")
 		elif search and artistName == "":
-			self.render("newreview.html", title="", artist="", url="", errorMessage="Please enter " \
+			self.render("newreview.html", url="", errorMessage="Please enter " \
 				+ "an artist to search for")
+		elif submitReview and review and artist and album:
+			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
+							reviewText=review)
+			newReview.put()
+			self.redirect("/home")
 		else:
-			self.redirect("/")
+			self.render("newreview.html", url="", errorMessage="Please " \
+					+ "fill out each of the fields")
 
 artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{2}</TEXT></QUERY></QUERIES>"
 

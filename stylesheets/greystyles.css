@@ -360,8 +360,12 @@ a.link:visited{
 	display:inline-block;
 	width:600px;
 	height:300px;
-	top:-140px;
 	margin-left:50px;
+	margin-top:20px;
+}
+
+.profileReview {
+	border:1px solid #000000;
 }
 
 #searching {
@@ -438,7 +442,7 @@ p {
 	margin-left:2%;
 }
 
-#reviewartist {
+#inputAlbum {
 	margin-left:2%;
 	margin-right:2%;
 	width: 85%;

@@ -51,6 +51,14 @@
 		  	</div>
 		  	<div id="profilefeed">
 		  		<h2>News Feed</h2>
+		  		{% for review in reviews: %}
+		  			<p class="profileReview">Artist: {{review.artist}}
+		  			<br>
+		  			Album: {{review.album}}
+		  			<br>
+		  			Review: {{review.reviewText}}
+		  			</p>
+		  		{% endfor %}
 		  	</div>
 		  </div>
 		  <div id="content_3" class="content">
