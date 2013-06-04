@@ -22,6 +22,7 @@ import jinja2
 import os
 import random
 import re
+import time
 import urllib2
 from string import letters
 from google.appengine.ext import db
@@ -337,6 +338,7 @@ class NewReviewHandler(GreyMatterHandler):
 			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
 							reviewText=review)
 			newReview.put()
+			time.sleep(1)
 			self.redirect("/home")
 		else:
 			self.render("newreview.html", url="", errorMessage="Please " \

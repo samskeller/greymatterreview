@@ -39,7 +39,9 @@
 			{% for album in albums: %}
 				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
 					<p>Artist: {{album['artistName']}}</p>
+					<input type="hidden" name="artist" value="{{album['artistName']}}"</input>
 					<p>Album: {{album['albumTitle']}}</p>
+					<input type="hidden" name="album" value="{{album['albumTitle']}}"</input>
 				</a></div>
 			{% endfor %}
       	{% elif errorMessage != "": %}

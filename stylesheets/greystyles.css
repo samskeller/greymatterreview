@@ -357,6 +357,7 @@ a.link:visited{
 #profilefeed {
 	position:relative;
 	border:1px dashed #000000;
+	overflow:auto;
 	display:inline-block;
 	width:600px;
 	height:300px;
