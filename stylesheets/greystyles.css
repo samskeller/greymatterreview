@@ -351,22 +351,27 @@ a.link:visited{
 #profile_image {
 	padding-left:20px;
 	width:200px;
-	display:block;
+	display:inline-block;
+	float:left;
 }
 
 #profilefeed {
 	position:relative;
-	border:1px dashed #000000;
+	border:2px dashed #000000;
 	overflow:auto;
+	float:right;
 	display:inline-block;
-	width:600px;
+	width:680px;
 	height:300px;
-	margin-left:50px;
 	margin-top:20px;
+	margin-bottom:20px;
+	padding:10px;
 }
 
 .profileReview {
 	border:1px solid #000000;
+	display:block;
+	padding:5px;
 }
 
 #searching {

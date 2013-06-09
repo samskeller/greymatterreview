@@ -46,18 +46,19 @@
 		  	<div id="profile_info">
 		  		<h2 id="profie_name">{{username}}</h2>
 				<div id="profile_image">
-					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="80%" height="52%">
+					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="180" height="200">
 		  		</div>
 		  	</div>
 		  	<div id="profilefeed">
-		  		<h2>News Feed</h2>
+		  		<h2 style="display:inline;">My Activity</h2>
 		  		{% for review in reviews: %}
-		  			<p class="profileReview">Artist: {{review.artist}}
+		  			<div class="profileReview">Artist: {{review.artist}}
 		  			<br>
 		  			Album: {{review.album}}
 		  			<br>
 		  			Review: {{review.reviewText}}
-		  			</p>
+		  			</div>
+		  			<br>
 		  		{% endfor %}
 		  	</div>
 		  </div>
