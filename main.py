@@ -175,7 +175,7 @@ class Review(db.Model):
 	
 	@classmethod
 	def get_reviews_by_user(cls, user):
-		return Review.all().filter('reviewer = ', user).fetch(10)
+		return Review.all().filter('reviewer = ', user).order('-reviewDate').fetch(10)
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):

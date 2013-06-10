@@ -46,13 +46,14 @@
 		  	<div id="profile_info">
 		  		<h2 id="profie_name">{{username}}</h2>
 				<div id="profile_image">
-					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="180" height="200">
+					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
 		  		</div>
 		  	</div>
 		  	<div id="profilefeed">
 		  		<h2 style="display:inline;">My Activity</h2>
 		  		{% for review in reviews: %}
 		  			<div class="profileReview">Artist: {{review.artist}}
+		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 		  			<br>
 		  			Album: {{review.album}}
 		  			<br>

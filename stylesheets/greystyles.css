@@ -368,6 +368,9 @@ a.link:visited{
 	padding:10px;
 }
 
+#reviewDate {
+	float:right;
+}
 #myactivity {
 	position:relative;
 	display:inline;
@@ -446,6 +449,7 @@ p {
 	margin-bottom:10px;
 	margin-top:5px;
 	resize:none;
+	font-size:18px;
 }
 
 #artistlabel {
