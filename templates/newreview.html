@@ -11,7 +11,15 @@
     		for (var i=0; i < number; i++) {  
       			document.getElementById("searchresult_"+i).className = 'searchresult';  
     		}  
-    		document.getElementById("searchresult_"+active).className = 'searchresultactive';      
+    		document.getElementById("searchresult_"+active).className = 'searchresultactive';  
+    		
+    		var artist = document.getElementById("searchresult_"+active).querySelector(".artistInReview").innerText;
+    		var album = document.getElementById("searchresult_"+active).querySelector(".albumInReview").innerText;
+    		
+    		var hiddenArtist = document.querySelector("#artisthidden");
+    		hiddenArtist.value = artist;
+    		var hiddenAlbum = document.querySelector("#albumhidden");
+    		hiddenAlbum.value = album;
       
 		}  
 		</script>
@@ -38,12 +46,12 @@
 			<br>
 			{% for album in albums: %}
 				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
-					<p>Artist: {{album['artistName']}}</p>
-					<input type="hidden" name="artist" value="{{album['artistName']}}"</input>
-					<p>Album: {{album['albumTitle']}}</p>
-					<input type="hidden" name="album" value="{{album['albumTitle']}}"</input>
+					<p class="artistInReview">Artist: {{album['artistName']}}</p>
+					<p class="albumInReview">Album: {{album['albumTitle']}}</p>
 				</a></div>
 			{% endfor %}
+			<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
+			<input type="hidden" name="albumhidden" id="albumhidden" value=""</input>
       	{% elif errorMessage != "": %}
 			<p>{{errorMessage}}</p>
 		{% endif %}

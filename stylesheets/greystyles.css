@@ -348,10 +348,10 @@ a.link:visited{
 	width:180px;
 	display:block;
 }
+
 #profile_image {
 	padding-left:20px;
 	width:200px;
-	display:inline-block;
 	float:left;
 }
 
@@ -366,6 +366,11 @@ a.link:visited{
 	margin-top:20px;
 	margin-bottom:20px;
 	padding:10px;
+}
+
+#myactivity {
+	position:relative;
+	display:inline;
 }
 
 .profileReview {

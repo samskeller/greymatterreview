@@ -175,7 +175,7 @@ class Review(db.Model):
 	
 	@classmethod
 	def get_reviews_by_user(cls, user):
-		return Review.all().filter('reviewer = ', user).fetch(5)
+		return Review.all().filter('reviewer = ', user).fetch(10)
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -319,8 +319,8 @@ class NewReviewHandler(GreyMatterHandler):
 		inputAlbum = self.request.get('inputAlbum')
 		submitReview = self.request.get('newreviewbtn')
 		review = self.request.get('reviewbody')
-		artist = self.request.get('artist')
-		album = self.request.get('album')
+		artist = self.request.get('artisthidden')
+		album = self.request.get('albumhidden')
 		
 		if search and inputAlbum != "":
 			xml = searchGracenote(inputAlbum)
