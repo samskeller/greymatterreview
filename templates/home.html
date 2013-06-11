@@ -44,9 +44,30 @@
 		  </div>
 		  <div id="content_2" class="content">
 		  	<div id="profile_info">
-		  		<h2 id="profie_name">{{username}}</h2>
+		  		<h2 id="profie_name">{{user.username}}</h2>
 				<div id="profile_image">
-					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
+					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
+		  		</div>
+		  		<div id="profile_stats">
+		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
+		  			<br>
+		  			{% if user.age: %}
+		  			Age: {{user.age}}
+		  			{% else: %}
+		  			Age: <a href="#">Add</a>
+		  			{% endif %}
+		  			<br>
+		  			{% if user.followers: %}
+		  			Followers: <a href="#">{{user.followers}}</a>
+		  			{% else: %}
+		  			Followers: <a href="#">0</a>
+		  			{% endif %}
+		  			<br>
+		  			{% if user.following: %}
+		  			Following: <a href="#">{{user.following}}</a>
+		  			{% else: %}
+		  			Following: <a href="#">0</a>
+		  			{% endif %}
 		  		</div>
 		  	</div>
 		  	<div id="profilefeed">

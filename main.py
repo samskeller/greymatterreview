@@ -125,6 +125,9 @@ class User(db.Model):
 	hashedPassword = db.StringProperty(required = True)
 	signupDate = db.DateTimeProperty(auto_now_add = True)
 	email = db.StringProperty()
+	age = db.IntegerProperty()
+	followers = db.IntegerProperty()
+	following = db.IntegerProperty()
 	
 	@classmethod
 	def by_id(cls, uid):
@@ -135,9 +138,9 @@ class User(db.Model):
 		return User.all().filter('username =', username).get()
 	
 	@classmethod
-	def register(cls, username, password, email = None):
+	def register(cls, username, password, email=None, age=None, followers=0, following=0):
 		hashedPassword = makePasswordHash(username, password)
-		return User(username = username, hashedPassword = hashedPassword, email = email)
+		return User(username = username, hashedPassword = hashedPassword, email = email, age = age, followers = followers, following = following)
 	
 	@classmethod
 	def login(cls, username, password):
@@ -300,7 +303,7 @@ class HomeHandler(GreyMatterHandler):
 		if self.user:
 			reviews = Review.get_reviews_by_user(self.user.username)
 			number = len(reviews)
-			self.render("home.html", username=self.user.username, length=number, reviews=reviews)
+			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
 			self.redirect('/')
 			
