@@ -341,6 +341,23 @@ a.link:visited{
 	width:23%;
 }
 
+#hiddenAge {
+	width:40px;
+}
+
+#hiddenAgeSubmit {
+	padding:2px;
+	position:relative;
+	letter-spacing:1px;
+	border:1px solid #000000;
+	background:#FF0019;
+	color:white;
+	font:bold 14px 'Trebuchet MS';
+	cursor:pointer;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+}
+
 #profie_name {
 	padding-left:40px;
 	padding-top:0px;

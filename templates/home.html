@@ -16,6 +16,12 @@
     		document.getElementById("tab_"+active).className = 'active';      
       
 		}  
+		
+		function editButtonToInput() {
+			document.getElementById("editButtonAge").style.display = 'none';
+			document.getElementById("hiddenAge").type = "text";
+			document.getElementById("hiddenAgeSubmit").type = "submit";
+		}
 		</script>
 <body id="homebody">
 	<div id="top">
@@ -54,7 +60,9 @@
 		  			{% if user.age: %}
 		  			Age: {{user.age}}
 		  			{% else: %}
-		  			Age: <a href="#">Add</a>
+		  			Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
+		  				<input id="hiddenAge" type="hidden">
+		  				<input id="hiddenAgeSubmit" type="hidden">
 		  			{% endif %}
 		  			<br>
 		  			{% if user.followers: %}
