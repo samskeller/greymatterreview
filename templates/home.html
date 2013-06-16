@@ -33,11 +33,10 @@
 	<a id="logout" href="/logout">Logout</a>
 	<br>
 	<div id="Tabs">
-	  <br>
 	  <div id="navigation">
 	  	<ul id="navigationList">
 	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="#">Profile</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
 	  		<li class="navigationelement"><a class="navbut" href="#">Artists</a></li>
 	  	</ul>
 	  </div>
@@ -77,6 +76,9 @@
 		  	</div>
 		  	<div id="profilefeed">
 		  		<h2 style="display:inline;">My Activity</h2>
+		  		{% if reviews|length == 0: %}
+		  			<p>You've never made a review! Click <a href="/newreview">here</a> to write your first one</p>
+		  		{% endif %}
 		  		{% for review in reviews: %}
 		  			<div class="profileReview">Artist: {{review.artist}}
 		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>

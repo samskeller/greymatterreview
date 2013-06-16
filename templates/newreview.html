@@ -30,35 +30,42 @@
 	</div>
 	<br>
 	<br>
-	<a id="homebutton" href="/">&lt;--home</a>
 	<a id="logout" href="/logout">Logout</a>
-	<br>
-	<br>
 	<form method="post" action="/newreview">
-	<div id="newreviewfield">
-		<label id="artistlabel">Enter the Album Name</label>
-		<br>
-		<input type="text" id="inputAlbum" name="inputAlbum"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
-		<br>
-		{% if albums|length > 0: %}
-			<label id="reviewlabel">Select an album</label>
+	<div id="Tabs">
+	  <br>
+	  <div id="navigation">
+	  	<ul id="navigationList">
+	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
+	  		<li class="navigationelement"><a class="navbut" href="#">Artists</a></li>
+	  	</ul>
+	  </div>
+		<div id="newreviewfield">
+			<label id="artistlabel">Enter the Album Name</label>
 			<br>
+			<input type="text" id="inputAlbum" name="inputAlbum"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 			<br>
-			{% for album in albums: %}
-				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
-					<p class="artistInReview">Artist: {{album['artistName']}}</p>
-					<p class="albumInReview">Album: {{album['albumTitle']}}</p>
-				</a></div>
-			{% endfor %}
-			<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
-			<input type="hidden" name="albumhidden" id="albumhidden" value=""</input>
-      	{% elif errorMessage != "": %}
-			<p>{{errorMessage}}</p>
-		{% endif %}
-      	<br>
-		<label id="reviewlabel">Type your review</label>
-		<textarea id="reviewbody" name="reviewbody"></textarea>
-		<input type="submit" name="newreviewbtn" id="newreviewbtn">
+			{% if albums|length > 0: %}
+				<label id="reviewlabel">Select an album</label>
+				<br>
+				<br>
+				{% for album in albums: %}
+					<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
+						<p class="artistInReview">Artist: {{album['artistName']}}</p>
+						<p class="albumInReview">Album: {{album['albumTitle']}}</p>
+					</a></div>
+				{% endfor %}
+				<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
+				<input type="hidden" name="albumhidden" id="albumhidden" value=""</input>
+			{% elif errorMessage != "": %}
+				<p>{{errorMessage}}</p>
+			{% endif %}
+			<br>
+			<label id="reviewlabel">Type your review</label>
+			<textarea id="reviewbody" name="reviewbody"></textarea>
+			<input type="submit" name="newreviewbtn" id="newreviewbtn">
+		</div>
 	</div>
 	</form>
 </body>
