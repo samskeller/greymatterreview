@@ -529,3 +529,66 @@ p {
 	left:100px;
 	position:relative;
 }
+
+#maincontainer {
+	width:1000px;
+	position:absolute;
+	left:50%;
+	margin-left:-500px;
+	top:85px;
+	bottom:0;
+}
+
+#friendscontainer {
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:10px;
+	background:#FFFFFF;
+	bottom:0;
+	top:50px;
+	overflow:auto;
+	width:100%;
+	position:absolute;
+}
+
+#followerslist {
+	position:relative;
+	width:42%;
+	border:1px solid #FF0000;
+	display:inline-block;
+	margin-left:30px;
+}
+
+#followinglist {
+	position:relative;
+	width:42%;
+	border:1px solid #0000FF;
+	display:inline-block;
+	float:right;
+	margin-right:30px;
+}
+
+#followerstitle {
+	text-align:center;
+}
+
+#followingtitle {
+	text-align:center;
+}
+
+#searchfriendsinput {
+	margin-left:30px;
+	font-size:16px;
+}
+
+#searchfriendsbtn {
+	letter-spacing:1px;
+	margin-right:10px;
+	border:1px solid #000000;
+	background:#FF0019;
+	color:white;
+	font:bold 16px 'Trebuchet MS';
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+}

@@ -179,6 +179,14 @@ class Review(db.Model):
 	@classmethod
 	def get_reviews_by_user(cls, user):
 		return Review.all().filter('reviewer = ', user).order('-reviewDate').fetch(10)
+		
+class FollowPair(db.Model):
+	follower = db.StringProperty(required = True)
+	following = db.StringProperty(required = True)
+	
+	@classmethod
+	def getFollowInformation(cls, user):
+		return FollowPair.gql("WHERE follower = '" + user.username + "' OR following = '" + user.username + "'")
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -349,6 +357,28 @@ class NewReviewHandler(GreyMatterHandler):
 
 artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{2}</TEXT></QUERY></QUERIES>"
 
+class FriendsHandler(GreyMatterHandler):
+	def get(self):
+		if self.user:
+			self.render("friends.html")
+		else:
+			self.redirect("/")
+	
+	def post(self):
+		if self.user:
+			searchFriends = self.request.get('searchfriendsbtn')
+			searchName = self.request.get('searchfriendsname')
+			
+			if searchFriends and searchName:
+				potentialFriends = User.all().filter('username =', searchName).fetch(10)
+				
+				if potentialFriends != None:
+					self.render("friends.html", potentials=list(potentialFriends))
+			else:
+				self.render("friends.html")
+		else:
+			self.redirect("/")
+
 def searchGracenote(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
 		headers={'Content-type': 'application/xml'})
@@ -405,4 +435,4 @@ class LogoutHandler(GreyMatterHandler):
 # Make the app go!
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
-    ('/newreview', NewReviewHandler)], debug=True)
+    ('/newreview', NewReviewHandler), ('/friends', FriendsHandler)], debug=True)

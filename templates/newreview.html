@@ -37,7 +37,8 @@
 	  	<ul id="navigationList">
 	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
 	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
-	  		<li class="navigationelement"><a class="navbut" href="#">Artists</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="#">Artists</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
 	  	</ul>
 	  </div>
 		<div id="newreviewfield">
@@ -51,8 +52,8 @@
 				<br>
 				{% for album in albums: %}
 					<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
-						<p class="artistInReview">Artist: {{album['artistName']}}</p>
-						<p class="albumInReview">Album: {{album['albumTitle']}}</p>
+						<p>Artist: <span class="artistInReview">{{album['artistName']}}</span></p>
+						<p>Album: <span class="albumInReview">{{album['albumTitle']}}</span></p>
 					</a></div>
 				{% endfor %}
 				<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
