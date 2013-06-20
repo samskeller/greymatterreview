@@ -5,6 +5,19 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
         </head>
+        <script type="text/javascript">
+        
+        function checkboxClicked(a) {
+        	var element = document.getElementById("checkboxElement_"+a);
+        	
+        	if (element.className == "checkboxSelected") {
+        		element.setAttribute("class", "checkboxElement");
+        	} else {
+        		element.setAttribute("class", "checkboxSelected");
+        	}
+        }
+        
+        </script>
 <body id="homebody">
 	<div id="top">
 		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
@@ -30,9 +43,9 @@
 	  	<br>
 	  	<div>
 	  		{% if potentials != None: %}
-					<ul>
-				{% for potential in potentials: %}
-						<li><input type="checkbox" name="checkbox">{{potential.username}}</input></li>
+					<ul id="potentialsList">
+				{% for i in range(potentials|length) %}
+						<li class="checkboxElement" id="checkboxElement_{{i}}"><input type="checkbox" name="checkbox" onchange="checkboxClicked({{i}})">{{potentials[i].username}}</input></li>
 				{% endfor %}
 					</ul>
 					<input type="submit" id="addfriends" value="Add Friends" name="addfriendsbtn">

@@ -593,6 +593,27 @@ p {
 	-webkit-border-radius:4px;
 }
 
+#potentialsList {
+	margin-left:30px;
+	margin-right:30px;
+}
+
+.checkboxElement {
+	display:inline-block;
+	list-style-type:none;
+	border:1px solid #888888;
+	background:#BBBBBB;
+	padding:20px;
+}
+
+.checkboxSelected {
+	display:inline-block;
+	list-style-type:none;
+	border:1px solid #888888;
+	background:#999999;
+	padding:20px;
+}
+
 #addfriends {
 	margin-left:30px;
 	letter-spacing:1px;
