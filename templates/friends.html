@@ -30,11 +30,14 @@
 	  	<br>
 	  	<div>
 	  		{% if potentials != None: %}
-	  			<ul>
-	  		{% for potential in potentials: %}
-	  				<li>{{potential.username}}</li>
-	  		{% endfor %}
-	  			</ul>
+					<ul>
+				{% for potential in potentials: %}
+						<li><input type="checkbox" name="checkbox">{{potential.username}}</input></li>
+				{% endfor %}
+					</ul>
+					<input type="submit" id="addfriends" value="Add Friends" name="addfriendsbtn">
+					<br>
+					<br>
 	  		{% endif %}
 	  	</div>
 	  	<div id="followerslist">

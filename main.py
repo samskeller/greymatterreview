@@ -372,8 +372,10 @@ class FriendsHandler(GreyMatterHandler):
 			if searchFriends and searchName:
 				potentialFriends = User.all().filter('username =', searchName).fetch(10)
 				
+				potentialFriends = list(potentialFriends)
+				
 				if potentialFriends != None:
-					self.render("friends.html", potentials=list(potentialFriends))
+					self.render("friends.html", potentials=potentialFriends)
 			else:
 				self.render("friends.html")
 		else:
