@@ -23,6 +23,7 @@ import os
 import random
 import re
 import time
+import unicodedata
 import urllib2
 from string import letters
 from google.appengine.ext import db
@@ -185,8 +186,12 @@ class FollowPair(db.Model):
 	following = db.StringProperty(required = True)
 	
 	@classmethod
-	def getFollowInformation(cls, user):
-		return FollowPair.gql("WHERE follower = '" + user.username + "' OR following = '" + user.username + "'")
+	def getFollowing(cls, user):
+		return FollowPair.gql("WHERE follower = '" + user.username + "'")
+	
+	@classmethod
+	def getFollowers(cls, user):
+		return FollowPair.gql("Where following = '" + user.username + "'")
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -360,7 +365,13 @@ artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USE
 class FriendsHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("friends.html")
+			followingPairs = FollowPair.getFollowing(self.user)
+			followingPairs = list(followingPairs)
+			
+			followerPairs = FollowPair.getFollowers(self.user)
+			followerPairs = list(followerPairs)
+			
+			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs)
 		else:
 			self.redirect("/")
 	
@@ -368,6 +379,7 @@ class FriendsHandler(GreyMatterHandler):
 		if self.user:
 			searchFriends = self.request.get('searchfriendsbtn')
 			searchName = self.request.get('searchfriendsname')
+			newFriends = self.request.get_all('checkboxInput')
 			
 			if searchFriends and searchName:
 				potentialFriends = User.all().filter('username =', searchName).fetch(10)
@@ -376,6 +388,13 @@ class FriendsHandler(GreyMatterHandler):
 				
 				if potentialFriends != None:
 					self.render("friends.html", potentials=potentialFriends)
+					
+			elif newFriends:
+				for newFriend in newFriends:
+					newFriendPair = FollowPair(follower=self.user.username, following=str(newFriend))
+					newFriendPair.put()
+					time.sleep(1)
+					self.redirect("/friends")
 			else:
 				self.render("friends.html")
 		else:

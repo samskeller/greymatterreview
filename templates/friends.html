@@ -7,13 +7,16 @@
         </head>
         <script type="text/javascript">
         
-        function checkboxClicked(a) {
+        function checkboxClicked(a, user) {
         	var element = document.getElementById("checkboxElement_"+a);
-        	
+        	var input = document.getElementById("checkboxInput_"+a);
+
         	if (element.className == "checkboxSelected") {
         		element.setAttribute("class", "checkboxElement");
+        		input.value = "";
         	} else {
         		element.setAttribute("class", "checkboxSelected");
+        		input.value = user;
         	}
         }
         
@@ -45,7 +48,10 @@
 	  		{% if potentials != None: %}
 					<ul id="potentialsList">
 				{% for i in range(potentials|length) %}
-						<li class="checkboxElement" id="checkboxElement_{{i}}"><input type="checkbox" name="checkbox" onchange="checkboxClicked({{i}})">{{potentials[i].username}}</input></li>
+						<li class="checkboxElement" id="checkboxElement_{{i}}">
+							<input type="checkbox" name="checkbox" onchange="checkboxClicked({{i}}, '{{potentials[i].username}}')">{{potentials[i].username}}</input>
+							<input name="checkboxInput" type="hidden" value="" id="checkboxInput_{{i}}"/>
+						</li>
 				{% endfor %}
 					</ul>
 					<input type="submit" id="addfriends" value="Add Friends" name="addfriendsbtn">
@@ -55,10 +61,19 @@
 	  	</div>
 	  	<div id="followerslist">
 	  		<h2 id="followerstitle">Followers</h2>
+	  		<ul>
+	  		{% for followerPair in followerPairs %}
+	  			<li>{{followerPair.follower}}</li>
+	  		{% endfor %}
 	  	</div>
 	  	
 	  	<div id="followinglist">
 	  		<h2 id="followingtitle">Following</h2>
+	  		<ul>
+	  		{% for followingPair in followingPairs %}
+	  			<li>{{followingPair.following}}</li>
+	  		{% endfor %}
+	  		</ul>
 	  	</div>
 	  </div>
 	</div>
