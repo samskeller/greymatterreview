@@ -554,18 +554,26 @@ p {
 #followerslist {
 	position:relative;
 	width:42%;
-	border:1px solid #FF0000;
 	display:inline-block;
 	margin-left:30px;
+	border-radius:15px;
+	-moz-box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	-webkit-box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	background-color:#EEBBCC;
 }
 
 #followinglist {
 	position:relative;
 	width:42%;
-	border:1px solid #0000FF;
 	display:inline-block;
 	float:right;
 	margin-right:30px;
+	border-radius:15px;
+	-moz-box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	-webkit-box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	box-shadow: 0px 0px 15px 8px #CCCCCC;
+  	background-color:#CCBBEE;
 }
 
 #followerstitle {
