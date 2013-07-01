@@ -406,7 +406,10 @@ class UserHandler(GreyMatterHandler):
 			otherUser = User.get_by_name(username)
 			if otherUser == None:
 				self.redirect("/")
-			self.render("user.html", user=otherUser)
+			
+			reviews = Review.get_reviews_by_user(username)
+			number = len(reviews)
+			self.render("user.html", user=otherUser, length=number, reviews=reviews)
 			
 
 def searchGracenote(album):
