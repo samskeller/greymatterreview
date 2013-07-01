@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>The Grey Matter Review</title>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+        </head>
+        <script>
+        function tabSwitch(active, number) {  
+      
+    		for (var i=1; i < number+1; i++) {  
+      			document.getElementById("content_"+i).style.display = 'none';  
+      			document.getElementById("tab_"+i).className = '';  
+    		}  
+    		document.getElementById("content_"+active).style.display = 'block';  
+    		document.getElementById("tab_"+active).className = 'active';      
+      
+		}  
+		
+		function editButtonToInput() {
+			document.getElementById("editButtonAge").style.display = 'none';
+			document.getElementById("hiddenAge").type = "text";
+			document.getElementById("hiddenAgeSubmit").type = "submit";
+		}
+		</script>
+<body id="homebody">
+	<div id="top">
+		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="title" href="/home">Grey Matter Review</a>
+	</div>
+	<br>
+	<br>
+	<a id="logout" href="/logout">Logout</a>
+	<br>
+	<div id="Tabs">
+	  <div id="navigation">
+	  	<ul id="navigationList">
+	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
+	  		<li class="navigationelement"><a class="navbut" href="#">Artists</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
+	  	</ul>
+	  </div>
+	  <div id="allcontent">
+		  <div id="content_2" class="content">
+		  	<div id="profile_info">
+		  		<h2 id="profie_name">{{user.username}}</h2>
+				<div id="profile_image">
+					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
+		  		</div>
+		  		<div id="profile_stats">
+		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
+		  			<br>
+		  			{% if user.age: %}
+		  			Age: {{user.age}}
+		  			{% else: %}
+		  			Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
+		  				<input id="hiddenAge" type="hidden">
+		  				<input id="hiddenAgeSubmit" type="hidden">
+		  			{% endif %}
+		  			<br>
+		  			{% if user.followers: %}
+		  			Followers: <a href="#">{{user.followers}}</a>
+		  			{% else: %}
+		  			Followers: <a href="#">0</a>
+		  			{% endif %}
+		  			<br>
+		  			{% if user.following: %}
+		  			Following: <a href="#">{{user.following}}</a>
+		  			{% else: %}
+		  			Following: <a href="#">0</a>
+		  			{% endif %}
+		  		</div>
+		  	</div>
+		  	<div id="profilefeed">
+		  		<h2 style="display:inline;">User Activity</h2>
+		  		{% for review in reviews: %}
+		  			<div class="profileReview">Artist: {{review.artist}}
+		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+		  			<br>
+		  			Album: {{review.album}}
+		  			<br>
+		  			Review: {{review.reviewText}}
+		  			</div>
+		  			<br>
+		  		{% endfor %}
+		  	</div>
+		  </div>
+	  </div>
+	</div>
+	<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
+</body>
+</html>

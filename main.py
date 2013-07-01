@@ -400,6 +400,15 @@ class FriendsHandler(GreyMatterHandler):
 		else:
 			self.redirect("/")
 
+class UserHandler(GreyMatterHandler):
+	def get(self, username):
+		if self.user:
+			otherUser = User.get_by_name(username)
+			if otherUser == None:
+				self.redirect("/")
+			self.render("user.html", user=otherUser)
+			
+
 def searchGracenote(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
 		headers={'Content-type': 'application/xml'})
@@ -456,4 +465,5 @@ class LogoutHandler(GreyMatterHandler):
 # Make the app go!
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
-    ('/newreview', NewReviewHandler), ('/friends', FriendsHandler)], debug=True)
+    ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
+    ('/user/(\w+)?', UserHandler)], debug=True)
