@@ -63,7 +63,7 @@
 	  		<h2 id="followerstitle">Followers</h2>
 	  		<ul>
 	  		{% for followerPair in followerPairs %}
-	  			<li>{{followerPair.follower}}</li>
+	  			<li class="followerCard"><a class="followingCardLink" href="/user/{{followerPair.follower}}">{{followerPair.follower}}</a></li>
 	  		{% endfor %}
 	  	</div>
 	  	

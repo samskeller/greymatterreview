@@ -596,6 +596,18 @@ p {
 	padding-top:15px;
 }
 
+.followerCard {
+	list-style-type:none;
+	border:1px solid #000000;
+	text-align:center;
+	margin-left:20px;
+	height:40px;
+	width:50%;
+	background-color:#DDAABB;
+	border-radius:15px;
+	padding-top:15px;
+}
+
 .followingCardLink {
 	text-decoration:none;
 	font-size:22px;
