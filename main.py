@@ -361,7 +361,7 @@ class FriendsHandler(GreyMatterHandler):
 			followerPairs = FollowPair.getFollowers(self.user)
 			followerPairs = list(followerPairs)
 			
-			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs)
+			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs, potentials=None)
 		else:
 			self.redirect("/")
 	
