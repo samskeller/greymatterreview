@@ -62,11 +62,11 @@
 		  			{% if user.followers: %}
 		  			Followers: <a href="#">{{user.followers}}</a>
 		  			{% else: %}
-		  			Followers: <a href="#">0</a>
+		  			Followers: <a href="/friends">0</a>
 		  			{% endif %}
 		  			<br>
 		  			{% if user.following: %}
-		  			Following: <a href="#">{{user.following}}</a>
+		  			Following: <a href="/friends">{{user.following}}</a>
 		  			{% else: %}
 		  			Following: <a href="#">0</a>
 		  			{% endif %}

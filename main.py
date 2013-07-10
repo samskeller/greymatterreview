@@ -203,17 +203,21 @@ class GreyMatterHandler(Handler):
 			self.render("greymatterreview.html")
 	
 	def post(self):
-	
+		
+		# Figure out whether they tried to log in or signup
 		login = self.request.get('loginbutton')
 		signup = self.request.get('signupbutton')
 		if signup:
 			error = False
+			
+			# Get the user entered fields
 			self.username = self.request.get('newusername')
 			self.password = self.request.get('newpassword')
 			self.email = self.request.get('newemail')
 	   
 			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
-	   
+	   		
+	   		# Check for a valid username, password, and email
 			if not validate_username(self.username):
 				error = True
 				parameters['error_username'] = "Invalid username" 
@@ -223,21 +227,25 @@ class GreyMatterHandler(Handler):
 			elif not validate_email(self.email):
 				error = True
 				parameters['error_email'] = "Invalid email"
-		   
+		   	
+		   	# If any of them had an error, re-render the page and show the error
 			if error:
 				self.render("greymatterreview.html", **parameters)
 			else:
-	   
+	   			# Look to see if a user with this username already exists
 				u = User.get_by_name(self.username)
 	  
 				if u:
 					##redirect
 					self.render('greymatterreview.html', error_username = "That user already exists")
 				else:
+					# Create a new user as all fields were valid and this username is unique
 					u = User.register(username=self.username, password=self.password, email=self.email)
 		  
+		  			# Store the user in our db
 					u.put()
 		  
+		  			# Set a cookie so the user stays logged in
 					self.setCookie('user_id', str(u.key().id()))
 		  
 					self.redirect('/home')
@@ -247,73 +255,45 @@ class GreyMatterHandler(Handler):
 			self.password = self.request.get('password')
 		
 			parameters = {'username' : self.username}
-		
+			
+			# Look to see if this username and password match with a user that we have
 			u = User.login(self.username, self.password)
 				
 			if u:
+				# We have a valid user, set a cookie and go to the home page
 				self.response.headers['Content-Type'] = 'text/plain'
 				self.setCookie('user_id', str(u.key().id()))
 		   
 				self.redirect('/home')
 			else:
+				# Invalid login attempt
 				parameters['login_error'] = "Invalid login"
 				self.render("greymatterreview.html", **parameters)
-				
+			
+	# Setting a cookie allows the user to stay logged in while navigating through the page
 	def setCookie(self, name, value):
 		cookie = make_secure_val(value)
 		self.response.headers.add_header('Set-Cookie', '%s=%s; Path=/' % (name, cookie))
 	
+	# Look to see if a cookie exists
 	def readCookie(self, name):
 		cookie = self.request.cookies.get(name)
 		return cookie and check_secure_val(cookie)
 	
+	# Log out by setting a null cookie
 	def logout(self):
 		self.response.headers.add_header('Set-Cookie', 'user_id=; Path=/')
-		
+	
+	# This runs with each new page load when a user is logged in, checks for the cookie we set
 	def initialize(self, *a, **kw):
 		webapp2.RequestHandler.initialize(self, *a, **kw)
 		uid = self.readCookie('user_id')
 		self.user = uid and User.by_id(int(uid))
-		
-class LoginHandler(GreyMatterHandler):
-	def get(self):
-		if self.user:
-			self.redirect('/home')
-		else:
-			self.render('login.html')
-	
-	def post(self):
-		error = False
-		self.username = self.request.get('username')
-		self.password = self.request.get('password')
-		
-		parameters = {'username' : self.username}
-		
-		if not validate_username(self.username):
-			error = True
-			parameters['error_username'] = "That's not a valid username" 
-		if not validate_password(self.password):
-			error = True
-			parameters['error_password'] = "That's not a valid password"
-		
-		if error:
-			self.render("login.html", **parameters)
-		else:
-		
-			u = User.login(self.username, self.password)
-				
-			if u:
-				self.response.headers['Content-Type'] = 'text/plain'
-				self.setCookie('user_id', str(u.key().id()))
-				
-				self.redirect('/home')
-			else:
-				parameters['login_error'] = "Invalid login"
-				self.render("login.html", **parameters)
 
 class HomeHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
+			# Get the reviews for this user to display as their profile feed
 			reviews = Review.get_reviews_by_user(self.user.username)
 			number = len(reviews)
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
@@ -323,6 +303,7 @@ class HomeHandler(GreyMatterHandler):
 class NewReviewHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
+			# Show the new review page
 			self.render("newreview.html", url="", errorMessage="")
 		else:
 			self.redirect("/")
@@ -331,6 +312,8 @@ class NewReviewHandler(GreyMatterHandler):
 		if not self.user:
 			self.redirect("/")
 		
+		# Get stuff from the request to see which button the user pressed and 
+		# what fields were filled in
 		search = self.request.get('artistlookupbtn')
 		inputAlbum = self.request.get('inputAlbum')
 		submitReview = self.request.get('newreviewbtn')
@@ -338,21 +321,27 @@ class NewReviewHandler(GreyMatterHandler):
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
 		
+		# If they hit the search button and input text into the album name field, look for the album
 		if search and inputAlbum != "":
+			# Search through Gracenote for this album name
 			xml = searchGracenote(inputAlbum)
 			albums = parseXML(xml)
 			
+			# Render differently depending upon whether we found albums or not
 			if len(albums) > 0:
 				self.render("newreview.html", albums=albums, errorMessage="")
 			else:
 				self.render("newreview.html", url="", errorMessage="Sorry, " \
 					+ "no artists were found with that name")
 		elif search and artistName == "":
+			# If the hit search but didn't enter an album name, throw up this message
 			self.render("newreview.html", url="", errorMessage="Please enter " \
 				+ "an artist to search for")
 		elif submitReview and review and artist and album:
+			# If the user hit submit and there is a review, album, and artist there, save this review
 			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
 							reviewText=review)
+			# Commit to the db
 			newReview.put()
 			time.sleep(1)
 			self.redirect("/home")
@@ -365,6 +354,7 @@ artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USE
 class FriendsHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
+			# Get the followers and following for this user
 			followingPairs = FollowPair.getFollowing(self.user)
 			followingPairs = list(followingPairs)
 			
@@ -381,18 +371,23 @@ class FriendsHandler(GreyMatterHandler):
 			searchName = self.request.get('searchfriendsname')
 			newFriends = self.request.get_all('checkboxInput')
 			
+			# If we hit the button to search for friends
 			if searchFriends and searchName:
+				# Get all users with this name
 				potentialFriends = User.all().filter('username =', searchName).fetch(10)
 				
 				potentialFriends = list(potentialFriends)
 				
 				if potentialFriends != None:
 					self.render("friends.html", potentials=potentialFriends)
-					
+			
+			# If we've selected users to follow
 			elif newFriends:
 				for newFriend in newFriends:
+					# Make a new FollowPair with the user and the new friend
 					newFriendPair = FollowPair(follower=self.user.username, following=str(newFriend))
 					
+					# Update the followers/following statistics for each user
 					newFriendUser = User.get_by_name(newFriend)
 					if newFriendUser != None:
 						newFriendUser.followers = newFriendUser.followers + 1
@@ -411,6 +406,7 @@ class FriendsHandler(GreyMatterHandler):
 class UserHandler(GreyMatterHandler):
 	def get(self, username):
 		if self.user:
+			# Display the reviews done by this other user
 			otherUser = User.get_by_name(username)
 			if otherUser == None:
 				self.redirect("/")
