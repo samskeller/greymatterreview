@@ -392,6 +392,14 @@ class FriendsHandler(GreyMatterHandler):
 			elif newFriends:
 				for newFriend in newFriends:
 					newFriendPair = FollowPair(follower=self.user.username, following=str(newFriend))
+					
+					newFriendUser = User.get_by_name(newFriend)
+					if newFriendUser != None:
+						newFriendUser.followers = newFriendUser.followers + 1
+						self.user.following = self.user.following + 1
+						newFriendUser.put()
+						self.user.put()
+					
 					newFriendPair.put()
 					time.sleep(1)
 					self.redirect("/friends")
