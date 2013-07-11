@@ -811,3 +811,49 @@ p {
 	top: 1px;
 	left: 0px;
 }
+
+#searchartistsbtn {
+	border: 1px solid #687678;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #E65151), color-stop(1, #B05953) );
+	background: -moz-linear-gradient( center top, #E65151 0%, #B05953 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E65151', endColorstr='#B05953');
+	background-color: #E65151;
+	-moz-box-shadow: inset 0px 1px 2px 0px #FFFFFF;
+	-webkit-box-shadow: inset 0px 1px  2px 0px #FFFFFF;
+	box-shadow: inset 0px 1px  2px 0px #FFFFFF;
+	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px;
+	text-shadow: 1px 1px 2px #000000;
+	font-weight: bold;
+	margin-left:420px;
+	padding: 4px 0px;
+	color: #E4EBF0;
+	letter-spacing: 1px;
+	font-family: Georgia, serif;
+	font-size: 18px;
+	width: 150px;
+	text-transform: capitalize;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+}
+
+#searchartistsbtn:hover {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #B05953), color-stop(1, #E65151) );
+	background: -moz-linear-gradient( center top, #B05953 0%, #E65151 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B05953', endColorstr='#E65151');
+	background-color: #B05953;
+}
+
+#searchartistsbtn:active {
+	position: relative;
+	top: 1px;
+	left: 0px;
+}
+
+#searchartistsinput {
+	margin-left:340px;
+	font-size:30px;
+}
