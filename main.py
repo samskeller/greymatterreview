@@ -414,7 +414,15 @@ class UserHandler(GreyMatterHandler):
 			reviews = Review.get_reviews_by_user(username)
 			number = len(reviews)
 			self.render("user.html", user=otherUser, length=number, reviews=reviews)
-			
+		else:
+			self.redirect("/")
+		
+class ArtistsHandler(GreyMatterHandler):
+	def get(self):
+		if self.user:
+			self.render("artists.html")
+		else:
+			self.redirect("/")
 
 def searchGracenote(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
@@ -473,4 +481,4 @@ class LogoutHandler(GreyMatterHandler):
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
-    ('/user/(\w+)?', UserHandler)], debug=True)
+    ('/user/(\w+)?', UserHandler), ('/artists/?', ArtistsHandler)], debug=True)
