@@ -318,7 +318,7 @@ a.link:visited{
 	text-decoration:none;
 	font:bold 18px 'Trebuchet MS';
 	margin:auto;
-	color:FF0000;
+	color:#3377AA;
 	position:relative;
 	width:100%;
 	height:71%;
@@ -390,6 +390,20 @@ a.link:visited{
 	padding-left:20px;
 	width:200px;
 	float:left;
+	position:relative;
+}
+
+#changeprofileimage {
+	position:absolute;
+	top:80%;
+	left:20%;
+	background:#DDDDDD;
+	display:none;
+	border:1px solid #000000;
+}
+
+#changeprofileimagebtn {
+	text-decoration:none;
 }
 
 #profile_stats {

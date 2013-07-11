@@ -45,8 +45,9 @@
 		  <div id="content_2" class="content">
 		  	<div id="profile_info">
 		  		<h2 id="profie_name">{{user.username}}</h2>
-				<div id="profile_image">
-					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
+				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+					<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
+					<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
 		  		</div>
 		  		<div id="profile_stats">
 		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
