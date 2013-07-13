@@ -289,7 +289,7 @@ a.link:visited{
 }
 
 #navigation {
-	width:1000px;
+	width:999px;
 	height:50px;
 	border:1px solid #000000;
 	background:#AFB7D3;
@@ -346,7 +346,7 @@ a.link:visited{
 	padding-top:10px;
 	background:#FFFFFF;
 	bottom:0;
-	top:50px;
+	top:52px;
 	overflow:auto;
 	width:100%;
 	position:absolute;
