@@ -431,10 +431,23 @@ a.link:visited{
 	display:inline;
 }
 
+#myactivitylabel {
+	display:block;
+	margin-top:5px;
+	
+}
+
 .profileReview {
 	border:1px solid #000000;
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
 	display:block;
-	padding:5px;
+	padding:15px;
+	background:#F3F3F3;
+}
+
+.profileReview:hover {
+	background:#E3E3E3;
 }
 
 #searching {

@@ -28,7 +28,7 @@ import urllib2
 from string import letters
 from google.appengine.ext import db
 from xml.dom import minidom
-from gracenoteIDs import clientID, userID, albumSearchCover
+from gracenoteIDs import clientID, userID, albumSearchCover, artistsSearch
 
 secretKey = "BwWuOrchjptblMWljjbOxzapj"
 
@@ -324,7 +324,7 @@ class NewReviewHandler(GreyMatterHandler):
 		# If they hit the search button and input text into the album name field, look for the album
 		if search and inputAlbum != "":
 			# Search through Gracenote for this album name
-			xml = searchGracenote(inputAlbum)
+			xml = searchGracenoteAlbum(inputAlbum)
 			albums = parseXML(xml)
 			
 			# Render differently depending upon whether we found albums or not
@@ -423,14 +423,29 @@ class ArtistsHandler(GreyMatterHandler):
 			self.render("artists.html")
 		else:
 			self.redirect("/")
+			
+	def post(self):
+		searchartistsbtn = self.request.get("searchartistsbtn")
+		
+		if searchartistbtn:
+			self.redirect("/")	
+			
 
-def searchGracenote(album):
+def searchGracenoteAlbum(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
 		headers={'Content-type': 'application/xml'})
 	
 	albumSearch = urllib2.urlopen(req)
 	
 	return albumSearch.read()
+
+def searchGracenoteArtist(artist):
+	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=artistsSearch.format(clientID, userID, artist), \
+		headers={'Content-type': 'application/xml'})
+	
+	artists = urllib2.urlopen(req)
+	
+	return artists.read()
 	
 def parseAlbumEntry(album):
 	albumDict = {}
