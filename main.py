@@ -344,7 +344,7 @@ class NewReviewHandler(GreyMatterHandler):
 			# Commit to the db
 			newReview.put()
 			time.sleep(1)
-			self.redirect("/home")
+			self.redirect("/reviews/%d" % newReview.key().id())
 		else:
 			self.render("newreview.html", url="", errorMessage="Please " \
 					+ "fill out each of the fields")
@@ -429,6 +429,19 @@ class ReviewsHandler(GreyMatterHandler):
 		
 		if searchartistbtn:
 			self.redirect("/")	
+
+class ReviewPermalinkHandler(GreyMatterHandler):
+   def get(self, review_id):
+		if self.user:
+			review_id = int(review_id)
+			review = Review.get_by_id(int(review_id))
+			
+			if review != None:
+				self.render("reviewPage.html", review=review)
+			else:
+				self.redirect("/")
+		else:
+			self.redirect("/")
 			
 
 def searchGracenoteAlbum(album):
@@ -496,4 +509,5 @@ class LogoutHandler(GreyMatterHandler):
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
-    ('/user/(\w+)?', UserHandler), ('/reviews/?', ReviewsHandler)], debug=True)
+    ('/user/(\w+)?', UserHandler), ('/reviews/?', ReviewsHandler), \
+    ('/reviews/(\d+)', ReviewPermalinkHandler)], debug=True)

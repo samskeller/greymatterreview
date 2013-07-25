@@ -922,3 +922,13 @@ p {
 	top: 1px;
 	left: 0px;
 }
+
+#permalinkReview {
+	border:1px solid #000000;
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	display:block;
+	padding:15px;
+	background:#F3F3F3;
+	margin:0 40px;
+}
