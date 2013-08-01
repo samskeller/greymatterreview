@@ -154,11 +154,11 @@ class User(db.Model):
 # Our Artist class
 class Artist(db.Model):
 	name = db.StringProperty(required = True)
-	genre = db.StringProperty(required = True)
+	genre = db.StringProperty()
 	
 	@classmethod
-	def get_artists(cls, artist):
-		return Artist.all().filter('name =', artist).fetch(5)
+	def get_artist(cls, artist):
+		return Artist.all().filter('name =', artist).get()
 		
 # Our Album class
 class Album(db.Model):
@@ -345,6 +345,10 @@ class NewReviewHandler(GreyMatterHandler):
 							reviewText=review)
 			# Commit to the db
 			newReview.put()
+			
+			newArtist = Artist(name=artist)
+			newArtist.put()
+			
 			time.sleep(1)
 			self.redirect("/reviews/%d" % newReview.key().id())
 		else:
@@ -449,13 +453,12 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 	def get(self, artist_name):
 		if self.user:
 			artist_name = urllib2.unquote(artist_name)
-			print artist_name
-			#artist = Artist.get_artists(artist_name)
+			artist = Artist.get_artist(artist_name)
 			
-			#if artist != None:
-			#	self.render("artistPage.html", artist=artist)
-			#else:
-			#	self.redirect("/")
+			if artist != None:
+				self.render("artistsPage.html", artist=artist)
+			else:
+				self.redirect("/")
 		else:
 			self.redirect("/")
 
@@ -524,6 +527,6 @@ class LogoutHandler(GreyMatterHandler):
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
-    ('/user/(\w+)?', UserHandler), ('/reviews/?', ReviewsHandler), \
-    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(\w+)', ArtistPermalinkHandler)], \
-    debug=True)
+    ('/user/(\w+)', UserHandler), ('/reviews/?', ReviewsHandler), \
+    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)?', ArtistPermalinkHandler), \
+    ], debug=True)
