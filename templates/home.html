@@ -79,7 +79,7 @@
 		  			<p>You've never made a review! Click <a href="/newreview">here</a> to write your first one</p>
 		  		{% endif %}
 		  		{% for review in reviews: %}
-		  			<div class="profileReview">Artist: {{review.artist}}
+		  			<div class="profileReview">Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
 		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 		  			<br>
 		  			Album: {{review.album}}

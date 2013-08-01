@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>The Grey Matter Review</title>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+        </head>
+<body id="homebody">
+	<div id="top">
+		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="title" href="/home">Grey Matter Review</a>
+	</div>
+	<br>
+	<br>
+	<a id="logout" href="/logout">Logout</a>
+	<form method="post" action="/friends">
+	<div id="maincontainer">
+	  <div id="navigation">
+	  	<ul id="navigationList">
+	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/reviews">Reviews</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
+	  	</ul>
+	  </div>
+	  <div id="allcontent">
+	  	<br>
+	 		{{artist.name}}
+			<br>
+			{{artist.genre}}
+	  </div>
+	</div>
+	</form>
+</body>
+</html>

@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 
+from cgi import escape
 import hashlib
 import hmac
 import webapp2
@@ -36,6 +37,7 @@ secretKey = "BwWuOrchjptblMWljjbOxzapj"
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 								autoescape = True)
+jinja_env.filters['escape'] = escape
 
 # RegEx patterns for usernames, passwords, and emails
 usernamePattern = "^[a-zA-Z0-9_-]{3,20}$"
@@ -434,7 +436,7 @@ class ReviewPermalinkHandler(GreyMatterHandler):
    def get(self, review_id):
 		if self.user:
 			review_id = int(review_id)
-			review = Review.get_by_id(int(review_id))
+			review = Review.get_by_id(review_id)
 			
 			if review != None:
 				self.render("reviewPage.html", review=review)
@@ -443,6 +445,19 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 		else:
 			self.redirect("/")
 			
+class ArtistPermalinkHandler(GreyMatterHandler):
+	def get(self, artist_name):
+		if self.user:
+			artist_name = urllib2.unquote(artist_name)
+			print artist_name
+			#artist = Artist.get_artists(artist_name)
+			
+			#if artist != None:
+			#	self.render("artistPage.html", artist=artist)
+			#else:
+			#	self.redirect("/")
+		else:
+			self.redirect("/")
 
 def searchGracenoteAlbum(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
@@ -510,4 +525,5 @@ app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
     ('/user/(\w+)?', UserHandler), ('/reviews/?', ReviewsHandler), \
-    ('/reviews/(\d+)', ReviewPermalinkHandler)], debug=True)
+    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(\w+)', ArtistPermalinkHandler)], \
+    debug=True)
