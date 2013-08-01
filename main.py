@@ -28,6 +28,7 @@ import unicodedata
 import urllib2
 from string import letters
 from google.appengine.ext import db
+from google.appengine.api.datastore import Key
 from xml.dom import minidom
 from gracenoteIDs import clientID, userID, albumSearchCover, artistsSearch
 
@@ -102,6 +103,12 @@ def validate_email(email):
 			return True	
 	else:
 		return True
+
+def unescape(string):
+	string = string.replace("&lt;", "<")
+	string = string.replace("&gt;", ">")
+	string = string.replace("&amp;", "&")
+	return string
 		
 # General Handler with useful functions
 class Handler(webapp2.RequestHandler):
@@ -153,12 +160,11 @@ class User(db.Model):
 
 # Our Artist class
 class Artist(db.Model):
-	name = db.StringProperty(required = True)
 	genre = db.StringProperty()
 	
 	@classmethod
 	def get_artist(cls, artist):
-		return Artist.all().filter('name =', artist).get()
+		return Artist.all().filter('__key__ =', Key.from_path('Artist', artist)).get()
 		
 # Our Album class
 class Album(db.Model):
@@ -346,8 +352,8 @@ class NewReviewHandler(GreyMatterHandler):
 			# Commit to the db
 			newReview.put()
 			
-			newArtist = Artist(name=artist)
-			newArtist.put()
+			# Add the artist to the db if it's not already there
+			newArtist = Artist.get_or_insert(artist)
 			
 			time.sleep(1)
 			self.redirect("/reviews/%d" % newReview.key().id())
@@ -452,7 +458,7 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 class ArtistPermalinkHandler(GreyMatterHandler):
 	def get(self, artist_name):
 		if self.user:
-			artist_name = urllib2.unquote(artist_name)
+			artist_name = unescape(artist_name)
 			artist = Artist.get_artist(artist_name)
 			
 			if artist != None:
