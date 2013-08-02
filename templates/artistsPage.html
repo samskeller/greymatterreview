@@ -24,9 +24,13 @@
 	  	</ul>
 	  </div>
 	  <div id="allcontent">
-	  	<br>
-	 		{{artist.key().name()}}
-			<br>
+	 	<h1 id="artistTitle">{{artist.key().name()}}</h1>
+		<br>
+		<ul id="albumList">
+		{% for album in albums: %}
+			<li class="albumListEntry"><a href="#" class="albumListEntryLink">{{album.title}}</a></li>
+		{% endfor %}
+		</ul>
 	  </div>
 	</div>
 	</form>

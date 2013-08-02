@@ -170,12 +170,16 @@ class Artist(db.Model):
 class Album(db.Model):
 	title = db.StringProperty(required = True)
 	artist = db.StringProperty(required = True)
-	dateReleased = db.DateProperty(required = True)
-	genre = db.StringProperty(required = True)
+	dateReleased = db.DateProperty()
+	genre = db.StringProperty()
 	
 	@classmethod
 	def get_album(cls, album):
 		return Album.all().filter('album =', album).fetch(5)
+	
+	@classmethod
+	def get_albums_by_artist(cls, artist):
+		return Album.all().filter('artist =', artist).fetch(10)
 
 # Our Review class
 class Review(db.Model):
@@ -355,6 +359,9 @@ class NewReviewHandler(GreyMatterHandler):
 			# Add the artist to the db if it's not already there
 			newArtist = Artist.get_or_insert(artist)
 			
+			# Add the album to the db if it's not already there
+			newAlbum = Album.get_or_insert(artist+"$"+album, title=album, artist=artist)
+			
 			time.sleep(1)
 			self.redirect("/reviews/%d" % newReview.key().id())
 		else:
@@ -461,8 +468,10 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 			artist_name = unescape(artist_name)
 			artist = Artist.get_artist(artist_name)
 			
+			albums = Album.get_albums_by_artist(artist_name)
+			
 			if artist != None:
-				self.render("artistsPage.html", artist=artist)
+				self.render("artistsPage.html", artist=artist, albums=albums)
 			else:
 				self.redirect("/")
 		else:
