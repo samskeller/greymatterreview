@@ -20,6 +20,7 @@ import hashlib
 import hmac
 import webapp2
 import jinja2
+import musicbrainzngs
 import os
 import random
 import re
@@ -44,6 +45,12 @@ jinja_env.filters['escape'] = escape
 usernamePattern = "^[a-zA-Z0-9_-]{3,20}$"
 passwordPattern = "^.{3,20}$"
 emailPattern = "^[\S]+@[\S]+\.[\S]+$" 
+
+musicbrainzngs.set_useragent(
+    "python-musicbrainz-ngs-example",
+    "0.1",
+    "https://github.com/alastair/python-musicbrainz-ngs/",
+)
 
 # Handy functions
 def makeSalt(length = 5):
@@ -336,8 +343,9 @@ class NewReviewHandler(GreyMatterHandler):
 		# If they hit the search button and input text into the album name field, look for the album
 		if search and inputAlbum != "":
 			# Search through Gracenote for this album name
-			xml = searchGracenoteAlbum(inputAlbum)
-			albums = parseXML(xml)
+			#xml = searchGracenoteAlbum(inputAlbum)
+			#albums = parseXML(xml)
+			albums = searchMusicBrainzAlbum(inputAlbum)
 			
 			# Render differently depending upon whether we found albums or not
 			if len(albums) > 0:
@@ -477,6 +485,17 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 		else:
 			self.redirect("/")
 
+def searchMusicBrainzAlbum(album):
+	result = musicbrainzngs.search_releases(release=album, limit=5)
+	# On success, result is a dictionary with a single key:
+	# "release-list", which is a list of dictionaries.
+	results = []
+	if not result['release-list']:
+		return results
+	for (idx, release) in enumerate(result['release-list']):
+		results.append(release)
+	return results
+	
 def searchGracenoteAlbum(album):
 	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
 		headers={'Content-type': 'application/xml'})
