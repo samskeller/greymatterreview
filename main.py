@@ -492,8 +492,10 @@ def searchMusicBrainzAlbum(album):
 	results = []
 	if not result['release-list']:
 		return results
-	for (idx, release) in enumerate(result['release-list']):
-		results.append(release)
+	for release in result['release-list']:
+		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title']}
+		if newDict not in results:
+			results.append(newDict)
 	return results
 	
 def searchGracenoteAlbum(album):

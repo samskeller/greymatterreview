@@ -52,8 +52,8 @@
 				<br>
 				{% for album in albums: %}
 					<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
-						<p>Artist: <span class="artistInReview">{{album['artist-credit-phrase']}}</span></p>
-						<p>Album: <span class="albumInReview">{{album['title']}}</span></p>
+						<p>Artist: <span class="artistInReview">{{album['artist']}}</span></p>
+						<p>Album: <span class="albumInReview">{{album['album']}}</span></p>
 					</a></div>
 				{% endfor %}
 				<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
