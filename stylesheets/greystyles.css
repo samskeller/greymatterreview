@@ -971,3 +971,9 @@ p {
 	color:#000000;
 	text-decoration:none;
 }
+
+#artistlisting {
+	margin-left:100px;
+	font-size:32px;
+	color:#444444;
+}

@@ -447,15 +447,28 @@ class UserHandler(GreyMatterHandler):
 class ReviewsHandler(GreyMatterHandler):
 	def get(self):
 		if self.user:
-			self.render("reviews.html")
+			self.render("reviews.html", artists=None, albums=None)
 		else:
 			self.redirect("/")
 			
 	def post(self):
-		searchartistsbtn = self.request.get("searchartistsbtn")
+		if self.user:
+			searchartistsbtn = self.request.get("searchartistsbtn")
+			artistName = self.request.get("searchartistsinput")
 		
-		if searchartistbtn:
-			self.redirect("/")	
+			if searchartistsbtn and artistName != "":
+				artists = searchMusicBrainzArtist(artistName)
+				if len(artists) != 0:
+					self.render("reviews.html", artists=artists, albums=None)
+				else:
+					self.render("reviews.html")
+			
+			elif searchalbumsbtn:
+				self.render("reviews.html")
+			else:
+				self.redirect("/")
+		else:
+			self.redirect("/")
 
 class ReviewPermalinkHandler(GreyMatterHandler):
    def get(self, review_id):
@@ -481,7 +494,7 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 			if artist != None:
 				self.render("artistsPage.html", artist=artist, albums=albums)
 			else:
-				self.redirect("/")
+				self.redirect("/"+artist_name)
 		else:
 			self.redirect("/")
 
@@ -496,6 +509,18 @@ def searchMusicBrainzAlbum(album):
 		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title']}
 		if newDict not in results:
 			results.append(newDict)
+	return results
+	
+def searchMusicBrainzArtist(artist):
+	result = musicbrainzngs.search_artists(artist=artist, limit=5)
+	# On success, result is a dictionary with a single key:
+	# "release-list", which is a list of dictionaries.
+	results = []
+	if not result['artist-list']:
+		return results
+	for artist in result['artist-list']:
+		if artist['name'] not in results:
+			results.append(artist['name'])
 	return results
 	
 def searchGracenoteAlbum(album):

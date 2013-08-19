@@ -13,7 +13,7 @@
 	<br>
 	<br>
 	<a id="logout" href="/logout">Logout</a>
-	<form method="post" action="/friends">
+	<form method="post" action="/reviews">
 	<div id="maincontainer">
 	  <div id="navigation">
 	  	<ul id="navigationList">
@@ -25,13 +25,21 @@
 	  </div>
 	  <div id="allcontent">
 	  	<br>
-	 	<input type="text" id="searchartistsinput" placeholder="Search for Artists" name="searchartistsinput">
-	 	<h1 id="orlabel">OR</h1>
-	 	<input type="text" id="searchalbumsinput" placeholder="Search for Albums" name="searchalbumsinput">
-	 	<br>
-	 	<br>
-	  	<input type="submit" value="Find Artists" id="searchartistsbtn" name="searchartistsbtn">
-	  	<input type="submit" value="Find Albums" id="searchalbumsbtn" name="searchalbumsbtn">
+	  	{% if artists != None: %}
+	  		<center style="font-size:26px;">Artists</center>
+	  		{% for artist in artists: %}
+	  		<div id="artistlisting"><a href="/artists/{{artist}}" style="text-decoration:none;color:#444444;">- {{artist}}<a/></div>
+	  		<br>
+	  		{% endfor %}
+	  	{% else: %}
+			<input type="text" id="searchartistsinput" placeholder="Search for Artists" name="searchartistsinput">
+			<h1 id="orlabel">OR</h1>
+			<input type="text" id="searchalbumsinput" placeholder="Search for Albums" name="searchalbumsinput">
+			<br>
+			<br>
+			<input type="submit" value="Find Artists" id="searchartistsbtn" name="searchartistsbtn">
+			<input type="submit" value="Find Albums" id="searchalbumsbtn" name="searchalbumsbtn">
+	  	{% endif %}
 	  </div>
 	</div>
 	</form>
