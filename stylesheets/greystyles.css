@@ -977,3 +977,23 @@ p {
 	font-size:32px;
 	color:#444444;
 }
+
+#albumListing {
+	margin-left:100px;
+	font-size:28px;
+	color:#222222;
+	border:1px solid #000000;
+	width:450px;
+	padding:10px;
+	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px;
+	background: #DDDDDD;
+}
+
+#artistListingInAlbum {
+	text-decoration:none;
+	color:#444444;
+	margin-left:40px;
+	font-size:18px;
+}

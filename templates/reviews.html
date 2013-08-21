@@ -31,6 +31,18 @@
 	  		<div id="artistlisting"><a href="/artists/{{artist}}" style="text-decoration:none;color:#444444;">- {{artist}}<a/></div>
 	  		<br>
 	  		{% endfor %}
+	  	{% elif albums != None: %}
+	  		<center style="font-size:26px;">Search Results</center>
+	  		<br>
+	  		{% for album in albums: %}
+	  		<div id="albumListing">
+	  			- {{album['album']}}
+	  			<br>
+	  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">by {{album['artist']}}<a/>
+	  		</div>
+	  		<br>
+	  		{% endfor %}
+	  	
 	  	{% else: %}
 			<input type="text" id="searchartistsinput" placeholder="Search for Artists" name="searchartistsinput">
 			<h1 id="orlabel">OR</h1>
