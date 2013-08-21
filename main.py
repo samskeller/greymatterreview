@@ -522,62 +522,7 @@ def searchMusicBrainzArtist(artist):
 		if artist['name'] not in results:
 			results.append(artist['name'])
 	return results
-	
-def searchGracenoteAlbum(album):
-	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=albumSearchCover.format(clientID, userID, album), \
-		headers={'Content-type': 'application/xml'})
-	
-	albumSearch = urllib2.urlopen(req)
-	
-	return albumSearch.read()
-
-def searchGracenoteArtist(artist):
-	req = urllib2.Request(url="https://c14927872.web.cddbp.net/webapi/xml/1.0/", data=artistsSearch.format(clientID, userID, artist), \
-		headers={'Content-type': 'application/xml'})
-	
-	artists = urllib2.urlopen(req)
-	
-	return artists.read()
-	
-def parseAlbumEntry(album):
-	albumDict = {}
-	artist = album.getElementsByTagName("ARTIST")
-	albumTitle = album.getElementsByTagName("TITLE")
-	url = album.getElementsByTagName("URL")
-
-	if len(albumTitle) > 0:
-		albumDict['albumTitle'] = albumTitle[0].firstChild.wholeText
-	else:
-		albumDict['albumTitle'] = ""
-	
-	if len(artist) > 0:
-		albumDict['artistName'] = artist[0].firstChild.wholeText
-	else:
-		albumDict['artistName'] = ""
-	
-	if len(url) > 0:
-		albumDict['url'] = url[0].firstChild.wholeText
-	else:
-		albumDict['url'] = ""
-	
-	return albumDict
-
-def parseXML(xml):
-	albumList = []
-	
-	d = minidom.parseString(xml)
-	albums = d.getElementsByTagName("ALBUM")
-	if len(albums) < 1:
-		return albumList
-	
-	for album in albums:
-		albumDict = parseAlbumEntry(album)
-		
-		if albumDict not in albumList:
-			albumList.append(albumDict)
-	
-	return albumList
-		
+			
 class LogoutHandler(GreyMatterHandler):
 	def get(self):
 		self.logout()
