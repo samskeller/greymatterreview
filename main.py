@@ -47,9 +47,9 @@ passwordPattern = "^.{3,20}$"
 emailPattern = "^[\S]+@[\S]+\.[\S]+$" 
 
 musicbrainzngs.set_useragent(
-    "python-musicbrainz-ngs-example",
+    "grey-matter-review",
     "0.1",
-    "https://github.com/alastair/python-musicbrainz-ngs/",
+    "https://github.com/samskeller/greymatterreview/",
 )
 
 # Handy functions
