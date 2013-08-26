@@ -183,6 +183,10 @@ class Album(db.Model):
 	@classmethod
 	def get_album(cls, album):
 		return Album.all().filter('album =', album).fetch(5)
+		
+	@classmethod
+	def get_album_by_key(cls, albumKey):
+		return Album.all().filter('__key__ =', albumKey).get()
 	
 	@classmethod
 	def get_albums_by_artist(cls, artist):
@@ -199,6 +203,10 @@ class Review(db.Model):
 	@classmethod
 	def get_reviews_by_user(cls, user):
 		return Review.all().filter('reviewer = ', user).order('-reviewDate').fetch(10)
+	
+	@classmethod
+	def get_review_by_album_artist(cls, album, artist):
+		return Review.all().filter('album = ', album).filter('artist = ', artist).order('-reviewDate').fetch(10)
 		
 class FollowPair(db.Model):
 	follower = db.StringProperty(required = True)
@@ -504,6 +512,26 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 				self.redirect("/"+artist_name)
 		else:
 			self.redirect("/")
+			
+class AlbumPermalinkHandler(GreyMatterHandler):
+	def get(self, albumAndArtist):
+		if self.user:
+			pair = albumAndArtist.split("+")
+			
+			if len(pair) != 2:
+				self.redirect("/")
+			
+			(artist, album) = pair
+						
+			reviews = Review.get_review_by_album_artist(album, artist)
+				
+			if reviews != None and len(reviews) > 0:
+				self.render("albumPage.html", reviews=reviews, album=album, artist=artist)
+			else:
+				self.redirect("/")
+
+		else:
+			self.redirect("/")
 
 def searchMusicBrainzAlbum(album):
 	result = musicbrainzngs.search_releases(release=album, limit=5)
@@ -513,11 +541,11 @@ def searchMusicBrainzAlbum(album):
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
-		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title']}
+		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title'], 'id': release['id']}
 		if newDict not in results:
 			results.append(newDict)
 	return results
-	
+
 def searchMusicBrainzArtist(artist):
 	result = musicbrainzngs.search_artists(artist=artist, limit=5)
 	# On success, result is a dictionary with a single key:
@@ -541,5 +569,5 @@ app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
     ('/user/(\w+)', UserHandler), ('/reviews/?', ReviewsHandler), \
-    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)?', ArtistPermalinkHandler), \
-    ], debug=True)
+    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
+    ('/albums/(.+)/?', AlbumPermalinkHandler)], debug=True)

@@ -12,6 +12,13 @@ indexes:
 
 - kind: Review
   properties:
+  - name: album
+  - name: artist
+  - name: reviewDate
+    direction: desc
+
+- kind: Review
+  properties:
   - name: reviewer
   - name: reviewDate
 
