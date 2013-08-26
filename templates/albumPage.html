@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>The Grey Matter Review</title>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+        </head>
+<body id="homebody">
+	<div id="top">
+		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="title" href="/home">Grey Matter Review</a>
+	</div>
+	<br>
+	<br>
+	<a id="logout" href="/logout">Logout</a>
+	<form method="post" action="/albums">
+	<div id="maincontainer">
+	  <div id="navigation">
+	  	<ul id="navigationList">
+	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/reviews">Reviews</a></li>
+	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
+	  	</ul>
+	  </div>
+	  <div id="allcontent">
+	 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
+		<ul id="reviewList">
+		{% for review in reviews: %}
+			<div class="reviewContainer">{{review.reviewer}}:
+		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+		  			<br>
+		  			<div id="reviewText">{{review.reviewText}}</div>
+		  			</div>
+		  			<br>
+		{% endfor %}
+		</ul>
+	  </div>
+	</div>
+	</form>
+</body>
+</html>
