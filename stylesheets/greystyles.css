@@ -9,22 +9,22 @@ body {
 
 #homebody {
 	/* IE10 Consumer Preview */ 
-	background-image: -ms-linear-gradient(top left, #939399 0%, #A2ADAA 100%);
+	background-image: -ms-linear-gradient(top, #EDEDED 0%, #D2D2D4 100%);
 
 	/* Mozilla Firefox */ 
-	background-image: -moz-linear-gradient(top left, #939399 0%, #A2ADAA 100%);
+	background-image: -moz-linear-gradient(top, #EDEDED 0%, #D2D2D4 100%);
 
 	/* Opera */ 
-	background-image: -o-linear-gradient(top left, #939399 0%, #A2ADAA 100%);
+	background-image: -o-linear-gradient(top, #EDEDED 0%, #D2D2D4 100%);
 
 	/* Webkit (Safari/Chrome 10) */ 
-	background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #939399), color-stop(1, #A2ADAA));
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #EDEDED), color-stop(1, #D2D2D4));
 
 	/* Webkit (Chrome 11+) */ 
-	background-image: -webkit-linear-gradient(top left, #939399 0%, #A2ADAA 100%);
+	background-image: -webkit-linear-gradient(top, #EDEDED 0%, #D2D2D4 100%);
 
 	/* W3C Markup, IE10 Release Preview */ 
-	background-image: linear-gradient(to bottom right, #939399 0%, #A2ADAA 100%);
+	background-image: linear-gradient(to bottom, #EDEDED 0%, #D2D2D4 100%);
 }
 
 #title {
@@ -291,8 +291,6 @@ a.link:visited{
 #navigation {
 	width:999px;
 	height:50px;
-	border:1px solid #000000;
-	background:#AFB7D3;
 }
 
 #navigationList {
