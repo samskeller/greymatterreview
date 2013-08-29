@@ -5,6 +5,12 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
         </head>
+        <script>
+        function changeSearchParam(newValue) {
+        	document.getElementById("searchbtn").value = "Find " + newValue;
+        	
+        }
+        </script>
 <body id="homebody">
 	<div id="top">
 		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
@@ -46,13 +52,14 @@
 	  		{% endfor %}
 	  	
 	  	{% else: %}
-			<input type="text" id="searchartistsinput" placeholder="Search for Artists" name="searchartistsinput">
-			<h1 id="orlabel">OR</h1>
-			<input type="text" id="searchalbumsinput" placeholder="Search for Albums" name="searchalbumsinput">
+			<input type="text" id="searchinput" placeholder="Search" name="searchinput">
+			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+	  			<option value="artists">Artists</option>
+	  			<option value="albums">Albums</option>
+	  		</select>
 			<br>
 			<br>
-			<input type="submit" value="Find Artists" id="searchartistsbtn" name="searchartistsbtn">
-			<input type="submit" value="Find Albums" id="searchalbumsbtn" name="searchalbumsbtn">
+			<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
 	  	{% endif %}
 	  </div>
 	</div>

@@ -461,21 +461,20 @@ class ReviewsHandler(GreyMatterHandler):
 			
 	def post(self):
 		if self.user:
-			searchartistsbtn = self.request.get("searchartistsbtn")
-			searchalbumsbtn = self.request.get("searchalbumsbtn")
-			artistName = self.request.get("searchartistsinput")
-			albumName = self.request.get("searchalbumsinput")
+			searchbtn = self.request.get("searchbtn")
+			inputText = self.request.get("searchinput")
+			searchType = self.request.get("searchdropdown")
 		
-			if searchartistsbtn and artistName != "":
-				artists = searchMusicBrainzArtist(artistName)
+			if inputText != "" and searchType == "artists":
+				artists = searchMusicBrainzArtist(inputText)
 				if len(artists) != 0:
 					self.render("reviews.html", artists=artists, albums=None)
 				else:
 					self.render("reviews.html")
 			
-			elif searchalbumsbtn:
-				albums = searchMusicBrainzAlbum(albumName)
-				print albums
+			elif inputText != "" and searchType == "albums":
+				albums = searchMusicBrainzAlbum(inputText)
+
 				if len(albums) != 0:
 					self.render("reviews.html", albums=albums, artists=None)
 				else:

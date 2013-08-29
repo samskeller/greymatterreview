@@ -823,7 +823,7 @@ p {
 	left: 0px;
 }
 
-#searchartistsbtn {
+#searchbtn {
 	border: 1px solid #687678;
 	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #E65151), color-stop(1, #B05953) );
 	background: -moz-linear-gradient( center top, #E65151 0%, #B05953 100% );
@@ -837,7 +837,7 @@ p {
 	border-radius: 13px;
 	text-shadow: 1px 1px 2px #000000;
 	font-weight: bold;
-	margin-left:115px;
+	margin-left:400px;
 	padding: 4px 0px;
 	color: #E4EBF0;
 	letter-spacing: 1px;
@@ -851,74 +851,33 @@ p {
 	display: inline-block;
 }
 
-#searchartistsbtn:hover {
+#searchbtn:hover {
 	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #B05953), color-stop(1, #E65151) );
 	background: -moz-linear-gradient( center top, #B05953 0%, #E65151 100% );
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B05953', endColorstr='#E65151');
 	background-color: #B05953;
 }
 
-#searchartistsbtn:active {
+#searchbtn:active {
 	position: relative;
 	top: 1px;
 	left: 0px;
 }
 
-#searchartistsinput {
+#searchinput {
 	display:inline;
-	margin-left:50px;
+	margin-left:300px;
 	font-size:30px;
 }
 
-#orlabel {
-	display:inline;
-	margin-left:100px;
-	margin-right:100px;
-}
-
-#searchalbumsinput {
-	display:inline;
-	font-size:30px;
-}
-
-#searchalbumsbtn {
-	float:right;
-	border: 1px solid #687678;
-	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #55C4E6), color-stop(1, #7EE2E6) );
-	background: -moz-linear-gradient( center top, #55C4E6 0%, #7EE2E6 100% );
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#55C4E6', endColorstr='#7EE2E6');
-	background-color: #55C4E6;
-	-moz-box-shadow: inset 0px 1px 2px 0px #FFFFFF;
-	-webkit-box-shadow: inset 0px 1px  2px 0px #FFFFFF;
-	box-shadow: inset 0px 1px  2px 0px #FFFFFF;
-	-moz-border-radius: 13px;
-	-webkit-border-radius: 13px;
-	border-radius: 13px;
-	text-shadow: 1px 1px 2px #000000;
-	font-weight: bold;
-	margin-right:140px;
-	padding: 4px 0px;
-	color: #E4EBF0;
-	letter-spacing: 1px;
-	font-family: Georgia, serif;
-	font-size: 18px;
-	width: 170px;
-	text-transform: capitalize;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	display: inline-block;
-}
-#searchalbumsbtn:hover {
-	background: -webkit-gradient( linear, left top, left bottom, color-stop(0, #7EE2E6), color-stop(1, #55C4E6) );
-	background: -moz-linear-gradient( center top, #7EE2E6 0%, #55C4E6 100% );
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7EE2E6', endColorstr='#55C4E6');
-	background-color: #7EE2E6;
-}
-#searchalbumsbtn:active {
-	position: relative;
-	top: 1px;
-	left: 0px;
+#searchdropdown {
+    color: #666666;
+    font-family:Comfortaa, Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-size:16px;
+    height:28px;
+    border:1px solid #CCCCCC;
+    margin-top:10px;
 }
 
 #permalinkReview {
