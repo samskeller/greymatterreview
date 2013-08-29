@@ -501,14 +501,12 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 	def get(self, artist_name):
 		if self.user:
 			artist_name = unescape(artist_name)
-			artist = Artist.get_artist(artist_name)
+			albums = searchMusicBrainzAlbumsByArtist(artist_name)
 			
-			albums = Album.get_albums_by_artist(artist_name)
-			
-			if artist != None:
-				self.render("artistsPage.html", artist=artist, albums=albums)
+			if albums != None:
+				self.render("artistsPage.html", artist=artist_name, albums=albums)
 			else:
-				self.redirect("/"+artist_name)
+				self.redirect("/")
 		else:
 			self.redirect("/")
 			
@@ -543,6 +541,18 @@ def searchMusicBrainzAlbum(album):
 		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title'], 'id': release['id']}
 		if newDict not in results:
 			results.append(newDict)
+	return results
+	
+def searchMusicBrainzAlbumsByArtist(artist):
+	result = musicbrainzngs.search_releases(artist=artist, limit=5)
+	
+	results = []
+	if not result['release-list']:
+		return results
+	for release in result['release-list']:
+		resultArtist = release['artist-credit-phrase']
+		if resultArtist == artist and release['title'] not in results:
+			results.append(release['title'])
 	return results
 
 def searchMusicBrainzArtist(artist):

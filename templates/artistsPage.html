@@ -24,11 +24,11 @@
 	  	</ul>
 	  </div>
 	  <div id="allcontent">
-	 	<h1 id="artistTitle">{{artist.key().name()}}</h1>
+	 	<h1 id="artistTitle">{{artist}}</h1>
 		<br>
 		<ul id="albumList">
 		{% for album in albums: %}
-			<li class="albumListEntry"><a href="/albums/{{album.artist}}+{{album.title}}" class="albumListEntryLink">{{album.title}}</a></li>
+			<li class="albumListEntry"><a href="/albums/{{artist}}+{{album}}" class="albumListEntryLink">{{album}}</a></li>
 		{% endfor %}
 		</ul>
 	  </div>
