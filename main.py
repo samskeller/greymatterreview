@@ -522,7 +522,7 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 						
 			reviews = Review.get_review_by_album_artist(album, artist)
 				
-			if reviews != None and len(reviews) > 0:
+			if reviews != None:
 				self.render("albumPage.html", reviews=reviews, album=album, artist=artist)
 			else:
 				self.redirect("/")
@@ -544,7 +544,7 @@ def searchMusicBrainzAlbum(album):
 	return results
 	
 def searchMusicBrainzAlbumsByArtist(artist):
-	result = musicbrainzngs.search_releases(artist=artist, limit=5)
+	result = musicbrainzngs.search_releases(artist=artist, limit=15)
 	
 	results = []
 	if not result['release-list']:

@@ -25,16 +25,20 @@
 	  </div>
 	  <div id="allcontent">
 	 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
-		<ul id="reviewList">
-		{% for review in reviews: %}
-			<div class="reviewContainer">{{review.reviewer}}:
-		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-		  			<br>
-		  			<div id="reviewText">{{review.reviewText}}</div>
-		  			</div>
-		  			<br>
-		{% endfor %}
-		</ul>
+		{% if reviews|length == 0: %}
+			<p>This album has no reviews! Click <a href="/newreview">here</a> to be the first one to write one</p>
+		{% else: %}
+			<ul id="reviewList">
+			{% for review in reviews: %}
+				<div class="reviewContainer">{{review.reviewer}}:
+					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+					<br>
+					<div id="reviewText">{{review.reviewText}}</div>
+				</div>
+				<br>
+			{% endfor %}
+			</ul>
+		{% endif %}
 	  </div>
 	</div>
 	</form>
