@@ -222,6 +222,10 @@ class FollowPair(db.Model):
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
+	""" This is our main Grey Matter Review handler. All other handlers will inherit from
+	this one. It will hold our user's information and deal with the cookie information as 
+	well as the logout process."""
+	
 	def get(self):
 	
 		if self.user:
@@ -318,6 +322,7 @@ class GreyMatterHandler(Handler):
 		self.user = uid and User.by_id(int(uid))
 
 class HomeHandler(GreyMatterHandler):
+	""" The handler for our home page"""
 	def get(self):
 		if self.user:
 			# Get the reviews for this user to display as their profile feed
@@ -328,6 +333,7 @@ class HomeHandler(GreyMatterHandler):
 			self.redirect('/')
 			
 class NewReviewHandler(GreyMatterHandler):
+	""" The handler for the page to write a new review"""
 	def get(self):
 		if self.user:
 			# Show the new review page
@@ -387,6 +393,7 @@ class NewReviewHandler(GreyMatterHandler):
 artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{2}</TEXT></QUERY></QUERIES>"
 
 class FriendsHandler(GreyMatterHandler):
+	""" The handler for the page that lists our user's followers and following"""
 	def get(self):
 		if self.user:
 			# Get the followers and following for this user
@@ -439,6 +446,7 @@ class FriendsHandler(GreyMatterHandler):
 			self.redirect("/")
 
 class UserHandler(GreyMatterHandler):
+	""" The handler that shows the activity for a selected user"""
 	def get(self, username):
 		if self.user:
 			# Display the reviews done by this other user
@@ -453,6 +461,7 @@ class UserHandler(GreyMatterHandler):
 			self.redirect("/")
 		
 class ReviewsHandler(GreyMatterHandler):
+	""" The handler that lets the user search for aritsts/albms to find reviews."""
 	def get(self):
 		if self.user:
 			self.render("reviews.html", artists=None, albums=None)
@@ -465,13 +474,14 @@ class ReviewsHandler(GreyMatterHandler):
 			inputText = self.request.get("searchinput")
 			searchType = self.request.get("searchdropdown")
 		
+			# If the dropdown menu was set to artists and the user entered text, search for artists
 			if inputText != "" and searchType == "artists":
 				artists = searchMusicBrainzArtist(inputText)
 				if len(artists) != 0:
 					self.render("reviews.html", artists=artists, albums=None)
 				else:
 					self.render("reviews.html")
-			
+			# If the dropdown menu was set to albums and the user entered text, search for albums
 			elif inputText != "" and searchType == "albums":
 				albums = searchMusicBrainzAlbum(inputText)
 
@@ -485,11 +495,14 @@ class ReviewsHandler(GreyMatterHandler):
 			self.redirect("/")
 
 class ReviewPermalinkHandler(GreyMatterHandler):
-   def get(self, review_id):
+	""" The handler that shows a single review."""
+	def get(self, review_id):
 		if self.user:
+			# We look up reviews by their id number for the permalink page for that review
 			review_id = int(review_id)
 			review = Review.get_by_id(review_id)
 			
+			# Make sure we found a review
 			if review != None:
 				self.render("reviewPage.html", review=review)
 			else:
@@ -498,11 +511,16 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 			self.redirect("/")
 			
 class ArtistPermalinkHandler(GreyMatterHandler):
+	""" The handler that shows all the albums for the given artist."""
 	def get(self, artist_name):
 		if self.user:
+			# Unescape the artist's name
 			artist_name = unescape(artist_name)
+			
+			# Search musicbrainz for the albums by that artist
 			albums = searchMusicBrainzAlbumsByArtist(artist_name)
 			
+			# Make sure the search worked properly
 			if albums != None:
 				self.render("artistsPage.html", artist=artist_name, albums=albums)
 			else:
@@ -511,15 +529,19 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 			self.redirect("/")
 			
 class AlbumPermalinkHandler(GreyMatterHandler):
+	""" The handler that shows all the reviews for a given album and artist."""
 	def get(self, albumAndArtist):
 		if self.user:
+			# We separate the album and artist in the URL with a "+" sign
 			pair = albumAndArtist.split("+")
 			
 			if len(pair) != 2:
 				self.redirect("/")
 			
+			# The artist is the first part, the album is the second
 			(artist, album) = pair
-						
+				
+			# Look up all the reviews with for that particular album by that particular artist		
 			reviews = Review.get_review_by_album_artist(album, artist)
 				
 			if reviews != None:
@@ -531,6 +553,9 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 			self.redirect("/")
 
 def searchMusicBrainzAlbum(album):
+	""" searchMusicBrainzAlbum takes an album name as a string and returns a list of dictionaries,
+	with each dictionary holding information about an album: artist name, album title, and id number."""
+	
 	result = musicbrainzngs.search_releases(release=album, limit=5)
 	# On success, result is a dictionary with a single key:
 	# "release-list", which is a list of dictionaries.
@@ -538,31 +563,45 @@ def searchMusicBrainzAlbum(album):
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
+		# Make a new dictionary with the artist, album, and id number
 		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title'], 'id': release['id']}
+		
+		# If we haven't already seen this one, add it to the results
 		if newDict not in results:
 			results.append(newDict)
 	return results
 	
 def searchMusicBrainzAlbumsByArtist(artist):
+	"""searchMusicBrainzAlbumsByArtists takes an artist name as a string and returns a list of album
+	titles by the given artist."""
+
 	result = musicbrainzngs.search_releases(artist=artist, limit=15)
 	
 	results = []
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
+		# Grab just the name of the artist
 		resultArtist = release['artist-credit-phrase']
+		
+		# Make sure the artist is the one we were searching for and if so, add the album title
 		if resultArtist == artist and release['title'] not in results:
 			results.append(release['title'])
 	return results
 
 def searchMusicBrainzArtist(artist):
+	"""searchMusicBrainzArtist takes an artist name as a string and returns a list of artists
+	that match the searched name."""
+	
 	result = musicbrainzngs.search_artists(artist=artist, limit=5)
 	# On success, result is a dictionary with a single key:
-	# "release-list", which is a list of dictionaries.
+	# "artist-list", which is a list of dictionaries.
 	results = []
 	if not result['artist-list']:
 		return results
 	for artist in result['artist-list']:
+		
+		# If we haven't seen this artist name yet, add it to the return list
 		if artist['name'] not in results:
 			results.append(artist['name'])
 	return results
