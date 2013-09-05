@@ -582,10 +582,7 @@ p {
 	display:inline-block;
 	margin-left:30px;
 	border-radius:15px;
-	-moz-box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	-webkit-box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	background-color:#EEBBCC;
+	border:3px solid #EF4244;
 }
 
 #followinglist {
@@ -595,10 +592,7 @@ p {
 	float:right;
 	margin-right:30px;
 	border-radius:15px;
-	-moz-box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	-webkit-box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	box-shadow: 0px 0px 15px 8px #CCCCCC;
-  	background-color:#CCBBEE;
+	border:3px solid #4443EF;
 }
 
 #followerstitle {
@@ -611,25 +605,23 @@ p {
 
 .followingCard {
 	list-style-type:none;
-	border:1px solid #000000;
+	border:1px solid #777777;
 	text-align:center;
-	margin-left:20px;
+	margin-left:75px;
 	height:40px;
 	width:50%;
-	background-color:#BBAADD;
-	border-radius:15px;
+	border-radius:5px;
 	padding-top:15px;
 }
 
 .followerCard {
 	list-style-type:none;
-	border:1px solid #000000;
+	border:1px solid #777777;
 	text-align:center;
-	margin-left:20px;
+	margin-left:75px;
 	height:40px;
 	width:50%;
-	background-color:#DDAABB;
-	border-radius:15px;
+	border-radius:5px;
 	padding-top:15px;
 }
 
