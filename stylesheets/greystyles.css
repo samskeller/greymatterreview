@@ -350,7 +350,7 @@ a.link:visited{
 	padding-top:0px;
 	padding-bottom:0px;
 	width:180px;
-	display:block;
+	display:inline;
 }
 
 #profile_image {
@@ -853,4 +853,55 @@ p {
 	font-size:14px;
 	margin-left:10px;
 	margin-top:10px;
+}
+
+#followUserBtn {
+	border-style:none;
+	margin-top:3px;
+	background-color:#1279E0;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:12px;
+	height:24px;
+	line-height:22px;
+	text-decoration:none;
+	text-align:center;
+	cursor: pointer;
+	width:70px;
+	margin-left:20px;
+	top:-3px;
+	position:relative;
+	display: inline-block;
+}
+#followUserBtn:hover {
+	background-color: #378DE5;
+}
+
+#unfollowUserBtn {
+	border-style:none;
+	margin-top:3px;
+	background-color:#FFFFFF;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	color:#1279E0;
+	font-family:Verdana;
+	font-size:12px;
+	height:24px;
+	line-height:22px;
+	text-decoration:none;
+	text-align:center;
+	cursor: pointer;
+	width:70px;
+	margin-left:20px;
+	top:-3px;
+	position:relative;
+	display: inline-block;
+	border:1px solid #888888;
+}
+#unfollowUserBtn:hover {
+	background-color: #DDDDDD;
 }

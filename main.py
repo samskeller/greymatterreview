@@ -219,6 +219,10 @@ class FollowPair(db.Model):
 	@classmethod
 	def getFollowers(cls, user):
 		return FollowPair.gql("Where following = '" + user.username + "'")
+		
+	@classmethod
+	def isUserFollowingUser(cls, user1, user2):
+		return FollowPair.all().filter('follower = ', user1.username).filter('following = ', user2.username).fetch(1)
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -454,9 +458,18 @@ class UserHandler(GreyMatterHandler):
 			if otherUser == None:
 				self.redirect("/")
 			
+			# Get reviews made by this user
 			reviews = Review.get_reviews_by_user(username)
 			number = len(reviews)
-			self.render("user.html", user=otherUser, length=number, reviews=reviews)
+			
+			# Look up and see if our user is following this user
+			followPair = FollowPair.isUserFollowingUser(self.user, otherUser)
+			
+			following = False
+			if followPair != None and len(followPair) > 0:
+				following = True
+			
+			self.render("user.html", user=otherUser, length=number, reviews=reviews, following=following)
 		else:
 			self.redirect("/")
 		
