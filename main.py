@@ -473,6 +473,27 @@ class UserHandler(GreyMatterHandler):
 			self.render("user.html", user=otherUser, length=number, reviews=reviews, following=following)
 		else:
 			self.redirect("/")
+	
+	def post(self, username):
+		if self.user:
+			# Get the other username from the AJAX request data
+			otherUsername = self.request.get('user')
+			
+			# Make a new FollowPair with the user and the new friend
+			newFriendPair = FollowPair(follower=self.user.username, following=otherUsername)
+			
+			# Update the followers/following statistics for each user
+			newFriendUser = User.get_by_name(otherUsername)
+			if newFriendUser != None:
+				newFriendUser.followers = newFriendUser.followers + 1
+				self.user.following = self.user.following + 1
+				newFriendUser.put()
+				self.user.put()
+			
+			newFriendPair.put()
+			time.sleep(1)
+		else:
+			self.redirect("/")
 		
 class ReviewsHandler(GreyMatterHandler):
 	""" The handler that lets the user search for aritsts/albms to find reviews."""

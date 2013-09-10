@@ -4,6 +4,7 @@
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+                <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
         <script>
         function tabSwitch(active, number) {  
@@ -22,6 +23,61 @@
 			document.getElementById("hiddenAge").type = "text";
 			document.getElementById("hiddenAgeSubmit").type = "submit";
 		}
+		
+		$.ajaxSetup ({
+			cache: false
+		});
+		
+	// variable to hold request
+	var request;
+	// bind to the submit event of our form
+	$( document ).ready(function() {
+		$("#followOrUnfollow").submit(function(event){
+			// abort any pending request
+			if (request) {
+				request.abort();
+			}
+
+			// Get this user's username
+			var username = $("h2#profile_name").text();
+					
+			// Make a data object with the username of the user we're about to follow
+			var data = {
+				user: username
+			}				
+			// fire off the request
+			request = $.ajax({
+				url: "/user/"+username,
+				type: "post",
+				data: data
+			});
+
+			// callback handler that will be called on success
+			request.done(function (response, textStatus, jqXHR){
+				// log a message to the console
+				console.log("Hooray, it worked!");
+			});
+
+			// callback handler that will be called on failure
+			request.fail(function (jqXHR, textStatus, errorThrown){
+				// log the error to the console
+				console.error(
+					"The following error occured: "+
+					textStatus, errorThrown
+				);
+			});
+
+			// callback handler that will be called regardless
+			// if the request failed or succeeded
+			request.always(function () {
+				// reenable the inputs
+				$inputs.prop("disabled", false);
+			});
+
+			// prevent default posting of form
+			event.preventDefault();
+		});
+	});
 		</script>
 <body id="homebody">
 	<div id="top">
@@ -44,12 +100,14 @@
 	  <div id="allcontent">
 		  <div id="content_2" class="content">
 		  	<div id="profile_info">
-		  		<h2 id="profie_name">{{user.username}}</h2>
-		  		{% if following: %}
-		  		<input type="submit" value="Following" id="unfollowUserBtn">
-		  		{% else: %}
-		  		<input type="submit" value="+Follow" id="followUserBtn">
-		  		{% endif %}
+		  		<h2 id="profile_name">{{user.username}}</h2>
+		  		<form id="followOrUnfollow">
+					{% if following: %}
+					<input type="submit" value="Following" id="unfollowUserBtn"/>
+					{% else: %}
+					<input type="submit" value="+Follow" id="followUserBtn"/>
+					{% endif %}
+				</form>
 		  		<br><br>
 				<div id="profile_image">
 					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
@@ -94,6 +152,5 @@
 		  </div>
 	  </div>
 	</div>
-	<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 </body>
 </html>
