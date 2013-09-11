@@ -31,8 +31,10 @@
 	// variable to hold request
 	var request;
 	// bind to the submit event of our form
+
 	$( document ).ready(function() {
 		$("#followOrUnfollow").submit(function(event){
+		
 			// abort any pending request
 			if (request) {
 				request.abort();
@@ -40,10 +42,19 @@
 
 			// Get this user's username
 			var username = $("h2#profile_name").text();
-					
+			
+			var following = false;
+			
+			var followingBtn = $("#followUserBtn");
+			
+			if (followingBtn.length == 0) {
+				following = true;
+			}
+			
 			// Make a data object with the username of the user we're about to follow
 			var data = {
-				user: username
+				user: username,
+				follow: following
 			}				
 			// fire off the request
 			request = $.ajax({
@@ -55,16 +66,13 @@
 			// callback handler that will be called on success
 			request.done(function (response, textStatus, jqXHR){
 				// log a message to the console
-				console.log("Hooray, it worked!");
+				alert("worked");
 			});
 
 			// callback handler that will be called on failure
 			request.fail(function (jqXHR, textStatus, errorThrown){
 				// log the error to the console
-				console.error(
-					"The following error occured: "+
-					textStatus, errorThrown
-				);
+				alert("failed");
 			});
 
 			// callback handler that will be called regardless

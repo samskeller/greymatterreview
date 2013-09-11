@@ -479,19 +479,33 @@ class UserHandler(GreyMatterHandler):
 			# Get the other username from the AJAX request data
 			otherUsername = self.request.get('user')
 			
-			# Make a new FollowPair with the user and the new friend
-			newFriendPair = FollowPair(follower=self.user.username, following=otherUsername)
+			# Find out if we're already following this person
+			following = self.request.get("follow")
+			if str(following) == "true":
+				# If we already are following this person, then this request must delete 
+				# that following pair
+				
+				# Look up the other user
+				otherUser = User.get_by_name(otherUsername)
+				if otherUser != None:
+					# Look up the FollowPair and delete it
+					followingPair = FollowPair.isUserFollowingUser(self.user, otherUser)
+					FollowPair.delete(followingPair[0])
+				
+			else:
+				# Make a new FollowPair with the user and the new friend
+				newFriendPair = FollowPair(follower=self.user.username, following=otherUsername)
 			
-			# Update the followers/following statistics for each user
-			newFriendUser = User.get_by_name(otherUsername)
-			if newFriendUser != None:
-				newFriendUser.followers = newFriendUser.followers + 1
-				self.user.following = self.user.following + 1
-				newFriendUser.put()
-				self.user.put()
+				# Update the followers/following statistics for each user
+				newFriendUser = User.get_by_name(otherUsername)
+				if newFriendUser != None:
+					newFriendUser.followers = newFriendUser.followers + 1
+					self.user.following = self.user.following + 1
+					newFriendUser.put()
+					self.user.put()
 			
-			newFriendPair.put()
-			time.sleep(1)
+				newFriendPair.put()
+				time.sleep(1)
 		else:
 			self.redirect("/")
 		
