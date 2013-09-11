@@ -66,7 +66,15 @@
 			// callback handler that will be called on success
 			request.done(function (response, textStatus, jqXHR){
 				// log a message to the console
-				alert("worked");
+				if (following == true) {
+					var btn = $("#unfollowUserBtn");
+					btn.attr("id", "followUserBtn");
+					btn.attr("value", "+Follow");
+				} else {
+					var btn = $("#followUserBtn");
+					btn.attr("id", "unfollowUserBtn");
+					btn.attr("value", "Following");
+				}
 			});
 
 			// callback handler that will be called on failure
