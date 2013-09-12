@@ -27,12 +27,13 @@
 		$.ajaxSetup ({
 			cache: false
 		});
-		
+
 	// variable to hold request
 	var request;
 	// bind to the submit event of our form
 
 	$( document ).ready(function() {
+	
 		$("#followOrUnfollow").submit(function(event){
 		
 			// abort any pending request
@@ -117,17 +118,17 @@
 		  <div id="content_2" class="content">
 		  	<div id="profile_info">
 		  		<h2 id="profile_name">{{user.username}}</h2>
-		  		<form id="followOrUnfollow">
-					{% if following: %}
-					<input type="submit" value="Following" id="unfollowUserBtn"/>
-					{% else: %}
-					<input type="submit" value="+Follow" id="followUserBtn"/>
-					{% endif %}
-				</form>
 		  		<br><br>
 				<div id="profile_image">
 					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
 		  		</div>
+		  		<form id="followOrUnfollow">
+					{% if following: %}
+					<input type="submit" value="Following" id="unfollowUserBtn" onmouseover="showUnfollow()"/>
+					{% else: %}
+					<input type="submit" value="+Follow" id="followUserBtn"/>
+					{% endif %}
+				</form>
 		  		<div id="profile_stats">
 		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
 		  			<br>
