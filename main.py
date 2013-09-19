@@ -494,7 +494,16 @@ class UserHandler(GreyMatterHandler):
 					followingPair = FollowPair.isUserFollowingUser(self.user, otherUser)
 					
 					if len(followingPair) != 0:
+						
+						# Delete this FollowPair since we are no longer following this user
 						FollowPair.delete(followingPair[0])
+						
+						# Update both users' followers/following numbers
+						otherUser.followers = otherUser.followers - 1
+						self.user.following = self.user.following - 1
+						otherUser.put()
+						self.user.put()
+						
 						time.sleep(1)
 				
 			else:
