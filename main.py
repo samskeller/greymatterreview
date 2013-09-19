@@ -21,6 +21,7 @@ import hashlib
 import hmac
 import webapp2
 import jinja2
+import json
 import musicbrainzngs
 import os
 import random
@@ -478,10 +479,11 @@ class UserHandler(GreyMatterHandler):
 		if self.user:
 			# Get the other username from the AJAX request data
 			otherUsername = self.request.get('user')
-			
+
 			# Find out if we're already following this person
 			following = self.request.get("follow")
-			if str(following) == "true":
+			
+			if following == "true":
 				# If we already are following this person, then this request must delete 
 				# that following pair
 				
@@ -490,7 +492,10 @@ class UserHandler(GreyMatterHandler):
 				if otherUser != None:
 					# Look up the FollowPair and delete it
 					followingPair = FollowPair.isUserFollowingUser(self.user, otherUser)
-					FollowPair.delete(followingPair[0])
+					
+					if len(followingPair) != 0:
+						FollowPair.delete(followingPair[0])
+						time.sleep(1)
 				
 			else:
 				# Make a new FollowPair with the user and the new friend
@@ -506,6 +511,11 @@ class UserHandler(GreyMatterHandler):
 			
 				newFriendPair.put()
 				time.sleep(1)
+			
+			dict = {'user': otherUsername}
+			self.response.headers['Content-Type'] = "application/json"
+			self.response.out.write(json.dumps(dict))
+			
 		else:
 			self.redirect("/")
 		

@@ -27,72 +27,41 @@
 		$.ajaxSetup ({
 			cache: false
 		});
-
-	// variable to hold request
-	var request;
-	// bind to the submit event of our form
-
+	
 	$( document ).ready(function() {
 	
-		$("#followOrUnfollow").submit(function(event){
-		
-			// abort any pending request
-			if (request) {
-				request.abort();
-			}
-
+		$("#followUserBtn").click( function(){
 			// Get this user's username
 			var username = $("h2#profile_name").text();
 			
-			var following = false;
-			
-			var followingBtn = $("#followUserBtn");
-			
-			if (followingBtn.length == 0) {
-				following = true;
+			// Determine if we're currently following this user
+			var following = "true";
+							
+			if ($(this).attr("value") == "+Follow") {
+				following = "false";
 			}
-			
+										
 			// Make a data object with the username of the user we're about to follow
-			var data = {
+			var myData = {
 				user: username,
 				follow: following
 			}				
 			// fire off the request
-			request = $.ajax({
-				url: "/user/"+username,
-				type: "post",
-				data: data
-			});
-
-			// callback handler that will be called on success
-			request.done(function (response, textStatus, jqXHR){
-				// log a message to the console
-				if (following == true) {
-					var btn = $("#unfollowUserBtn");
-					btn.attr("id", "followUserBtn");
-					btn.attr("value", "+Follow");
-				} else {
+			$.ajax({
+				type: "POST",
+				url: "/user/" + username,
+				data: myData,
+				success: function(data) {
+					// Change the value of our button to reflect our new following status
 					var btn = $("#followUserBtn");
-					btn.attr("id", "unfollowUserBtn");
-					btn.attr("value", "Following");
+					if (following == "true") {
+						btn.attr("value", "+Follow");
+					} else {
+						btn.attr("value", "Following");
+					}
 				}
 			});
-
-			// callback handler that will be called on failure
-			request.fail(function (jqXHR, textStatus, errorThrown){
-				// log the error to the console
-				alert("failed");
-			});
-
-			// callback handler that will be called regardless
-			// if the request failed or succeeded
-			request.always(function () {
-				// reenable the inputs
-				$inputs.prop("disabled", false);
-			});
-
-			// prevent default posting of form
-			event.preventDefault();
+			return false;
 		});
 	});
 		</script>
@@ -124,7 +93,7 @@
 		  		</div>
 		  		<form id="followOrUnfollow">
 					{% if following: %}
-					<input type="submit" value="Following" id="unfollowUserBtn" onmouseover="showUnfollow()"/>
+					<input type="submit" value="Following" id="followUserBtn"/>
 					{% else: %}
 					<input type="submit" value="+Follow" id="followUserBtn"/>
 					{% endif %}
