@@ -44,7 +44,7 @@
 	  		<br>
 	  		{% for album in albums: %}
 	  		<div id="albumListing">
-	  			<a href="/albums/{{album['artist']}}+{{album['album']}}">{{album['album']}}</a>
+	  			<a href="/albums/{{album['artist']}}+{{album['album']}}" style="text-decoration:none;">{{album['album']}}</a>
 	  			<br>
 	  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">by {{album['artist']}}<a/>
 	  		</div>

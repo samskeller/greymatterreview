@@ -632,7 +632,7 @@ def searchMusicBrainzAlbum(album):
 		return results
 	for release in result['release-list']:
 		# Make a new dictionary with the artist, album, and id number
-		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title'], 'id': release['id']}
+		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title']}
 		
 		# If we haven't already seen this one, add it to the results
 		if newDict not in results:
@@ -646,15 +646,44 @@ def searchMusicBrainzAlbumsByArtist(artist):
 	result = musicbrainzngs.search_releases(artist=artist, limit=15)
 	
 	results = []
+	titleTracker = []
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
-		# Grab just the name of the artist
-		resultArtist = release['artist-credit-phrase']
+		
+		# Make sure this is an album, not a single
+		releaseGroup = release.get('release-group', None)
+		if releaseGroup != None and releaseGroup.get('primary-type', 'Album') != "Album":
+			continue
+		
+		# Make sure this is not a bootleg copy
+		if release.get('status', '') != "Official":
+			continue
+			
+		# Make sure this is the US version
+		if release.get('country', '') != "US":
+			continue
+		
+		labelName = ""
+		labelInfo = release.get('label-info-list', None)
+		
+		if labelInfo != None:
+			labelInfo = labelInfo[0]
+			label = labelInfo.get('label', None)
+			
+			if label != None:
+				labelName = label.get('name', '')
+		
+				
+		newDict = {'artist': release['artist-credit-phrase'], 'title': release['title'], \
+			'date': release['date'], 'label': labelName}
+		
+		print release
 		
 		# Make sure the artist is the one we were searching for and if so, add the album title
-		if resultArtist == artist and release['title'] not in results:
-			results.append(release['title'])
+		if newDict['artist'] == artist and newDict['title'] not in titleTracker:
+			results.append(newDict)
+			titleTracker.append(newDict['title'])
 	return results
 
 def searchMusicBrainzArtist(artist):

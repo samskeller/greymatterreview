@@ -26,11 +26,16 @@
 	  <div id="allcontent">
 	 	<h1 id="artistTitle">{{artist}}</h1>
 		<br>
-		<ul id="albumList">
+		<table id="albumList">
 		{% for album in albums: %}
-			<li class="albumListEntry"><a href="/albums/{{artist}}+{{album}}" class="albumListEntryLink">{{album}}</a></li>
+			<tr>
+			<td class="albumListEntry"><a href="/albums/{{artist}}+{{album}}" class="albumListEntryLink">{{album['title']}}</a>
+			<br><p style="font-size:18px">- Date: {{album['date']}}</p>
+			<p style="font-size:18px">- Label: {{album['label']}}</p>
+			</td>
+			</tr>
 		{% endfor %}
-		</ul>
+		</table>
 	  </div>
 	</div>
 	</form>

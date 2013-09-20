@@ -781,15 +781,16 @@ p {
 .albumListEntry {
 	border:1px solid #000000;
 	float:left;
-	width:200px;
-	height:80px;
+	width:400px;
+	height:110px;
 	-moz-border-radius:12px;
 	-webkit-border-radius:12px;
 	text-align:center;
-	padding-top:50px;
+	padding-top:10px;
 	font-size:24px;
 	font-family: Georgia, serif;
 	background:#FFFFFF;
+	margin:5px;
 }
 
 .albumListEntry:hover {
