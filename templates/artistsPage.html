@@ -29,7 +29,7 @@
 		<table id="albumList">
 		{% for album in albums: %}
 			<tr>
-			<td class="albumListEntry"><a href="/albums/{{artist}}+{{album}}" class="albumListEntryLink">{{album['title']}}</a>
+			<td class="albumListEntry"><a href="/albums/{{artist}}+{{album['title']}}" class="albumListEntryLink">{{album['title']}}</a>
 			<br><p style="font-size:18px">- Date: {{album['date']}}</p>
 			<p style="font-size:18px">- Label: {{album['label']}}</p>
 			</td>
