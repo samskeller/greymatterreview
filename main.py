@@ -438,7 +438,10 @@ class FriendsHandler(GreyMatterHandler):
 					# Update the followers/following statistics for each user
 					newFriendUser = User.get_by_name(newFriend)
 					if newFriendUser != None:
-						newFriendUser.followers = newFriendUser.followers + 1
+						if newFriendUser.followers == None:
+							newFriendUsers.followers = 1
+						else:
+							newFriendUser.followers = newFriendUser.followers + 1
 						self.user.following = self.user.following + 1
 						newFriendUser.put()
 						self.user.put()
