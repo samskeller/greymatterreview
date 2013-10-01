@@ -147,6 +147,8 @@ class User(db.Model):
 	age = db.IntegerProperty()
 	followers = db.IntegerProperty()
 	following = db.IntegerProperty()
+	rating = db.FloatProperty()
+	numberOfRatings = db.IntegerProperty()
 	
 	@classmethod
 	def by_id(cls, uid):
@@ -157,9 +159,10 @@ class User(db.Model):
 		return User.all().filter('username =', username).get()
 	
 	@classmethod
-	def register(cls, username, password, email=None, age=None, followers=0, following=0):
+	def register(cls, username, password, email=None, age=None, followers=0, following=0, rating=0.0, numberOfRatings=0):
 		hashedPassword = makePasswordHash(username, password)
-		return User(username = username, hashedPassword = hashedPassword, email = email, age = age, followers = followers, following = following)
+		return User(username = username, hashedPassword = hashedPassword, email = email, age = age, followers = followers, \
+			following = following, rating = rating, numberOfRatings = numberOfRatings)
 	
 	@classmethod
 	def login(cls, username, password):
@@ -622,6 +625,37 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 
 		else:
 			self.redirect("/")
+	
+	def post(self, artist):
+		if self.user:
+			# Get the username of the user that submitted the review and whether or not
+			# our user thought it was useful
+			username = self.request.get('user')
+			useful = self.request.get('useful')
+			
+			# Get the user who did the review
+			reviewer = User.get_by_name(username)
+			if reviewer != None:
+				# Calculate the delta for how their rating should change
+				delta = 1.0 / (reviewer.numberOfRatings + 1)
+				
+				print delta
+				# Make the delta positive or negative
+				if useful == 'false':
+					delta = delta * -1
+				
+				print delta
+				# Change the user's stats
+				reviewer.numberOfRatings = reviewer.numberOfRatings + 1
+				reviewer.rating = reviewer.rating + delta
+				
+				# Update the user
+				reviewer.put()
+			
+			# Return some stuff to the post request
+			dict = {'user': username}
+			self.response.headers['Content-Type'] = "application/json"
+			self.response.out.write(json.dumps(dict))
 
 def searchMusicBrainzAlbum(album):
 	""" searchMusicBrainzAlbum takes an album name as a string and returns a list of dictionaries,

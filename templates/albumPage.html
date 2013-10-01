@@ -4,7 +4,62 @@
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+                <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
+        
+        <script>
+        $( document ).ready(function() {
+	
+			$("#ratingUseful").click( function(){
+				var parent = $(this).parent();
+				var reviewer = parent.children("#reviewerName");
+								
+				var myData = {
+					user: reviewer.text(),
+					useful: true
+				}				
+				// fire off the request
+				$.ajax({
+					type: "POST",
+					url: "/albums/{{artist}}",
+					data: myData,
+					success: function(data) {
+						// Change the value of our button to reflect our new following status
+						var btnOne = parent.children("#ratingUseful");
+						btnOne.attr('type', 'hidden');
+						var btnTwo = parent.children("#ratingNotUseful");
+						btnTwo.attr('type', 'hidden');
+					}
+				});
+				return false;
+			});
+			
+			$("#ratingNotUseful").click( function(){
+				var parent = $(this).parent();
+				var reviewer = parent.children("#reviewerName");
+								
+				var myData = {
+					user: reviewer.text(),
+					useful: false
+				}				
+				// fire off the request
+				$.ajax({
+					type: "POST",
+					url: "/albums/{{artist}}",
+					data: myData,
+					success: function(data) {
+						// Change the value of our button to reflect our new following status
+						var btnOne = parent.children("#ratingUseful");
+						btnOne.attr('type', 'hidden');
+						var btnTwo = parent.children("#ratingNotUseful");
+						btnTwo.attr('type', 'hidden');
+					}
+				});
+				return false;
+			});
+		});
+		
+        </script>
 <body id="homebody">
 	<div id="top">
 		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
@@ -30,10 +85,13 @@
 		{% else: %}
 			<ul id="reviewList">
 			{% for review in reviews: %}
-				<div class="reviewContainer">{{review.reviewer}}:
+				<div class="reviewContainer"><span id="reviewerName">{{review.reviewer}}</span> wrote:
 					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 					<br>
 					<div id="reviewText">{{review.reviewText}}</div>
+					<input type="submit" id="ratingUseful" value="This review nailed it"></input>
+					<input type="submit" id="ratingNotUseful" value="This review sucked"></input>
+					<br>
 				</div>
 				<br>
 			{% endfor %}

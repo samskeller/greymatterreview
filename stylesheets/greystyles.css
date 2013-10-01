@@ -906,3 +906,11 @@ p {
 #unfollowUserBtn:hover {
 	background-color: #E33D27;
 }
+
+#ratingUseful{
+	float:right;
+}
+
+#ratingNotUseful{
+	float:right;
+}
