@@ -639,7 +639,6 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 				# Calculate the delta for how their rating should change
 				delta = 1.0 / (reviewer.numberOfRatings + 1)
 				
-				print delta
 				# Make the delta positive or negative
 				if useful == 'false':
 					delta = delta * -1

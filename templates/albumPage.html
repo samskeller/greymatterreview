@@ -24,11 +24,13 @@
 					url: "/albums/{{artist}}",
 					data: myData,
 					success: function(data) {
-						// Change the value of our button to reflect our new following status
+						// Change the value of our buttons to reflect our new following status
 						var btnOne = parent.children("#ratingUseful");
 						btnOne.attr('type', 'hidden');
 						var btnTwo = parent.children("#ratingNotUseful");
 						btnTwo.attr('type', 'hidden');
+						var hiddenThanks = parent.children("#hiddenThanks");
+						hiddenThanks.css({'display': 'inline-block'});
 					}
 				});
 				return false;
@@ -41,18 +43,20 @@
 				var myData = {
 					user: reviewer.text(),
 					useful: false
-				}				
+				}
 				// fire off the request
 				$.ajax({
 					type: "POST",
 					url: "/albums/{{artist}}",
 					data: myData,
 					success: function(data) {
-						// Change the value of our button to reflect our new following status
+						// Change the value of our buttons to reflect our new following status
 						var btnOne = parent.children("#ratingUseful");
 						btnOne.attr('type', 'hidden');
 						var btnTwo = parent.children("#ratingNotUseful");
 						btnTwo.attr('type', 'hidden');
+						var hiddenThanks = parent.children("#hiddenThanks");
+						hiddenThanks.css({'display': 'inline-block'});
 					}
 				});
 				return false;
@@ -91,6 +95,7 @@
 					<div id="reviewText">{{review.reviewText}}</div>
 					<input type="submit" id="ratingUseful" value="This review nailed it"></input>
 					<input type="submit" id="ratingNotUseful" value="This review sucked"></input>
+					<div id="hiddenThanks">Thanks!</div>
 					<br>
 				</div>
 				<br>
