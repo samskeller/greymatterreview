@@ -149,6 +149,7 @@ class User(db.Model):
 	following = db.IntegerProperty()
 	rating = db.FloatProperty()
 	numberOfRatings = db.IntegerProperty()
+	numberOfReviews = db.IntegerProperty()
 	
 	@classmethod
 	def by_id(cls, uid):
@@ -159,10 +160,10 @@ class User(db.Model):
 		return User.all().filter('username =', username).get()
 	
 	@classmethod
-	def register(cls, username, password, email=None, age=None, followers=0, following=0, rating=0.0, numberOfRatings=0):
+	def register(cls, username, password, email=None, age=None, followers=0, following=0, rating=0.0, numberOfRatings=0, numberOfReviews=0):
 		hashedPassword = makePasswordHash(username, password)
 		return User(username = username, hashedPassword = hashedPassword, email = email, age = age, followers = followers, \
-			following = following, rating = rating, numberOfRatings = numberOfRatings)
+			following = following, rating = rating, numberOfRatings = numberOfRatings, numberOfReviews = numberOfReviews)
 	
 	@classmethod
 	def login(cls, username, password):
@@ -386,6 +387,14 @@ class NewReviewHandler(GreyMatterHandler):
 							reviewText=review)
 			# Commit to the db
 			newReview.put()
+			
+			# Update the user's number of reviews
+			if self.user.numberOfReviews == None:
+				self.user.numberOfReviews = 1
+			else:
+				self.user.numberOfReviews = self.user.numberOfReviews + 1
+			
+			self.user.put()
 			
 			# Add the artist to the db if it's not already there
 			newArtist = Artist.get_or_insert(artist)

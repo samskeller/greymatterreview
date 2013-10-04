@@ -120,6 +120,12 @@
 		  			{% else: %}
 		  			Following: <a href="#">0</a>
 		  			{% endif %}
+		  			<br>
+		  			{% if user.numberOfReviews: %}
+		  			Reviews: {{user.numberOfReviews}}
+		  			{% else: %}
+		  			Reviews: 0
+		  			{% endif %}
 		  		</div>
 		  	</div>
 		  	<div id="profilefeed">
