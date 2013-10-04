@@ -17,6 +17,7 @@
 # test
 
 from cgi import escape
+import datetime
 import hashlib
 import hmac
 import webapp2
@@ -213,6 +214,10 @@ class Review(db.Model):
 	@classmethod
 	def get_review_by_album_artist(cls, album, artist):
 		return Review.all().filter('album = ', album).filter('artist = ', artist).order('-reviewDate').fetch(10)
+	
+	@classmethod
+	def get_latest_reviews(cls):
+		return Review.all().order('-reviewDate').fetch(5)
 		
 class FollowPair(db.Model):
 	follower = db.StringProperty(required = True)
@@ -241,7 +246,33 @@ class GreyMatterHandler(Handler):
 		if self.user:
 			self.redirect("/home")
 		else:
-			self.render("greymatterreview.html")
+			reviews = Review.get_latest_reviews()
+		
+			currentDate = datetime.datetime.utcnow()
+			
+			# Make a scrubbed version of the review
+			scrubbedReviews = []
+			for review in reviews:
+				# Add the basics
+				dict = {'reviewer': review.reviewer, 'artist': review.artist, \
+					'album' : review.album}
+					
+				# Get the text of the review but limit it to 50 characters
+				text = review.reviewText
+				if len(review.reviewText) > 50:
+					text = review.reviewText[:50] + "..."
+				
+				dict['reviewText'] = text
+				
+				print review.reviewDate
+				
+				# Figure out how many seconds from now this review happened
+				dateDifference = currentDate - review.reviewDate	
+						
+				dict['secondsAgo'] = int(dateDifference.total_seconds())				
+				scrubbedReviews.append(dict)
+				
+			self.render("greymatterreview.html", reviews=scrubbedReviews)
 	
 	def post(self):
 		

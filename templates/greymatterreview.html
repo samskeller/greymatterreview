@@ -30,6 +30,19 @@
 	<div id="description">
 		<label id="mission_title">Share your taste in music with your friends</label>
 	</div>
+	<div id="recentReviews">
+		Latest Reviews:
+		<br><br>
+		{% for review in reviews: %}
+			<div class="profileReview">Artist: {{review['artist']}}<span style="float:right;">{{review['secondsAgo']}} seconds ago</span>
+			<br>
+			Album: {{review['album']}}
+			<br>
+			"{{review['reviewer']}}" said: {{review['reviewText']}}
+			</div>
+			<br>
+		{% endfor %}
+	</div>
 	<div id="signup">
 		<label id="signuplabel">Sign Up</label>
 		<br>

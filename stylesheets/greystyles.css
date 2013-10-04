@@ -100,6 +100,19 @@ a.link:visited{
 	font-size:28px;
 }
 
+#recentReviews {
+	background-color:#EEEEEE;
+	padding:10px;
+	border-radius:10px;
+	position:absolute;
+	top:145px;
+	left:30%;
+	height:350px;
+	width:34%;
+	overflow:auto;
+	opacity:0.7;
+}
+
 #signin {
 	background-color:#CCCCCC;
 	padding:10px;
