@@ -462,13 +462,13 @@ p {
 
 #reviewlabel {
 	font: bold 18px 'Trebuchet MS';
-	margin-left:2%;
+	margin-left:140px;
 }
 
 #reviewbody {
-	margin-left:2%;
+	margin-left:140px;
 	margin-right:2%;
-	width:95%;
+	width:83%;
 	height:230px;
 	margin-bottom:10px;
 	margin-top:5px;
@@ -573,6 +573,40 @@ p {
 	margin-bottom:20px;
 	display:inline-block;
 	background-color:#EECC44;
+}
+
+#ratingContainer{
+	display:inline;
+	position:absolute;
+	height:320px;
+	width:100px;
+	margin-left:2%;
+}
+
+#rateItLabel{
+	font: bold 18px 'Trebuchet MS';
+}
+
+#ratingNumbers{
+	text-align:center;
+	font-size:24px;
+	font-weight:bold;
+}
+
+.ratingNumber{
+	color:#FFFFFF;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.ratingNumber:hover{
+	color:#000000;
+	cursor:pointer;
+	font-size:36px;
+}
+
+#ratingNumberChosen{
+	color:#000000;
+	font-size:36px;
 }
 
 #albumArt {

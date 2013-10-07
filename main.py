@@ -206,6 +206,8 @@ class Review(db.Model):
 	reviewer = db.StringProperty(required = True)
 	reviewDate = db.DateTimeProperty(auto_now_add = True)
 	reviewText = db.TextProperty(required = True)
+	rating = db.IntegerProperty()
+	helpfulCount = db.IntegerProperty()
 	
 	@classmethod
 	def get_reviews_by_user(cls, user):
@@ -394,6 +396,9 @@ class NewReviewHandler(GreyMatterHandler):
 		review = self.request.get('reviewbody')
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
+		rating = self.request.get('rating')
+		
+		print rating
 		
 		# If they hit the search button and input text into the album name field, look for the album
 		if search and inputAlbum != "":
@@ -412,10 +417,13 @@ class NewReviewHandler(GreyMatterHandler):
 			# If the hit search but didn't enter an album name, throw up this message
 			self.render("newreview.html", url="", errorMessage="Please enter " \
 				+ "an artist to search for")
+		elif rating == "":
+			self.render("newreview.html", url="", errorMessage="Please enter " \
+				+ "a rating number.")
 		elif submitReview and review and artist and album:
 			# If the user hit submit and there is a review, album, and artist there, save this review
 			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
-							reviewText=review)
+							reviewText=review, rating=int(rating))
 			# Commit to the db
 			newReview.put()
 			

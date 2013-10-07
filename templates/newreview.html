@@ -4,6 +4,7 @@
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+                <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
         <script>
         function albumSwitch(active, number) {  
@@ -21,7 +22,18 @@
     		var hiddenAlbum = document.querySelector("#albumhidden");
     		hiddenAlbum.value = album;
       
-		}  
+		}
+		
+		function ratingSwitch(active) {
+			var oldChosen = $("#ratingNumberChosen");
+			if (oldChosen) {
+				var oldChosenNumber = oldChosen.text();
+				$("#ratingNumberChosen").attr("id", "rating" + oldChosenNumber);
+			}
+			var newChosenNumber = active.toString();
+			$("#rating" + newChosenNumber).attr("id", "ratingNumberChosen");
+			$("#rating").attr("value", newChosenNumber);
+		}
 		</script>
 <body id="homebody">
 	<div id="top">
@@ -62,6 +74,23 @@
 				<p>{{errorMessage}}</p>
 			{% endif %}
 			<br>
+			<div id="ratingContainer">
+				<label id="rateItLabel">Rate it</label>
+				<br>
+				<div id="ratingNumbers">
+				<span class="ratingNumber" id="rating1" onclick="javascript:ratingSwitch(1);">1</span><br>
+				<span class="ratingNumber" id="rating2" onclick="javascript:ratingSwitch(2);">2</span><br>
+				<span class="ratingNumber" id="rating3" onclick="javascript:ratingSwitch(3);">3</span><br>
+				<span class="ratingNumber" id="rating4" onclick="javascript:ratingSwitch(4);">4</span><br>
+				<span class="ratingNumber" id="rating5" onclick="javascript:ratingSwitch(5);">5</span><br>
+				<span class="ratingNumber" id="rating6" onclick="javascript:ratingSwitch(6);">6</span><br>
+				<span class="ratingNumber" id="rating7" onclick="javascript:ratingSwitch(7);">7</span><br>
+				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
+				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
+				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
+				<input type="hidden" name="rating" id="rating" value=""</input>
+				</div>
+			</div>
 			<label id="reviewlabel">Type your review</label>
 			<textarea id="reviewbody" name="reviewbody"></textarea>
 			<input type="submit" name="newreviewbtn" id="newreviewbtn">
