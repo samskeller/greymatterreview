@@ -897,6 +897,10 @@ p {
 	background:#E3E3E3;
 }
 
+#reviewRating{
+	font-size:24px;
+}
+
 #reviewText {
 	font-size:14px;
 	margin-left:10px;

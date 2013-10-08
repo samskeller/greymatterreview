@@ -34,7 +34,14 @@
 		Latest Reviews:
 		<br><br>
 		{% for review in reviews: %}
-			<div class="profileReview">Artist: {{review['artist']}}<span style="float:right;">{{review['secondsAgo']}} seconds ago</span>
+			<div class="profileReview">
+			{% if not review.rating: %}
+				<span id="reviewRating">5 / 10</span>
+			{% else: %}
+				<span id="reviewRating">{{review.rating}} / 10</span>
+			{% endif %}
+			<br>
+			Artist: {{review['artist']}}<span style="float:right;">{{review['secondsAgo']}} seconds ago</span>
 			<br>
 			Album: {{review['album']}}
 			<br>

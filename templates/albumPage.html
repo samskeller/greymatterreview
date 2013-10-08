@@ -89,7 +89,14 @@
 		{% else: %}
 			<ul id="reviewList">
 			{% for review in reviews: %}
-				<div class="reviewContainer"><span id="reviewerName">{{review.reviewer}}</span> wrote:
+				<div class="reviewContainer">
+					{% if review.rating == None: %}
+						<span id="reviewRating">5 / 10<span>
+					{% else: %}
+						<span id="reviewRating">{{review.rating}} / 10</span>
+					{% endif %}
+					<br>
+					<span id="reviewerName">{{review.reviewer}}</span> wrote:
 					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 					<br>
 					<div id="reviewText">{{review.reviewText}}</div>
