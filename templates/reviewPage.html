@@ -25,7 +25,10 @@
 	  </div>
 	  <div id="allcontent">
 	  	<br>
-	 		<div id="permalinkReview">Artist: {{review.artist}}
+	 		<div id="permalinkReview">
+	 		<span id="reviewRating">{{review.rating}} / 10</span>
+	 		<br>
+	 		Artist: {{review.artist}}
 			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 			<br>
 			Album: {{review.album}}
