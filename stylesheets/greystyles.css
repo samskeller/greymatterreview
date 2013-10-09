@@ -106,9 +106,9 @@ a.link:visited{
 	border-radius:10px;
 	position:absolute;
 	top:145px;
-	left:30%;
+	left:40%;
 	height:350px;
-	width:34%;
+	width:50%;
 	overflow:auto;
 	opacity:0.7;
 }
@@ -129,8 +129,8 @@ a.link:visited{
 	padding:10px;
 	border-radius:15px;
 	position:absolute;
-	top:300px;
-	left:70%;
+	top:200px;
+	left:40%;
 	height:185px;
 	width:230px;
 }
@@ -176,11 +176,33 @@ a.link:visited{
 	position:absolute;
 }
 
-.login {
-	width:95%;
-	height:25px;
-	margin:5px;
-	font-size:16px;
+#loginPassword {
+	float:right;
+	font-size:14px;
+	position:relative;
+	left:128px;
+	width:120px;
+	margin-top:7px;
+	background:#DDDDDD;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	padding-left:5px;
+	margin-left:10px;
+}
+
+#loginUsername {
+	float:right;
+	position:relative;
+	left:-140px;
+	width:120px;
+	font-size:14px;
+	margin-top:7px;
+	background:#DDDDDD;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	padding-left:5px;
 }
 
 .signup {
@@ -192,7 +214,8 @@ a.link:visited{
 
 #loginbutton {
 	border-style:none;
-	margin-top:3px;
+	margin-top:8px;
+	margin-left:6px;
 	float:right;
 	background-color:#E45159;
 	-webkit-border-radius:8px;
@@ -201,10 +224,10 @@ a.link:visited{
 	display:inline-block;
 	color:#ffffff;
 	font-family:Verdana;
-	font-size:16px;
-	height:32px;
-	line-height:30px;
-	width:88px;
+	font-size:14px;
+	height:23px;
+	line-height:14px;
+	width:70px;
 	text-decoration:none;
 	text-align:center;
 	cursor: pointer;
@@ -218,7 +241,9 @@ a.link:visited{
 
 #register {
 	border-style:none;
-	margin-top:3px;
+	margin-top:8px;
+	margin-left:6px;
+	margin-right:40px;
 	float:right;
 	background-color:#1279e0;
 	-webkit-border-radius:8px;
@@ -227,10 +252,10 @@ a.link:visited{
 	display:inline-block;
 	color:#ffffff;
 	font-family:Verdana;
-	font-size:16px;
-	height:32px;
-	line-height:30px;
-	width:88px;
+	font-size:14px;
+	height:23px;
+	line-height:14px;
+	width:70px;
 	text-decoration:none;
 	text-align:center;
 	cursor: pointer;

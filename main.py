@@ -249,7 +249,7 @@ class GreyMatterHandler(Handler):
 			self.redirect("/home")
 		else:
 			reviews = Review.get_latest_reviews()
-		
+						
 			currentDate = datetime.datetime.utcnow()
 			
 			# Make a scrubbed version of the review
@@ -261,13 +261,14 @@ class GreyMatterHandler(Handler):
 					
 				# Get the text of the review but limit it to 50 characters
 				text = review.reviewText
-				if len(review.reviewText) > 50:
-					text = review.reviewText[:50] + "..."
+				if len(review.reviewText) > 100:
+					text = review.reviewText[:100] + "..."
 				
 				dict['reviewText'] = text
 				
-				print review.reviewDate
-				
+				# Store the rating
+				dict['rating'] = review.rating
+												
 				# Figure out how many seconds from now this review happened
 				dateDifference = currentDate - review.reviewDate	
 						
@@ -282,47 +283,7 @@ class GreyMatterHandler(Handler):
 		login = self.request.get('loginbutton')
 		signup = self.request.get('signupbutton')
 		if signup:
-			error = False
-			
-			# Get the user entered fields
-			self.username = self.request.get('newusername')
-			self.password = self.request.get('newpassword')
-			self.email = self.request.get('newemail')
-	   
-			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
-	   		
-	   		# Check for a valid username, password, and email
-			if not validate_username(self.username):
-				error = True
-				parameters['error_username'] = "Invalid username" 
-			elif not validate_password(self.password):
-				error = True
-				parameters['error_password'] = "Invalid password"
-			elif not validate_email(self.email):
-				error = True
-				parameters['error_email'] = "Invalid email"
-		   	
-		   	# If any of them had an error, re-render the page and show the error
-			if error:
-				self.render("greymatterreview.html", **parameters)
-			else:
-	   			# Look to see if a user with this username already exists
-				u = User.get_by_name(self.username)
-	  
-				if u:
-					##redirect
-					self.render('greymatterreview.html', error_username = "That user already exists")
-				else:
-					# Create a new user as all fields were valid and this username is unique
-					u = User.register(username=self.username, password=self.password, email=self.email)
-		  
-		  			# Store the user in our db
-					u.put()
-		  
-		  			# Set a cookie so the user stays logged in
-					self.setCookie('user_id', str(u.key().id()))
-		  
-					self.redirect('/home')
+			self.redirect("/signup")
 		elif login:
 			error = False
 			self.username = self.request.get('username')
@@ -374,7 +335,60 @@ class HomeHandler(GreyMatterHandler):
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
 			self.redirect('/')
+
+class SignupHandler(GreyMatterHandler):
+	def get(self):
+		if self.user:
+			self.redirect("/home")
+		else:
+			self.render("signup.html")
 			
+	def post(self):
+		signup = self.request.get('signupbutton')
+		if signup:
+			error = False
+			# 
+			# Get the user entered fields
+			self.username = self.request.get('newusername')
+			self.password = self.request.get('newpassword')
+			self.email = self.request.get('newemail')
+	   
+			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
+	   		
+	   		# Check for a valid username, password, and email
+			if not validate_username(self.username):
+				error = True
+				parameters['error_username'] = "Invalid username" 
+			elif not validate_password(self.password):
+				error = True
+				parameters['error_password'] = "Invalid password"
+			elif not validate_email(self.email):
+				error = True
+				parameters['error_email'] = "Invalid email"
+		   	
+		   	# If any of them had an error, re-render the page and show the error
+			if error:
+				self.render("signup.html", **parameters)
+			else:
+	   			# Look to see if a user with this username already exists
+				u = User.get_by_name(self.username)
+	  
+				if u:
+					##redirect
+					self.render('signup.html', error_username = "That user already exists")
+				else:
+					# Create a new user as all fields were valid and this username is unique
+					u = User.register(username=self.username, password=self.password, email=self.email)
+		  
+		  			# Store the user in our db
+					u.put()
+		  
+		  			# Set a cookie so the user stays logged in
+					self.setCookie('user_id', str(u.key().id()))
+		  
+					self.redirect('/home')
+	
+				
 class NewReviewHandler(GreyMatterHandler):
 	""" The handler for the page to write a new review"""
 	def get(self):
@@ -799,4 +813,4 @@ app = webapp2.WSGIApplication([
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
     ('/user/(\w+)', UserHandler), ('/reviews/?', ReviewsHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
-    ('/albums/(.+)/?', AlbumPermalinkHandler)], debug=True)
+    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/signup/?', SignupHandler)], debug=True)

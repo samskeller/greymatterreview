@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>The Grey Matter Review</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+		<!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+	</head>
+<body>
+	<form method="post">
+	<div id="top">
+		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="title" href="/">Grey Matter Review</a>
+	</div>
+	<div id="signup">
+		<label id="signuplabel">Sign Up</label>
+		<br>
+		<input id="username" name="newusername" type="text" placeholder="Username" value="{{newusernamevalue}}">
+		<br>
+		<input class="signup" name="newemail" type="text" placeholder="Email" value="{{newemailvalue}}">
+		<br>
+		<input class="signup" name="newpassword" type="password" placeholder="New Password" value="{{newpasswordvalue}}">
+		<br>	
+		<div id="signuperror">
+		{{error_username}}
+		{{error_password}}
+		{{error_email}}
+		</div>
+		<input type="submit" id="register" value="Sign up" name="signupbutton">
+	</div>
+	<div id="links">
+		<a href="/" class="link">About</a>
+		<a href="/" class="link">Help</a>
+		<a href="/" class="link">Jobs</a>
+		<a href="/" class="link">Terms</a>
+	</div>
+	</form>	
+</body>
+</html>
