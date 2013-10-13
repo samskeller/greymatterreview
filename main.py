@@ -119,6 +119,32 @@ def unescape(string):
 	string = string.replace("&gt;", ">")
 	string = string.replace("&amp;", "&")
 	return string
+	
+def getScrubbedReviews(reviews, currentDate):
+	
+	scrubbedReviews = []
+	for review in reviews:
+		# Add the basics
+		dict = {'reviewer': review.reviewer, 'artist': review.artist, \
+			'album' : review.album}
+		
+		# Get the text of the review but limit it to 50 characters
+		text = review.reviewText
+		if len(review.reviewText) > 100:
+			text = review.reviewText[:100] + "..."
+	
+		dict['reviewText'] = text
+	
+		# Store the rating
+		dict['rating'] = review.rating
+									
+		# Figure out how many seconds from now this review happened
+		dateDifference = currentDate - review.reviewDate	
+			
+		dict['secondsAgo'] = int(dateDifference.total_seconds())				
+		scrubbedReviews.append(dict)
+	
+	return scrubbedReviews
 		
 # General Handler with useful functions
 class Handler(webapp2.RequestHandler):
@@ -252,28 +278,8 @@ class GreyMatterHandler(Handler):
 						
 			currentDate = datetime.datetime.utcnow()
 			
-			# Make a scrubbed version of the review
-			scrubbedReviews = []
-			for review in reviews:
-				# Add the basics
-				dict = {'reviewer': review.reviewer, 'artist': review.artist, \
-					'album' : review.album}
-					
-				# Get the text of the review but limit it to 50 characters
-				text = review.reviewText
-				if len(review.reviewText) > 100:
-					text = review.reviewText[:100] + "..."
-				
-				dict['reviewText'] = text
-				
-				# Store the rating
-				dict['rating'] = review.rating
-												
-				# Figure out how many seconds from now this review happened
-				dateDifference = currentDate - review.reviewDate	
-						
-				dict['secondsAgo'] = int(dateDifference.total_seconds())				
-				scrubbedReviews.append(dict)
+			# Make a scrubbed version of the reviews
+			scrubbedReviews = getScrubbedReviews(reviews, currentDate)
 				
 			self.render("greymatterreview.html", reviews=scrubbedReviews)
 	
@@ -301,8 +307,16 @@ class GreyMatterHandler(Handler):
 		   
 				self.redirect('/home')
 			else:
+				reviews = Review.get_latest_reviews()
+				currentDate = datetime.datetime.utcnow()
+			
+				# Make a scrubbed version of the reviews
+				scrubbedReviews = getScrubbedReviews(reviews, currentDate)
+				
 				# Invalid login attempt
 				parameters['login_error'] = "Invalid login"
+				parameters['reviews'] = scrubbedReviews
+				
 				self.render("greymatterreview.html", **parameters)
 			
 	# Setting a cookie allows the user to stay logged in while navigating through the page
