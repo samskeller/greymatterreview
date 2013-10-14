@@ -156,6 +156,7 @@ a.link:visited{
 	position:relative;
 	font:bold 22px 'Trebuchet MS';
 	color:#444444;
+	display:inline;
 }
 
 #logout:hover{
