@@ -744,10 +744,11 @@ def searchMusicBrainzAlbum(album):
 		return results
 	for release in result['release-list']:
 		# Make a new dictionary with the artist, album, and id number
-		newDict = {'artist': release['artist-credit-phrase'], 'album': release['title']}
+		newDict = {'artist': release.get('artist-credit-phrase'), 'album': release.get('title')}
 		
 		# If we haven't already seen this one, add it to the results
 		if newDict not in results:
+			print release
 			results.append(newDict)
 	return results
 	
@@ -787,11 +788,9 @@ def searchMusicBrainzAlbumsByArtist(artist):
 				labelName = label.get('name', '')
 		
 				
-		newDict = {'artist': release['artist-credit-phrase'], 'title': release['title'], \
-			'date': release['date'], 'label': labelName}
-		
-		print release
-		
+		newDict = {'artist': release.get('artist-credit-phrase'), 'title': release.get('title'), \
+			'date': release.get('date'), 'label': labelName}
+				
 		# Make sure the artist is the one we were searching for and if so, add the album title
 		if newDict['artist'] == artist and newDict['title'] not in titleTracker:
 			results.append(newDict)
