@@ -28,7 +28,17 @@
 	</div>
 	<br>
 	<br>
-	<a id="logout" href="/logout">Logout</a>
+	<div id="searchBar">
+		<form method="post" action="/reviews">
+		<input type="text" id="searchinput" placeholder="Search" name="searchinput">
+		<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+			<option value="artists">Artists</option>
+			<option value="albums">Albums</option>
+		</select>	
+		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		</form>
+		<a id="logout" href="/logout">Logout</a>
+	</div>
 	<form method="post" action="/friends">
 	<div id="maincontainer">
 	  <div id="navigation">

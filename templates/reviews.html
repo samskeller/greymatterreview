@@ -18,8 +18,17 @@
 	</div>
 	<br>
 	<br>
-	<a id="logout" href="/logout">Logout</a>
-	<form method="post" action="/reviews">
+	<div id="searchBar">
+		<form method="post" action="/reviews">
+		<input type="text" id="searchinput" placeholder="Search" name="searchinput">
+		<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+			<option value="artists">Artists</option>
+			<option value="albums">Albums</option>
+		</select>	
+		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		</form>
+		<a id="logout" href="/logout">Logout</a>
+	</div>
 	<div id="maincontainer">
 	  <div id="navigation">
 	  	<ul id="navigationList">
@@ -52,17 +61,9 @@
 	  		{% endfor %}
 	  	
 	  	{% else: %}
-			<input type="text" id="searchinput" placeholder="Search" name="searchinput">
-			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
-	  			<option value="artists">Artists</option>
-	  			<option value="albums">Albums</option>
-	  		</select>
-			<br>
-			<br>
-			<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+			No results! Try again.
 	  	{% endif %}
 	  </div>
 	</div>
-	</form>
 </body>
 </html>
