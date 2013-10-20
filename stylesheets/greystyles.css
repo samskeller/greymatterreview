@@ -1,5 +1,5 @@
-body {
-	background:url('concert.jpeg') no-repeat center center fixed;
+#newbody {
+	background-color:#A0A0A0;
 	background-size:cover;
 	-moz-background-size:cover;
 	-webkit-background-size:cover;
@@ -8,6 +8,12 @@ body {
 }
 
 #homebody {
+	background: no-repeat center center fixed;
+	background-size:cover;
+	-moz-background-size:cover;
+	-webkit-background-size:cover;
+	font-family: 'Calibri';
+	height:100%;
 	/* IE10 Consumer Preview */ 
 	background-image: -ms-linear-gradient(top, #EDEDED 0%, #D2D2D4 100%);
 
@@ -48,7 +54,8 @@ body {
 	margin:0 auto;
 	text-align:center;
 	width:100%;
-	background-color:#000000;
+	background-color:#787878;
+	border-bottom:2px solid #700000;
 	height:40px;
 	z-index:100;
 }
@@ -65,12 +72,14 @@ body {
 }
 
 #description {
-	left:8%;
-	width:45%;
-	top:15%;
+	left:2%;
+	width:30%;
+	top:25%;
+	padding-bottom:10px;
 	font-family: "Blackletter";
 	position:absolute;
 	text-align:center;
+	border-right:1px solid #000000;
 }
 
 #links {
@@ -91,9 +100,21 @@ a.link:visited{
 	color:#A891ED;
 }
 
-#mission_title {
-	font-size:30px;
-	font-weight:bold;
+#website_title {
+	font-size:100px; 
+	font-family: blackout;
+	color:#700000;
+	position:absolute:
+	left:100px;
+}
+
+#mission {
+	position:absolute;
+	left:45%;
+	top:11%;
+	font-size:34px; 
+	font-family: blackout;
+	color:#700000;
 }
 
 #mission_content {
