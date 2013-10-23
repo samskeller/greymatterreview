@@ -865,32 +865,38 @@ p {
 }
 
 #albumList {
-	margin-left:125px;
 	height:300px;
 	overflow:auto;
-	column-count:3;
-	column-width:200px;
+	column-count:1;
+	column-width:700px;
 	list-style-type:none;
 	width:700px;
 }
 
-.albumListEntry {
-	border:1px solid #000000;
+tr.albumListEntry {
 	float:left;
-	width:400px;
-	height:110px;
+	width:870px;
+	height:70px;
 	-moz-border-radius:12px;
 	-webkit-border-radius:12px;
-	text-align:center;
+	padding-left:100px;
+	background:#EEEEEE;
 	padding-top:10px;
 	font-size:24px;
 	font-family: Georgia, serif;
-	background:#FFFFFF;
 	margin:5px;
 }
 
-.albumListEntry:hover {
-	background:#DBDBDB;
+tr.albumListEntry:nth-child(even) {
+	background:#E3E3E3;
+}
+
+tr.albumListEntry:nth-child(even):hover {
+	background:#DBDBFF;
+}
+
+tr.albumListEntry:hover {
+	background:#DBDBFF;
 }
 
 .albumListEntryLink {
