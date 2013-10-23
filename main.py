@@ -763,7 +763,6 @@ def searchMusicBrainzAlbumsByArtist(artist):
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
-		
 		# Make sure this is an album, not a single
 		releaseGroup = release.get('release-group', None)
 		if releaseGroup != None and releaseGroup.get('primary-type', 'Album') != "Album":
@@ -771,10 +770,6 @@ def searchMusicBrainzAlbumsByArtist(artist):
 		
 		# Make sure this is not a bootleg copy
 		if release.get('status', '') != "Official":
-			continue
-			
-		# Make sure this is the US version
-		if release.get('country', '') != "US":
 			continue
 		
 		labelName = ""
