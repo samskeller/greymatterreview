@@ -875,6 +875,7 @@ p {
 
 tr.albumListEntry {
 	float:left;
+	position:relative;
 	width:870px;
 	height:70px;
 	-moz-border-radius:12px;
@@ -897,6 +898,15 @@ tr.albumListEntry:nth-child(even):hover {
 
 tr.albumListEntry:hover {
 	background:#DBDBFF;
+}
+
+#emptySpan {
+	position:absolute; 
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index: 1;
 }
 
 .albumListEntryLink {
