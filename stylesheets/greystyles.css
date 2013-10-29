@@ -880,7 +880,6 @@ tr.albumListEntry {
 	height:70px;
 	-moz-border-radius:12px;
 	-webkit-border-radius:12px;
-	padding-left:100px;
 	background:#EEEEEE;
 	padding-top:10px;
 	font-size:24px;
@@ -912,6 +911,7 @@ tr.albumListEntry:hover {
 .albumListEntryLink {
 	color:#000000;
 	text-decoration:none;
+	margin-left:10px;
 }
 
 #artistlisting {

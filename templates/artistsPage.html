@@ -42,8 +42,9 @@
 		<table id="albumList">
 		{% for album in albums: %}
 			<tr class="albumListEntry">
-			<td><a href="/albums/{{artist}}+{{album['title']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>
-			<p style="font-size:14px">Released in {{album['date']}}</p>
+			<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" style="float:left;">
+			<a href="/albums/{{artist}}+{{album['title']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>
+			<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
 			</td>
 			</tr>
 		{% endfor %}
