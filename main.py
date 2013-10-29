@@ -787,9 +787,9 @@ def searchMusicBrainzAlbumsByArtist(artist):
 			'date': release.get('date'), 'label': labelName, 'mb-id': release.get('id')}
 							
 		# Make sure the artist is the one we were searching for and if so, add the album title
-		if newDict['artist'] == artist and newDict['title'] not in titleTracker:
+		if newDict['artist'].lower() == artist.lower() and newDict['title'].lower() not in titleTracker:
 			results.append(newDict)
-			titleTracker.append(newDict['title'])
+			titleTracker.append(newDict['title'].lower())
 	return results
 
 def searchMusicBrainzArtist(artist):
