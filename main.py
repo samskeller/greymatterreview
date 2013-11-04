@@ -768,6 +768,12 @@ def searchMusicBrainzAlbumsByArtist(artist):
 		if releaseGroup != None and releaseGroup.get('primary-type', 'Album') != "Album":
 			continue
 		
+		mediumList = release.get('medium-list', [])
+		if len(mediumList) > 1:
+			mediumDict = mediumList[1]
+			if mediumDict.get('format', '') != "CD":
+				continue
+		
 		# Make sure this is not a bootleg copy
 		if release.get('status', '') != "Official":
 			continue
@@ -785,7 +791,7 @@ def searchMusicBrainzAlbumsByArtist(artist):
 				
 		newDict = {'artist': release.get('artist-credit-phrase'), 'title': release.get('title'), \
 			'date': release.get('date'), 'label': labelName, 'mb-id': release.get('id')}
-							
+					
 		# Make sure the artist is the one we were searching for and if so, add the album title
 		if newDict['artist'].lower() == artist.lower() and newDict['title'].lower() not in titleTracker:
 			results.append(newDict)
