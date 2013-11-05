@@ -72,7 +72,7 @@
 }
 
 #description {
-	left:300px;
+	left:250px;
 	line-height:40px;
 	width:220px;
 	top:55px;
@@ -112,7 +112,7 @@ a.link:visited{
 
 #mission {
 	position:absolute;
-	left:550px;
+	left:500px;
 	top:80px;
 	font-size:34px; 
 	font-family: blackout;
@@ -668,7 +668,7 @@ p {
 	position:absolute;
 	left:50%;
 	margin-left:-500px;
-	top:95px;
+	top:250px;
 	bottom:0;
 }
 
@@ -836,6 +836,7 @@ p {
 #searchinput {
 	display:inline;
 	font-size:24px;
+	width:350px;
 }
 
 #searchdropdown {
@@ -1046,8 +1047,7 @@ tr.albumListEntry:hover {
 }
 
 #searchBar{
-	width:1000px;
+	top:190px;
 	position:absolute;
-	left:50%;
-	margin-left:-500px;
+	left:350px;
 }
