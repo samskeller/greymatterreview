@@ -67,11 +67,12 @@
 		</script>
 <body id="homebody">
 	<div id="top">
-		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="logout" href="/logout">Logout</a>
 	</div>
 	<br>
 	<div id="description">
-		<label id="website_title">grey<br>matter</label>
+		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 	</div>
 	<div id="mission">what do you have to say about music?</div>
 	<br>
@@ -88,80 +89,70 @@
 	</div>
 	<br>
 	<div id="maincontainer">
-	  <div id="navigation">
-	  	<ul id="navigationList">
-	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
-	  	</ul>
-	  </div>
-	  <div id="allcontent">
-		  <div id="content_2" class="content">
-		  	<div id="profile_info">
-		  		<h2 id="profile_name">{{user.username}}</h2>
-		  		<br><br>
-				<div id="profile_image">
-					<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
-		  		</div>
-		  		<form id="followOrUnfollow">
-					{% if following: %}
-					<input type="submit" value="Following" id="followUserBtn"/>
-					{% else: %}
-					<input type="submit" value="+Follow" id="followUserBtn"/>
-					{% endif %}
-				</form>
-		  		<div id="profile_stats">
-		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
-		  			<br>
-		  			{% if user.age: %}
-		  			Age: {{user.age}}
-		  			{% else: %}
-		  			Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
-		  				<input id="hiddenAge" type="hidden">
-		  				<input id="hiddenAgeSubmit" type="hidden">
-		  			{% endif %}
-		  			<br>
-		  			{% if user.followers: %}
-		  			Followers: <a href="#">{{user.followers}}</a>
-		  			{% else: %}
-		  			Followers: <a href="#">0</a>
-		  			{% endif %}
-		  			<br>
-		  			{% if user.following: %}
-		  			Following: <a href="#">{{user.following}}</a>
-		  			{% else: %}
-		  			Following: <a href="#">0</a>
-		  			{% endif %}
-		  			<br>
-		  			{% if user.numberOfReviews: %}
-		  			Reviews: {{user.numberOfReviews}}
-		  			{% else: %}
-		  			Reviews: 0
-		  			{% endif %}
-		  		</div>
-		  	</div>
-		  	<div id="profilefeed">
-		  		<h2 style="display:inline;">User Activity</h2>
-		  		{% for review in reviews: %}
-		  			<div class="profileReview">
-		  			{% if not review.rating: %}
-						<span id="reviewRating">5 / 10<span>
-					{% else: %}
-						<span id="reviewRating">{{review.rating}} / 10</span>
-					{% endif %}
-					<br>
-					Artist: {{review.artist}}
-		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-		  			<br>
-		  			Album: {{review.album}}
-		  			<br>
-		  			Review: {{review.reviewText}}
-		  			</div>
-		  			<br>
-		  		{% endfor %}
-		  	</div>
-		  </div>
-	  </div>
+		<br>
+		<div id="profile_info">
+			<h2 id="profile_name">{{user.username}}</h2>
+			<br><br>
+			<div id="profile_image">
+				<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
+			</div>
+			<form id="followOrUnfollow">
+				{% if following: %}
+				<input type="submit" value="Following" id="followUserBtn"/>
+				{% else: %}
+				<input type="submit" value="+Follow" id="followUserBtn"/>
+				{% endif %}
+			</form>
+			<div id="profile_stats">
+				Member since: {{user.signupDate.strftime('%B %d, %Y')}}
+				<br>
+				{% if user.age: %}
+				Age: {{user.age}}
+				{% else: %}
+				Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
+					<input id="hiddenAge" type="hidden">
+					<input id="hiddenAgeSubmit" type="hidden">
+				{% endif %}
+				<br>
+				{% if user.followers: %}
+				Followers: <a href="#">{{user.followers}}</a>
+				{% else: %}
+				Followers: <a href="#">0</a>
+				{% endif %}
+				<br>
+				{% if user.following: %}
+				Following: <a href="#">{{user.following}}</a>
+				{% else: %}
+				Following: <a href="#">0</a>
+				{% endif %}
+				<br>
+				{% if user.numberOfReviews: %}
+				Reviews: {{user.numberOfReviews}}
+				{% else: %}
+				Reviews: 0
+				{% endif %}
+			</div>
+		</div>
+		<div id="profilefeed">
+			<h2 style="display:inline;">User Activity</h2>
+			{% for review in reviews: %}
+				<div class="profileReview">
+				{% if not review.rating: %}
+					<span id="reviewRating">5 / 10<span>
+				{% else: %}
+					<span id="reviewRating">{{review.rating}} / 10</span>
+				{% endif %}
+				<br>
+				Artist: {{review.artist}}
+				<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+				<br>
+				Album: {{review.album}}
+				<br>
+				Review: {{review.reviewText}}
+				</div>
+				<br>
+			{% endfor %}
+		</div>
 	</div>
 </body>
 </html>

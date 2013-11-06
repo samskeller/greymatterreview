@@ -11,11 +11,12 @@
         </head>
 <body id="homebody">
 	<div id="top">
-		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="logout" href="/logout">Logout</a>
 	</div>
 	<br>
 	<div id="description">
-		<label id="website_title">grey<br>matter</label>
+		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 	</div>
 	<div id="mission">what do you have to say about music?</div>
 	<br>
@@ -32,14 +33,6 @@
 	</div>
 	<form method="post" action="/reviews">
 	<div id="maincontainer">
-	  <div id="navigation">
-	  	<ul id="navigationList">
-	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
-	  	</ul>
-	  </div>
-	  <div id="allcontent">
 	 	<h1 id="artistTitle">{{artist}}</h1>
 		<br>
 		<table id="albumList">
@@ -52,7 +45,6 @@
 			</tr>
 		{% endfor %}
 		</table>
-	  </div>
 	</div>
 	</form>
 </body>

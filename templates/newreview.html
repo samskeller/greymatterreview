@@ -37,11 +37,12 @@
 		</script>
 <body id="homebody">
 	<div id="top">
-		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="logout" href="/logout">Logout</a>
 	</div>
 	<br>
 	<div id="description">
-		<label id="website_title">grey<br>matter</label>
+		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 	</div>
 	<div id="mission">what do you have to say about music?</div>
 	<br>
@@ -58,55 +59,47 @@
 	</div>
 	<form method="post" action="/newreview">
 	<div id="maincontainer">
-	  <div id="navigation">
-	  	<ul id="navigationList">
-	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
-	  	</ul>
-	  </div>
-		<div id="allcontent">
-			<label id="artistlabel">Enter the Album Name</label>
+		<br>
+		<label id="artistlabel">Enter the Album Name</label>
+		<br>
+		<input type="text" id="inputAlbum" name="inputAlbum"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
+		<br>
+		{% if albums|length > 0: %}
+			<label id="reviewlabel">Select an album</label>
 			<br>
-			<input type="text" id="inputAlbum" name="inputAlbum"><input type="submit" id="artistlookupbtn" name="artistlookupbtn" value="Search">
 			<br>
-			{% if albums|length > 0: %}
-				<label id="reviewlabel">Select an album</label>
-				<br>
-				<br>
-				{% for album in albums: %}
-					<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
-						<p>Artist: <span class="artistInReview">{{album['artist']}}</span></p>
-						<p>Album: <span class="albumInReview">{{album['album']}}</span></p>
-					</a></div>
-				{% endfor %}
-				<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
-				<input type="hidden" name="albumhidden" id="albumhidden" value=""</input>
-			{% elif errorMessage != "": %}
-				<p>{{errorMessage}}</p>
-			{% endif %}
+			{% for album in albums: %}
+				<div class="searchresult" id="searchresult_{{albums.index(album)}}"><a class="searchresulta" href="javascript:albumSwitch({{albums.index(album)}}, {{albums|length}});">
+					<p>Artist: <span class="artistInReview">{{album['artist']}}</span></p>
+					<p>Album: <span class="albumInReview">{{album['album']}}</span></p>
+				</a></div>
+			{% endfor %}
+			<input type="hidden" name="artisthidden" id="artisthidden" value=""</input>
+			<input type="hidden" name="albumhidden" id="albumhidden" value=""</input>
+		{% elif errorMessage != "": %}
+			<p>{{errorMessage}}</p>
+		{% endif %}
+		<br>
+		<div id="ratingContainer">
+			<label id="rateItLabel">Rate it</label>
 			<br>
-			<div id="ratingContainer">
-				<label id="rateItLabel">Rate it</label>
-				<br>
-				<div id="ratingNumbers">
-				<span class="ratingNumber" id="rating1" onclick="javascript:ratingSwitch(1);">1</span><br>
-				<span class="ratingNumber" id="rating2" onclick="javascript:ratingSwitch(2);">2</span><br>
-				<span class="ratingNumber" id="rating3" onclick="javascript:ratingSwitch(3);">3</span><br>
-				<span class="ratingNumber" id="rating4" onclick="javascript:ratingSwitch(4);">4</span><br>
-				<span class="ratingNumber" id="rating5" onclick="javascript:ratingSwitch(5);">5</span><br>
-				<span class="ratingNumber" id="rating6" onclick="javascript:ratingSwitch(6);">6</span><br>
-				<span class="ratingNumber" id="rating7" onclick="javascript:ratingSwitch(7);">7</span><br>
-				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
-				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
-				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
-				<input type="hidden" name="rating" id="rating" value=""</input>
-				</div>
+			<div id="ratingNumbers">
+			<span class="ratingNumber" id="rating1" onclick="javascript:ratingSwitch(1);">1</span><br>
+			<span class="ratingNumber" id="rating2" onclick="javascript:ratingSwitch(2);">2</span><br>
+			<span class="ratingNumber" id="rating3" onclick="javascript:ratingSwitch(3);">3</span><br>
+			<span class="ratingNumber" id="rating4" onclick="javascript:ratingSwitch(4);">4</span><br>
+			<span class="ratingNumber" id="rating5" onclick="javascript:ratingSwitch(5);">5</span><br>
+			<span class="ratingNumber" id="rating6" onclick="javascript:ratingSwitch(6);">6</span><br>
+			<span class="ratingNumber" id="rating7" onclick="javascript:ratingSwitch(7);">7</span><br>
+			<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
+			<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
+			<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
+			<input type="hidden" name="rating" id="rating" value=""</input>
 			</div>
-			<label id="reviewlabel">Type your review</label>
-			<textarea id="reviewbody" name="reviewbody"></textarea>
-			<input type="submit" name="newreviewbtn" id="newreviewbtn">
 		</div>
+		<label id="reviewlabel">Type your review</label>
+		<textarea id="reviewbody" name="reviewbody"></textarea>
+		<input type="submit" name="newreviewbtn" id="newreviewbtn">
 	</div>
 	</form>
 </body>

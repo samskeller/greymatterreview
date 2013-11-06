@@ -25,11 +25,12 @@
 		</script>
 <body id="homebody">
 	<div id="top">
-		<img id="toplogo" src="/stylesheets/GMLOGO_black.jpg" alt="Unknown Person" width=40 height=40>
+		<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
+		<a id="logout" href="/logout">Logout</a>
 	</div>
 	<br>
 	<div id="description">
-		<label id="website_title">grey<br>matter</label>
+		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 	</div>
 	<div id="mission">what do you have to say about music?</div>
 	<br>
@@ -45,76 +46,65 @@
 		</form>
 	</div>
 	<div id="maincontainer">
-	  <div id="navigation">
-	  	<ul id="navigationList">
-	  		<li class="navigationElement"><a class="navbut" href="/newreview">New Review</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/home">Profile</a></li>
-	  		<li class="navigationElement"><a class="navbut" href="/friends">Friends</a></li>
-	  	</ul>
-	  </div>
-	  <div id="allcontent">
-		  <div id="content_2" class="content">
-		  	<div id="profile_info">
-		  		<h2 id="profie_name">{{user.username}}</h2>
-				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
-					<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
-					<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
-		  		</div>
-		  		<div id="profile_stats">
-		  			Member since: {{user.signupDate.strftime('%B %d, %Y')}}
-		  			<br>
-		  			{% if user.age: %}
-		  			Age: {{user.age}}
-		  			{% else: %}
-		  			Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
-		  				<input id="hiddenAge" type="hidden">
-		  				<input id="hiddenAgeSubmit" type="hidden">
-		  			{% endif %}
-		  			<br>
-		  			{% if user.followers: %}
-		  			Followers: <a href="#">{{user.followers}}</a>
-		  			{% else: %}
-		  			Followers: <a href="/friends">0</a>
-		  			{% endif %}
-		  			<br>
-		  			{% if user.following: %}
-		  			Following: <a href="/friends">{{user.following}}</a>
-		  			{% else: %}
-		  			Following: <a href="#">0</a>
-		  			{% endif %}
-		  			<br>
-		  			{% if user.numberOfReviews: %}
-		  			Reviews: {{user.numberOfReviews}}
-		  			{% else: %}
-		  			Reviews: 0
-		  			{% endif %}
-		  		</div>
-		  	</div>
-		  	<div id="profilefeed">
-		  		<h2 id="myactivitylabel">My Activity</h2>
-		  		{% if reviews|length == 0: %}
-		  			<p>You've never made a review! Click <a href="/newreview">here</a> to write your first one</p>
-		  		{% endif %}
-		  		{% for review in reviews: %}
-		  			<div class="profileReview">
-		  			{% if not review.rating: %}
-						<span id="reviewRating">5 / 10</span>
-					{% else: %}
-						<span id="reviewRating">{{review.rating}} / 10</span>
-					{% endif %}
-					<br>
-					Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
-		  			<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-		  			<br>
-		  			Album: <a href="/albums/{{review.artist}}+{{review.album}}">{{review.album}}</a>
-		  			<br>
-		  			Review: {{review.reviewText}}
-		  			</div>
-		  			<br>
-		  		{% endfor %}
-		  	</div>
-		  </div>
-	  </div>
+		<div id="profile_info">
+			<h2 id="profie_name">{{user.username}}</h2>
+			<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+				<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
+				<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
+			</div>
+			<div id="profile_stats">
+				Member since: {{user.signupDate.strftime('%B %d, %Y')}}
+				<br>
+				{% if user.age: %}
+				Age: {{user.age}}
+				{% else: %}
+				Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
+					<input id="hiddenAge" type="hidden">
+					<input id="hiddenAgeSubmit" type="hidden">
+				{% endif %}
+				<br>
+				{% if user.followers: %}
+				Followers: <a href="#">{{user.followers}}</a>
+				{% else: %}
+				Followers: <a href="/friends">0</a>
+				{% endif %}
+				<br>
+				{% if user.following: %}
+				Following: <a href="/friends">{{user.following}}</a>
+				{% else: %}
+				Following: <a href="#">0</a>
+				{% endif %}
+				<br>
+				{% if user.numberOfReviews: %}
+				Reviews: {{user.numberOfReviews}}
+				{% else: %}
+				Reviews: 0
+				{% endif %}
+			</div>
+		</div>
+		<div id="profilefeed">
+			<h2 id="myactivitylabel">My Activity</h2>
+			{% if reviews|length == 0: %}
+				<p>You've never made a review! Click <a href="/newreview">here</a> to write your first one</p>
+			{% endif %}
+			{% for review in reviews: %}
+				<div class="profileReview">
+				{% if not review.rating: %}
+					<span id="reviewRating">5 / 10</span>
+				{% else: %}
+					<span id="reviewRating">{{review.rating}} / 10</span>
+				{% endif %}
+				<br>
+				Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
+				<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+				<br>
+				Album: <a href="/albums/{{review.artist}}+{{review.album}}">{{review.album}}</a>
+				<br>
+				Review: {{review.reviewText}}
+				</div>
+				<br>
+			{% endfor %}
+		</div>
 	</div>
 	<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 </body>
