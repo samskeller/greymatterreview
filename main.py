@@ -613,7 +613,7 @@ class UserHandler(GreyMatterHandler):
 class ReviewsHandler(GreyMatterHandler):
 	""" The handler that lets the user search for aritsts/albms to find reviews."""
 	def get(self):
-		self.render("reviews.html", artists=None, albums=None)
+		self.render("reviews.html", artists=None, albums=None, user=self.user)
 			
 	def post(self):
 		searchbtn = self.request.get("searchbtn")
@@ -624,17 +624,17 @@ class ReviewsHandler(GreyMatterHandler):
 		if inputText != "" and searchType == "artists":
 			artists = searchMusicBrainzArtist(inputText)
 			if len(artists) != 0:
-				self.render("reviews.html", artists=artists, albums=None)
+				self.render("reviews.html", artists=artists, albums=None, user=self.user)
 			else:
-				self.render("reviews.html")
+				self.render("reviews.html", user=self.user)
 		# If the dropdown menu was set to albums and the user entered text, search for albums
 		elif inputText != "" and searchType == "albums":
 			albums = searchMusicBrainzAlbum(inputText)
 
 			if len(albums) != 0:
-				self.render("reviews.html", albums=albums, artists=None)
+				self.render("reviews.html", albums=albums, artists=None, user=self.user)
 			else:
-				self.render("reviews.html")
+				self.render("reviews.html", user=self.user)
 		else:
 			self.redirect("/")
 
@@ -663,9 +663,11 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 		# Search musicbrainz for the albums by that artist
 		albums = searchMusicBrainzAlbumsByArtist(artist_name)
 		
+		print self.user
+		
 		# Make sure the search worked properly
 		if albums != None:
-			self.render("artistsPage.html", artist=artist_name, albums=albums)
+			self.render("artistsPage.html", artist=artist_name, albums=albums, user=self.user)
 		else:
 			self.redirect("/")
 			
@@ -685,7 +687,7 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 		reviews = Review.get_review_by_album_artist(album, artist)
 			
 		if reviews != None:
-			self.render("albumPage.html", reviews=reviews, album=album, artist=artist)
+			self.render("albumPage.html", reviews=reviews, album=album, artist=artist, user=self.user)
 		else:
 			self.redirect("/")
 	

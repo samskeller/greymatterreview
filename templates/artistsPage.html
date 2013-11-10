@@ -14,7 +14,18 @@
 		<div id="logoHolder">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
-		<a id="logout" href="/logout">Logout</a>
+        {% if user: %}
+		  <a id="logout" href="/logout">Logout</a>
+        {% else %}
+            <form method="post" action="/">
+            <input type="submit" id="register" value="Sign up" name="signupbutton">
+            </form>
+            <form method="post" action="/">
+            <input type="submit" id="loginbutton" value="Log In" name="loginbutton">
+            <input id="loginUsername" type="text" name="username" placeholder="Username">
+            <input id="loginPassword" type="password" name="password" placeholder="Password">
+            </form>
+        {% endif %}
 	</div>
 	<br>
 	<div id="description">
