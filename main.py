@@ -348,7 +348,7 @@ class HomeHandler(GreyMatterHandler):
 			number = len(reviews)
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
-			self.redirect('/')
+			self.redirect('/signup')
 
 class SignupHandler(GreyMatterHandler):
 	def get(self):
@@ -410,11 +410,11 @@ class NewReviewHandler(GreyMatterHandler):
 			# Show the new review page
 			self.render("newreview.html", url="", errorMessage="")
 		else:
-			self.redirect("/")
+			self.redirect("/signup")
 			
 	def post(self):
 		if not self.user:
-			self.redirect("/")
+			self.redirect("/signup")
 		
 		# Get stuff from the request to see which button the user pressed and 
 		# what fields were filled in
@@ -490,7 +490,7 @@ class FriendsHandler(GreyMatterHandler):
 			
 			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs, potentials=None)
 		else:
-			self.redirect("/")
+			self.redirect("/signup")
 	
 	def post(self):
 		if self.user:
@@ -531,7 +531,7 @@ class FriendsHandler(GreyMatterHandler):
 			else:
 				self.render("friends.html")
 		else:
-			self.redirect("/")
+			self.redirect("/signup")
 
 class UserHandler(GreyMatterHandler):
 	""" The handler that shows the activity for a selected user"""
@@ -613,34 +613,28 @@ class UserHandler(GreyMatterHandler):
 class ReviewsHandler(GreyMatterHandler):
 	""" The handler that lets the user search for aritsts/albms to find reviews."""
 	def get(self):
-		if self.user:
-			self.render("reviews.html", artists=None, albums=None)
-		else:
-			self.redirect("/")
+		self.render("reviews.html", artists=None, albums=None)
 			
 	def post(self):
-		if self.user:
-			searchbtn = self.request.get("searchbtn")
-			inputText = self.request.get("searchinput")
-			searchType = self.request.get("searchdropdown")
-		
-			# If the dropdown menu was set to artists and the user entered text, search for artists
-			if inputText != "" and searchType == "artists":
-				artists = searchMusicBrainzArtist(inputText)
-				if len(artists) != 0:
-					self.render("reviews.html", artists=artists, albums=None)
-				else:
-					self.render("reviews.html")
-			# If the dropdown menu was set to albums and the user entered text, search for albums
-			elif inputText != "" and searchType == "albums":
-				albums = searchMusicBrainzAlbum(inputText)
-
-				if len(albums) != 0:
-					self.render("reviews.html", albums=albums, artists=None)
-				else:
-					self.render("reviews.html")
+		searchbtn = self.request.get("searchbtn")
+		inputText = self.request.get("searchinput")
+		searchType = self.request.get("searchdropdown")
+	
+		# If the dropdown menu was set to artists and the user entered text, search for artists
+		if inputText != "" and searchType == "artists":
+			artists = searchMusicBrainzArtist(inputText)
+			if len(artists) != 0:
+				self.render("reviews.html", artists=artists, albums=None)
 			else:
-				self.redirect("/")
+				self.render("reviews.html")
+		# If the dropdown menu was set to albums and the user entered text, search for albums
+		elif inputText != "" and searchType == "albums":
+			albums = searchMusicBrainzAlbum(inputText)
+
+			if len(albums) != 0:
+				self.render("reviews.html", albums=albums, artists=None)
+			else:
+				self.render("reviews.html")
 		else:
 			self.redirect("/")
 
@@ -663,74 +657,66 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 class ArtistPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows all the albums for the given artist."""
 	def get(self, artist_name):
-		if self.user:
-			# Unescape the artist's name
-			artist_name = unescape(artist_name)
-			
-			# Search musicbrainz for the albums by that artist
-			albums = searchMusicBrainzAlbumsByArtist(artist_name)
-			
-			# Make sure the search worked properly
-			if albums != None:
-				self.render("artistsPage.html", artist=artist_name, albums=albums)
-			else:
-				self.redirect("/")
+		# Unescape the artist's name
+		artist_name = unescape(artist_name)
+		
+		# Search musicbrainz for the albums by that artist
+		albums = searchMusicBrainzAlbumsByArtist(artist_name)
+		
+		# Make sure the search worked properly
+		if albums != None:
+			self.render("artistsPage.html", artist=artist_name, albums=albums)
 		else:
 			self.redirect("/")
 			
 class AlbumPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows all the reviews for a given album and artist."""
 	def get(self, albumAndArtist):
-		if self.user:
-			# We separate the album and artist in the URL with a "+" sign
-			pair = albumAndArtist.split("+")
+		# We separate the album and artist in the URL with a "+" sign
+		pair = albumAndArtist.split("+")
+		
+		if len(pair) != 2:
+			self.redirect("/")
+		
+		# The artist is the first part, the album is the second
+		(artist, album) = pair
 			
-			if len(pair) != 2:
-				self.redirect("/")
+		# Look up all the reviews with for that particular album by that particular artist		
+		reviews = Review.get_review_by_album_artist(album, artist)
 			
-			# The artist is the first part, the album is the second
-			(artist, album) = pair
-				
-			# Look up all the reviews with for that particular album by that particular artist		
-			reviews = Review.get_review_by_album_artist(album, artist)
-				
-			if reviews != None:
-				self.render("albumPage.html", reviews=reviews, album=album, artist=artist)
-			else:
-				self.redirect("/")
-
+		if reviews != None:
+			self.render("albumPage.html", reviews=reviews, album=album, artist=artist)
 		else:
 			self.redirect("/")
 	
 	def post(self, artist):
-		if self.user:
-			# Get the username of the user that submitted the review and whether or not
-			# our user thought it was useful
-			username = self.request.get('user')
-			useful = self.request.get('useful')
+		# Get the username of the user that submitted the review and whether or not
+		# our user thought it was useful
+		username = self.request.get('user')
+		useful = self.request.get('useful')
+		
+		# Get the user who did the review
+		reviewer = User.get_by_name(username)
+		if reviewer != None:
+			# Calculate the delta for how their rating should change
+			delta = 1.0 / (reviewer.numberOfRatings + 1)
 			
-			# Get the user who did the review
-			reviewer = User.get_by_name(username)
-			if reviewer != None:
-				# Calculate the delta for how their rating should change
-				delta = 1.0 / (reviewer.numberOfRatings + 1)
-				
-				# Make the delta positive or negative
-				if useful == 'false':
-					delta = delta * -1
-				
-				print delta
-				# Change the user's stats
-				reviewer.numberOfRatings = reviewer.numberOfRatings + 1
-				reviewer.rating = reviewer.rating + delta
-				
-				# Update the user
-				reviewer.put()
+			# Make the delta positive or negative
+			if useful == 'false':
+				delta = delta * -1
 			
-			# Return some stuff to the post request
-			dict = {'user': username}
-			self.response.headers['Content-Type'] = "application/json"
-			self.response.out.write(json.dumps(dict))
+			print delta
+			# Change the user's stats
+			reviewer.numberOfRatings = reviewer.numberOfRatings + 1
+			reviewer.rating = reviewer.rating + delta
+			
+			# Update the user
+			reviewer.put()
+		
+		# Return some stuff to the post request
+		dict = {'user': username}
+		self.response.headers['Content-Type'] = "application/json"
+		self.response.out.write(json.dumps(dict))
 
 def searchMusicBrainzAlbum(album):
 	""" searchMusicBrainzAlbum takes an album name as a string and returns a list of dictionaries,

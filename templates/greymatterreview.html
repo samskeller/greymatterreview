@@ -23,6 +23,16 @@
 		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 	</div>
 	<div id="mission">what do you have to say about music?</div>
+	<div id="searchBar">
+		<form method="post" action="/reviews">
+		<input type="text" id="searchinput" placeholder="Search" name="searchinput">
+		<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+			<option value="artists">Artists</option>
+			<option value="albums">Albums</option>
+		</select>	
+		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		</form>
+	</div>
 	<div id="recentReviews">
 		Latest Reviews:
 		<br><br>
