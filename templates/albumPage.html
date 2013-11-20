@@ -61,6 +61,14 @@
 				});
 				return false;
 			});
+			
+			$('#login-trigger').click(function(){
+				$(this).next('#login-content').toggle();
+				$(this).toggleClass('active');
+			
+				if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+					else $(this).find('span').html('&#x25BC;')
+			});
 		});
 		
         </script>
@@ -72,14 +80,28 @@
 		{% if user: %}
 		  <a id="logout" href="/logout">Logout</a>
         {% else %}
-            <form method="post" action="/">
-            <input type="submit" id="register" value="Sign up" name="signupbutton">
-            </form>
-            <form method="post" action="/">
-            <input type="submit" id="loginbutton" value="Log In" name="loginbutton">
-            <input id="loginUsername" type="text" name="username" placeholder="Username">
-            <input id="loginPassword" type="password" name="password" placeholder="Password">
-            </form>
+            <a href="/signup"><div id="signupText">Sign up</div></a>
+			<nav id="loginNav">
+				<ul>
+					<li id="login">
+						<a id="login-trigger" href="#">
+							Log in
+						</a>
+						<div id="login-content">
+							<form method="post">
+								<fieldset id="inputs">
+									<input id="login_username" name="username" placeholder="Your email address" required>   
+									<input id="login_password" type="password" name="password" placeholder="Password" required>
+								</fieldset>
+								<fieldset id="actions">
+									<input type="submit" id="login_submit" name="loginbutton" value="Log in">
+									<label><input type="checkbox" checked="checked"> Keep me signed in</label>
+								</fieldset>
+							</form>
+						</div>                     
+					</li>
+				</ul>
+			</nav>
         {% endif %}
 	</div>
 	<br>
