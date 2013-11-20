@@ -33,7 +33,6 @@ from string import letters
 from google.appengine.ext import db
 from google.appengine.api.datastore import Key
 from xml.dom import minidom
-from gracenoteIDs import clientID, userID, albumSearchCover, artistsSearch
 
 secretKey = "BwWuOrchjptblMWljjbOxzapj"
 
