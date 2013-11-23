@@ -1087,7 +1087,7 @@ input:focus,textarea:focus {
 	font-size:14px;
 	line-height:24px;
 	text-decoration:none;
-  	float: left;
+  	float: right;
 	height: 30px;
 	padding: 0;
 	width: 100px;
