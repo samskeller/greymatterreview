@@ -170,11 +170,11 @@ class User(db.Model):
 	signupDate = db.DateTimeProperty(auto_now_add = True)
 	email = db.StringProperty()
 	age = db.IntegerProperty()
-	followers = db.IntegerProperty()
-	following = db.IntegerProperty()
+	followers = db.IntegerProperty( default=0 )
+	following = db.IntegerProperty( default=0 )
 	rating = db.FloatProperty()
-	numberOfRatings = db.IntegerProperty()
-	numberOfReviews = db.IntegerProperty()
+	numberOfRatings = db.IntegerProperty( default=0 )
+	numberOfReviews = db.IntegerProperty( default=0 )
 	
 	@classmethod
 	def by_id(cls, uid):

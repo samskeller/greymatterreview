@@ -55,33 +55,19 @@
 				<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
 			</div>
 			<div id="profile_stats">
-				Member since: {{user.signupDate.strftime('%B %d, %Y')}}
 				<br>
-				{% if user.age: %}
-				Age: {{user.age}}
-				{% else: %}
-				Age: <a id="editButtonAge" href="javascript:editButtonToInput();">Edit</a>
-					<input id="hiddenAge" type="hidden">
-					<input id="hiddenAgeSubmit" type="hidden">
-				{% endif %}
-				<br>
-				{% if user.followers: %}
-				Followers: <a href="#">{{user.followers}}</a>
-				{% else: %}
-				Followers: <a href="/friends">0</a>
-				{% endif %}
-				<br>
-				{% if user.following: %}
-				Following: <a href="/friends">{{user.following}}</a>
-				{% else: %}
-				Following: <a href="#">0</a>
-				{% endif %}
-				<br>
-				{% if user.numberOfReviews: %}
-				Reviews: {{user.numberOfReviews}}
-				{% else: %}
-				Reviews: 0
-				{% endif %}
+				<div id="reviewsBox">
+					<label id="reviewsLabel">Reviews</label>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.numberOfReviews}}</div></a>
+				</div>
+				<div id="followingBox">
+					<label id="followingLabel">Following</label>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.following}}</div></a>
+				</div>
+				<div id="followersBox">
+					<label id="followersLabel">Followers</label>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.followers}}</div></a>
+				</div>
 			</div>
 		</div>
 		<div id="profilefeed">
