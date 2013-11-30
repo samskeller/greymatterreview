@@ -1136,10 +1136,6 @@ input:focus,textarea:focus {
 	padding-right:7px;
 }
 
-#reviewsLabel { 
-	font-size:18px;
-}
-
 #followingBox {
 	width:70px;
 	padding-left:7px;
@@ -1149,10 +1145,6 @@ input:focus,textarea:focus {
 	padding-right:15px;
 }
 
-#followingLabel { 
-	font-size:18px;
-}
-
 #followersBox {
 	margin-left:7px;
 	width:70px;
@@ -1160,8 +1152,9 @@ input:focus,textarea:focus {
 	text-align:center;
 }
 
-#followersLabel { 
+.statLabel {
 	font-size:18px;
+	font-family: "Blackletter";
 }
 
 .numberLabel {
