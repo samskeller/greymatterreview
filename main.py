@@ -357,6 +357,7 @@ class SignupHandler(GreyMatterHandler):
 			
 	def post(self):
 		signup = self.request.get('signupbutton')
+		login = self.request.get('loginbutton')
 		if signup:
 			error = False
 			# 
@@ -399,6 +400,24 @@ class SignupHandler(GreyMatterHandler):
 					self.setCookie('user_id', str(u.key().id()))
 		  
 					self.redirect('/home')
+		elif login:
+			error = False
+			self.username = self.request.get('username')
+			self.password = self.request.get('password')
+		
+			parameters = {'username' : self.username}
+			
+			# Look to see if this username and password match with a user that we have
+			u = User.login(self.username, self.password)
+				
+			if u:
+				# We have a valid user, set a cookie and go to the home page
+				self.response.headers['Content-Type'] = 'text/plain'
+				self.setCookie('user_id', str(u.key().id()))
+		   
+				self.redirect('/home')
+			else:
+				self.render("signup.html")
 	
 				
 class NewReviewHandler(GreyMatterHandler):
