@@ -1,5 +1,5 @@
 #newbody {
-	background-color:#A0A0A0;
+	background-color:#A0A0A1;
 	background-size:cover;
 	-moz-background-size:cover;
 	-webkit-background-size:cover;
@@ -18,7 +18,7 @@
 }
 
 #title {
-	color:#D7D7D7;
+	color:#D7D7D8;
 	text-decoration:none;
 	font-weight:bold;
 	padding:0;
