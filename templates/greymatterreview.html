@@ -14,6 +14,14 @@
 					if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
 						else $(this).find('span').html('&#x25BC;')
 					})
+				
+				$('#signup-trigger').click(function(){
+					$(this).next('#signup-content').toggle();
+					$(this).toggleClass('active');
+					
+					if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+						else $(this).find('span').html('&#x25BC;')
+					})
 		  });
 		</script>
 	</head>
@@ -23,7 +31,6 @@
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
 		
-		<a href="/signup"><div id="signupText">Sign up</div></a>
 		<nav id="loginNav">
 			<ul>
 				<li id="login">
@@ -41,6 +48,23 @@
 							</fieldset>
 						</form>
 					</div>                     
+				</li>
+				<li id="signup">
+					<a id="signup-trigger" href="#">
+						Sign up
+					</a>
+					<div id="signup-content">
+						<form method="post">
+							<fieldset id="inputs">
+								<input id="signup_username" name="signupUsername" placeholder="Username" required>
+								<input id="signup_email" name="signupEmail" placeholder="Email" required>
+								<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
+							</fieldset>
+							<fieldset id="actions">
+								<input type="submit" id="signup_submit" name="signupbutton" value="Join">
+							</fieldset>
+						</form>
+					</div>
 				</li>
 			</ul>
 		</nav>

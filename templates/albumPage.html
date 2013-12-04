@@ -63,12 +63,20 @@
 			});
 			
 			$('#login-trigger').click(function(){
-				$(this).next('#login-content').toggle();
+					$(this).next('#login-content').toggle();
+					$(this).toggleClass('active');
+					
+					if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+						else $(this).find('span').html('&#x25BC;')
+					})
+				
+			$('#signup-trigger').click(function(){
+				$(this).next('#signup-content').toggle();
 				$(this).toggleClass('active');
-			
+				
 				if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
 					else $(this).find('span').html('&#x25BC;')
-			});
+				})
 		});
 		
         </script>
@@ -80,7 +88,6 @@
 		{% if user: %}
 		  <a id="logout" href="/logout">Logout</a>
         {% else %}
-            <a href="/signup"><div id="signupText">Sign up</div></a>
 			<nav id="loginNav">
 				<ul>
 					<li id="login">
@@ -88,7 +95,7 @@
 							Log in
 						</a>
 						<div id="login-content">
-							<form method="post">
+							<form method="post" action="/">
 								<fieldset id="inputs">
 									<input id="login_username" name="username" placeholder="Username" required>   
 									<input id="login_password" type="password" name="password" placeholder="Password" required>
@@ -98,6 +105,23 @@
 								</fieldset>
 							</form>
 						</div>                     
+					</li>
+					<li id="signup">
+						<a id="signup-trigger" href="#">
+							Sign up
+						</a>
+						<div id="signup-content">
+							<form method="post" action="/">
+								<fieldset id="inputs">
+									<input id="signup_username" name="signupUsername" placeholder="Username" required>
+									<input id="signup_email" name="signupEmail" placeholder="Email" required>
+									<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
+								</fieldset>
+								<fieldset id="actions">
+									<input type="submit" id="signup_submit" name="signupbutton" value="Join">
+								</fieldset>
+							</form>
+						</div>
 					</li>
 				</ul>
 			</nav>
