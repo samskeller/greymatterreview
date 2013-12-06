@@ -287,7 +287,48 @@ class GreyMatterHandler(Handler):
 		login = self.request.get('loginbutton')
 		signup = self.request.get('signupbutton')
 		if signup:
-			self.redirect("/signup")
+			print "signing in, boss"
+			error = False
+			# 
+			# Get the user entered fields
+			self.username = self.request.get('signupUsername')
+			self.password = self.request.get('signupPassword')
+			self.email = self.request.get('signupEmail')
+	   
+			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
+	   		
+	   		# Check for a valid username, password, and email
+			if not validate_username(self.username):
+				error = True
+				parameters['login_error'] = "Invalid username" 
+			elif not validate_password(self.password):
+				error = True
+				parameters['login_error'] = "Invalid password"
+			elif not validate_email(self.email):
+				error = True
+				parameters['login_error'] = "Invalid email"
+		   	
+		   	# If any of them had an error, re-render the page and show the error
+			if error:
+				self.render("greymatterreview.html", **parameters)
+			else:
+	   			# Look to see if a user with this username already exists
+				u = User.get_by_name(self.username)
+	  
+				if u:
+					##redirect
+					self.render('greymatterreview.html', login_error = "That user already exists")
+				else:
+					# Create a new user as all fields were valid and this username is unique
+					u = User.register(username=self.username, password=self.password, email=self.email)
+		  
+		  			# Store the user in our db
+					u.put()
+		  
+		  			# Set a cookie so the user stays logged in
+					self.setCookie('user_id', str(u.key().id()))
+		  
+					self.redirect('/home')
 		elif login:
 			error = False
 			self.username = self.request.get('username')
