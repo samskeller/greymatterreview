@@ -9,20 +9,30 @@
                 
                 $(document).ready(function(){
 					$('#login-trigger').click(function(){
-						$(this).next('#login-content').toggle();
-						$(this).toggleClass('active');
-					
-						if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
-							else $(this).find('span').html('&#x25BC;')
-						})
+						var signupTrigger = $("#signup-trigger");
+						if (signupTrigger.hasClass('active') || !$(this).hasClass('active')) {
+							signupTrigger.next('#signup-content').toggle(false);
+							signupTrigger.removeClass('active');
+							$(this).next('#login-content').toggle(true);
+							$(this).addClass('active');
+						} else {
+							$(this).next('#login-content').toggle(false);
+							$(this).toggleClass('active');
+						}
+					});
 				
 					$('#signup-trigger').click(function(){
-						$(this).next('#signup-content').toggle();
-						$(this).toggleClass('active');
-					
-						if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
-							else $(this).find('span').html('&#x25BC;')
-						})
+						var loginTrigger = $("#login-trigger");
+						if (loginTrigger.hasClass('active') || !$(this).hasClass('active')) {
+							loginTrigger.next('#login-content').toggle(false);
+							loginTrigger.removeClass('active');
+							$(this).next('#signup-content').toggle(true);
+							$(this).addClass('active');
+						} else {
+							$(this).next('#signup-content').toggle(false);
+							$(this).toggleClass('active');
+						}
+					});
 		  		});
                 
                 </script>
