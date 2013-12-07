@@ -755,6 +755,12 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 		username = self.request.get('user')
 		useful = self.request.get('useful')
 		
+		review = self.request.get('reviewbody')
+		artist = self.request.get('artisthidden')
+		album = self.request.get('albumhidden')
+		rating = self.request.get('rating')
+		submitReview = self.request.get('newreviewbtn')
+		
 		# Get the user who did the review
 		reviewer = User.get_by_name(username)
 		if reviewer != None:
@@ -773,10 +779,33 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 			# Update the user
 			reviewer.put()
 		
-		# Return some stuff to the post request
-		dict = {'user': username}
-		self.response.headers['Content-Type'] = "application/json"
-		self.response.out.write(json.dumps(dict))
+			# Return some stuff to the post request
+			dict = {'user': username}
+			self.response.headers['Content-Type'] = "application/json"
+			self.response.out.write(json.dumps(dict))
+		elif submitReview and review and artist and album:
+			# If the user hit submit and there is a review, album, and artist there, save this review
+			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
+							reviewText=review, rating=int(rating))
+			# Commit to the db
+			newReview.put()
+			
+			# Update the user's number of reviews
+			if self.user.numberOfReviews == None:
+				self.user.numberOfReviews = 1
+			else:
+				self.user.numberOfReviews = self.user.numberOfReviews + 1
+			
+			self.user.put()
+			
+			# Add the artist to the db if it's not already there
+			newArtist = Artist.get_or_insert(artist)
+			
+			# Add the album to the db if it's not already there
+			newAlbum = Album.get_or_insert(artist+"$"+album, title=album, artist=artist)
+			
+			time.sleep(1)
+			self.redirect("/reviews/%d" % newReview.key().id())
 
 def searchMusicBrainzAlbum(album):
 	""" searchMusicBrainzAlbum takes an album name as a string and returns a list of dictionaries,

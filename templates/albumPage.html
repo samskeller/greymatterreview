@@ -87,7 +87,31 @@
 					$(this).toggleClass('active');
 				}
 			});
+			
+			$("#write_review").click(function() {
+				var reviewBody = $("#reviewbody");
+				if (reviewBody.css('display') == 'none') {
+					$("#reviewbody").slideDown();
+					$("#newreviewbtn").css('display', 'block');
+					$("#ratingContainer").slideDown();
+				} else {
+					$("#reviewbody").slideUp();
+					$("#newreviewbtn").css('display', 'none');
+					$("#ratingContainer").slideUp();
+				};
+			});
 		});
+		
+		function ratingSwitch(active) {
+			var oldChosen = $("#ratingNumberChosen");
+			if (oldChosen) {
+				var oldChosenNumber = oldChosen.text();
+				$("#ratingNumberChosen").attr("id", "rating" + oldChosenNumber);
+			}
+			var newChosenNumber = active.toString();
+			$("#rating" + newChosenNumber).attr("id", "ratingNumberChosen");
+			$("#rating").attr("value", newChosenNumber);
+		}
 		
         </script>
 <body id="homebody">
@@ -154,11 +178,37 @@
 		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
 		</form>
 	</div>
-	<form method="post" action="/albums">
 	<div id="maincontainer">
+		<form method="post">
+			<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"</input>
+			<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"</input>
+			<a id="write_review" name="writeReviewButton" href="#">Write a Review</a>
+			<div id="ratingContainer">
+				<label id="rateItLabel">Rate it</label>
+				<br>
+				<div id="ratingNumbers">
+				<span class="ratingNumber" id="rating1" onclick="javascript:ratingSwitch(1);">1</span><br>
+				<span class="ratingNumber" id="rating2" onclick="javascript:ratingSwitch(2);">2</span><br>
+				<span class="ratingNumber" id="rating3" onclick="javascript:ratingSwitch(3);">3</span><br>
+				<span class="ratingNumber" id="rating4" onclick="javascript:ratingSwitch(4);">4</span><br>
+				<span class="ratingNumber" id="rating5" onclick="javascript:ratingSwitch(5);">5</span><br>
+				<span class="ratingNumber" id="rating6" onclick="javascript:ratingSwitch(6);">6</span><br>
+				<span class="ratingNumber" id="rating7" onclick="javascript:ratingSwitch(7);">7</span><br>
+				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
+				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
+				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
+				<input type="hidden" name="rating" id="rating" value=""</input>
+				</div>
+			</div>
+			<textarea id="reviewbody" name="reviewbody"></textarea>
+			<input type="submit" name="newreviewbtn" id="newreviewbtn">
+		</form>
+	 	<br>
+	 	<br>
+	 	<form method="post" action="/albums">
 	 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
 		{% if reviews|length == 0: %}
-			<p>This album has no reviews! Click <a href="/newreview">here</a> to be the first one to write one</p>
+			<p>This album has no reviews-- you should write one!</p>
 		{% else: %}
 			<ul id="reviewList">
 			{% for review in reviews: %}
@@ -182,7 +232,7 @@
 			{% endfor %}
 			</ul>
 		{% endif %}
+		</form>
 	</div>
-	</form>
 </body>
 </html>

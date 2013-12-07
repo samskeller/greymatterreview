@@ -444,12 +444,13 @@ p {
 #reviewbody {
 	margin-left:140px;
 	margin-right:2%;
-	width:83%;
-	height:230px;
+	margin-top:15px;
+	width:82%;
+	height:260px;
 	margin-bottom:10px;
-	margin-top:5px;
 	resize:none;
 	font-size:18px;
+	display:none;
 }
 
 #artistlabel {
@@ -474,7 +475,6 @@ p {
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
 	border-radius:8px;
-	display:inline-block;
 	color:#ffffff;
 	font-family: Book Antiqua;
 	font-size:16px;
@@ -483,10 +483,10 @@ p {
 	text-decoration:none;
 	text-align:center;
 	cursor: pointer;
-	margin-right:25px;
+	margin-right:43px;
 	margin-bottom:10px;
 	width: 100px;
-	display: inline-block;
+	display:none;
 }
 #newreviewbtn:hover {
 	background-color:#378DE5;
@@ -553,7 +553,8 @@ p {
 }
 
 #ratingContainer{
-	display:inline;
+	margin-top:10px;
+	display:none;
 	position:absolute;
 	height:320px;
 	width:100px;
@@ -598,6 +599,7 @@ p {
 	margin-left:-500px;
 	top:250px;
 	background:#FFFFFF;
+	border:1px solid #000000;
 }
 
 #profile_info {
@@ -881,6 +883,7 @@ tr.albumListEntry:hover {
 
 #albumTitle {
 	font-size:28px;
+	display:inline;
 }
 
 #reviewList {
@@ -1175,4 +1178,26 @@ input:focus,textarea:focus {
 
 a:visited {
  color:#000000;
+}
+
+#write_review {
+	border-style:none;
+	position:relative;
+	background-color:#42A9FF;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	color:#FFFFFF;
+	font-family:Book Antiqua;
+	font-size:18px;
+	line-height:24px;
+	text-decoration:none;
+	height:30px;
+	margin-top:20px;
+	margin-left:30px;
+	display:inline-block;
+	padding-top:5px;
+	padding-left:5px;
+	width:120px;
+	cursor: pointer;
 }
