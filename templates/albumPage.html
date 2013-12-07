@@ -182,7 +182,11 @@
 		<form method="post">
 			<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"</input>
 			<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"</input>
+			{% if user: %}
 			<a id="write_review" name="writeReviewButton" href="#">Write a Review</a>
+			{% else: %}
+				<div style="display:inline-block; margin-top:20px; margin-left:20px;">Want to write a review? Sign up!</div>
+			{% endif %}
 			<div id="ratingContainer">
 				<label id="rateItLabel">Rate it</label>
 				<br>
