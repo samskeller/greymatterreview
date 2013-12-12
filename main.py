@@ -483,9 +483,7 @@ class NewReviewHandler(GreyMatterHandler):
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
 		rating = self.request.get('rating')
-		
-		print rating
-		
+				
 		# If they hit the search button and input text into the album name field, look for the album
 		if search and inputAlbum != "":
 			# Search through Gracenote for this album name
@@ -706,7 +704,7 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 			
 			# Make sure we found a review
 			if review != None:
-				self.render("reviewPage.html", review=review)
+				self.render("reviewPage.html", review=review, user=self.user)
 			else:
 				self.redirect("/")
 		else:
