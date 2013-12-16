@@ -200,9 +200,10 @@
 		</form>
 	</div>
 	<div id="maincontainer">
-		<form method="post">
-			<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"</input>
-			<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"</input>
+		<form method="post" action="/albums/mb_id">
+			<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"></input>
+			<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"></input>
+			<input type="hidden" name="mb_id" id="mb_id" value="{{mb_id}}"></input>
 			{% if user: %}
 			<a id="write_review" name="writeReviewButton" href="#">Write a Review</a>
 			{% else: %}
@@ -222,7 +223,7 @@
 				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
 				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
 				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
-				<input type="hidden" name="rating" id="rating" value=""</input>
+				<input type="hidden" name="rating" id="rating" value=""></input>
 				</div>
 			</div>
 			<textarea id="reviewbody" name="reviewbody"></textarea>

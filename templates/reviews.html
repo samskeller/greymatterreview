@@ -141,12 +141,17 @@
 	  		<center style="font-size:26px;">Search Results</center>
 	  		<br>
 	  		{% for album in albums: %}
-	  		<div id="albumListing">
-	  			<a href="/albums/{{album['artist']}}+{{album['album']}}" style="text-decoration:none;">{{album['album']}}</a>
-	  			<br>
-	  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">by {{album['artist']}}<a/>
-	  		</div>
-	  		<br>
+				<form method="post" action="/album" id="{{album['mb-id']}}_submit">
+		  		<div id="albumListing">
+					<input type="hidden" name="artist" id="artist" value="{{album['artist']}}"></input>
+					<input type="hidden" name="album" id="album" value="{{album['album']}}"></input>
+					<input type="hidden" name="mb_id" id="mb_id" value="{{album['mb-id']}}"></input>
+					<a href="javascript:{}" onclick="document.getElementById('{{album['mb-id']}}_submit').submit();" style="text-decoration:none;color:black;">{{album['album']}}</a>
+		  			<br>
+		  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">by {{album['artist']}}<a/>
+		  		</div>
+				</form>
+		  		<br>
 	  		{% endfor %}
 	  	
 	  	{% else: %}

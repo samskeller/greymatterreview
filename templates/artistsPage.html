@@ -122,21 +122,24 @@
 		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
 		</form>
 	</div>
-	<form method="post" action="/reviews">
 	<div id="maincontainer">
 	 	<h1 id="artistTitle">{{artist}}</h1>
 		<br>
 		<table id="albumList">
 		{% for album in albums: %}
-			<tr class="albumListEntry">
-			<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" style="float:left;">
-			<a href="/albums/{{artist}}+{{album['title']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>
-			<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
-			</td>
-			</tr>
+			<form method="post" action="/album" id="{{album['mb-id']}}_submit">
+				<tr class="albumListEntry">
+				<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" style="float:left;">
+				<input type="hidden" name="artist" id="artist" value="{{artist}}">
+				<input type="hidden" name="album" id="album" value="{{album['title']}}">
+				<input type="hidden" name="mb_id" id="mb_id" value="{{album['mb-id']}}">
+				<a href="javascript:{}" onclick="document.getElementById('{{album['mb-id']}}_submit').submit();" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>			
+				<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
+				</td>
+				</tr>
+			</form>
 		{% endfor %}
 		</table>
 	</div>
-	</form>
 </body>
 </html>

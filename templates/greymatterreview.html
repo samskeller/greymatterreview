@@ -122,13 +122,14 @@
 		<br><br>
 		{% for review in reviews: %}
 			<div class="profileReview">
-			<span id="reviewRating">{{review['rating']}} / 10</span>
-			<br>
-			Artist: {{review['artist']}}<span style="float:right;">{{review['secondsAgo']}} seconds ago</span>
-			<br>
-			Album: {{review['album']}}
-			<br>
-			"{{review['reviewer']}}" said: {{review['reviewText']}}
+				<img src="http://www.coverartarchive.com/release/{{review['mb_id']}}/front" width="50" height="50" align="middle" style="float:left;margin-right:10px;">
+				<span id="reviewRating">{{review['rating']}} / 10</span>
+				<br>
+				Artist: {{review['artist']}}<span style="float:right;">{{review['secondsAgo']}} seconds ago</span>
+				<br>
+				Album: {{review['album']}}
+				<br>
+				"{{review['reviewer']}}" said: {{review['reviewText']}}
 			</div>
 			<br>
 		{% endfor %}

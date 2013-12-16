@@ -124,7 +124,7 @@ def getScrubbedReviews(reviews, currentDate):
 	for review in reviews:
 		# Add the basics
 		dict = {'reviewer': review.reviewer, 'artist': review.artist, \
-			'album' : review.album}
+			'album' : review.album, 'mb_id' : review.reviewMBID}
 		
 		# Get the text of the review but limit it to 50 characters
 		text = review.reviewText
@@ -230,6 +230,7 @@ class Review(db.Model):
 	reviewer = db.StringProperty(required = True)
 	reviewDate = db.DateTimeProperty(auto_now_add = True)
 	reviewText = db.TextProperty(required = True)
+	reviewMBID = db.TextProperty()
 	rating = db.IntegerProperty()
 	helpfulCount = db.IntegerProperty()
 	
@@ -666,7 +667,7 @@ class UserHandler(GreyMatterHandler):
 		else:
 			self.redirect("/")
 		
-class ReviewsHandler(GreyMatterHandler):
+class SearchHandler(GreyMatterHandler):
 	""" The handler that lets the user search for aritsts/albms to find reviews."""
 	def get(self):
 		self.render("reviews.html", artists=None, albums=None, user=self.user)
@@ -726,28 +727,52 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 			self.render("artistsPage.html", artist=artist_name, albums=albums, user=self.user)
 		else:
 			self.redirect("/")
-			
+
+class ListingToAlbumHandler(GreyMatterHandler):
+
+	def get(self):
+		self.redirect("/")
+	
+	def post(self):
+		# Load the page with the artist and album
+		artist = self.request.get('artist')
+		album = self.request.get('album')
+		mb_id = self.request.get('mb_id')
+
+		# Set the cookie to be read by the next handler
+		self.setCookie('mb_id', str(mb_id))
+		self.redirect("/albums/" + artist + "+" + album)
+
 class AlbumPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows all the reviews for a given album and artist."""
-	def get(self, albumAndArtist):
-		# We separate the album and artist in the URL with a "+" sign
-		pair = albumAndArtist.split("+")
-		
+	def get(self, artistAlbum):
+		# Get the MB id from the cookie
+		idCookie = self.readCookie('mb_id')
+        
+		# Get the artist and album from the URL
+		pair = artistAlbum.split("+")
+        
+		(artist, album) = pair
+        
 		if len(pair) != 2:
 			self.redirect("/")
 		
-		# The artist is the first part, the album is the second
-		(artist, album) = pair
-			
-		# Look up all the reviews with for that particular album by that particular artist		
-		reviews = Review.get_review_by_album_artist(album, artist)
-			
-		if reviews != None:
-			self.render("albumPage.html", reviews=reviews, album=album, artist=artist, user=self.user)
-		else:
+		self.setCookie('mb_id', "")
+        
+		# Make sure the cookie we read corresponds to this album and artist to be secure
+		ids = searchMusicBrainzAlbumAndArtist(artist, album)
+		if idCookie not in ids:
 			self.redirect("/")
+		else:
+			# Look up all the reviews with for that particular album by that particular artist		
+			reviews = Review.get_review_by_album_artist(artist, album)
+		
+			if reviews != None:
+				self.render("albumPage.html", reviews=reviews, album=album, artist=artist, user=self.user, mb_id=idCookie)
+			else:
+				self.redirect("/")
 	
-	def post(self, artist):
+	def post(self, id):
 		# Get the username of the user that submitted the review and whether or not
 		# our user thought it was useful
 		username = self.request.get('user')
@@ -756,6 +781,7 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 		review = self.request.get('reviewbody')
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
+		mb_id = self.request.get('mb_id')
 		rating = self.request.get('rating')
 		submitReview = self.request.get('newreviewbtn')
 		
@@ -781,10 +807,11 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 			dict = {'user': username}
 			self.response.headers['Content-Type'] = "application/json"
 			self.response.out.write(json.dumps(dict))
+            
 		elif submitReview and review and artist and album:
 			# If the user hit submit and there is a review, album, and artist there, save this review
 			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
-							reviewText=review, rating=int(rating))
+							reviewText=review, rating=int(rating), reviewMBID=mb_id)
 			# Commit to the db
 			newReview.put()
 			
@@ -813,6 +840,7 @@ def searchMusicBrainzAlbum(album):
 	# On success, result is a dictionary with a single key:
 	# "release-list", which is a list of dictionaries.
 	results = []
+	albumArtistTracker = []
 	if not result['release-list']:
 		return results
 	for release in result['release-list']:
@@ -820,8 +848,10 @@ def searchMusicBrainzAlbum(album):
 		newDict = {'artist': release.get('artist-credit-phrase'), 'album': release.get('title')}
 		
 		# If we haven't already seen this one, add it to the results
-		if newDict not in results:
-			print release
+		if newDict not in albumArtistTracker:
+			dictForTracking = newDict.copy()
+			albumArtistTracker.append(dictForTracking)
+			newDict['mb-id'] = release.get('id')
 			results.append(newDict)
 	return results
 	
@@ -887,7 +917,20 @@ def searchMusicBrainzArtist(artist):
 		if artist['name'] not in results:
 			results.append(artist['name'])
 	return results
-			
+
+def searchMusicBrainzAlbumAndArtist(artist, album):
+	"""searchMusicBrainzByID looks for a release ID by an album and an artist"""
+	result = musicbrainzngs.search_releases(artist=artist, release=album)
+	results = []
+	if not result['release-list']:
+		return results
+	for release in result['release-list']:
+		
+		# If we haven't seen this id yet, add it to the return list
+		if release.get('id') not in results:
+			results.append(release.get('id'))
+	return results
+	
 class LogoutHandler(GreyMatterHandler):
 	def get(self):
 		self.logout()
@@ -898,6 +941,6 @@ class LogoutHandler(GreyMatterHandler):
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
-    ('/user/(\w+)', UserHandler), ('/reviews/?', ReviewsHandler), \
+    ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
-    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/signup/?', SignupHandler)], debug=True)
+    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/album/?', ListingToAlbumHandler), ('/signup/?', SignupHandler)], debug=True)
