@@ -9,7 +9,9 @@
         
         <script>
         $( document ).ready(function() {
-	
+			
+			// If the user clicked to say this rating was useful, save that data
+			// and send it to our server with a post request
 			$("#ratingUseful").click( function(){
 				var parent = $(this).parent();
 				var reviewer = parent.children("#reviewerName");
@@ -36,6 +38,8 @@
 				return false;
 			});
 			
+			// If the user clicked to say this rating was not useful, save that data
+			// and send it to our server with a post request
 			$("#ratingNotUseful").click( function(){
 				var parent = $(this).parent();
 				var reviewer = parent.children("#reviewerName");
@@ -62,6 +66,7 @@
 				return false;
 			});
 			
+			// Hide menus on any click so the user can click away from them to hide them
 			$('html').click(function() {
 				// Hide menus
 				var loginTrigger = $("#login-trigger");
@@ -73,14 +78,17 @@
 				signupTrigger.removeClass('active');
 			});
 			
+			// If we clicked on the login box, though, don't do the code from above
 			$("#login-content").click(function(){
 				event.stopPropagation();
 			});
 			
+			// Or if we clicked on the signup box, though, don't do the code from above
 			$("#signup-content").click(function(){
 				event.stopPropagation();
 			});
 
+			// Handling the login trigger to show the dropdown
 			$('#login-trigger').click(function(){
 				event.stopPropagation();
 				var signupTrigger = $("#signup-trigger");
@@ -95,6 +103,7 @@
 				}
 			});
 			
+			// Handling the signup trigger to show the dropdown
 			$('#signup-trigger').click(function(){
 				event.stopPropagation();
 				var loginTrigger = $("#login-trigger");
@@ -109,6 +118,8 @@
 				}
 			});
 			
+			// If the user clicked to write a review, show the text field, rating list, and submit button
+			// so they can write a review
 			$("#write_review").click(function() {
 				var reviewBody = $("#reviewbody");
 				if (reviewBody.css('display') == 'none') {
