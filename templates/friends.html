@@ -4,6 +4,7 @@
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
         <script type="text/javascript">
         
@@ -27,12 +28,58 @@
         	
         }
         </script>
+		<script>
+		$( document ).ready(function() {
+			// Hide menus on any click so the user can click away from them to hide them
+			$('html').click(function() {
+				// Hide menus
+				var meTrigger = $("#me-trigger");
+				//meTrigger.next('#me-content').toggle(false);
+				meTrigger.next('#me-content').slideUp(100);
+				meTrigger.removeClass('active');
+			});
+			
+			// If we clicked on the profile box, though, don't do the code from above
+			$("#me-content").click(function(){
+				event.stopPropagation();
+			});
+			
+			// Handling the profile trigger to show the dropdown
+			$('#me-trigger').click(function(){
+				event.stopPropagation();
+				var signupTrigger = $("#signup-trigger");
+				if ($(this).hasClass('active')) {
+					//$(this).next('#me-content').toggle(false);
+					$(this).next('#me-content').slideUp(100);
+					$(this).toggleClass('active');
+				} else {
+					//$(this).next('#me-content').toggle(true);
+					$(this).next('#me-content').slideDown(100);
+					$(this).addClass('active');
+				}
+			});
+		});
+		</script>
 <body id="homebody">
 	<div id="top">
 		<div id="logoHolder">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
-		<a id="logout" href="/logout">Logout</a>
+		<nav id="loginNav">
+			<ul>
+				<li id="me-container">
+					<a id="me-trigger" href="#">
+						{{user.username}}
+					</a>
+					<div id="me-content">
+						<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=60 height=60>
+						<a href="/">My Page</a>
+						<br>
+						<a href="/logout" style="padding-top:10px;">Logout</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	<br>
 	<div id="description">

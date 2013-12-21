@@ -8,6 +8,14 @@
         </head>
         <script>
 	$( document ).ready(function() {
+		
+		$('html').click(function() {
+			// Hide menus on any click so the user can click away from them to hide them
+			var meTrigger = $("#me-trigger");
+			//meTrigger.next('#me-content').toggle(false);
+			meTrigger.next('#me-content').slideUp(100);
+			meTrigger.removeClass('active');
+		});
 	
 		$("#followUserBtn").click( function(){
 			// Get this user's username
@@ -42,6 +50,26 @@
 			});
 			return false;
 		});
+		
+		// If we clicked on the profile box, though, don't do the code from above
+		$("#me-content").click(function(){
+			event.stopPropagation();
+		});
+
+		// Handling the profile trigger to show the dropdown
+		$('#me-trigger').click(function(){
+			event.stopPropagation();
+			var signupTrigger = $("#signup-trigger");
+			if ($(this).hasClass('active')) {
+				//$(this).next('#me-content').toggle(false);
+				$(this).next('#me-content').slideUp(100);
+				$(this).toggleClass('active');
+			} else {
+				//$(this).next('#me-content').toggle(true);
+				$(this).next('#me-content').slideDown(100);
+				$(this).addClass('active');
+			}
+		});
 	});
 		</script>
         <script>
@@ -55,7 +83,21 @@
 		<div id="logoHolder">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
-		<a id="logout" href="/logout">Logout</a>
+		<nav id="loginNav">
+			<ul>
+				<li id="me-container">
+					<a id="me-trigger" href="#">
+						{{user.username}}
+					</a>
+					<div id="me-content">
+						<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=60 height=60>
+						<a href="/">My Page</a>
+						<br>
+						<a href="/logout" style="padding-top:10px;">Logout</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	<br>
 	<div id="description">
@@ -78,7 +120,7 @@
 	<div id="maincontainer">
 		<br>
 		<div id="profile_info">
-			<h2 id="profile_name">{{user.username}}</h2>
+			<h2 id="profile_name">{{otherUser.username}}</h2>
 			<br><br>
 			<div id="profile_image">
 				<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
@@ -94,15 +136,15 @@
 				<br>
 				<div id="reviewsBox">
 					<label class="statLabel">Reviews</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.numberOfReviews}}</div></a>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.numberOfReviews}}</div></a>
 				</div>
 				<div id="followingBox">
 					<label class="statLabel">Following</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.following}}</div></a>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.following}}</div></a>
 				</div>
 				<div id="followersBox">
 					<label class="statLabel">Followers</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.followers}}</div></a>
+					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.followers}}</div></a>
 				</div>
 			</div>
 		</div>

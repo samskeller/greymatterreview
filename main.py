@@ -545,7 +545,7 @@ class FriendsHandler(GreyMatterHandler):
 			followerPairs = FollowPair.getFollowers(self.user)
 			followerPairs = list(followerPairs)
 			
-			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs, potentials=None)
+			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs, potentials=None, user=self.user)
 		else:
 			self.redirect("/signup")
 	
@@ -563,7 +563,7 @@ class FriendsHandler(GreyMatterHandler):
 				potentialFriends = list(potentialFriends)
 				
 				if potentialFriends != None:
-					self.render("friends.html", potentials=potentialFriends)
+					self.render("friends.html", potentials=potentialFriends, user=self.user)
 			
 			# If we've selected users to follow
 			elif newFriends:
@@ -586,7 +586,7 @@ class FriendsHandler(GreyMatterHandler):
 					time.sleep(1)
 					self.redirect("/friends")
 			else:
-				self.render("friends.html")
+				self.render("friends.html", user=self.user)
 		else:
 			self.redirect("/signup")
 
@@ -610,7 +610,7 @@ class UserHandler(GreyMatterHandler):
 			if followPair != None and len(followPair) > 0:
 				following = True
 			
-			self.render("user.html", user=otherUser, length=number, reviews=reviews, following=following)
+			self.render("user.html", otherUser=otherUser, length=number, reviews=reviews, following=following, user=self.user)
 		else:
 			self.redirect("/")
 	

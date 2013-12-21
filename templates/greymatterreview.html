@@ -72,15 +72,14 @@
 		<div id="logoHolder">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
-		
 		<nav id="loginNav">
 			<ul>
-				<li id="login">
+				<li id="login-container">
 					<a id="login-trigger" href="#">
 						Log in
 					</a>
 					<div id="login-content">
-						<form method="post">
+						<form method="post" action="/">
 							<fieldset id="inputs">
 								<input id="login_username" name="username" placeholder="Username" required>   
 								<input id="login_password" type="password" name="password" placeholder="Password" required>
@@ -91,12 +90,12 @@
 						</form>
 					</div>                     
 				</li>
-				<li id="signup">
+				<li id="signup-container">
 					<a id="signup-trigger" href="#">
 						Sign up
 					</a>
 					<div id="signup-content">
-						<form method="post">
+						<form method="post" action="/">
 							<fieldset id="inputs">
 								<input id="signup_username" name="signupUsername" placeholder="Username" required>
 								<input id="signup_email" name="signupEmail" placeholder="Email" required>

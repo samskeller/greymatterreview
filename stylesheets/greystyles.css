@@ -1023,7 +1023,7 @@ input:focus,textarea:focus {
 	cursor: pointer;
 }
 
-#loginNav #login {
+#loginNav #login-container {
 	float: left;     
 	padding: 3px;
 	background-color: #42A9FF;
@@ -1033,10 +1033,19 @@ input:focus,textarea:focus {
 	-webkit-border-radius: 6px;
 }
 
-#loginNav #signup {
+#loginNav #signup-container {
 	float: left;
 	padding: 3px; 
 	background-color: #F46169;
+	border-radius:6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+#loginNav #me-container {
+	float: left;
+	padding: 3px;
+	padding-right:20px;
 	border-radius:6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -1052,6 +1061,21 @@ input:focus,textarea:focus {
 	padding: 0 8px;
 	text-decoration: none;
 	color: #FFFFFF;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#loginNav #me-trigger {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	height: 35px;
+	font-size:35px;
+	line-height: 23px;
+	text-decoration:none;
+	padding: 0px;
+	color: #A1E9B9;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -1074,6 +1098,27 @@ input:focus,textarea:focus {
   width: 250px;  
 }
 
+#loginNav #me-content{
+	display: none;
+	position: absolute;
+	border: solid 1px black;
+	top: 32px;
+	right: 0;
+	z-index: 999;    
+	background: #FFFFFF;
+	padding: 15px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	right: 0;
+	width: 200px; 
+}
+
+#loginNav #me-content a{
+	float:left;
+	text-decoration:none;
+}
+
 #inputs input {
   background: #F1F1F1;
   padding: 6px 5px;
@@ -1091,13 +1136,13 @@ input:focus,textarea:focus {
   outline: none;
 }
 
-#login #actions,
-#signup actions {
+#login-container #actions,
+#signup-container #actions {
   margin: 10px 0 0 0;
 }
 
-#login #login_submit,
-#signup #signup_submit {
+#login-container #login_submit,
+#signup-container #signup_submit {
 	border-style:none;
 	position:relative;
 	background-color:#42A9FF;
@@ -1117,15 +1162,15 @@ input:focus,textarea:focus {
 	cursor: pointer;
 }
 
-#login #login_submit:hover,
-#login #login_submit:focus,
-#signup #signup_submit:hover,
-#signup #signup_submit:focus {	
+#login-container #login_submit:hover,
+#login-container #login_submit:focus,
+#signup-container #signup_submit:hover,
+#signup-container #signup_submit:focus {	
 	background-color:#42A9FF;
 }	
 
-#login label input,
-#signup label input {
+#login-container label input,
+#signup-container label input {
 	position: relative;
 	top: 2px;
 	right: 2px;
