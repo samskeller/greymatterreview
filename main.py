@@ -269,18 +269,14 @@ class GreyMatterHandler(Handler):
 	well as the logout process."""
 	
 	def get(self):
-	
-		if self.user:
-			self.redirect("/home")
-		else:
-			reviews = Review.get_latest_reviews()
+		reviews = Review.get_latest_reviews()
 						
-			currentDate = datetime.datetime.utcnow()
+		currentDate = datetime.datetime.utcnow()
+		
+		# Make a scrubbed version of the reviews
+		scrubbedReviews = getScrubbedReviews(reviews, currentDate)
 			
-			# Make a scrubbed version of the reviews
-			scrubbedReviews = getScrubbedReviews(reviews, currentDate)
-				
-			self.render("greymatterreview.html", reviews=scrubbedReviews)
+		self.render("greymatterreview.html", reviews=scrubbedReviews, user=self.user)
 	
 	def post(self):
 		
@@ -329,7 +325,7 @@ class GreyMatterHandler(Handler):
 		  			# Set a cookie so the user stays logged in
 					self.setCookie('user_id', str(u.key().id()))
 		  
-					self.redirect('/home')
+					self.redirect("/")
 		elif login:
 			error = False
 			self.username = self.request.get('username')
@@ -345,7 +341,7 @@ class GreyMatterHandler(Handler):
 				self.response.headers['Content-Type'] = 'text/plain'
 				self.setCookie('user_id', str(u.key().id()))
 		   
-				self.redirect('/home')
+				self.redirect("/")
 			else:
 				reviews = Review.get_latest_reviews()
 				currentDate = datetime.datetime.utcnow()

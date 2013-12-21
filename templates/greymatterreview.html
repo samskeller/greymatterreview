@@ -16,6 +16,11 @@
 				var signupTrigger = $("#signup-trigger");
 				signupTrigger.next('#signup-content').toggle(false);
 				signupTrigger.removeClass('active');
+				
+				var meTrigger = $("#me-trigger");
+				//meTrigger.next('#me-content').toggle(false);
+				meTrigger.next('#me-content').slideUp(100);
+				meTrigger.removeClass('active');
 			});
 			
 			// If we clicked on the login box, though, don't do the code from above
@@ -58,6 +63,26 @@
 				}
 			});
 			
+			// If we clicked on the profile box, though, don't do the code from above
+			$("#me-content").click(function(){
+				event.stopPropagation();
+			});
+	
+			// Handling the profile trigger to show the dropdown
+			$('#me-trigger').click(function(){
+				event.stopPropagation();
+				var signupTrigger = $("#signup-trigger");
+				if ($(this).hasClass('active')) {
+					//$(this).next('#me-content').toggle(false);
+					$(this).next('#me-content').slideUp(100);
+					$(this).toggleClass('active');
+				} else {
+					//$(this).next('#me-content').toggle(true);
+					$(this).next('#me-content').slideDown(100);
+					$(this).addClass('active');
+				}
+			});
+			
 		  });
 		</script>
         <script>
@@ -74,6 +99,19 @@
 		</div>
 		<nav id="loginNav">
 			<ul>
+				{% if user: %}
+				<li id="me-container">
+					<a id="me-trigger" href="#">
+						{{user.username}}
+					</a>
+					<div id="me-content">
+						<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=60 height=60>
+						<a href="/home">My Page</a>
+						<br>
+						<a href="/logout" style="padding-top:10px;">Logout</a>
+					</div>
+				</li>
+		        {% else %}
 				<li id="login-container">
 					<a id="login-trigger" href="#">
 						Log in
@@ -107,6 +145,7 @@
 						</form>
 					</div>
 				</li>
+        		{% endif %}
 			</ul>
 		</nav>
 	</div>
