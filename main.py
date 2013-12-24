@@ -135,11 +135,23 @@ def getScrubbedReviews(reviews, currentDate):
 	
 		# Store the rating
 		dict['rating'] = review.rating
-									
-		# Figure out how many seconds from now this review happened
-		dateDifference = currentDate - review.reviewDate	
-			
-		dict['secondsAgo'] = int(dateDifference.total_seconds())				
+		
+		# Figure out the timedelta between the current date and the review date
+		dateDifference = currentDate - review.reviewDate
+		
+		# Get the display time in the largest denomination -- days, hours or mins
+		timeForDisplay = ""
+		if dateDifference.days <= 0:
+			hours = dateDifference.seconds//3600
+			minutes = (dateDifference.seconds//60) % 60
+			if hours <= 0:
+				timeForDisplay = str(minutes) + " minutes ago"
+			else:
+				timeForDisplay = str(hours) + " hours ago"
+		else:
+			timeForDisplay = str(dateDifference.days) + " days ago"
+		
+		dict['timePassed'] = timeForDisplay
 		scrubbedReviews.append(dict)
 	
 	return scrubbedReviews
