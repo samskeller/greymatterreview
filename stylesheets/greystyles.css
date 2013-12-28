@@ -67,7 +67,7 @@
 	left:250px;
 	line-height:40px;
 	width:220px;
-	top:55px;
+	top:65px;
 	padding-bottom:10px;
 	font-family: Book Antiqua;
 	position:absolute;
@@ -103,10 +103,20 @@ a.link:visited{
 	cursor:pointer;
 }
 
+#welcome_message {
+	font-size:25px; 
+	font-family: blackout;
+	color:#101010;
+	position:absolute;
+	left:25px;
+	top:45px;
+	width:250px;
+}
+
 #mission {
 	position:absolute;
 	left:500px;
-	top:85px;
+	top:95px;
 	font-size: 26px; 
 	font-family: New;
 	font-style: ;
@@ -988,7 +998,7 @@ tr.albumListEntry:hover {
 }
 
 #searchBar{
-	top:190px;
+	top:200px;
 	position:absolute;
 	left:350px;
 }
