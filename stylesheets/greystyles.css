@@ -111,6 +111,7 @@ a.link:visited{
 	left:25px;
 	top:45px;
 	width:250px;
+	white-space:nowrap;
 }
 
 #mission {
@@ -122,6 +123,7 @@ a.link:visited{
 	font-style: ;
 	letter-spacing: px;
 	color:#700000;
+	white-space:nowrap;
 }
 
 #mission_content {
@@ -1001,6 +1003,7 @@ tr.albumListEntry:hover {
 	top:200px;
 	position:absolute;
 	left:350px;
+	white-space:nowrap;
 }
 
 #loginNav {
