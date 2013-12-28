@@ -396,80 +396,8 @@ class HomeHandler(GreyMatterHandler):
 			number = len(reviews)
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
-			self.redirect('/signup')
-
-class SignupHandler(GreyMatterHandler):
-	def get(self):
-		if self.user:
-			self.redirect("/home")
-		else:
-			self.render("signup.html")
-			
-	def post(self):
-		signup = self.request.get('signupbutton')
-		login = self.request.get('loginbutton')
-		if signup:
-			error = False
-			# 
-			# Get the user entered fields
-			self.username = self.request.get('newusername')
-			self.password = self.request.get('newpassword')
-			self.email = self.request.get('newemail')
-	   
-			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
-	   		
-	   		# Check for a valid username, password, and email
-			if not validate_username(self.username):
-				error = True
-				parameters['error_username'] = "Invalid username" 
-			elif not validate_password(self.password):
-				error = True
-				parameters['error_password'] = "Invalid password"
-			elif not validate_email(self.email):
-				error = True
-				parameters['error_email'] = "Invalid email"
-		   	
-		   	# If any of them had an error, re-render the page and show the error
-			if error:
-				self.render("signup.html", **parameters)
-			else:
-	   			# Look to see if a user with this username already exists
-				u = User.get_by_name(self.username)
-	  
-				if u:
-					##redirect
-					self.render('signup.html', error_username = "That user already exists")
-				else:
-					# Create a new user as all fields were valid and this username is unique
-					u = User.register(username=self.username, password=self.password, email=self.email)
-		  
-		  			# Store the user in our db
-					u.put()
-		  
-		  			# Set a cookie so the user stays logged in
-					self.setCookie('user_id', str(u.key().id()))
-		  
-					self.redirect('/home')
-		elif login:
-			error = False
-			self.username = self.request.get('username')
-			self.password = self.request.get('password')
-		
-			parameters = {'username' : self.username}
-			
-			# Look to see if this username and password match with a user that we have
-			u = User.login(self.username, self.password)
-				
-			if u:
-				# We have a valid user, set a cookie and go to the home page
-				self.response.headers['Content-Type'] = 'text/plain'
-				self.setCookie('user_id', str(u.key().id()))
-		   
-				self.redirect('/home')
-			else:
-				self.render("signup.html")
+			self.redirect('/')
 	
-				
 class NewReviewHandler(GreyMatterHandler):
 	""" The handler for the page to write a new review"""
 	def get(self):
@@ -477,11 +405,11 @@ class NewReviewHandler(GreyMatterHandler):
 			# Show the new review page
 			self.render("newreview.html", url="", errorMessage="")
 		else:
-			self.redirect("/signup")
+			self.redirect("/")
 			
 	def post(self):
 		if not self.user:
-			self.redirect("/signup")
+			self.redirect("/")
 		
 		# Get stuff from the request to see which button the user pressed and 
 		# what fields were filled in
@@ -555,7 +483,7 @@ class FriendsHandler(GreyMatterHandler):
 			
 			self.render("friends.html", followingPairs=followingPairs, followerPairs=followerPairs, potentials=None, user=self.user)
 		else:
-			self.redirect("/signup")
+			self.redirect("/")
 	
 	def post(self):
 		if self.user:
@@ -596,7 +524,7 @@ class FriendsHandler(GreyMatterHandler):
 			else:
 				self.render("friends.html", user=self.user)
 		else:
-			self.redirect("/signup")
+			self.redirect("/")
 
 class UserHandler(GreyMatterHandler):
 	""" The handler that shows the activity for a selected user"""
@@ -951,4 +879,4 @@ app = webapp2.WSGIApplication([
     ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
     ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
-    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/album/?', ListingToAlbumHandler), ('/signup/?', SignupHandler)], debug=True)
+    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/album/?', ListingToAlbumHandler)], debug=True)
