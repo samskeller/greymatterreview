@@ -5,7 +5,6 @@
 	-webkit-background-size:cover;
 	font-family: Book Antiqua;
 	font-style: bold;
-	letter-spacing: 1px;
 	height:100%;
 }
 
@@ -73,6 +72,7 @@
 	position:absolute;
 	text-align:center;
 	border-right:1px solid #000000;
+	letter-spacing: 1px;
 }
 
 #links {
@@ -120,10 +120,9 @@ a.link:visited{
 	top:95px;
 	font-size: 26px; 
 	font-family: New;
-	font-style: ;
-	letter-spacing: px;
 	color:#700000;
 	white-space:nowrap;
+	letter-spacing: 1px;
 }
 
 #mission_content {
