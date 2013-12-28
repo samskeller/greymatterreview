@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <title>The Grey Matter Review</title>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
+        </head>
+<body id="homebody">
+	<div id="top">
+		<div id="logoHolder">
+			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
+		</div>
+		<nav id="loginNav">
+			<ul>
+				{% if user: %}
+				<li id="me-container">
+					<a id="me-trigger" href="#">
+						{{user.username}}
+					</a>
+					<div id="me-content">
+						<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=60 height=60>
+						<a href="/home">My Page</a>
+						<br>
+						<a href="/logout" style="padding-top:10px;">Logout</a>
+					</div>
+				</li>
+		        {% else %}
+				<li id="login-container">
+					<a id="login-trigger" href="#">
+						Log in
+					</a>
+					<div id="login-content">
+						<form method="post" action="/">
+							<fieldset id="inputs">
+								<input id="login_username" name="username" placeholder="Username" required>   
+								<input id="login_password" type="password" name="password" placeholder="Password" required>
+							</fieldset>
+							<fieldset id="actions">
+								<input type="submit" id="login_submit" name="loginbutton" value="Log in">
+							</fieldset>
+						</form>
+					</div>                     
+				</li>
+				<li id="signup-container">
+					<a id="signup-trigger" href="#">
+						Sign up
+					</a>
+					<div id="signup-content">
+						<form method="post" action="/">
+							<fieldset id="inputs">
+								<input id="signup_username" name="signupUsername" placeholder="Username" required>
+								<input id="signup_email" name="signupEmail" placeholder="Email" required>
+								<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
+							</fieldset>
+							<fieldset id="actions">
+								<input type="submit" id="signup_submit" name="signupbutton" value="Join">
+							</fieldset>
+						</form>
+					</div>
+				</li>
+        		{% endif %}
+			</ul>
+		</nav>
+	</div>
+	<br>
+	<center id="whoops_message">
+		Whoops!
+	</center>
+	<center id="error_message">
+		We had an error on our side. We'll try to fix it soon!
+		<br>
+		Here's the error:
+	</center>
+	<center id="error_500">
+		{{error}}
+	</center>
+</body>
+</html>

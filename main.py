@@ -386,6 +386,10 @@ class GreyMatterHandler(Handler):
 		webapp2.RequestHandler.initialize(self, *a, **kw)
 		uid = self.readCookie('user_id')
 		self.user = uid and User.by_id(int(uid))
+		
+	# Handling exceptions gracefully
+	def handle_exception(self, e, debugMode):
+		self.render("500.html", error=e, user=self.user)
 
 class HomeHandler(GreyMatterHandler):
 	""" The handler for our home page"""
