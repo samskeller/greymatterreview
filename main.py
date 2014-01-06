@@ -401,78 +401,6 @@ class HomeHandler(GreyMatterHandler):
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
 			self.redirect('/')
-	
-class NewReviewHandler(GreyMatterHandler):
-	""" The handler for the page to write a new review"""
-	def get(self):
-		if self.user:
-			# Show the new review page
-			self.render("newreview.html", url="", errorMessage="")
-		else:
-			self.redirect("/")
-			
-	def post(self):
-		if not self.user:
-			self.redirect("/")
-		
-		# Get stuff from the request to see which button the user pressed and 
-		# what fields were filled in
-		search = self.request.get('artistlookupbtn')
-		inputAlbum = self.request.get('inputAlbum')
-		submitReview = self.request.get('newreviewbtn')
-		review = self.request.get('reviewbody')
-		artist = self.request.get('artisthidden')
-		album = self.request.get('albumhidden')
-		rating = self.request.get('rating')
-				
-		# If they hit the search button and input text into the album name field, look for the album
-		if search and inputAlbum != "":
-			# Search through Gracenote for this album name
-			#xml = searchGracenoteAlbum(inputAlbum)
-			#albums = parseXML(xml)
-			albums = searchMusicBrainzAlbum(inputAlbum)
-			
-			# Render differently depending upon whether we found albums or not
-			if len(albums) > 0:
-				self.render("newreview.html", albums=albums, errorMessage="")
-			else:
-				self.render("newreview.html", url="", errorMessage="Sorry, " \
-					+ "no artists were found with that name")
-		elif search and artistName == "":
-			# If the hit search but didn't enter an album name, throw up this message
-			self.render("newreview.html", url="", errorMessage="Please enter " \
-				+ "an artist to search for")
-		elif rating == "":
-			self.render("newreview.html", url="", errorMessage="Please enter " \
-				+ "a rating number.")
-		elif submitReview and review and artist and album:
-			# If the user hit submit and there is a review, album, and artist there, save this review
-			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
-							reviewText=review, rating=int(rating))
-			# Commit to the db
-			newReview.put()
-			
-			# Update the user's number of reviews
-			if self.user.numberOfReviews == None:
-				self.user.numberOfReviews = 1
-			else:
-				self.user.numberOfReviews = self.user.numberOfReviews + 1
-			
-			self.user.put()
-			
-			# Add the artist to the db if it's not already there
-			newArtist = Artist.get_or_insert(artist)
-			
-			# Add the album to the db if it's not already there
-			newAlbum = Album.get_or_insert(artist+"$"+album, title=album, artist=artist)
-			
-			time.sleep(1)
-			self.redirect("/reviews/%d" % newReview.key().id())
-		else:
-			self.render("newreview.html", url="", errorMessage="Please " \
-					+ "fill out each of the fields")
-
-artistQuery = "<QUERIES><LANG>eng</LANG><AUTH><CLIENT>{0}</CLIENT><USER>{1}</USER></AUTH><QUERY CMD=\"ALBUM_SEARCH\"><TEXT TYPE=\"ARTIST\">{2}</TEXT></QUERY></QUERIES>"
 
 class FriendsHandler(GreyMatterHandler):
 	""" The handler for the page that lists our user's followers and following"""
@@ -880,7 +808,6 @@ class LogoutHandler(GreyMatterHandler):
 # Make the app go!
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
-    ('/newreview/?', NewReviewHandler), ('/friends/?', FriendsHandler), \
-    ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
+    ('/friends/?', FriendsHandler), ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
     ('/albums/(.+)/?', AlbumPermalinkHandler), ('/album/?', ListingToAlbumHandler)], debug=True)
