@@ -121,7 +121,7 @@
 				Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
 				<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 				<br>
-				Album: <a href="/albums/{{review.artist}}+{{review.album}}">{{review.album}}</a>
+				Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
 				<br>
 				Review: {{review.reviewText}}
 				</div>

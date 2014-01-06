@@ -587,58 +587,60 @@ class ArtistPermalinkHandler(GreyMatterHandler):
 		
 		# Search musicbrainz for the albums by that artist
 		albums = searchMusicBrainzAlbumsByArtist(artist_name)
-		
-		print self.user
-		
+				
 		# Make sure the search worked properly
 		if albums != None:
 			self.render("artistsPage.html", artist=artist_name, albums=albums, user=self.user)
 		else:
 			self.redirect("/")
 
-class ListingToAlbumHandler(GreyMatterHandler):
-
-	def get(self):
-		self.redirect("/")
-	
-	def post(self):
-		# Load the page with the artist and album
-		artist = self.request.get('artist')
-		album = self.request.get('album')
-		mb_id = self.request.get('mb_id')
-
-		# Set the cookie to be read by the next handler
-		self.setCookie('mb_id', str(mb_id))
-		self.redirect("/albums/" + artist + "+" + album)
-
 class AlbumPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows all the reviews for a given album and artist."""
-	def get(self, artistAlbum):
-		# Get the MB id from the cookie
-		idCookie = self.readCookie('mb_id')
-        
-		# Get the artist and album from the URL
-		pair = artistAlbum.split("+")
-        
-		(artist, album) = pair
-        
-		if len(pair) != 2:
+	def get(self, mb_id):		
+		# Lookup the artist and album name from the musicbrainz ID
+		infoDict = musicbrainzngs.get_release_by_id(mb_id, ['artists'])
+		
+		# The main dictionary is for the whole release
+		releaseDict = infoDict.get('release', None)
+		
+		albumName = ""
+		artist = ""
+		
+		# If this dictionary doesn't exist, we won't have anything to show
+		if releaseDict == None:
 			self.redirect("/")
 		
-		self.setCookie('mb_id', "")
-        
-		# Make sure the cookie we read corresponds to this album and artist to be secure
-		ids = searchMusicBrainzAlbumAndArtist(artist, album)
-		if idCookie not in ids:
-			self.redirect("/")
+		# Pull out the album name
+		albumName = releaseDict.get('title', 'Unknown')
+		
+		# Now get the list of artists
+		artistsDicts = releaseDict.get('artist-credit', None)
+		
+		if artistsDicts != None:
+			
+			# There can be a list of artists, so look for each one
+			artists = []
+			for artistDict in artistsDicts:
+				if artistDict == None:
+					continue
+				
+				# Get this specific artist's info
+				artistInfo = artistDict.get('artist')
+				
+				if artistInfo != None:
+					# Append on the artist's name 
+					artists.append(artistInfo.get('name', ''))
+			
+			# Join all the artists together
+			artist = ", ".join(artists)
+		
+		# Look up all the reviews with for that particular album by that particular artist		
+		reviews = Review.get_review_by_album_artist(albumName, artist)
+			
+		if reviews != None:
+			self.render("albumPage.html", reviews=reviews, album=albumName, artist=artist, user=self.user, mb_id=mb_id)
 		else:
-			# Look up all the reviews with for that particular album by that particular artist		
-			reviews = Review.get_review_by_album_artist(artist, album)
-		
-			if reviews != None:
-				self.render("albumPage.html", reviews=reviews, album=album, artist=artist, user=self.user, mb_id=idCookie)
-			else:
-				self.redirect("/")
+			self.redirect("/")
 	
 	def post(self, id):
 		# Get the username of the user that submitted the review and whether or not
@@ -810,4 +812,4 @@ app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/friends/?', FriendsHandler), ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
-    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/album/?', ListingToAlbumHandler)], debug=True)
+    ('/albums/(.+)/?', AlbumPermalinkHandler)], debug=True)
