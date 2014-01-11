@@ -173,6 +173,7 @@
 		<br><br>
 		{% for review in reviews: %}
 			<div class="profileReview">
+				<a href="/reviews/{{review['keyID']}}" style="text-decoration:none;">
 				<img src="http://www.coverartarchive.com/release/{{review['mb_id']}}/front" width="50" height="50" align="middle" style="float:left;margin-right:10px;">
 				<span id="reviewRating">{{review['rating']}} / 10</span>
 				<br>
@@ -181,6 +182,8 @@
 				Album: {{review['album']}}
 				<br>
 				"{{review['reviewer']}}" said: {{review['reviewText']}}
+				<span id="emptySpan"></span>
+				</a>
 			</div>
 			<br>
 		{% endfor %}

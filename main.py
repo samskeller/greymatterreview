@@ -136,6 +136,9 @@ def getScrubbedReviews(reviews, currentDate):
 		# Store the rating
 		dict['rating'] = review.rating
 		
+		# Store the key ID so we can have a link to the review
+		dict['keyID'] = review.key().id()
+		
 		# Figure out the timedelta between the current date and the review date
 		dateDifference = currentDate - review.reviewDate
 		
