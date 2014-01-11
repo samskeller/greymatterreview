@@ -298,6 +298,14 @@ class GreyMatterHandler(Handler):
 		# Figure out whether they tried to log in or signup
 		login = self.request.get('loginbutton')
 		signup = self.request.get('signupbutton')
+		
+		reviews = Review.get_latest_reviews()
+						
+		currentDate = datetime.datetime.utcnow()
+		
+		# Make a scrubbed version of the reviews
+		scrubbedReviews = getScrubbedReviews(reviews, currentDate)
+		
 		if signup:
 			print "signing in, boss"
 			error = False
@@ -307,7 +315,7 @@ class GreyMatterHandler(Handler):
 			self.password = self.request.get('signupPassword')
 			self.email = self.request.get('signupEmail')
 	   
-			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
+			parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email, 'reviews' : scrubbedReviews}
 	   		
 	   		# Check for a valid username, password, and email
 			if not validate_username(self.username):
@@ -346,7 +354,7 @@ class GreyMatterHandler(Handler):
 			self.username = self.request.get('username')
 			self.password = self.request.get('password')
 		
-			parameters = {'username' : self.username}
+			parameters = {'username' : self.username, 'reviews' : scrubbedReviews}
 			
 			# Look to see if this username and password match with a user that we have
 			u = User.login(self.username, self.password)
