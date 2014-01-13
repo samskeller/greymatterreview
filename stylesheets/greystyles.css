@@ -408,6 +408,7 @@ a.link:visited{
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	display:inline-block;
+	position:relative;
 	width:150px;
 	padding:15px;
 	margin-top:20px;
@@ -428,6 +429,7 @@ a.link:visited{
 	height:200px;
 	padding-right:8px;
 	padding-top:8px;
+	position:relative;
 }
 
 .profileReviewLarge:hover {

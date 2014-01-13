@@ -130,8 +130,8 @@ def getScrubbedReviews(reviews, currentDate):
 		# (since it's larger) and 100 chars for the rest
 		text = review.reviewText
 		if len(scrubbedReviews) == 0:
-			if len(text) > 200:
-				text = text[:200] + "..."
+			if len(text) > 300:
+				text = text[:300] + "..."
 			
 			# Limit the length of the album name since some are really long
 			if len(dict['album']) > 25:
