@@ -130,17 +130,14 @@ a.link:visited{
 }
 
 #recentReviews {
-	border:1px solid #000000;
-	padding:10px;
 	border-radius:7px;
 	-webkit-border-radius:7px;
 	-moz-border-radius:7px;
 	position:absolute;
 	top:265px;
 	left:100px;
-	height:250px;
-	width:500px;
-	overflow:auto;
+	height:650px;
+	width:600px;
 	opacity:0.7;
 }
 
@@ -408,15 +405,32 @@ a.link:visited{
 }
 
 .profileReview {
-	border:1px solid #000000;
-	-moz-border-radius:12px;
-	-webkit-border-radius:12px;
-	display:block;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	display:inline-block;
+	width:150px;
 	padding:15px;
+	margin-top:20px;
+	height:300px;
 	background:#F3F3F3;
+	margin-left:11px;
 }
 
 .profileReview:hover {
+	background:#E3E3E3;
+}
+
+.profileReviewLarge {
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	background:#F3F3F3;
+	display:inline-block;
+	height:200px;
+	padding-right:8px;
+	padding-top:8px;
+}
+
+.profileReviewLarge:hover {
 	background:#E3E3E3;
 }
 

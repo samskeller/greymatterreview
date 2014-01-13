@@ -126,10 +126,23 @@ def getScrubbedReviews(reviews, currentDate):
 		dict = {'reviewer': review.reviewer, 'artist': review.artist, \
 			'album' : review.album, 'mb_id' : review.reviewMBID}
 		
-		# Get the text of the review but limit it to 50 characters
+		# Get the text of the review but limit it to 150 chars for the first review
+		# (since it's larger) and 100 chars for the rest
 		text = review.reviewText
-		if len(review.reviewText) > 100:
-			text = review.reviewText[:100] + "..."
+		if len(scrubbedReviews) == 0:
+			if len(text) > 200:
+				text = text[:200] + "..."
+			
+			# Limit the length of the album name since some are really long
+			if len(dict['album']) > 25:
+				dict['album'] = dict['album'][:25] + "..."
+		else:
+			if len(text) > 100:
+				text = text[:100] + "..."
+			
+			# Limit the length of the album name since some are really long
+			if len(dict['album']) > 14:
+				dict['album'] = dict['album'][:14] + "..."
 	
 		dict['reviewText'] = text
 	
@@ -259,7 +272,7 @@ class Review(db.Model):
 	
 	@classmethod
 	def get_latest_reviews(cls):
-		return Review.all().order('-reviewDate').fetch(5)
+		return Review.all().order('-reviewDate').fetch(4)
 		
 class FollowPair(db.Model):
 	follower = db.StringProperty(required = True)

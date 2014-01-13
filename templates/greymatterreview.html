@@ -171,21 +171,33 @@
 	<div id="recentReviews">
 		Latest Reviews:
 		<br><br>
-		{% for review in reviews: %}
-			<div class="profileReview">
-				<a href="/reviews/{{review['keyID']}}" style="text-decoration:none;">
-				<img src="http://www.coverartarchive.com/release/{{review['mb_id']}}/front" width="50" height="50" align="middle" style="float:left;margin-right:10px;">
-				<span id="reviewRating">{{review['rating']}} / 10</span>
+		{% for i in range(reviews|length): %}
+			{% if i == 0: %}
+				<div class="profileReviewLarge">
+					<a href="/reviews/{{reviews[i]['keyID']}}" style="text-decoration:none;">
+					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="175" height="175" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
+					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
+					<br>
+					Artist: {{reviews[i]['artist']}}<span style="float:right;">{{reviews[i]['timePassed']}}</span>
+					<br>
+					Album: {{reviews[i]['album']}}
+					<br>
+					"{{reviews[i]['reviewer']}}" said: {{reviews[i]['reviewText']}}
+					</a>
+				</div>
 				<br>
-				Artist: {{review['artist']}}<span style="float:right;">{{review['timePassed']}}</span>
-				<br>
-				Album: {{review['album']}}
-				<br>
-				"{{review['reviewer']}}" said: {{review['reviewText']}}
-				<span id="emptySpan"></span>
-				</a>
-			</div>
-			<br>
+			{% else: %}
+				<div class="profileReview">
+					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="100" height="100" align="middle" style="margin-right:20px;display:block;margin-left:15px;">
+					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
+					<br>
+					<span style="font-size:20px;">{{reviews[i]['artist']}}</span>
+					<br>
+					<span style="font-size:20px;font-style:italic;">{{reviews[i]['album']}}</span>
+					<br>
+					"{{reviews[i]['reviewer']}}" said: {{reviews[i]['reviewText']}}
+				</div>
+			{% endif %}
 		{% endfor %}
 	</div>
 	</div>
