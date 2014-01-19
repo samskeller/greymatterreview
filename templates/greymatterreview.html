@@ -175,11 +175,11 @@
 				<div class="profileReviewLarge">
 					<a href="/reviews/{{reviews[i]['keyID']}}" style="text-decoration:none;">
 					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="175" height="175" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
-					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
+					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span><span style="float:right;">{{reviews[i]['timePassed']}}</span>
 					<br>
-					Artist: {{reviews[i]['artist']}}<span style="float:right;">{{reviews[i]['timePassed']}}</span>
+					<span style="font-size:24px;">{{reviews[i]['artist']}}</span>
 					<br>
-					Album: {{reviews[i]['album']}}
+					<span style="font-size:20px;font-style:italic;">{{reviews[i]['album']}}</span>
 					<br>
 					"{{reviews[i]['reviewer']}}" said: {{reviews[i]['reviewText']}}
 					<span id="emptySpan"></span>
