@@ -137,8 +137,8 @@ def getScrubbedReviews(reviews, currentDate):
 			if len(dict['album']) > 25:
 				dict['album'] = dict['album'][:25] + "..."
 		else:
-			if len(text) > 100:
-				text = text[:100] + "..."
+			if len(text) > 230:
+				text = text[:230] + "..."
 			
 			# Limit the length of the album name since some are really long
 			if len(dict['album']) > 14:
@@ -272,7 +272,7 @@ class Review(db.Model):
 	
 	@classmethod
 	def get_latest_reviews(cls):
-		return Review.all().order('-reviewDate').fetch(4)
+		return Review.all().order('-reviewDate').fetch(3)
 		
 class FollowPair(db.Model):
 	follower = db.StringProperty(required = True)

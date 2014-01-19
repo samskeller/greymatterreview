@@ -415,12 +415,13 @@ a.link:visited{
 	-webkit-border-radius:8px;
 	display:inline-block;
 	position:relative;
-	width:150px;
+	width:256px;
 	padding:15px;
 	margin-top:20px;
 	height:300px;
 	background:#F3F3F3;
-	margin-left:11px;
+	margin-right:9px;
+	margin-left:3px;
 	vertical-align:top;
 }
 
@@ -954,14 +955,38 @@ tr.albumListEntry:hover {
 	background:#E3E3E3;
 }
 
-#reviewRating{
+#reviewRating {
 	font-size:24px;
+}
+
+#profileReview #reviewRating {
+	font-size:24px;
+	margin-left:10px;
 }
 
 #reviewText {
 	font-size:14px;
 	margin-left:10px;
 	margin-top:10px;
+}
+
+#profileReviewLink {
+	text-decoration:none;
+	font-size:20px;
+	color:#3434A4;
+}
+
+#profileReviewLink:hover {
+	text-decoration:underline;
+}
+
+#profileReviewUserLink {
+	text-decoration:none;
+	font-weight:bold;
+}
+
+#profileReviewUserLink:hover {
+	text-decoration:underline;
 }
 
 #followUserBtn {
