@@ -173,7 +173,7 @@
 		<table id="albumList">
 		{% for album in albums: %}
 			<tr class="albumListEntry">
-			<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" style="float:left;">
+			<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;">
 			<a href="/albums/{{album['mb-id']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>			
 			<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
 			</td>
