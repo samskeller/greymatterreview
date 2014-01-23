@@ -172,7 +172,7 @@
 		<div id="latestReviewsDiv">Latest Reviews</div>
 		{% for i in range(reviews|length): %}
 			{% if i == 0: %}
-				<div class="profileReviewLarge">
+				<div class="frontPageReviewLarge">
 					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="175" height="175" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
 					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span><span style="float:right;">{{reviews[i]['timePassed']}}</span>
 					<br>
@@ -184,7 +184,7 @@
 				</div>
 				<br>
 			{% else: %}
-				<div class="profileReview">
+				<div class="frontPageReview">
 					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="120" height="120" align="middle" style="display:inline;margin-left:15px;margin-right:30px;">
 					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
 					<br>
@@ -197,8 +197,5 @@
 			{% endif %}
 		{% endfor %}
 	</div>
-	</div>
-	</form>
-		
 </body>
 </html>

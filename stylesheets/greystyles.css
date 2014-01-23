@@ -411,6 +411,15 @@ a.link:visited{
 }
 
 .profileReview {
+	border:1px solid #000000;
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+	display:block;
+    padding:15px;
+    background:#F3F3F3;
+}
+
+.frontPageReview {
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	display:inline-block;
@@ -425,11 +434,7 @@ a.link:visited{
 	vertical-align:top;
 }
 
-.profileReview:hover {
-	background:#E3E3E3;
-}
-
-.profileReviewLarge {
+.frontPageReviewLarge {
 	-moz-border-radius:6px;
 	-webkit-border-radius:6px;
 	background:#F3F3F3;
@@ -441,7 +446,7 @@ a.link:visited{
 	position:relative;
 }
 
-.profileReviewLarge:hover {
+.frontPageReview, .profileReview, .frontPageReviewLarge:hover {
 	background:#E3E3E3;
 }
 
@@ -638,6 +643,17 @@ p {
 	top:250px;
 	background:#FFFFFF;
 	border:1px solid #000000;
+}
+
+#maincontainer2 {
+	width:1000px;
+	position:absolute;
+	left:50%;
+	margin-left:-500px;
+	top:250px;
+	background:#FFFFFF;
+	border:1px solid #000000;
+	overflow:auto;
 }
 
 #profile_info {
@@ -877,6 +893,7 @@ tr.albumListEntry {
 	font-size:24px;
 	font-family: Book Antiqua, serif;
 	margin:5px;
+	margin-left:60px;
 }
 
 tr.albumListEntry:nth-child(even) {

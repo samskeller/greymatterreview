@@ -724,7 +724,7 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 			newAlbum = Album.get_or_insert(artist+"$"+album, title=album, artist=artist)
 			
 			time.sleep(1)
-			self.redirect("/reviews/%d" % newReview.key().id())
+			self.redirect("/home")
 
 def searchMusicBrainzAlbum(album):
 	""" searchMusicBrainzAlbum takes an album name as a string and returns a list of dictionaries,
@@ -759,6 +759,7 @@ def searchMusicBrainzAlbumsByArtist(artist):
 	titleTracker = []
 	if not result['release-list']:
 		return results
+
 	for release in result['release-list']:
 		# Make sure this is an album, not a single
 		releaseGroup = release.get('release-group', None)
