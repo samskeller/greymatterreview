@@ -18,10 +18,21 @@
 						{{user.username}}
 					</a>
 					<div id="me-content">
-						<img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=60 height=60>
-						<a href="/home">My Page</a>
+						<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
+						<span id="profileDropdownUsername">{{user.username}}</span>
 						<br>
-						<a href="/logout" style="padding-top:10px;">Logout</a>
+						<table>
+							<tr>
+								<td>
+									<a href="/home" style="color:#700000;margin-left:65px;">My Page<span id="emptySpan"></span></a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</li>
 		        {% else %}
