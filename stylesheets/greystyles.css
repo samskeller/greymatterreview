@@ -95,6 +95,7 @@ a.link:visited{
 
 #website_title {
 	font-size:50px; 
+	line-height:50px;
 	font-family: blackout;
 	color:#700000;
 	position:absolute:
@@ -369,6 +370,7 @@ a.link:visited{
 	width:270px;
 	padding-left:5px;
 	padding-bottom:10px;
+	padding-top:10px;
 	margin-left:-8px;
 	background:#EFEFEF;
 	-webkit-border-radius:8px;
@@ -416,6 +418,7 @@ a.link:visited{
 	-webkit-border-radius:12px;
 	display:block;
     padding:15px;
+    line-height:24px;
     background:#F3F3F3;
 }
 
@@ -424,10 +427,11 @@ a.link:visited{
 	-webkit-border-radius:8px;
 	display:inline-block;
 	position:relative;
-	width:256px;
+	width:254px;
 	padding:15px;
 	margin-top:20px;
 	height:300px;
+	line-height:24px;
 	background:#F3F3F3;
 	margin-right:9px;
 	margin-left:3px;
@@ -440,14 +444,11 @@ a.link:visited{
 	background:#F3F3F3;
 	display:inline-block;
 	height:200px;
+	line-height:24px;
 	width:590px;
 	padding-right:8px;
 	padding-top:8px;
 	position:relative;
-}
-
-.frontPageReview, .profileReview, .frontPageReviewLarge:hover {
-	background:#E3E3E3;
 }
 
 #searching {
@@ -777,9 +778,9 @@ p {
 	border-style:none;
 	margin-top:3px;
 	background-color:#1279e0;
-	-webkit-border-radius:8px;
-	-moz-border-radius:8px;
-	border-radius:8px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
 	display:inline-block;
 	color:#ffffff;
 	font-family:Book Antiqua;
@@ -795,34 +796,6 @@ p {
 }
 #addfriends:hover {
 	background-color:378DE5;
-}
-
-#searchbtn {
-	border-style:none;
-	position:relative;
-	top:-2px;
-	margin-top:3px;
-	margin-left:10px;
-	background-color:#700000;
-	border: solid 1px black;
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
-	color:#ffffff;
-	font-family: Book Antiqua;
-	letter-spacing: 1px;
-	font-size:20px;
-	height:28px;
-	line-height:24px;
-	text-decoration:none;
-	text-align:center;
-	cursor: pointer;
-	width:130px;
-	display: inline-block;
-}
-
-#searchbtn:hover {
-	background-color:#F46169;
 }
 
 #searchinput {
@@ -927,12 +900,14 @@ tr.albumListEntry:hover {
 #artistlisting {
 	margin-left:100px;
 	font-size:32px;
+	line-height:32px;
 	color:#444444;
 }
 
 #albumListing {
 	margin-left:100px;
 	font-size:28px;
+	line-height:28px;
 	color:#222222;
 	border:1px solid #000000;
 	width:450px;
@@ -948,6 +923,7 @@ tr.albumListEntry:hover {
 	color:#444444;
 	margin-left:40px;
 	font-size:18px;
+	line-height:18px;
 }
 
 #albumTitle {
@@ -1122,7 +1098,8 @@ input:focus,textarea:focus {
 	float: right;
 	color:#FFFFFF;
 	font-family:Book Antiqua;
-	font-size: 20px;
+	font-size: 15px;
+	line-height:20px;
 	text-decoration:none;
 	text-align:center;
 }
@@ -1130,7 +1107,7 @@ input:focus,textarea:focus {
 #loginNav #login-container {
 	float: left;     
 	padding: 3px;
-	background-color: #42A9FF;
+	background-color: #3498db;
 	margin-right:20px;
 	border-radius:6px;
 	-moz-border-radius: 6px;
@@ -1140,7 +1117,7 @@ input:focus,textarea:focus {
 #loginNav #signup-container {
 	float: left;
 	padding: 3px; 
-	background-color: #F46169;
+	background-color: #e74c3c;
 	border-radius:6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -1168,6 +1145,10 @@ input:focus,textarea:focus {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	width:75px;
+	font-family: 'Flat-UI-Icons';
+	font-size: 15px;
+  	font-weight: normal;
 }
 
 #loginNav #me-trigger {
@@ -1313,6 +1294,7 @@ input:focus,textarea:focus {
 
 #reviewsBox {
 	width:70px;
+	line-height:30px;
 	display:inline-block;
 	text-align:center;
 	border-right:1px solid #AAAAAA;
@@ -1321,6 +1303,7 @@ input:focus,textarea:focus {
 
 #followingBox {
 	width:70px;
+	line-height:30px;
 	padding-left:7px;
 	display:inline-block;
 	text-align:center;
@@ -1330,6 +1313,7 @@ input:focus,textarea:focus {
 
 #followersBox {
 	margin-left:7px;
+	line-height:30px;
 	width:70px;
 	display:inline-block;
 	text-align:center;

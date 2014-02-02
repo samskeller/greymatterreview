@@ -126,23 +126,23 @@ def getScrubbedReviews(reviews, currentDate):
 		dict = {'reviewer': review.reviewer, 'artist': review.artist, \
 			'album' : review.album, 'mb_id' : review.reviewMBID}
 		
-		# Get the text of the review but limit it to 150 chars for the first review
-		# (since it's larger) and 100 chars for the rest
+		# Get the text of the review but limit it to 250 chars for the first review
+		# (since it's larger) and 140 chars for the rest
 		text = review.reviewText
 		if len(scrubbedReviews) == 0:
-			if len(text) > 300:
-				text = text[:300] + "..."
+			if len(text) > 250:
+				text = text[:250] + "..."
 			
 			# Limit the length of the album name since some are really long
 			if len(dict['album']) > 25:
 				dict['album'] = dict['album'][:25] + "..."
 		else:
-			if len(text) > 230:
-				text = text[:230] + "..."
+			if len(text) > 140:
+				text = text[:140] + "..."
 			
 			# Limit the length of the album name since some are really long
-			if len(dict['album']) > 14:
-				dict['album'] = dict['album'][:14] + "..."
+			if len(dict['album']) > 22:
+				dict['album'] = dict['album'][:22] + "..."
 	
 		dict['reviewText'] = text
 	

@@ -3,6 +3,7 @@
         <head>
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
 				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
@@ -90,18 +91,17 @@
 			<option value="artists">Artists</option>
 			<option value="albums">Albums</option>
 		</select>	
-		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
 		</form>
 	</div>
 	<div id="maincontainer">
 		<div id="profile_info">
-			<h2 id="profile_name">{{user.username}}</h2>
+			<h3 id="profile_name">{{user.username}}</h3>
 			<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
 				<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
 				<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
 			</div>
 			<div id="profile_stats">
-				<br>
 				<div id="reviewsBox">
 					<label class="statLabel">Reviews</label>
 					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.numberOfReviews}}</div></a>
@@ -117,7 +117,7 @@
 			</div>
 		</div>
 		<div id="profilefeed">
-			<h2 id="myactivitylabel">My Activity</h2>
+			<h4 id="myactivitylabel">My Activity</h4>
 			{% if reviews|length == 0: %}
 				<p>You've never made a review! Click <a href="/newreview">here</a> to write your first one</p>
 			{% endif %}

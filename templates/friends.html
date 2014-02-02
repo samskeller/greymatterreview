@@ -3,6 +3,7 @@
         <head>
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
 				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
@@ -106,14 +107,14 @@
 			<option value="artists">Artists</option>
 			<option value="albums">Albums</option>
 		</select>	
-		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
 		</form>
 	</div>
 	<form method="post" action="/friends">
 	<div id="maincontainer">
 		<br>
 	  	<input type="text" id="searchfriendsinput" placeholder="Search for friends" name="searchfriendsname">
-	  	<input type="submit" value="Search" id="searchfriendsbtn" name="searchfriendsbtn">
+	  	<button class="btn btn-wide btn-primary mrm" type="submit" name="searchfriendsbtn">Search</button>
 	  	<br>
 	  	<br>
 	  	<div>

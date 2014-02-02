@@ -3,6 +3,7 @@
         <head>
                 <title>The Grey Matter Review</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
                 <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
                 <script>
@@ -134,7 +135,7 @@
 								<input id="login_password" type="password" name="password" placeholder="Password" required>
 							</fieldset>
 							<fieldset id="actions">
-								<input type="submit" id="login_submit" name="loginbutton" value="Log in">
+								<button class="btn btn-wide btn-info mrm" type="submit" name="loginbutton">Log In</button>
 							</fieldset>
 						</form>
 					</div>                     
@@ -151,7 +152,7 @@
 								<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
 							</fieldset>
 							<fieldset id="actions">
-								<input type="submit" id="signup_submit" name="signupbutton" value="Join">
+								<button class="btn btn-wide btn-danger mrm" type="submit" name="signupbutton">Sign up</button>
 							</fieldset>
 						</form>
 					</div>
@@ -174,7 +175,7 @@
 			<option value="artists">Artists</option>
 			<option value="albums">Albums</option>
 		</select>	
-		<input type="submit" value="Find Artists" id="searchbtn" name="searchbtn">
+		<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
 		</form>
 	</div>
 	<div id="maincontainer">
