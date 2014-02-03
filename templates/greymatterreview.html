@@ -163,53 +163,54 @@
 			</ul>
 		</nav>
 	</div>
-	<br>
-	<div id="loginerror">{{login_error}}</div>
 	{% if user: %}
-		<div id="welcome_message">Welcome, {{user.username}}!</div>
+			<div id="welcome_message">Welcome, {{user.username}}!</div>
 	{% endif %}
-	<div id="description">
-		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
-	</div>
-	<div id="mission">what do you have to say about music?</div>
-	<div id="searchBar">
-		<form method="post" action="/reviews">
-		<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
-		<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
-			<option value="artists">Artists</option>
-			<option value="albums">Albums</option>
-		</select>
-		<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
-		</form>
-	</div>
-	<div id="recentReviews">
-		<div id="latestReviewsDiv">Latest Reviews</div>
-		{% for i in range(reviews|length): %}
-			{% if i == 0: %}
-				<div class="frontPageReviewLarge">
-					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="175" height="175" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
-					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span><span style="float:right;">{{reviews[i]['timePassed']}}</span>
+	<div id="maincontainer">
+		<div id="loginerror">{{login_error}}</div>
+		<div id="description">
+			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
+		</div>
+		<div id="mission">what do you have to say about music?</div>
+		<div id="searchBar">
+			<form method="post" action="/reviews">
+			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
+			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+				<option value="artists">Artists</option>
+				<option value="albums">Albums</option>
+			</select>
+			<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
+			</form>
+		</div>
+		<div id="recentReviews">
+			<div id="latestReviewsDiv">Latest Reviews</div>
+			{% for i in range(reviews|length): %}
+				{% if i == 0: %}
+					<div class="frontPageReviewLarge">
+						<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="175" height="175" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
+						<span id="reviewRating">{{reviews[i]['rating']}} / 10</span><span style="float:right;">{{reviews[i]['timePassed']}}</span>
+						<br>
+						<a href="/artists/{{reviews[i]['artist']}}" id="profileReviewLink">{{reviews[i]['artist']}}</a>
+						<br>
+						<a href="/albums/{{reviews[i]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[i]['album']}}</span>
+						<br>
+						<a href="/user/{{reviews[i]['reviewer']}}" id="profileReviewUserLink">{{reviews[i]['reviewer']}}</a> said: {{reviews[i]['reviewText']}}
+					</div>
 					<br>
-					<a href="/artists/{{reviews[i]['artist']}}" id="profileReviewLink">{{reviews[i]['artist']}}</a>
-					<br>
-					<a href="/albums/{{reviews[i]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[i]['album']}}</span>
-					<br>
-					<a href="/user/{{reviews[i]['reviewer']}}" id="profileReviewUserLink">{{reviews[i]['reviewer']}}</a> said: {{reviews[i]['reviewText']}}
-				</div>
-				<br>
-			{% else: %}
-				<div class="frontPageReview">
-					<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="120" height="120" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="display:inline;margin-left:15px;margin-right:30px;">
-					<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
-					<br>
-					<a href="/artists/{{reviews[i]['artist']}}" id="profileReviewLink">{{reviews[i]['artist']}}</a>
-					<br>
-					<a href="/albums/{{reviews[i]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[i]['album']}}</a>
-					<br>
-					<a href="/user/{{reviews[i]['reviewer']}}" id="profileReviewUserLink">{{reviews[i]['reviewer']}}</a> said: {{reviews[i]['reviewText']}}
-				</div>
-			{% endif %}
-		{% endfor %}
+				{% else: %}
+					<div class="frontPageReview">
+						<img src="http://www.coverartarchive.com/release/{{reviews[i]['mb_id']}}/front" width="120" height="120" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="display:inline;margin-left:15px;margin-right:30px;">
+						<span id="reviewRating">{{reviews[i]['rating']}} / 10</span>
+						<br>
+						<a href="/artists/{{reviews[i]['artist']}}" id="profileReviewLink">{{reviews[i]['artist']}}</a>
+						<br>
+						<a href="/albums/{{reviews[i]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[i]['album']}}</a>
+						<br>
+						<a href="/user/{{reviews[i]['reviewer']}}" id="profileReviewUserLink">{{reviews[i]['reviewer']}}</a> said: {{reviews[i]['reviewText']}}
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 </body>
 </html>

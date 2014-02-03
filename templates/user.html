@@ -111,25 +111,24 @@
 			</ul>
 		</nav>
 	</div>
-	<br>
-	<div id="description">
-		<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
-	</div>
-	<div id="mission">what do you have to say about music?</div>
-	<br>
-	<br>
-	<div id="searchBar">
-		<form method="post" action="/reviews">
-		<input type="text" id="searchinput" placeholder="Search" name="searchinput">
-		<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
-			<option value="artists">Artists</option>
-			<option value="albums">Albums</option>
-		</select>	
-		<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
-		</form>
-	</div>
-	<br>
 	<div id="maincontainer">
+		<div id="description">
+			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
+		</div>
+		<div id="mission">what do you have to say about music?</div>
+		<br>
+		<br>
+		<div id="searchBar">
+			<form method="post" action="/reviews">
+			<input type="text" id="searchinput" placeholder="Search" name="searchinput">
+			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
+				<option value="artists">Artists</option>
+				<option value="albums">Albums</option>
+			</select>	
+			<button class="btn btn-wide btn-primary mrm" type="submit" id="searchbtn">Search</button>
+			</form>
+		</div>
+		<br>
 		<br>
 		<div id="profile_info">
 			<h2 id="profile_name">{{otherUser.username}}</h2>
