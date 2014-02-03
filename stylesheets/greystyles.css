@@ -144,6 +144,20 @@ a.link:visited{
 	opacity:0.7;
 }
 
+#searchbtn {
+	position:relative;
+	left:420px;
+	top:-3px;
+	display:inline;
+	padding:4px;
+	margin: 0 0 5px 0;
+	border: 1px solid #000;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor:pointer;
+	}
+
 #signin {
 	background-color:#700000;
 	padding:10px;
@@ -176,7 +190,7 @@ a.link:visited{
 	text-decoration:none;
 	position:relative;
 	font:bold 22px Book Antiqua;
-	color:#DD9933;
+	color:#700000;
 	display:inline;
 	margin-top:6px;
 	margin-right:20px;
@@ -197,7 +211,7 @@ a.link:visited{
 #signuperror {
 	top:83%;
 	left:7%;
-	color:red;
+	color:#700000;
 	position:absolute;
 }
 
@@ -825,11 +839,12 @@ p {
     font-family:Book Antiqua, sans-serif;
     position:relative;
 	top:-5px;
-    margin-left:15px;
+    margin-left:-500px;
     font-size:16px;
     height:28px;
     border:1px solid #CCCCCC;
     margin-top:10px;
+    
 }
 
 #permalinkReview {
@@ -1057,7 +1072,7 @@ tr.albumListEntry:hover {
 }
 
 #searchBar{
-	margin-left:150px;
+	margin-left:250px;
 	margin-top:30px;
 	white-space:nowrap;
 	width:700px;
