@@ -7,12 +7,6 @@
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
 				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
         </head>
-        <script>
-        function changeSearchParam(newValue) {
-        	document.getElementById("searchbtn").value = "Find " + newValue;
-        	
-        }
-        </script>
 		<script>
 		$( document ).ready(function() {
 			// Hide menus on any click so the user can click away from them to hide them
@@ -86,10 +80,6 @@
 		<br>
 		<div id="searchBar">
 			<form method="post" action="/reviews">
-			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
-				<option value="artists">Artists</option>
-				<option value="albums">Albums</option>
-			</select>
 			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>

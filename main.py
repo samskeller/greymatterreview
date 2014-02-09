@@ -560,32 +560,22 @@ class UserHandler(GreyMatterHandler):
 			self.redirect("/")
 		
 class SearchHandler(GreyMatterHandler):
-	""" The handler that lets the user search for aritsts/albms to find reviews."""
+	""" The handler that lets the user search for aritsts/albums to find reviews."""
 	def get(self):
 		self.render("reviews.html", artists=None, albums=None, user=self.user)
 			
 	def post(self):
 		searchbtn = self.request.get("searchbtn")
 		inputText = self.request.get("searchinput")
-		searchType = self.request.get("searchdropdown")
 	
 		# If the dropdown menu was set to artists and the user entered text, search for artists
-		if inputText != "" and searchType == "artists":
-			artists = searchMusicBrainzArtist(inputText)
-			if len(artists) != 0:
-				self.render("reviews.html", artists=artists, albums=None, user=self.user)
-			else:
-				self.render("reviews.html", user=self.user)
-		# If the dropdown menu was set to albums and the user entered text, search for albums
-		elif inputText != "" and searchType == "albums":
-			albums = searchMusicBrainzAlbum(inputText)
-
-			if len(albums) != 0:
-				self.render("reviews.html", albums=albums, artists=None, user=self.user)
-			else:
-				self.render("reviews.html", user=self.user)
-		else:
+		if inputText == "":
 			self.redirect("/")
+		
+		artists = searchMusicBrainzArtist(inputText)
+		albums = searchMusicBrainzAlbum(inputText)
+		
+		self.render("reviews.html", artists=artists, albums=albums, user=self.user)
 
 class ReviewPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows a single review."""

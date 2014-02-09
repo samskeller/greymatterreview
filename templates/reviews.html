@@ -87,12 +87,6 @@
 		  		});
 		  		</script>
         </head>
-        <script>
-        function changeSearchParam(newValue) {
-        	document.getElementById("searchbtn").value = "Find " + newValue;
-        	
-        }
-        </script>
 <body id="homebody">
 	<div id="top">
 		<div id="logoHolder">
@@ -172,25 +166,21 @@
 		<br>
 		<div id="searchBar">
 			<form method="post" action="/reviews">
-			<select id="searchdropdown" name="searchdropdown" onChange="changeSearchParam(this.value);">
-				<option value="artists">Artists</option>
-				<option value="albums">Albums</option>
-			</select>
 			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>
 		</div>
 	  	<br>
-	  	{% if artists != None: %}
+	  	<div id="artistSearchResults">
 	  		<center style="font-size:26px;">Artists</center>
+	  		<br>
 	  		{% for artist in artists: %}
-	  		<form method="post" action="/reviews">
 	  		<div id="artistlisting"><a href="/artists/{{artist}}" style="text-decoration:none;color:#444444;">- {{artist}}<a/></div>
 	  		<br>
-	  		</form>
 	  		{% endfor %}
-	  	{% elif albums != None: %}
-	  		<center style="font-size:26px;">Search Results</center>
+	  	</div>
+	  	<div id="albumSearchResults">
+	  		<center style="font-size:26px;">Albums</center>
 	  		<br>
 	  		{% for album in albums: %}
 		  		<div id="albumListing">
@@ -200,10 +190,7 @@
 		  		</div>
 		  		<br>
 	  		{% endfor %}
-	  	
-	  	{% else: %}
-			No results! Try again.
-	  	{% endif %}
+	  	</div>
 	</div>
 </body>
 </html>
