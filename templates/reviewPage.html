@@ -9,7 +9,7 @@
                 <script>
                 
                 $(document).ready(function(){
-					$('html').click(function() {
+					$('html').click(function(event) {
 						// Hide menus on any click so the user can click away from them to hide them
 						var loginTrigger = $("#login-trigger");
 						loginTrigger.next('#login-content').toggle(false);
@@ -26,17 +26,17 @@
 					});
 					
 					// If we clicked on the login box, though, don't do the code from above
-					$("#login-content").click(function(){
+					$("#login-content").click(function(event){
 						event.stopPropagation();
 					});
 			
 					// Or if we clicked on the signup box, though, don't do the code from above
-					$("#signup-content").click(function(){
+					$("#signup-content").click(function(event){
 						event.stopPropagation();
 					});
 
 					// Handling the login trigger to show the dropdown
-					$('#login-trigger').click(function(){
+					$('#login-trigger').click(function(event){
 						event.stopPropagation();
 						var signupTrigger = $("#signup-trigger");
 						if (signupTrigger.hasClass('active') || !$(this).hasClass('active')) {
@@ -51,7 +51,7 @@
 					});
 			
 					// Handling the signup trigger to show the dropdown
-					$('#signup-trigger').click(function(){
+					$('#signup-trigger').click(function(event){
 						event.stopPropagation();
 						var loginTrigger = $("#login-trigger");
 						if (loginTrigger.hasClass('active') || !$(this).hasClass('active')) {
@@ -66,12 +66,12 @@
 					});
 					
 					// If we clicked on the profile box, though, don't do the code from above
-					$("#me-content").click(function(){
+					$("#me-content").click(function(event){
 						event.stopPropagation();
 					});
 			
 					// Handling the profile trigger to show the dropdown
-					$('#me-trigger').click(function(){
+					$('#me-trigger').click(function(event){
 						event.stopPropagation();
 						var signupTrigger = $("#signup-trigger");
 						if ($(this).hasClass('active')) {

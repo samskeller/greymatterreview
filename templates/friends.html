@@ -26,7 +26,7 @@
 		<script>
 		$( document ).ready(function() {
 			// Hide menus on any click so the user can click away from them to hide them
-			$('html').click(function() {
+			$('html').click(function(event) {
 				// Hide menus
 				var meTrigger = $("#me-trigger");
 				//meTrigger.next('#me-content').toggle(false);
@@ -35,12 +35,12 @@
 			});
 			
 			// If we clicked on the profile box, though, don't do the code from above
-			$("#me-content").click(function(){
+			$("#me-content").click(function(event){
 				event.stopPropagation();
 			});
 			
 			// Handling the profile trigger to show the dropdown
-			$('#me-trigger').click(function(){
+			$('#me-trigger').click(function(event){
 				event.stopPropagation();
 				var signupTrigger = $("#signup-trigger");
 				if ($(this).hasClass('active')) {
