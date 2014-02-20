@@ -116,6 +116,7 @@ def unescape(string):
 	string = string.replace("&lt;", "<")
 	string = string.replace("&gt;", ">")
 	string = string.replace("&amp;", "&")
+	string = string.decode('utf-8')
 	return string
 	
 def getScrubbedReviews(reviews, currentDate):
