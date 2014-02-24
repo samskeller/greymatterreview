@@ -154,15 +154,15 @@
 			{% for review in reviews: %}
 				<div class="profileReview">
 				{% if not review.rating: %}
-					<span id="reviewRating">5 / 10<span>
+					<span id="reviewRating">5 / 10</span>
 				{% else: %}
 					<span id="reviewRating">{{review.rating}} / 10</span>
 				{% endif %}
 				<br>
-				Artist: {{review.artist}}
+				Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
 				<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 				<br>
-				Album: {{review.album}}
+				Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
 				<br>
 				Review: {{review.reviewText}}
 				</div>
