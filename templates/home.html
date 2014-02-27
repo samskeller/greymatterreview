@@ -75,10 +75,9 @@
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
-		<div id="mission">what do you have to say about music?</div>
 		<br>
 		<br>
-		<div id="searchBar">
+		<div id="searchBar_home">
 			<form method="post" action="/reviews">
 			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
@@ -87,7 +86,7 @@
 		<div id="profile_info">
 			<h3 id="profile_name">{{user.username}}</h3>
 			<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
-				<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180">
+				<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="80" height="80">
 				<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
 			</div>
 			<div id="profile_stats">
