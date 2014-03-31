@@ -5,9 +5,9 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
-				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
-        </head>
-		<script>
+				<script type="text/javascript" src="../scripts/jquery-1.9.1.min.js"></script>
+				<script type="text/javascript" src="../scripts/jquery.blockUI.js"></script>
+		<script type="text/javascript">
 		$( document ).ready(function() {
 			// Hide menus on any click so the user can click away from them to hide them
 			$('html').click(function(event) {
@@ -37,8 +37,30 @@
 					$(this).addClass('active');
 				}
 			});
+			$('#followingLabel').click(function(){
+				$.blockUI({
+					css: {
+						width: "300px"
+					}
+				});
+				$.get( "/home/following", function(data){
+					$.blockUI({
+						message: data,
+						overlayCSS: {
+							cursor: "default"
+						},
+						css: {
+							cursor: "default", 
+							width: "300px",
+						},
+						onOverlayClick: $.unblockUI
+					});
+				});
+			});
+			
 		});
 		</script>
+	</head>
 <body id="homebody">
 	<div id="top">
 		<div id="logoHolder">
@@ -96,7 +118,7 @@
 				</div>
 				<div id="followingBox">
 					<label class="statLabel">Following</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{user.following}}</div></a>
+					<div class="numberLabel" id="followingLabel" style="cursor:pointer;">{{user.following}}</div>
 				</div>
 				<div id="followersBox">
 					<label class="statLabel">Followers</label>
@@ -108,6 +130,7 @@
 			<h4 id="myactivitylabel">My Activity</h4>
 			{% if reviews|length == 0: %}
 				<p>You've never made a review! Search for an album to review by artist or album title</p>
+				<button id="Sam">Click me!</button>
 			{% endif %}
 			{% for review in reviews: %}
 				<div class="profileReview">
@@ -128,6 +151,5 @@
 			{% endfor %}
 		</div>
 	</div>
-	<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 </body>
 </html>

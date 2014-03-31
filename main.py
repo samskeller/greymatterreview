@@ -426,6 +426,16 @@ class HomeHandler(GreyMatterHandler):
 			self.render("home.html", user=self.user, length=number, reviews=reviews)
 		else:
 			self.redirect('/')
+			
+class FollowingHandler(GreyMatterHandler):
+	def get(self):
+		followingPairs = FollowPair.getFollowing(self.user)
+		followingPairs = list(followingPairs)
+		response = ""
+		for pair in followingPairs:
+			response = response + '<a href="/user/' + pair.following + '" ' + \
+				'style="text-decoration:none;"><div id="followingUser">' + pair.following + '</div></a>'
+		self.response.out.write(response)
 
 class FriendsHandler(GreyMatterHandler):
 	""" The handler for the page that lists our user's followers and following"""
@@ -828,4 +838,4 @@ app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/friends/?', FriendsHandler), ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
     ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
-    ('/albums/(.+)/?', AlbumPermalinkHandler)], debug=True)
+    ('/albums/(.+)/?', AlbumPermalinkHandler), ('/home/following', FollowingHandler)], debug=True)
