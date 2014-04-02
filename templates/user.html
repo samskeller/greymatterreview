@@ -6,6 +6,7 @@
                 <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
                 <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
+                <script type="text/javascript" src="../scripts/jquery.blockUI.js"></script>
         </head>
         <script>
 	$( document ).ready(function() {
@@ -70,6 +71,65 @@
 				$(this).next('#me-content').slideDown(100);
 				$(this).addClass('active');
 			}
+		});
+		
+		// Show modal with the users this user is following
+		$('#followingLabel').click(function(){
+			// Block UI initially
+			$.blockUI({
+				css: {
+					width: "300px"
+				}
+			});
+			
+			// Get the username of this user
+			var pathname = window.location.pathname;
+			var pathParts = pathname.split("/");
+			var username = pathParts[pathParts.length-1];
+				
+			// Get the users, which comes with HTML		
+			$.get( "/user/" + username + "/following", function(data){
+				$.blockUI({
+					message: data,
+					overlayCSS: {
+						cursor: "default"
+					},
+					css: {
+						cursor: "default", 
+						width: "300px",
+					},
+					onOverlayClick: $.unblockUI
+				});
+			});
+		});
+		
+		// Show modal with the users that are following this user
+		$('#followersLabel').click(function(){
+			$.blockUI({
+				css: {
+					width: "300px"
+				}
+			});
+			
+			// Get the username of this user
+			var pathname = window.location.pathname;
+			var pathParts = pathname.split("/");
+			var username = pathParts[pathParts.length-1];
+			
+			// Get the users, which comes with HTML	
+			$.get( "/user/" + username + "/followers", function(data){
+				$.blockUI({
+					message: data,
+					overlayCSS: {
+						cursor: "default"
+					},
+					css: {
+						cursor: "default", 
+						width: "300px",
+					},
+					onOverlayClick: $.unblockUI
+				});
+			});
 		});
 	});
 		</script>
@@ -136,15 +196,15 @@
 				<br>
 				<div id="reviewsBox">
 					<label class="statLabel">Reviews</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.numberOfReviews}}</div></a>
+					<div class="numberLabel">{{otherUser.numberOfReviews}}</div>
 				</div>
 				<div id="followingBox">
 					<label class="statLabel">Following</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.following}}</div></a>
+					<div class="numberLabel" id="followingLabel" style="cursor:pointer;">{{otherUser.following}}</div>
 				</div>
 				<div id="followersBox">
 					<label class="statLabel">Followers</label>
-					<a href="/friends" style="text-decoration:none;"><div class="numberLabel">{{otherUser.followers}}</div></a>
+					<div class="numberLabel" id="followersLabel" style="cursor:pointer;">{{otherUser.followers}}</div>
 				</div>
 			</div>
 		</div>

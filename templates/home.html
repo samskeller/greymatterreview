@@ -64,6 +64,7 @@
 						width: "300px"
 					}
 				});
+				alert(window.location.pathname);
 				$.get( "/home/followers", function(data){
 					$.blockUI({
 						message: data,
