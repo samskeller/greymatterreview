@@ -352,21 +352,27 @@ a.link:visited{
 	-webkit-border-radius:2px;
 }
 
+#profile_info {
+	width:23%;
+	padding-left:20px;
+}
+
+#name_and_avatar {
+	display:inline-block;
+	
+}	
+
 #profile_name {
-	padding-left:10px;
-	padding-top:0px;
-	padding-bottom:0px;
-	width:80px;
-	display:inline;
 	color:#2771AD;
-	font-family: 16px Book Antiqua;
+	font-family: Book Antiqua;
+	position:relative;
+	float:right;
 }
 
 #profile_image {
-	padding-left:20px;
-	width:200px;
-	float:right;
 	position:relative;
+	vertical-align:top;
+	width:100%;
 }
 
 #changeprofileimage {
@@ -655,23 +661,75 @@ p {
 	position:relative;
 }
 
-#maincontainer {
+
+#heading_container {
 	width:1000px;
 	position:absolute;
 	left:50%;
 	margin-left:-500px;
-	top:40px;
-	background:#F5F5F5;
+	top:100px;
+	background:#BDC3C7;
+	/*border: 1px solid black;*/
 }
 
-#maincontainer2 {
-	width:1000px;
+#top10container {
+	width:550px;
+	height:680px;
 	position:absolute;
 	left:50%;
-	margin-left:-500px;
+	margin-left:-650px;
+	top:300px;
+	background:#BDC3C7;
+	border: 1px solid black;
+}
+
+#top10container_home {
+	width:350px;
+	height:480px;
+	position:absolute;
+	margin-top:50px;
+	background:#BDC3C7;
+	border: 1px solid black;
+}
+
+#reviewcontainer {
+	width:700px;
+	position:absolute;
+	left:50%;
+	margin-left:-50px;
+	top:300px;
+	background:#BDC3C7;
+	border: 1px solid black;
+}
+
+#profile_info_container {
+	width:350px;
+	position:absolute;
+	left:50%;
+	margin-left:-550px;
+	top:50px;
+	background:#BDC3C7;
+	border: 1px solid black;
+}
+
+#activity_container {
+	width:700px;
+	position:absolute;
+	left:50%;
+	margin-left:-150px;
+	top:50px;
+	background:#BDC3C7;
+	border: 1px solid black;
+}
+
+#main_container {
+	width:1200px;
+	height:1000px;
+	position:absolute;
+	left:50%;
+	margin-left:-600px;
 	top:250px;
 	background:#F5F5F5;
-	border:1px solid #000000;
 	overflow:auto;
 }
 
@@ -680,12 +738,6 @@ p {
 	left:215px;
 	top:46px;
 	}
-
-#profile_info {
-	display:inline-block;
-	width:23%;
-	padding-left:20px;
-}
 
 #followerslist {
 	position:relative;
@@ -1105,8 +1157,8 @@ tr.albumListEntry:hover {
 }
 
 #searchBar{
-	margin-left:150px;
-	margin-top:30px;
+	margin-left:270px;
+	margin-top:10px;
 	white-space:nowrap;
 	width:700px;
 }

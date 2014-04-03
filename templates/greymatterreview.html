@@ -160,8 +160,8 @@
 	{% if user: %}
 			<div id="welcome_message">Welcome, {{user.username}}!</div>
 	{% endif %}
-	<div id="maincontainer">
 		<div id="loginerror">{{login_error}}</div>
+	<div id="heading_container">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -172,6 +172,11 @@
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>
 		</div>
+	</div>
+	<div id="top10container">
+		Top 10 Placeholder
+	</div>	
+	<div id="reviewcontainer">
 		<div id="recentReviews">
 			<div id="latestReviewsDiv">Latest Reviews</div>
 			{% for i in range(reviews|length): %}
