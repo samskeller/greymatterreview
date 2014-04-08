@@ -85,7 +85,7 @@
 	</head>
 <body id="homebody">
 	<div id="top">
-		<div id="logoHolder">
+		<div id="logoHolder_home">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
 		<nav id="loginNav">
@@ -115,7 +115,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="heading_container">
+	<div id="heading_container_home">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -129,15 +129,16 @@
 		</div>
 	</div>
 	<div id="main_container">
-		<div id="profile_info_container">	
+		<div id="profile_info_container">
+			<div id="name_and_rank">
+				<h3 id="profile_name">{{user.username}}</h3>
+				<h6 id="rank">Guru</h6>	<!--placeholder for our ranking system--!>
+			</div>	
 			<div id="profile_info">
-				<div id="name_and_avatar">
-					<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
 						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
-						<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
-							<h3 id="profile_name">{{user.username}}</h3>
-					</div>
-				</div>	
+					<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
+				</div>
 				<div id="profile_stats">
 					<div id="reviewsBox">
 						<label class="statLabel">Reviews</label>
