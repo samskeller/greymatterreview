@@ -1,3 +1,8 @@
+/*LANDING PAGE*//*LANDING PAGE*//*LANDING PAGE*/
+/*LANDING PAGE*//*LANDING PAGE*//*LANDING PAGE*/
+/*LANDING PAGE*//*LANDING PAGE*//*LANDING PAGE*/
+/*LANDING PAGE*//*LANDING PAGE*//*LANDING PAGE*/
+
 #newbody {
 	background-color:#B4CCE0;
 	background-size:cover;
@@ -7,6 +12,114 @@
 	font-style: bold;
 	height:100%;
 }
+
+#logoHolder {
+	margin-left:50%;
+	position:absolute;
+}
+
+#heading_container {
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	top:50px;
+	background:#B4CCE0;
+	/*border-right: 1px solid rgba(39,113,173,1);
+	border-left: 1px solid rgba(39,113,173,1);*/
+}
+
+#mission {
+	position:relative;
+	left:55px;
+	top:-20px;
+	display:inline-block;
+	font-size: 26px; 
+	font-family: New;
+	color:#700000;
+	white-space:nowrap;
+	letter-spacing: 1px;
+}
+
+#searchBar{
+	margin-left:270px;
+	margin-top:10px;
+	white-space:nowrap;
+	width:700px;
+}
+
+#top10container {
+	border-radius:6px;
+	width:550px;
+	height:680px;
+	position:absolute;
+	left:50%;
+	margin-left:-650px;
+	top:275px;
+	background:#BDC3C7;
+	/*border: 1px solid black;*/
+}
+
+#reviewcontainer {
+	border-radius:6px;
+	width:700px;
+	position:absolute;
+	left:50%;
+	margin-left:-50px;
+	top:275px;
+	background:#BDC3C7;
+	/*border: 1px solid black;*/
+}
+
+#recentReviews {
+	border-radius:7px;
+	-webkit-border-radius:7px;
+	-moz-border-radius:7px;
+	margin-top:30px;
+	margin-left:40px;
+	height:650px;
+	width:600px;
+	opacity:0.7;
+}
+
+#latestReviewsDiv {
+	font:24px Palatino;
+	letter-spacing: 1px;
+	padding-bottom:5px;
+}
+
+.frontPageReview {
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	display:inline-block;
+	position:relative;
+	width:254px;
+	padding:15px;
+	margin-top:20px;
+	height:300px;
+	line-height:24px;
+	background:#BDC3C7;
+	margin-right:9px;
+	margin-left:3px;
+	vertical-align:top;
+}
+
+.frontPageReviewLarge {
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	background:#BDC3C7;
+	display:inline-block;
+	height:200px;
+	line-height:24px;
+	width:590px;
+	padding-right:8px;
+	padding-top:8px;
+	position:relative;
+}
+
+/*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
+/*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
+/*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
+/*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
 
 #homebody {
 	background: no-repeat center center fixed;
@@ -18,18 +131,186 @@
 	background-color:#B4CCE0;
 }
 
-#title {
-	color:# ;
-	text-decoration:none;
-	font-weight:bold;
-	padding:0;
-	top:0;
-	margin-top:6px;
-	display:inline;
-	float:left;
-	margin-left:10px;
-	font-size:24px;
+#logoHolder_home {
+	position:absolute;
 }
+
+#heading_container_home {
+	width:1000px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	top:50px;
+	background:#B4CCE0;
+	/*border-right: 1px solid rgba(39,113,173,1);
+	border-left: 1px solid rgba(39,113,173,1);*/
+}
+
+#searchBar_home {
+	position:absolute;
+	left:215px;
+	top:46px;
+	}
+	
+#searchinput_home {
+	display:inline;
+	font-size:24px;
+	padding:4px;
+	padding-left:30px;
+	background:#F5F5F5 url(data:image/png;base64,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) no-repeat 5px 8px;
+	width:465px;
+	margin: 0 0 5px 65px;
+	border: 1px solid #6A737A;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#searchinput_home:focus {
+  background-color: #F5F5F5;
+  border-color: #700000;
+  outline: none;
+}
+
+#profile_info_container {
+	width:350px;
+	position:absolute;
+	margin-left:50px;
+	top:50px;
+	background:#BDC3C7;
+	border: 1px solid rgba(0,0,0,.25);
+	border-radius:6px;
+}
+
+#name_and_rank {
+	position:absolute;
+	margin-top:50px;
+	margin-left:175px;
+	text-align:center;	
+}
+
+#profile_name {
+	color:black;
+	font-family: Book Antiqua;
+	margin:auto;
+}
+
+#rank {
+	color:black;
+	font-family:Book Antiqua;
+	margin:auto;
+}
+
+#profile_image {
+	position:relative;
+	width:100%;
+	margin-top:20px;
+	margin-left:20px;
+}
+
+#changeprofileimage {
+	position:absolute;
+	top:80%;
+	left:20%;
+	background:#BDC3C7;
+	display:none;
+	border:1px solid #000000;
+	font-size:12px;
+}
+
+#changeprofileimagebtn {
+	text-decoration:none;
+}
+
+#profile_stats {
+	margin-top:15px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:5x;
+	background:#BDC3C7;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:6px;
+	border:1px solid #6A737A;
+}
+
+#reviewsBox {
+	margin:auto;
+	display:inline-block;
+	text-align:center;
+}
+
+#followingBox {
+	margin:auto;
+	display:inline-block;
+	text-align:center;
+}
+
+#followersBox {
+	margin:auto;
+	display:inline-block;
+	text-align:center;
+}
+
+.statLabel {
+	font-size:14px;
+	font-family: Book Antiqua;
+	text-align:center;
+}
+
+.numberLabel {
+	font-size:14px;
+	text-align:center;
+	font-style:bold;
+	color:#000000;
+	text-decoration:none;
+}
+
+#top10container_home {
+	width:350px;
+	height:480px;
+	position:absolute;
+	margin-top:50px;
+	background:#BDC3C7;
+	border: 1px solid rgba(0,0,0,.25);
+	border-radius:6px;
+}
+
+#activity_container {
+	width:700px;
+	position:absolute;
+	margin-left:450px;
+	top:50px;
+	background:#BDC3C7;
+	border: 1px solid rgba(0,0,0,.25);
+	border-radius:6px;
+}
+
+#profilefeed {
+	position:relative;
+	overflow:auto;
+	float:right;
+	display:inline-block;
+	width:680px;
+	margin-top:20px;
+	margin-bottom:20px;
+	padding:10px;
+	border-left:1px solid #000000;
+}
+
+#myactivitylabel {
+	display:block;
+	margin-top:5px;	
+}
+
+/*#profile_info {
+	width:23%;
+}*/	
+
+/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
+/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
+/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
+/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
 
 /*#top {
 	position:fixed;
@@ -52,20 +333,6 @@
 	float:left;
 }*/
 
-#logoHolder {
-	margin-left:50%;
-	position:absolute;
-}
-
-#logoHolder_home {
-	position:absolute;
-}
-
-#inputForms {
-	left:50%;
-	position:relative;
-}
-
 #description {
 	left:20px;
 	line-height:40px;
@@ -80,6 +347,50 @@
 	border-right:1px solid #000000;
 	letter-spacing: 1px;
 }
+
+#website_title {
+	font-size:50px; 
+	line-height:50px;
+	font-family: blackout;
+	color:#700000;
+	position:relative:
+	left:250px;
+	width:600px;
+	cursor:pointer;
+}
+
+/*LOGIN/SIGNUP*/
+
+
+
+
+/*CAN'T FIND HTML FOR THESE*/
+
+#title {
+	color:# ;
+	text-decoration:none;
+	font-weight:bold;
+	padding:0;
+	top:0;
+	margin-top:6px;
+	display:inline;
+	float:left;
+	margin-left:10px;
+	font-size:24px;
+}
+
+
+
+
+
+
+
+#inputForms {
+	left:50%;
+	position:relative;
+}
+
+
 
 #links {
 	left:30%;
@@ -99,16 +410,7 @@ a.link:visited{
 	color:#5B8FBA;
 }
 
-#website_title {
-	font-size:50px; 
-	line-height:50px;
-	font-family: blackout;
-	color:#700000;
-	position:relative:
-	left:250px;
-	width:600px;
-	cursor:pointer;
-}
+
 
 #welcome_message {
 	font-size:25px; 
@@ -119,34 +421,26 @@ a.link:visited{
 	top:0px;
 	width:250px;
 	white-space:nowrap;
+} /* There's a welcome_message and a welcomemessage*/
+
+#welcomemessage {
+	color:#700000;
+	font-weight:bold;
+	padding:0;
+	top:0;
+	margin-top:6px;
+	display:block;
+	float:left;
+	margin-left:20px;
 }
 
-#mission {
-	position:relative;
-	left:55px;
-	top:-20px;
-	display:inline-block;
-	font-size: 26px; 
-	font-family: New;
-	color:#700000;
-	white-space:nowrap;
-	letter-spacing: 1px;
-}
+
 
 #mission_content {
 	font-size:28px;
-}
+}???????
 
-#recentReviews {
-	border-radius:7px;
-	-webkit-border-radius:7px;
-	-moz-border-radius:7px;
-	margin-top:30px;
-	margin-left:40px;
-	height:650px;
-	width:600px;
-	opacity:0.7;
-}
+
 
 #searchbtn {
 	position:relative;
@@ -311,16 +605,7 @@ a.link:visited{
 }
 
 
-#welcomemessage {
-	color:#700000;
-	font-weight:bold;
-	padding:0;
-	top:0;
-	margin-top:6px;
-	display:block;
-	float:left;
-	margin-left:20px;
-}
+
 
 #new_review {
 	text-decoration:none;
@@ -356,105 +641,15 @@ a.link:visited{
 	-webkit-border-radius:2px;
 }
 
-/*#profile_info {
-	width:23%;
-}*/
 
-#name_and_rank {
-	position:absolute;
-	margin-top:50px;
-	margin-left:175px;
-	text-align:center;	
-}
 
-#profile_name {
-	color:black;
-	font-family: Book Antiqua;
-	margin:auto;
-}
 
-#rank {
-	color:black;
-	font-family:Book Antiqua;
-	margin:auto;
-}	
 
-#profile_image {
-	position:relative;
-	width:100%;
-	margin-top:20px;
-	margin-left:20px;
-}
 
-#changeprofileimage {
-	position:absolute;
-	top:80%;
-	left:20%;
-	background:#BDC3C7;
-	display:none;
-	border:1px solid #000000;
-	font-size:12px;
-}
 
-#changeprofileimagebtn {
-	text-decoration:none;
-}
 
-#profile_stats {
-	margin-top:15px;
-	margin-left:auto;
-	margin-right:auto;
-	padding:5x;
-	background:#BDC3C7;
-	-webkit-border-radius:8px;
-	-moz-border-radius:8px;
-	border-radius:6px;
-	border:1px solid #6A737A;
-}
 
-#reviewsBox {
-	margin:auto;
-	display:inline-block;
-	text-align:center;
-}
 
-#followingBox {
-	margin:auto;
-	display:inline-block;
-	text-align:center;
-}
-
-#followersBox {
-	margin:auto;
-	display:inline-block;
-	text-align:center;
-}
-
-.statLabel {
-	font-size:14px;
-	font-family: Book Antiqua;
-	text-align:center;
-}
-
-.numberLabel {
-	font-size:14px;
-	text-align:center;
-	font-style:bold;
-	color:#000000;
-	text-decoration:none;
-}
-
-#profilefeed {
-	position:relative;
-	overflow:auto;
-	float:right;
-	display:inline-block;
-	width:680px;
-	margin-top:20px;
-	margin-bottom:20px;
-	padding:10px;
-	border-left:1px solid #000000;
-}
 
 #reviewDate {
 	float:right;
@@ -463,19 +658,11 @@ a.link:visited{
 #myactivity {
 	position:relative;
 	display:inline;
-}
+}??????
 
-#myactivitylabel {
-	display:block;
-	margin-top:5px;
-	
-}
 
-#latestReviewsDiv {
-	font:24px Palatino;
-	letter-spacing: 1px;
-	padding-bottom:5px;
-}
+
+
 
 .profileReview {
 	border:1px solid #000000;
@@ -487,34 +674,7 @@ a.link:visited{
     background:#BDC3C7;
 }
 
-.frontPageReview {
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-	display:inline-block;
-	position:relative;
-	width:254px;
-	padding:15px;
-	margin-top:20px;
-	height:300px;
-	line-height:24px;
-	background:#BDC3C7;
-	margin-right:9px;
-	margin-left:3px;
-	vertical-align:top;
-}
 
-.frontPageReviewLarge {
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	background:#BDC3C7;
-	display:inline-block;
-	height:200px;
-	line-height:24px;
-	width:590px;
-	padding-right:8px;
-	padding-top:8px;
-	position:relative;
-}
 
 #searching {
 	position:relative;
@@ -703,79 +863,15 @@ p {
 }
 
 
-#heading_container {
-	width:1000px;
-	margin-left:auto;
-	margin-right:auto;
-	top:50px;
-	background:#B4CCE0;
-	border-right: 1px solid rgba(39,113,173,1);
-	border-left: 1px solid rgba(39,113,173,1);
-}
 
-#heading_container_home {
-	width:1000px;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	top:50px;
-	background:#B4CCE0;
-	border-right: 1px solid rgba(39,113,173,1);
-	border-left: 1px solid rgba(39,113,173,1);
-}
 
-#top10container {
-	border-radius:6px;
-	width:550px;
-	height:680px;
-	position:absolute;
-	left:50%;
-	margin-left:-650px;
-	top:275px;
-	background:#BDC3C7;
-	/*border: 1px solid black;*/
-}
 
-#top10container_home {
-	width:350px;
-	height:480px;
-	position:absolute;
-	margin-top:50px;
-	background:#BDC3C7;
-	border: 1px solid rgba(0,0,0,.25);
-	border-radius:6px;
-}
 
-#reviewcontainer {
-	border-radius:6px;
-	width:700px;
-	position:absolute;
-	left:50%;
-	margin-left:-50px;
-	top:275px;
-	background:#BDC3C7;
-	/*border: 1px solid black;*/
-}
 
-#profile_info_container {
-	width:350px;
-	position:absolute;
-	margin-left:50px;
-	top:50px;
-	background:#BDC3C7;
-	border: 1px solid rgba(0,0,0,.25);
-	border-radius:6px;
-}
 
-#activity_container {
-	width:700px;
-	position:absolute;
-	margin-left:450px;
-	top:50px;
-	background:#BDC3C7;
-	border: 1px solid rgba(0,0,0,.25);
-	border-radius:6px;
-}
+
+
+
 
 #main_container {
 	width:1200px;
@@ -790,11 +886,7 @@ p {
 	border-left: 1px solid rgba(39,113,173,1);
 }
 
-#searchBar_home {
-	position:absolute;
-	left:215px;
-	top:46px;
-	}
+
 
 #followerslist {
 	position:relative;
@@ -945,11 +1037,15 @@ p {
 	border-radius: 3px;
 }
 
+
+
 #searchinput:focus {
   background-color: #F5F5F5;
   border-color: #700000;
   outline: none;
 }
+
+
 
 #searchdropdown {
     color: #6A737A;
@@ -1213,16 +1309,9 @@ tr.albumListEntry:hover {
 	text-align:center;
 }
 
-#searchBar{
-	margin-left:270px;
-	margin-top:10px;
-	white-space:nowrap;
-	width:700px;
-}
 
-#loginNav {
-	display: block;
-}
+
+
 
 fieldset
 {
