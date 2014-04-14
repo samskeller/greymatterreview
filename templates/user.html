@@ -135,7 +135,7 @@
 		</script>
 <body id="homebody">
 	<div id="top">
-		<div id="logoHolder">
+		<div id="logoHolder_home">
 			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
 		</div>
 		<nav id="loginNav">
@@ -165,7 +165,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="maincontainer">
+	<div id="heading_container_home">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -179,55 +179,66 @@
 		</div>
 		<br>
 		<br>
-		<div id="profile_info">
-			<h2 id="profile_name">{{otherUser.username}}</h2>
-			<br><br>
-			<div id="profile_image">
-				<img style="display:inline;" src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="160" height="180"/>
-			</div>
-			<form id="followOrUnfollow">
-				{% if following: %}
-				<input type="submit" value="Following" id="followUserBtn"/>
-				{% else: %}
-				<input type="submit" value="+Follow" id="followUserBtn"/>
-				{% endif %}
-			</form>
-			<div id="profile_stats">
-				<br>
-				<div id="reviewsBox">
-					<label class="statLabel">Reviews</label>
-					<div class="numberLabel">{{otherUser.numberOfReviews}}</div>
-				</div>
-				<div id="followingBox">
-					<label class="statLabel">Following</label>
-					<div class="numberLabel" id="followingLabel" style="cursor:pointer;">{{otherUser.following}}</div>
-				</div>
-				<div id="followersBox">
+	</div>	
+	<div id="main_container_user">
+		<div id="profile_info_container">
+			<div id="name_and_rank">
+				<h3 id="profile_name">{{otherUser.username}}</h3>
+				<h6 id="rank">Guru</h6>	<!--placeholder for our ranking system--!>
+			</div>		
+			<div id="profile_info">
+				<div id="profile_image">
+					<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120"/>
+				<form id="followOrUnfollow">
+					{% if following: %}
+					<input type="submit" value="Following" id="followUserBtn"/>
+					{% else: %}
+					<input type="submit" value="+Follow" id="followUserBtn"/>
+					{% endif %}
+				</form>
+			</div>	
+				<div id="profile_stats">
+					<br>
+					<div id="reviewsBox">
+						<label class="statLabel">Reviews</label>
+						<div class="numberLabel">{{otherUser.numberOfReviews}}</div>
+					</div>
+					<div id="followingBox">
+						<label class="statLabel">Following</label>
+						<div class="numberLabel" id="followingLabel" style="cursor:pointer;">{{otherUser.following}}</div>
+					</div>
+					<div id="followersBox">
 					<label class="statLabel">Followers</label>
 					<div class="numberLabel" id="followersLabel" style="cursor:pointer;">{{otherUser.followers}}</div>
+					</div>
 				</div>
+			</div>		
+			<div id="top10container_home">
+				Top 10 Placeholder
+			</div>
+		</div>	
+		<div id="activity_container">	
+			<div id="profilefeed">
+				<h2 style="display:inline;">User Activity</h2>
+				{% for review in reviews: %}
+					<div class="profileReview">
+					{% if not review.rating: %}
+						<span id="reviewRating">5 / 10</span>
+					{% else: %}
+						<span id="reviewRating">{{review.rating}} / 10</span>
+					{% endif %}
+					<br>
+					Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
+					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+					<br>
+					Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
+					<br>
+					Review: {{review.reviewText}}
+					</div>
+					<br>
+				{% endfor %}
 			</div>
 		</div>
-		<div id="profilefeed">
-			<h2 style="display:inline;">User Activity</h2>
-			{% for review in reviews: %}
-				<div class="profileReview">
-				{% if not review.rating: %}
-					<span id="reviewRating">5 / 10</span>
-				{% else: %}
-					<span id="reviewRating">{{review.rating}} / 10</span>
-				{% endif %}
-				<br>
-				Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
-				<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-				<br>
-				Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
-				<br>
-				Review: {{review.reviewText}}
-				</div>
-				<br>
-			{% endfor %}
-		</div>
-	</div>
+	</div>	
 </body>
 </html>

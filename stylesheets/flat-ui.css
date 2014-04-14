@@ -445,7 +445,7 @@ pre {
   font-size: 15px;
   font-weight: normal;
   line-height: 1.4;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px 15px;
   -webkit-font-smoothing: subpixel-antialiased;
   -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
@@ -4437,6 +4437,8 @@ footer p {
 .mhm,
 .mam {
   margin-right: 10px;
+  margin-left: 30px;
+  margin-top: -5px;
 }
 .mrl,
 .mhl,
