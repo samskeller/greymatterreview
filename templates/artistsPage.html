@@ -158,7 +158,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="maincontainer">
+	<div id="heading_container_home">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -170,18 +170,34 @@
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>
 		</div>
-	 	<h1 id="artistTitle">{{artist}}</h1>
-		<br>
-		<table id="albumList">
-		{% for album in albums: %}
-			<tr class="albumListEntry">
-			<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;">
-			<a href="/albums/{{album['mb-id']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>			
-			<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
-			</td>
-			</tr>
-		{% endfor %}
-		</table>
 	</div>
+	<div id="main_container_home">
+		<div id="profile_info_container">
+			<div id="name_and_rank">
+				<h4 id="profile_name">{{artist}}</h4>
+				<h6 id="rating">8.2</h6><!--placeholder for future average rating of all albums--!>
+			</div>
+			<div id="profile_info">
+				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
+				</div>
+			</div>			
+			<div id="top10container_home">
+				Top 10 Albums Placeholder
+			</div>
+		</div>					
+	 	<div id="activity_container">
+			<table id="albumList">
+			{% for album in albums: %}
+				<tr class="albumListEntry">
+				<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;">
+				<a href="/albums/{{album['mb-id']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>			
+				<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
+				</td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>	
 </body>
 </html>

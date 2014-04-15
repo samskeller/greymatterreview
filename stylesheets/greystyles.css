@@ -245,16 +245,6 @@
 	border-radius:6px;
 }
 
-#activity_container {
-	width:700px;
-	position:absolute;
-	margin-left:450px;
-	top:50px;
-	background:#BDC3C7;
-	border: 1px solid rgba(0,0,0,.25);
-	border-radius:6px;
-}
-
 #profilefeed {
 	position:relative;
 	overflow:auto;
@@ -348,6 +338,17 @@
 	text-decoration:none;
 }
 
+/*ALBUM&ARTISTS*//*ALBUM&ARTISTS*/
+/*ALBUM&ARTISTS*//*ALBUM&ARTISTS*/
+/*ALBUM&ARTISTS*//*ALBUM&ARTISTS*/
+/*ALBUM&ARTISTS*//*ALBUM&ARTISTS*/
+
+#rating {
+	color:black;
+	font-family:Book Antiqua;
+	margin:auto;
+}
+
 
 /*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
 /*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
@@ -399,6 +400,16 @@
 	left:250px;
 	width:600px;
 	cursor:pointer;
+}
+
+#activity_container {
+	width:700px;
+	position:absolute;
+	margin-left:450px;
+	top:50px;
+	background:#BDC3C7;
+	border: 1px solid rgba(0,0,0,.25);
+	border-radius:6px;
 }
 
 /*LOGIN/SIGNUP*/
@@ -1078,25 +1089,19 @@ p {
 	margin:0 40px;
 }
 
-#artistTitle {
-	font-size:36px;
-	text-align:center;
-	font-family: Book Antiqua, serif;
-}
-
 #albumList {
 	height:300px;
 	overflow:auto;
 	column-count:1;
-	column-width:700px;
+	column-width:400px;
 	list-style-type:none;
-	width:700px;
+	width:400px;
 }
 
 tr.albumListEntry {
 	float:left;
 	position:relative;
-	width:870px;
+	width:400px;
 	height:70px;
 	-moz-border-radius:12px;
 	-webkit-border-radius:12px;

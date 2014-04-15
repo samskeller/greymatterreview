@@ -242,7 +242,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="maincontainer">
+	<div id="heading_container_home">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -254,6 +254,22 @@
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>
 		</div>
+	</div>
+	<div id="main_container_home">
+		<div id="profile_info_container">
+			<div id="name_and_rank">
+				<h4 id="profile_name">{{album}}</h4>
+				<h6 id="rating">8.2</h6><!--placeholder for future average rating of album--!>
+			</div>
+			<div id="profile_info">
+				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
+				</div>
+			</div>			
+			<div id="top10container_home">
+				Top 10 Reviews Placeholder
+			</div>
+		</div>						
 		<form method="post" action="/albums/mb_id">
 			<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"></input>
 			<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"></input>
@@ -285,34 +301,35 @@
 		</form>
 	 	<br>
 	 	<br>
-	 	<form method="post" action="/albums">
-	 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
-		{% if reviews|length == 0: %}
-			<p>This album has no reviews-- you should write one!</p>
-		{% else: %}
-			<ul id="reviewList">
-			{% for review in reviews: %}
-				<div class="reviewContainer">
-					{% if review.rating == None: %}
-						<span id="reviewRating">5 / 10<span>
-					{% else: %}
-						<span id="reviewRating">{{review.rating}} / 10</span>
-					{% endif %}
+	 	<div id="activity_container">
+		 	<form method="post" action="/albums">
+		 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
+			{% if reviews|length == 0: %}
+				<p>This album has no reviews-- you should write one!</p>
+			{% else: %}
+				<ul id="reviewList">
+				{% for review in reviews: %}
+					<div class="reviewContainer">
+						{% if review.rating == None: %}
+							<span id="reviewRating">5 / 10<span>
+						{% else: %}
+							<span id="reviewRating">{{review.rating}} / 10</span>
+						{% endif %}
+						<br>
+						<span id="reviewerName">{{review.reviewer}}</span> wrote:
+						<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+						<br>
+						<div id="reviewText">{{review.reviewText}}</div>
+						<input type="submit" id="ratingUseful" value="This review nailed it"></input>
+						<input type="submit" id="ratingNotUseful" value="This review sucked"></input>
+						<div id="hiddenThanks">Thanks!</div>
+						<br>
+					</div>
 					<br>
-					<span id="reviewerName">{{review.reviewer}}</span> wrote:
-					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-					<br>
-					<div id="reviewText">{{review.reviewText}}</div>
-					<input type="submit" id="ratingUseful" value="This review nailed it"></input>
-					<input type="submit" id="ratingNotUseful" value="This review sucked"></input>
-					<div id="hiddenThanks">Thanks!</div>
-					<br>
-				</div>
-				<br>
-			{% endfor %}
-			</ul>
-		{% endif %}
-		</form>
-	</div>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			</form>
+		</div>
 </body>
 </html>
