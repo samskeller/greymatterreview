@@ -291,6 +291,15 @@ class FollowPair(db.Model):
 	def isUserFollowingUser(cls, user1, user2):
 		return FollowPair.all().filter('follower = ', user1.username).filter('following = ', user2.username).fetch(1)
 
+
+# A model for tracking who likes or dislikes specific reviews
+class ReviewVote(db.Model):
+	user = db.StringProperty(required=True)
+	review = db.StringProperty(required=True)
+	reviewer = db.StringProperty(required=True)
+	dateVoted = db.DateTimeProperty(auto_now_add=True)
+	like = db.BooleanProperty(required=True)
+
 # Our webpage handlers
 class GreyMatterHandler(Handler):
 	""" This is our main Grey Matter Review handler. All other handlers will inherit from
@@ -641,6 +650,46 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 				self.redirect("/")
 		else:
 			self.redirect("/")
+	
+	def post(self, review_id):
+		# Get the username of the user that submitted the review and whether or not
+		# our user thought it was useful
+		if self.user:
+			username = self.request.get('user')
+			useful = self.request.get('useful')
+			like = True
+		
+			# Get the user who wrote the review
+			reviewer = User.get_by_name(username)
+			
+			# Calculate the delta for how their rating should change
+			delta = 1.0 / (reviewer.numberOfRatings + 1)
+			
+			# Make the delta positive or negative
+			if useful == 'false':
+				delta = delta * -1
+				like = False
+			
+			# Change the user's stats
+			reviewer.numberOfRatings = reviewer.numberOfRatings + 1
+			reviewer.rating = reviewer.rating + delta
+			
+			# Update the user
+			reviewer.put()
+			
+			# Add this review like or dislike to our db
+			vote = ReviewVote(user=self.user.username, reviewer=username, review=review_id, like=like)
+			
+			vote.put()
+			time.sleep(1)
+		
+			# Return some stuff to the post request
+			dict = {'user': username}
+			self.response.headers['Content-Type'] = "application/json"
+			self.response.out.write(json.dumps(dict))
+			
+		else:
+			self.redirect("/")
 			
 class ArtistPermalinkHandler(GreyMatterHandler):
 	""" The handler that shows all the albums for the given artist."""
@@ -706,42 +755,14 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 			self.redirect("/")
 	
 	def post(self, id):
-		# Get the username of the user that submitted the review and whether or not
-		# our user thought it was useful
-		username = self.request.get('user')
-		useful = self.request.get('useful')
-		
 		review = self.request.get('reviewbody')
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
 		mb_id = self.request.get('mb_id')
 		rating = self.request.get('ratingInput')
 		submitReview = self.request.get('newreviewbtn')
-		
-		# Get the user who did the review
-		reviewer = User.get_by_name(username)
-		if reviewer != None:
-			# Calculate the delta for how their rating should change
-			delta = 1.0 / (reviewer.numberOfRatings + 1)
-			
-			# Make the delta positive or negative
-			if useful == 'false':
-				delta = delta * -1
-			
-			print delta
-			# Change the user's stats
-			reviewer.numberOfRatings = reviewer.numberOfRatings + 1
-			reviewer.rating = reviewer.rating + delta
-			
-			# Update the user
-			reviewer.put()
-		
-			# Return some stuff to the post request
-			dict = {'user': username}
-			self.response.headers['Content-Type'] = "application/json"
-			self.response.out.write(json.dumps(dict))
             
-		elif submitReview and review and artist and album:
+		if submitReview and review and artist and album:
 			# If the user hit submit and there is a review, album, and artist there, save this review
 			newReview = Review(album=album, artist=artist, reviewer=self.user.username, \
 							reviewText=review, rating=int(rating), reviewMBID=mb_id)
@@ -875,7 +896,7 @@ class LogoutHandler(GreyMatterHandler):
 app = webapp2.WSGIApplication([
     ('/?', GreyMatterHandler), ('/home/?', HomeHandler), ('/logout/?', LogoutHandler), \
     ('/friends/?', FriendsHandler), ('/user/(\w+)', UserHandler), ('/reviews/?', SearchHandler), \
-    ('/reviews/(\d+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
+    ('/reviews/(.+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
     ('/albums/(.+)/?', AlbumPermalinkHandler), ('/home/following', FollowingHandler), \
     ('/home/followers', FollowersHandler), ('/user/(.+)/following', UserFollowingHandler), \
     ('/user/(.+)/followers', UserFollowersHandler)], debug=True)

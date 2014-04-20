@@ -1303,15 +1303,15 @@ tr.albumListEntry:hover {
 	background-color: #5B8FBA;
 }
 
-#ratingUseful{
+.ratingUseful{
 	float:right;
 }
 
-#ratingNotUseful{
+.ratingNotUseful{
 	float:right;
 }
 
-#hiddenThanks{
+.hiddenThanks{
 	border:1px solid #000000;
 	-webkit-border-radius:4px;
 	-moz-border-radius:4px;

@@ -10,63 +10,6 @@
         
         <script>
         $( document ).ready(function() {
-			
-			// If the user clicked to say this rating was useful, save that data
-			// and send it to our server with a post request
-			$("#ratingUseful").click( function(){
-				var parent = $(this).parent();
-				var reviewer = parent.children("#reviewerName");
-								
-				var myData = {
-					user: reviewer.text(),
-					useful: true
-				}				
-				// fire off the request
-				$.ajax({
-					type: "POST",
-					url: "/albums/{{artist}}",
-					data: myData,
-					success: function(data) {
-						// Change the value of our buttons to reflect our new following status
-						var btnOne = parent.children("#ratingUseful");
-						btnOne.attr('type', 'hidden');
-						var btnTwo = parent.children("#ratingNotUseful");
-						btnTwo.attr('type', 'hidden');
-						var hiddenThanks = parent.children("#hiddenThanks");
-						hiddenThanks.css({'display': 'inline-block'});
-					}
-				});
-				return false;
-			});
-			
-			// If the user clicked to say this rating was not useful, save that data
-			// and send it to our server with a post request
-			$("#ratingNotUseful").click( function(){
-				var parent = $(this).parent();
-				var reviewer = parent.children("#reviewerName");
-								
-				var myData = {
-					user: reviewer.text(),
-					useful: false
-				}
-				// fire off the request
-				$.ajax({
-					type: "POST",
-					url: "/albums/{{artist}}",
-					data: myData,
-					success: function(data) {
-						// Change the value of our buttons to reflect our new following status
-						var btnOne = parent.children("#ratingUseful");
-						btnOne.attr('type', 'hidden');
-						var btnTwo = parent.children("#ratingNotUseful");
-						btnTwo.attr('type', 'hidden');
-						var hiddenThanks = parent.children("#hiddenThanks");
-						hiddenThanks.css({'display': 'inline-block'});
-					}
-				});
-				return false;
-			});
-			
 			// Hide menus on any click so the user can click away from them to hide them
 			$('html').click(function(event) {
 				// Hide menus
@@ -169,6 +112,48 @@
 			var newChosenNumber = active.toString();
 			$("#rating" + newChosenNumber).attr("id", "ratingNumberChosen");
 			$("#ratingInput").attr("value", newChosenNumber);
+		}
+		
+		// If the user clicked to say this rating was useful, save that data
+		// and send it to our server with a post request
+		function ratingLike(reviewID, reviewer) {
+			var myData = {
+				user: reviewer,
+				useful: true
+			}		
+			
+			// fire off the request
+			$.ajax({
+				type: "POST",
+				url: "/reviews/" + reviewID,
+				data: myData,
+			});
+			
+			// Change the value of our buttons to reflect our new following status
+			$("#ratingUseful_" + reviewID).attr('type', 'hidden');
+			$("#ratingNotUseful_" + reviewID).attr('type', 'hidden');
+			$("#hiddenThanks_" + reviewID).css({'display': 'inline-block'});
+		}
+	
+		// If the user clicked to say this rating was not useful, save that data
+		// and send it to our server with a post request
+		function ratingDislike(reviewID, reviewer) {
+			var myData = {
+				user: reviewer,
+				useful: false
+			}		
+			
+			// fire off the request
+			$.ajax({
+				type: "POST",
+				url: "/reviews/" + reviewID,
+				data: myData,
+			});
+			
+			// Change the value of our buttons to reflect our new following status
+			$("#ratingUseful_" + reviewID).attr('type', 'hidden');
+			$("#ratingNotUseful_" + reviewID).attr('type', 'hidden');
+			$("#hiddenThanks_" + reviewID).css({'display': 'inline-block'});
 		}
 		
         </script>
@@ -302,7 +287,6 @@
 	 	<br>
 	 	<br>
 	 	<div id="activity_container">
-		 	<form method="post" action="/albums">
 		 	<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>
 			{% if reviews|length == 0: %}
 				<p>This album has no reviews-- you should write one!</p>
@@ -320,16 +304,15 @@
 						<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
 						<br>
 						<div id="reviewText">{{review.reviewText}}</div>
-						<input type="submit" id="ratingUseful" value="This review nailed it"></input>
-						<input type="submit" id="ratingNotUseful" value="This review sucked"></input>
-						<div id="hiddenThanks">Thanks!</div>
+						<input class="ratingUseful" type="submit" id="ratingUseful_{{review.key().id()}}" value="This review nailed it" onclick="ratingLike('{{review.key().id()}}', '{{review.reviewer}}'); $(this).attr('type', 'hidden');"></input>
+						<input class="ratingNotUseful" type="submit" id="ratingNotUseful_{{review.key().id()}}" value="This review sucked" onclick="ratingDislike('{{review.key().id()}}', '{{review.reviewer}}')"></input>
+						<div class="hiddenThanks" id="hiddenThanks_{{review.key().id()}}">Thanks!</div>
 						<br>
 					</div>
 					<br>
 				{% endfor %}
 				</ul>
 			{% endif %}
-			</form>
 		</div>
 </body>
 </html>
