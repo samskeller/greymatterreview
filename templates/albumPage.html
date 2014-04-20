@@ -168,7 +168,7 @@
 			}
 			var newChosenNumber = active.toString();
 			$("#rating" + newChosenNumber).attr("id", "ratingNumberChosen");
-			$("#rating").attr("value", newChosenNumber);
+			$("#ratingInput").attr("value", newChosenNumber);
 		}
 		
         </script>
@@ -293,7 +293,7 @@
 				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
 				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
 				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
-				<input type="hidden" name="rating" id="rating" value=""></input>
+				<input type="hidden" name="ratingInput" id="ratingInput" value=""></input>
 				</div>
 			</div>
 			<textarea id="reviewbody" name="reviewbody"></textarea>

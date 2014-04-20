@@ -715,7 +715,7 @@ class AlbumPermalinkHandler(GreyMatterHandler):
 		artist = self.request.get('artisthidden')
 		album = self.request.get('albumhidden')
 		mb_id = self.request.get('mb_id')
-		rating = self.request.get('rating')
+		rating = self.request.get('ratingInput')
 		submitReview = self.request.get('newreviewbtn')
 		
 		# Get the user who did the review
