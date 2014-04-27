@@ -106,7 +106,7 @@
 						<table>
 							<tr>
 								<td>
-									<a href="/home" style="color:#700000;margin-left:65px;">My Page<span id="emptySpan"></span></a>
+									<a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a>
 								</td>
 							</tr>
 							<tr>
@@ -157,7 +157,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="maincontainer">
+	<div id="heading_container_home">
 		<div id="description">
 			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
 		</div>
@@ -165,11 +165,13 @@
 		<br>
 		<div id="searchBar_home">
 			<form method="post" action="/reviews">
-			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
+			<input type="text" id="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
 			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 			</form>
 		</div>
 	  	<br>
+	</div>
+	<div id="main_container_home">  	
 	  	<div id="artistSearchResults">
 	  		<center style="font-size:26px;">Artists</center>
 	  		<br>
@@ -179,15 +181,14 @@
 	  		{% endfor %}
 	  	</div>
 	  	<div id="albumSearchResults">
-	  		<center style="font-size:26px;">Albums</center>
+	  		<center style="font-size:26px;color:black">Albums</center>
 	  		<br>
 	  		{% for album in albums: %}
 		  		<div id="albumListing">
-		  			<a href="/albums/{{album['mb-id']}}" style="text-decoration:none;color:black;">{{album['album']}}</a>
+		  			<a href="/albums/{{album['mb-id']}}" style="text-decoration:none;color:black;">"{{album['album']}}"</a>
 		  			<br>
-		  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">by {{album['artist']}}</a>
+		  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">{{album['artist']}}</a>
 		  		</div>
-		  		<br>
 	  		{% endfor %}
 	  	</div>
 	</div>
