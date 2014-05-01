@@ -299,6 +299,10 @@ class ReviewVote(db.Model):
 	reviewer = db.StringProperty(required=True)
 	dateVoted = db.DateTimeProperty(auto_now_add=True)
 	like = db.BooleanProperty(required=True)
+	
+	@classmethod
+	def get_review_vote(cls, username, review_id):
+		return ReviewVote.gql("Where user = '" + username + "' and review = '" + review_id + "'")
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -677,11 +681,15 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 			# Update the user
 			reviewer.put()
 			
-			# Add this review like or dislike to our db
-			vote = ReviewVote(user=self.user.username, reviewer=username, review=review_id, like=like)
+			# Look to see if this review was already liked by the user
+			previousVotes = list(ReviewVote.get_review_vote(self.user.username, review_id))
 			
-			vote.put()
-			time.sleep(1)
+			if not previousVotes:
+				# Add this review like or dislike to our db
+				vote = ReviewVote(user=self.user.username, reviewer=username, review=review_id, like=like)
+		   
+				vote.put()
+				time.sleep(1)
 		
 			# Return some stuff to the post request
 			dict = {'user': username}
