@@ -1175,33 +1175,34 @@ tr.albumListEntry:hover {
 
 #albumListing {
 	margin:auto;
-	font-size:28px;
-	line-height:28px;
 	color:black;
 	border:1px solid #000000;
 	width:375px;
-	padding:10px;
+	padding:0px;
 	-moz-border-radius: 13px;
 	-webkit-border-radius: 13px;
 	border-radius: 13px;
-	background: #F5F5F5;
+	background: #F5F5F5;*/
 }
 
-#artistListingInAlbum {
-	text-decoration:none;
-	color:#6A737A;
-	margin-left:40px;
-	font-size:18px;
-	line-height:18px;
+#albumListing ul {
+	width:375px;
+}	
+
+#albumListing ul li {
+	list-style-type:none;
+	padding:10px;
+	overflow:auto;
+}
+	
+#albumListing ul li img {
+	float:left;
+	margin: 0 15px 0 0;	
 }
 
 #albumTitle {
 	font-size:28px;
 	display:inline;
-}
-
-#reviewList {
-
 }
 
 .reviewContainer {

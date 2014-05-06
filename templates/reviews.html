@@ -185,9 +185,13 @@
 	  		<br>
 	  		{% for album in albums: %}
 		  		<div id="albumListing">
-		  			<a href="/albums/{{album['mb-id']}}" style="text-decoration:none;color:black;">"{{album['album']}}"</a>
-		  			<br>
-		  			<a href="/artists/{{album['artist']}}" id="artistListingInAlbum">{{album['artist']}}</a>
+		  			<ul>
+		  				<li>
+		  					<img src=>
+		  					<h4><a href="/albums/{{album['mb-id']}}"><em>{{album['album']}}</em></a></h4>	
+		  					<h6><a href="/artists/{{album['artist']}}">{{album['artist']}}</a></h6>
+		  				</li>
+		  			</ul>		
 		  		</div>
 	  		{% endfor %}
 	  	</div>
