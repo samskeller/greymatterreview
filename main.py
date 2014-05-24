@@ -294,15 +294,17 @@ class FollowPair(db.Model):
 
 # A model for tracking who likes or dislikes specific reviews
 class ReviewVote(db.Model):
-	user = db.StringProperty(required=True)
-	review = db.StringProperty(required=True)
-	reviewer = db.StringProperty(required=True)
+	user = db.ReferenceProperty(User, required=True, collection_name='UserReviewer')
+	review = db.ReferenceProperty(Review, required=True, collection_name='Review')
+	reviewer = db.ReferenceProperty(User, required=True, collection_name='Reviewer')
 	dateVoted = db.DateTimeProperty(auto_now_add=True)
 	like = db.BooleanProperty(required=True)
 	
 	@classmethod
 	def get_review_vote(cls, username, review_id):
-		return ReviewVote.gql("Where user = '" + username + "' and review = '" + review_id + "'")
+		user = User.all().filter('username = ', username).fetch(1)[0]
+		review = Review.get_by_id(int(review_id))
+		return ReviewVote.all().filter('user =', user.key()).filter('review =', review.key())
 
 # Our webpage handlers
 class GreyMatterHandler(Handler):
@@ -666,6 +668,9 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 			# Get the user who wrote the review
 			reviewer = User.get_by_name(username)
 			
+			# Get the review object
+			review = Review.get_by_id(int(review_id))
+			
 			# Calculate the delta for how their rating should change
 			delta = 1.0 / (reviewer.numberOfRatings + 1)
 			
@@ -686,8 +691,8 @@ class ReviewPermalinkHandler(GreyMatterHandler):
 			
 			if not previousVotes:
 				# Add this review like or dislike to our db
-				vote = ReviewVote(user=self.user.username, reviewer=username, review=review_id, like=like)
-		   
+				vote = ReviewVote(user=self.user, reviewer=reviewer, review=review, like=like)
+				
 				vote.put()
 				time.sleep(1)
 		
