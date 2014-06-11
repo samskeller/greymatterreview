@@ -7,6 +7,15 @@
 		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 		
 		<script>
+		function tab(tab_number) {
+			$('#tab1').hide();
+			$('#tab2').hide();
+			$('#li_tab1').attr("class", "");
+			$('#li_tab2').attr("class", "");
+			$('#'+tab_number).show();
+			$('#li_'+tab_number).attr("class", "active");
+		}
+		
 		$(document).ready(function(){
 			$('html').click(function(event) {
 				// Hide menus on any click so the user can click away from them to hide them
@@ -177,30 +186,20 @@
 		Top 10 Placeholder
 			<div id=”Tabs”>
 				<ul>
-					<li id=”li_tab1″ onclick=”tab(‘tab1′)” ><a>Tab 1</a></li>
-					<li id=”li_tab2″ onclick=”tab(‘tab2′)”><a>Tab 2</a></li>
+					<li id="li_tab1" onclick="tab('tab1')" style="cursor:pointer">Tab 1</li>
+					<li id="li_tab2" onclick="tab('tab2')" style="cursor:pointer">Tab 2</li>
 				</ul>
-			<div id=”Content_Area”>
-			<div id=”tab1″>
+			<div id="Content_Area">
+			<div id="tab1">
 				<p>Day</p>
 			</div>
 
-			<div id=”tab2″ style=”display: none;”> <!– We set its display as none because we don’t want to make this
-				tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. –>
+			<div id="tab2" style="display: none;"> <!--We set its display as none because we don’t want to make this
+				tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
 				<p>Week</p>
 			</div>
 			</div> <!– End of Content_Area Div –>
 			</div> <!– End of Tabs Div –>
-			<script type=”text/javascript”>
-				function tab(tab) {
-				document.getElementById(‘tab1′).style.display = ‘none’;
-				document.getElementById(‘tab2′).style.display = ‘none’;
-				document.getElementById(‘li_tab1′).setAttribute(“class”, “”);
-				document.getElementById(‘li_tab2′).setAttribute(“class”, “”);
-				document.getElementById(tab).style.display = ‘block’;
-				document.getElementById(‘li_’+tab).setAttribute(“class”, “active”);
-				}
-			</script>
 	</div>	
 	<div id="reviewcontainer">
 		<div id="recentReviews">
