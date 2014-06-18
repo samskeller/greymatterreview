@@ -8,10 +8,16 @@
 		
 		<script>
 		function tab(tab_number) {
-			$('#tab1').hide();
-			$('#tab2').hide();
-			$('#li_tab1').attr("class", "");
-			$('#li_tab2').attr("class", "");
+			$('#Day').hide();
+			$('#Week').hide();
+			$('#Month').hide();
+			$('#Year').hide();
+			$('#Ever').hide();
+			$('#li_Day').attr("class", "");
+			$('#li_Week').attr("class", "");
+			$('#li_Month').attr("class", "");
+			$('#li_Year').attr("class", "");
+			$('#li_Ever').attr("class", "");
 			$('#'+tab_number).show();
 			$('#li_'+tab_number).attr("class", "active");
 		}
@@ -183,20 +189,31 @@
 		</div>
 	</div>
 	<div id="top10container">
-		Top 10 Placeholder
+		<H3>Top 10</H3>
 			<div id=”Tabs”>
 				<ul>
-					<li id="li_tab1" onclick="tab('tab1')" style="cursor:pointer">Tab 1</li>
-					<li id="li_tab2" onclick="tab('tab2')" style="cursor:pointer">Tab 2</li>
+					<li id="li_Day" onclick="tab('Day')" style="cursor:pointer">Day</li>
+					<li id="li_Week" onclick="tab('Week')" style="cursor:pointer">Week</li>
+					<li id="li_Month" onclick="tab('Month')" style="cursor:pointer">Month</li>
+					<li id="li_Year" onclick="tab('Year')" style="cursor:pointer">Year</li>
+					<li id="li_Ever" onclick="('Ever')" style="cursor:pointer">Ever</li>
 				</ul>
-			<div id="Content_Area">
-			<div id="tab1">
+			<div id="Tab_Content">
+			<div id="Day">
 				<p>Day</p>
 			</div>
-
-			<div id="tab2" style="display: none;"> <!--We set its display as none because we don’t want to make this
+			<div id="Week" style="display: none;"> <!--We set its display as none because we don’t want to make this
 				tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
 				<p>Week</p>
+			</div>
+			<div id="Month" style="display: none;">
+				<p>Month</p>
+			</div>
+			<div id="Year" style="display: none;">
+				<p>Year</p>
+			</div>
+			<div id="Ever" style="display: none;">
+				<p>Ever</p>
 			</div>
 			</div> <!– End of Content_Area Div –>
 			</div> <!– End of Tabs Div –>

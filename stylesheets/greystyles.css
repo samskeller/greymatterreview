@@ -414,65 +414,58 @@
 /*TABS*//*TABS*//*TABS*/
 /*TABS*//*TABS*//*TABS*/
 
+#top10container H3 {
+	margin-top: 10px;
+	font-size:36px;
+	text-align:center;
+	}
+	
 #Tabs ul {
-padding: 0px;
-margin: 0px;
-margin-left: 10px;
-list-style-type: none;
+	text-align:center;
+	}	
+
+#li_Day {
+	list-style-type:none;
+	display:inline-block;
+	border-right: 1px solid black;
+	padding-right:30px;
+}
+#li_Week {
+	list-style-type:none;
+	display:inline-block;
+	margin-left:30px;
+	border-right: 1px solid black;
+	padding-right:30px;
+}
+#li_Month {
+	list-style-type:none;
+	display:inline-block;
+	margin-left:30px;
+	border-right: 1px solid black;
+	padding-right:30px;
 }
 
-#Tabs ul li {
-display: inline-block;
-clear: none;
-float: left;
-height: 24px;
+#li_Year {
+	list-style-type:none;
+	display:inline-block;
+	margin-left:30px;
+	border-right: 1px solid black;
+	padding-right:30px;
+	margin-bottom:10px;
+}
+#li_Ever {
+	list-style-type:none;
+	display:inline-block;
+	margin-left:30px;
 }
 
-#Tabs ul li a {
-position: relative;
-margin-top: 16px;
-display: block;
-margin-left: 6px;
-line-height: 24px;
-padding-left: 10px;
-background: #f6f6f6;
-z-index: 9999;
-border: 1px solid #ccc;
-border-bottom: 0px;
-
-/* The following four lines are to make the top left and top right corners of each tab rounded. */
--moz-border-radius-topleft: 4px;
-border-top-left-radius: 4px;
--moz-border-radius-topright: 4px;
-border-top-right-radius: 4px;
-/* end of rounded borders */
-
-width: 130px;
-color: #000000;
-text-decoration: none;
-font-weight: bold;
-}
-
-#Tabs ul li a:hover {
-text-decoration: underline; // a very simple effect when hovering the mouse on tab
-}
-
-#Tabs #Content_Area { // this is the css class for the content displayed in each tab
-padding: 0 15px;
-clear:both;
-overflow:hidden;
-line-height:19px;
-position: relative;
-top: 20px;
-z-index: 5;
-height: 150px;
-overflow: hidden;
-}
-
-p { padding-left: 15px; }
-
-/*LOGIN/SIGNUP*/
-
+#Tab_Content {
+	margin-top:100px;
+	border-top: 1px solid black;
+	width:500px;
+	height:500px;
+	margin:auto;
+	}
 
 
 
