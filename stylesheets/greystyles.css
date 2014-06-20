@@ -416,9 +416,14 @@
 
 #top10container H3 {
 	margin-top: 10px;
-	font-size:36px;
 	text-align:center;
 	}
+	
+#top10container_home H6 {
+	margin-top: 10px;
+	text-align:center;
+	}
+		
 	
 #Tabs ul {
 	text-align:center;
@@ -426,44 +431,48 @@
 
 #li_Day {
 	list-style-type:none;
+	font-size:14px;
+	margin-left:-15px;
 	display:inline-block;
 	border-right: 1px solid black;
-	padding-right:30px;
+	padding-right:15px;
 }
 #li_Week {
 	list-style-type:none;
+	font-size:14px;
 	display:inline-block;
-	margin-left:30px;
+	margin-left:15px;
 	border-right: 1px solid black;
-	padding-right:30px;
+	padding-right:15px;
 }
 #li_Month {
 	list-style-type:none;
+	font-size:14px;
 	display:inline-block;
-	margin-left:30px;
+	margin-left:15px;
 	border-right: 1px solid black;
-	padding-right:30px;
+	padding-right:15px;
 }
 
 #li_Year {
 	list-style-type:none;
+	font-size:14px;
 	display:inline-block;
-	margin-left:30px;
+	margin-left:15px;
 	border-right: 1px solid black;
-	padding-right:30px;
-	margin-bottom:10px;
+	padding-right:15px;
+	margin-bottom:5px;
 }
 #li_Ever {
 	list-style-type:none;
+	font-size:14px;
 	display:inline-block;
-	margin-left:30px;
+	margin-left:15px;
 }
 
 #Tab_Content {
-	margin-top:100px;
 	border-top: 1px solid black;
-	width:500px;
-	height:500px;
+	width:300px;
 	margin:auto;
 	}
 

@@ -8,7 +8,23 @@
                 <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="../scripts/jquery.blockUI.js"></script>
         </head>
+        
         <script>
+		function tab(tab_number) {
+			$('#Day').hide();
+			$('#Week').hide();
+			$('#Month').hide();
+			$('#Year').hide();
+			$('#Ever').hide();
+			$('#li_Day').attr("class", "");
+			$('#li_Week').attr("class", "");
+			$('#li_Month').attr("class", "");
+			$('#li_Year').attr("class", "");
+			$('#li_Ever').attr("class", "");
+			$('#'+tab_number).show();
+			$('#li_'+tab_number).attr("class", "active");
+		}
+        
 	$( document ).ready(function() {
 		
 		$('html').click(function(event) {
@@ -214,8 +230,35 @@
 				</div>
 			</div>		
 			<div id="top10container_home">
-				Top 10 Placeholder
-			</div>
+				<H6>Top 10</H6>
+				<div id=”Tabs”>
+					<ul>
+						<li id="li_Day" onclick="tab('Day')" style="cursor:pointer">Day</li>
+						<li id="li_Week" onclick="tab('Week')" style="cursor:pointer">Week</li>
+						<li id="li_Month" onclick="tab('Month')" style="cursor:pointer">Month</li>
+						<li id="li_Year" onclick="tab('Year')" style="cursor:pointer">Year</li>
+						<li id="li_Ever" onclick="('Ever')" style="cursor:pointer">Ever</li>
+					</ul>
+					<div id="Tab_Content">
+					<div id="Day">
+					<p>Day</p>
+				</div>
+				<div id="Week" style="display: none;"> <!--We set its display as none because we don’t want to make this
+				tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
+					<p>Week</p>
+				</div>
+				<div id="Month" style="display: none;">
+					<p>Month</p>
+				</div>
+				<div id="Year" style="display: none;">
+					<p>Year</p>
+				</div>
+				<div id="Ever" style="display: none;">
+					<p>Ever</p>
+				</div>
+				</div> <!– End of Content_Area Div –>
+				</div> <!– End of Tabs Div –>
+			</div>	
 		</div>	
 		<div id="activity_container">	
 			<div id="profilefeed">
