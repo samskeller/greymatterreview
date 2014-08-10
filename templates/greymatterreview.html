@@ -285,11 +285,18 @@
 					<div class="col-md-12">
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 							<ol class="carousel-indicators">
+							{% if reviews|length > 0 %}
 								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+							{% endif %}
+							{% if reviews|length > 1 %}
 								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							{% endif %}
+							{% if reviews|length > 2 %}
 								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+							{% endif %}
 							</ol>
 							<div class="carousel-inner">
+								{% if reviews|length > 0 %}
 								<div class="item active">
 									<img src="http://www.coverartarchive.com/release/{{reviews[0]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
 									<span id="reviewRating">{{reviews[0]['rating']}} / 10</span><span style="float:right;">{{reviews[0]['timePassed']}}</span>
@@ -300,6 +307,8 @@
 									<br>
 									<a href="/user/{{reviews[0]['reviewer']}}" id="profileReviewUserLink">{{reviews[0]['reviewer']}}</a> said: {{reviews[0]['reviewText']}}
 								</div>
+								{% endif %}
+								{% if reviews|length > 1 %}
 								<div class="item">
 									<img src="http://www.coverartarchive.com/release/{{reviews[1]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
 									<span id="reviewRating">{{reviews[1]['rating']}} / 10</span><span style="float:right;">{{reviews[1]['timePassed']}}</span>
@@ -310,6 +319,8 @@
 									<br>
 									<a href="/user/{{reviews[1]['reviewer']}}" id="profileReviewUserLink">{{reviews[1]['reviewer']}}</a> said: {{reviews[1]['reviewText']}}
 								</div>
+								{% endif %}
+								{% if reviews|length > 2 %}
 								<div class="item">
 									<img src="http://www.coverartarchive.com/release/{{reviews[2]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
 									<span id="reviewRating">{{reviews[2]['rating']}} / 10</span><span style="float:right;">{{reviews[2]['timePassed']}}</span>
@@ -320,6 +331,7 @@
 									<br>
 									<a href="/user/{{reviews[2]['reviewer']}}" id="profileReviewUserLink">{{reviews[2]['reviewer']}}</a> said: {{reviews[2]['reviewText']}}
 								</div>
+								{% endif %}
 							</div>
 							<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 								<span class="glyphicon glyphicon-chevron-left"></span>
