@@ -431,6 +431,79 @@ class GreyMatterHandler(Handler):
 	def handle_exception(self, e, debugMode):
 		self.render("500.html", error=e, user=self.user)
 
+class LoginHandler(GreyMatterHandler):
+	def get(self):
+		self.render("login.html")
+		
+	def post(self):
+		error = False
+		self.username = self.request.get('username')
+		self.password = self.request.get('password')
+	
+		parameters = {'username' : self.username}
+		
+		# Look to see if this username and password match with a user that we have
+		u = User.login(self.username, self.password)
+			
+		if u:
+			# We have a valid user, set a cookie and go to the home page
+			self.response.headers['Content-Type'] = 'text/plain'
+			self.setCookie('user_id', str(u.key().id()))
+	   
+			self.redirect("/")
+		else:
+			# Invalid login attempt
+			parameters['login_error'] = "Invalid login"
+			
+			self.render("login.html", **parameters)
+			
+class SignupHandler(GreyMatterHandler):
+	def get(self):
+		self.render("signup.html")
+		
+	def post(self):
+		error = False
+
+		# Get the user entered fields
+		self.username = self.request.get('newusername')
+		self.password = self.request.get('newpassword')
+		self.email = self.request.get('new	email')
+   
+		parameters = {'newusernamevalue' : self.username, 'newemailvalue' : self.email}
+		
+		# Check for a valid username, password, and email
+		if not validate_username(self.username):
+			error = True
+			parameters['login_error'] = "Invalid username" 
+		elif not validate_password(self.password):
+			error = True
+			parameters['login_error'] = "Invalid password"
+		elif not validate_email(self.email):
+			error = True
+			parameters['login_error'] = "Invalid email"
+		
+		# If any of them had an error, re-render the page and show the error
+		if error:
+			self.render("signup.html", **parameters)
+		else:
+			# Look to see if a user with this username already exists
+			u = User.get_by_name(self.username)
+  
+			if u:
+				##redirect
+				self.render('signup.html', login_error = "That user already exists")
+			else:
+				# Create a new user as all fields were valid and this username is unique
+				u = User.register(username=self.username, password=self.password, email=self.email)
+	  
+				# Store the user in our db
+				u.put()
+	  
+				# Set a cookie so the user stays logged in
+				self.setCookie('user_id', str(u.key().id()))
+	  
+				self.redirect("/")
+		
 class HomeHandler(GreyMatterHandler):
 	""" The handler for our home page"""
 	def get(self):
@@ -912,4 +985,5 @@ app = webapp2.WSGIApplication([
     ('/reviews/(.+)', ReviewPermalinkHandler), ('/artists/(.+)/?', ArtistPermalinkHandler), \
     ('/albums/(.+)/?', AlbumPermalinkHandler), ('/home/following', FollowingHandler), \
     ('/home/followers', FollowersHandler), ('/user/(.+)/following', UserFollowingHandler), \
-    ('/user/(.+)/followers', UserFollowersHandler)], debug=True)
+    ('/user/(.+)/followers', UserFollowersHandler), ('/login/?', LoginHandler), \
+    ('/signup/?', SignupHandler)], debug=True)
