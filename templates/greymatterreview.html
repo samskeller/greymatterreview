@@ -112,14 +112,10 @@
       <div class="container">
         <ul class="nav navbar-nav navbar-right">
         		{% if user: %}
-        	<div class="btn-group">
-			   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			   	<li>
-        			<a href="/user/{{user.username}}">
-        			<div class="visible-xs"></div>
-        			<div class="hidden-xs"><b>{{user.username}}</b></div>
-        			</a>
-        		</li>
+        	<div class="dropdown">
+  			 <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+   				   data-toggle="dropdown">
+			   	{{user.username}}
 			  		 <span class="caret"></span>
    				</button>
    					<ul class="dropdown-menu" role="menu">
