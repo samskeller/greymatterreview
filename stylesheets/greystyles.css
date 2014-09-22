@@ -4,7 +4,7 @@
 /*LANDING PAGE*//*LANDING PAGE*//*LANDING PAGE*/
 
 #newbody {
-	background-color:#B4CCE0;
+	background-color:#89989C;
 	background-size:cover;
 	-moz-background-size:cover;
 	-webkit-background-size:cover;
@@ -13,10 +13,10 @@
 	height:100%;
 }
 
-#logoHolder {
-	margin-left:50%;
-	position:absolute;
+#searchBar{
 }
+
+
 
 #heading_container {
 	width:1000px;
@@ -40,12 +40,7 @@
 	letter-spacing: 1px;
 }
 
-#searchBar{
-	margin-left:270px;
-	margin-top:10px;
-	white-space:nowrap;
-	width:700px;
-}
+
 
 #top10container {
 	border-radius:6px;
