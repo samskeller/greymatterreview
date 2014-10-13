@@ -10,20 +10,6 @@
     	<script type="text/javascript" src="/scripts/docs.min.js"></script>
 		
 		<script>
-		function tab(tab_number) {
-			$('#Day').hide();
-			$('#Week').hide();
-			$('#Month').hide();
-			$('#Year').hide();
-			$('#Ever').hide();
-			$('#li_Day').attr("class", "");
-			$('#li_Week').attr("class", "");
-			$('#li_Month').attr("class", "");
-			$('#li_Year').attr("class", "");
-			$('#li_Ever').attr("class", "");
-			$('#'+tab_number).show();
-			$('#li_'+tab_number).attr("class", "active");
-		}
 		
 		$(document).ready(function(){
 			$('html').click(function(event) {
@@ -117,9 +103,9 @@
    		<div class="navbar-header">
       		<a class="navbar-brand" style="font-family:cacavia01; font-size:30px; color:#700000; border-right:1px solid grey;">GREY MATTER</a>
       	</div>	
-      		<!--<div>	
-      			<p class="navbar-text">Music's best friend</p>
-      		</div>--!>	
+      	<div>	
+      		<a class= "pull-left" href="#" title="Grey Matter"><img src="/stylesheets/greymatter.jpg" alt="Unknown Person" width=50 height=50></a>	
+      	</div>
    		<div>
    			<form class="navbar-form pull-right" role="search">
          		<button type="submit" class="btn btn-default">Sign up</button>   
@@ -154,7 +140,7 @@
                         <div class="row">
            					<div id="custom-search-input">
                         		<div class="input-group col-md-8">
-                            		<input type="text" class="search-query form-control" placeholder="Search by artist or album title" />
+                            		<input type="text" class="search-query form-control" placeholder="Search by artist or album title..." />
                             	<span class="input-group-btn">
                                 	<button class="btn btn-danger" type="button">
                                     	<span class=" glyphicon glyphicon-search"></span>
