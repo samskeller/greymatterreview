@@ -6,11 +6,18 @@
 #newbody {
 	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
-    text-align: center;
-	background-color:#89989C;
+	background-color:#A5AAB1;
 	background-size:cover;
 	-moz-background-size:cover;
 	-webkit-background-size:cover;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    background: url("/stylesheets/bostoncalling.jpg") no-repeat center center;
+    background-size: cover;
 }
 
 .logo {
@@ -18,6 +25,56 @@
     padding-top: 20%;
     padding-bottom: 20%;
 }
+
+/*Panel tabs*/
+.panel-tabs {
+    position: relative;
+    bottom: 30px;
+    clear:both;
+    border-bottom: 1px solid transparent;
+}
+
+.panel-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.panel-tabs > li > a {
+    margin-right: 2px;
+    margin-top: 4px;
+    line-height: .85;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    color: #ffffff;
+}
+
+.panel-tabs > li > a:hover {
+    border-color: transparent;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.panel-tabs > li.active > a,
+.panel-tabs > li.active > a:hover,
+.panel-tabs > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: rgba(255,255,255, .23);
+    border-bottom-color: transparent;
+}
+
+.top-10 {
+	position:relative;
+	float:left;
+	}
+
+.recent-reviews {
+	position:relative;
+	float:right;
+	}
 
 #custom-search-input {
         margin:0;
