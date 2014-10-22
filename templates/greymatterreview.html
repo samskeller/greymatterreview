@@ -5,6 +5,7 @@
 		<title>Grey Matter</title>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
 		<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/spacelab/bootstrap.min.css" rel="stylesheet">
+		<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
     	<script type="text/javascript" src="/scripts/docs.min.js"></script>
@@ -125,7 +126,7 @@
 	
 	</nav>
 	
-	<!--Logo/Search Bar--!>
+	<!--Logo/Search Bar-->
     <div class="intro-header">
 
         <div class="container">
@@ -157,14 +158,13 @@
     </div>
     <!-- /.Logo/Search Bar -->
 
-	<!-- Content A --!>
+	<!-- Content A -->
 	<div class="content-section-a">
-		<div class="top-10">
-		<br>
-		<!-- Top 10 --!>
-		<div class="container">
+		
+		<div class="container-fluid">
+			
 			<div class="row">
-				<div class="col-md-5 col-sm-6">
+				<div class="col-md-4 col-sm-6">
             		<div class="panel panel-primary">
                 		<div class="panel-heading">
                     		<h3 class="panel-title">Top 10</h3>
@@ -713,85 +713,144 @@
 		            </div>
 		        </div>
 			</div>
-		</div>
-		</div>
-  		<!-- /.Top 10 --!>
+		</div>					        		      
+
+  		<!-- /.Top 10 -->
 			
-		<div class="recent-reviews">
-		<div class="col-md-7 col-sm-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-			  <h3 class="panel-title">Recent Reviews</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row carousel-holder">
-
-					<div class="col-md-12">
-						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-							<ol class="carousel-indicators">
-							{% if reviews|length > 0 %}
-								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-							{% endif %}
-							{% if reviews|length > 1 %}
-								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-							{% endif %}
-							{% if reviews|length > 2 %}
-								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-							{% endif %}
-							</ol>
-							<div class="carousel-inner">
-								{% if reviews|length > 0 %}
-								<div class="item active">
-									<img src="http://www.coverartarchive.com/release/{{reviews[0]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
-									<span id="reviewRating">{{reviews[0]['rating']}} / 10</span><span style="float:right;">{{reviews[0]['timePassed']}}</span>
-									<br>
-									<a href="/artists/{{reviews[0]['artist']}}" id="profileReviewLink">{{reviews[0]['artist']}}</a>
-									<br>
-									<a href="/albums/{{reviews[0]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[0]['album']}}</span>
-									<br>
-									<a href="/user/{{reviews[0]['reviewer']}}" id="profileReviewUserLink">{{reviews[0]['reviewer']}}</a> said: {{reviews[0]['reviewText']}}
-								</div>
-								{% endif %}
-								{% if reviews|length > 1 %}
-								<div class="item">
-									<img src="http://www.coverartarchive.com/release/{{reviews[1]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
-									<span id="reviewRating">{{reviews[1]['rating']}} / 10</span><span style="float:right;">{{reviews[1]['timePassed']}}</span>
-									<br>
-									<a href="/artists/{{reviews[1]['artist']}}" id="profileReviewLink">{{reviews[1]['artist']}}</a>
-									<br>
-									<a href="/albums/{{reviews[1]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[1]['album']}}</span>
-									<br>
-									<a href="/user/{{reviews[1]['reviewer']}}" id="profileReviewUserLink">{{reviews[1]['reviewer']}}</a> said: {{reviews[1]['reviewText']}}
-								</div>
-								{% endif %}
-								{% if reviews|length > 2 %}
-								<div class="item">
-									<img src="http://www.coverartarchive.com/release/{{reviews[2]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
-									<span id="reviewRating">{{reviews[2]['rating']}} / 10</span><span style="float:right;">{{reviews[2]['timePassed']}}</span>
-									<br>
-									<a href="/artists/{{reviews[2]['artist']}}" id="profileReviewLink">{{reviews[2]['artist']}}</a>
-									<br>
-									<a href="/albums/{{reviews[2]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[2]['album']}}</span>
-									<br>
-									<a href="/user/{{reviews[2]['reviewer']}}" id="profileReviewUserLink">{{reviews[2]['reviewer']}}</a> said: {{reviews[2]['reviewText']}}
-								</div>
-								{% endif %}
-							</div>
-							<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-								<span class="glyphicon glyphicon-chevron-left"></span>
-							</a>
-							<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-								<span class="glyphicon glyphicon-chevron-right"></span>
-							</a>
+		<!--
+				<div class="col-md-8 col-md-offset-4 col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+			  				<h3 class="panel-title">Recent Reviews</h3>
 						</div>
+						<div class="panel-body">
+							<div class="carousel-holder">
+								<div class="col-md-12">
+									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+										<ol class="carousel-indicators">
+											{% if reviews|length > 0 %}
+											<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+											{% endif %}
+											{% if reviews|length > 1 %}
+											<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+											{% endif %}
+											{% if reviews|length > 2 %}
+											<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+											{% endif %}
+										</ol>
+										<!-- Carousel items -->
+										<div class="carousel-inner">
+											{% if reviews|length > 0 %}
+											<div class="item active">
+												<img src="http://www.coverartarchive.com/release/{{reviews[0]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
+												<span id="reviewRating">{{reviews[0]['rating']}} / 10</span><span style="float:right;">{{reviews[0]['timePassed']}}</span>
+												<br>
+												<a href="/artists/{{reviews[0]['artist']}}" id="profileReviewLink">{{reviews[0]['artist']}}</a>
+												<br>
+												<a href="/albums/{{reviews[0]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[0]['album']}}</span>
+												<br>
+												<a href="/user/{{reviews[0]['reviewer']}}" id="profileReviewUserLink">{{reviews[0]['reviewer']}}</a> said: {{reviews[0]['reviewText']}}
+											</div>
+											{% endif %}
+											{% if reviews|length > 1 %}
+											<div class="item">
+												<img src="http://www.coverartarchive.com/release/{{reviews[1]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
+												<span id="reviewRating">{{reviews[1]['rating']}} / 10</span><span style="float:right;">{{reviews[1]['timePassed']}}</span>
+												<br>
+												<a href="/artists/{{reviews[1]['artist']}}" id="profileReviewLink">{{reviews[1]['artist']}}</a>
+												<br>
+												<a href="/albums/{{reviews[1]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[1]['album']}}</span>
+												<br>
+												<a href="/user/{{reviews[1]['reviewer']}}" id="profileReviewUserLink">{{reviews[1]['reviewer']}}</a> said: {{reviews[1]['reviewText']}}
+											</div>
+											{% endif %}
+											{% if reviews|length > 2 %}
+											<div class="item">
+												<img src="http://www.coverartarchive.com/release/{{reviews[2]['mb_id']}}/front" onerror="this.src='/stylesheets/GMLOGO.jpg';" width="275" height="275" align="middle" style="float:left;margin-right:10px;margin-top:11px;margin-left:10px;">
+												<span id="reviewRating">{{reviews[2]['rating']}} / 10</span><span style="float:right;">{{reviews[2]['timePassed']}}</span>
+												<br>
+												<a href="/artists/{{reviews[2]['artist']}}" id="profileReviewLink">{{reviews[2]['artist']}}</a>
+												<br>
+												<a href="/albums/{{reviews[2]['mb_id']}}" id="profileReviewLink" style="font-style:italic;color:#1414A4">{{reviews[2]['album']}}</span>
+												<br>
+												<a href="/user/{{reviews[2]['reviewer']}}" id="profileReviewUserLink">{{reviews[2]['reviewer']}}</a> said: {{reviews[2]['reviewText']}}
+											</div>
+											{% endif %}
+										</div>
+										<!-- Carousel Nav -->
+										<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+											<span class="glyphicon glyphicon-chevron-left"></span>
+										</a>
+										<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+											<span class="glyphicon glyphicon-chevron-right"></span>
+										</a>
+									</div>
+								</div>
+							</div>
 					</div>
-
 				</div>
 			</div>
-		</div>
-	</div>
+		</div>	
 	
 </div>	
+-->
+
+<div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Welcome to Grey Matter:</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#home">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 	<!--
 	 		<div>
       			<ul class="nav navbar-nav navbar-right" style="margin-right:10px;">

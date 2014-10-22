@@ -5,8 +5,8 @@
 
 #newbody {
 	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
-	background-color:#A5AAB1;
+    padding-bottom:;
+	background-color:#DBDBDB;
 	background-size:cover;
 	-moz-background-size:cover;
 	-webkit-background-size:cover;
@@ -24,6 +24,10 @@
     position: relative;
     padding-top: 20%;
     padding-bottom: 20%;
+}
+
+/*.content-section-a {
+	display:inline;
 }
 
 /*Panel tabs*/
@@ -66,15 +70,17 @@
     border-bottom-color: transparent;
 }
 
-.top-10 {
-	position:relative;
-	float:left;
+/*.top-10 {
+	position:absolute;
+	display:inline;
+	padding:100px;
 	}
 
 .recent-reviews {
-	position:relative;
-	float:right;
-	}
+	position:absolute;
+	display:inline;
+	padding:100px;
+	}*/
 
 #custom-search-input {
         margin:0;
@@ -115,6 +121,61 @@
         z-index: 3;   
     }
 
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(/stylesheets/guitar.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    color:white;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+footer {
+    padding: 50px 0;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
 
 #heading_container {
 	width:1000px;
