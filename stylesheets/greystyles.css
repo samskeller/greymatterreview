@@ -5,7 +5,6 @@
 
 #newbody {
 	padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom:;
 	background-color:#DBDBDB;
 	background-size:cover;
 	-moz-background-size:cover;
@@ -26,15 +25,21 @@
     padding-bottom: 20%;
 }
 
-/*.content-section-a {
+.content-section-a {
+	position:relative;
 	display:inline;
+	padding:50px;
 }
 
-/*Panel tabs*/
+/*top-10*/
+
+.top-10 {
+
+}
+
 .panel-tabs {
     position: relative;
     bottom: 30px;
-    clear:both;
     border-bottom: 1px solid transparent;
 }
 
@@ -54,7 +59,7 @@
 
 .panel-tabs > li > a:hover {
     border-color: transparent;
-    color: #ffffff;
+    color: #DBDBDB;
     background-color: transparent;
 }
 
@@ -70,17 +75,9 @@
     border-bottom-color: transparent;
 }
 
-/*.top-10 {
-	position:absolute;
-	display:inline;
-	padding:100px;
-	}
-
 .recent-reviews {
-	position:absolute;
-	display:inline;
-	padding:100px;
-	}*/
+
+}
 
 #custom-search-input {
         margin:0;
@@ -139,11 +136,6 @@
     margin-bottom: 0;
 }
 
-.banner-social-buttons {
-    float: right;
-    margin-top: 0;
-}
-
 @media(max-width:1199px) {
     ul.banner-social-buttons {
         float: left;
@@ -171,11 +163,23 @@
 
 footer {
     padding: 50px 0;
+    text-align: center;
 }
 
 p.copyright {
     margin: 15px 0 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 #heading_container {
 	width:1000px;
