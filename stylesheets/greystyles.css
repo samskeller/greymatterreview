@@ -25,6 +25,14 @@
     padding-bottom: 20%;
 }
 
+.logo h1 {
+	color:#DBDBDB;
+}
+
+.logo h3 {
+	color:#DBDBDB;
+}
+
 .content-section-a {
 	position:relative;
 	display:inline;
