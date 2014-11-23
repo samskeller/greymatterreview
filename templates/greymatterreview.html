@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
 		<link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/spacelab/bootstrap.min.css" rel="stylesheet">
 		<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
     	<script type="text/javascript" src="/scripts/docs.min.js"></script>
@@ -133,21 +134,21 @@
          			<div class="modal-header">
             			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
             			</button>
-            			<h4 class="modal-title" id="myModalLabel">Join Grey Matter</h4>
+            			<h4 class="modal-title text-center" id="myModalLabel">Join Grey Matter</h4>
          			</div>
          		<div class="modal-body">
          			<form class="form col-md-12 center-block">
             			<div class="form-group">
-              				<input type="text" class="form-control input-lg" placeholder="Username">
+              				<input type="text" class="form-control input-lg" placeholder="Username" required>
             			</div>
             			<div class="form-group">
-              				<input type="password" class="form-control input-lg" placeholder="Password">
+              				<input type="password" class="form-control input-lg" placeholder="Password" required>
             			</div>
             			<div class="form-group">
-              				<input type="password" class="form-control input-lg" placeholder="Confirm Password">
+              				<input type="password" class="form-control input-lg" placeholder="Confirm Password" required>
             			</div>
             			<div class="form-group">
-              				<input type="email" class="form-control input-lg" placeholder="Email">
+              				<input type="email" class="form-control input-lg" placeholder="Email" required>
             			</div>
             			<div class="form-group">
               				<button class="btn btn-primary btn-lg btn-block">Sign Up</button>
@@ -156,6 +157,14 @@
           			</form>
          		</div>
          			<div class="modal-footer">
+                        <li class="dropdown-header text-center">Sign up with social media</li>
+                        <div class="text-center">
+                        	<div class="btn-group">
+                           		<i class="btn fa fa-twitter fa-3x"></i>
+                           		<i class="btn fa fa-facebook fa-3x"></i>
+                           		<i class="btn fa fa-google-plus fa-3x"></i>
+                        	</div>
+                        </div>
             		<!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
          			</div>
       			</div><!-- /.modal-content -->
@@ -872,51 +881,6 @@
         </div>
     </footer>
 	<!-- /.Footer -->
-		
-		<!--
-	 		<div>
-      			<ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                  <li class="dropdown">
-                     <a class="dropdown-toggle" data-toggle="dropdown">Sign up<b class="caret"></b></a>
-                     <ul class="dropdown-menu" style="padding: 10px;min-width: 250px;">
-                        <li>
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputUsername2">Username</label>
-                                       <input type="username" class="form-control" id="exampleInputUsername2" placeholder="Username" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputConfirmPassword2">Confirm Password</label>
-                                       <input type="confirmpassword" class="form-control" id="exampleInputConfirmPassword2" placeholder="Confirm password" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-success btn-block">Create account</button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header text-center">Sign up with social media</li>
-                        <li class="btn-group" style="text-align:center";>
-                           <i class="btn fa fa-twitter fa-3x"></i>
-                           <i class="btn fa fa-facebook fa-3x"></i>
-                           <i class="btn fa fa-google-plus fa-3x"></i>
-                        </li>
-                     </ul>
-                  </li>
-               </ul>
-   			</div>--!>
     
     <!--<div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
