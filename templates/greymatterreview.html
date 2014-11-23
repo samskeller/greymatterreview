@@ -94,7 +94,7 @@
  		       e.stopPropagation();
  		   });
 		});
-		  });
+		  });		  
 		</script>
 	</head>
 <body id="newbody">
@@ -116,10 +116,10 @@
 	 		</form>	
       		<form class="navbar-form pull-right" role="search">
          		<div class="form-group">
-            		<input type="text" class="form-control" placeholder="Email address">
+            		<input type="email" class="form-control" placeholder="Email address">
          		</div>
          		<div class="form-group">
-            		<input type="text" class="form-control" placeholder="Password">
+            		<input type="password" class="form-control" placeholder="Password">
          		</div>
          	</form>			 
    		</div>
@@ -127,42 +127,40 @@
 	<!-- /.Fixed Navbar -->
 	
 	<!-- Modal -->
-					<div class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpFormLabel" aria-hidden="true">
-   						<div class="modal-dialog">
-      						<div class="modal-content">
-         						<div class="modal-header">
-            						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-            						</button>
-            						<h4 class="modal-title" id="myModalLabel">Join Grey Matter</h4>
-         						</div>
-         					<div class="modal-body">
-         						<form class="form col-md-12 center-block">
-            						<div class="form-group">
-              							<input type="text" class="form-control input-lg" placeholder="Email">
-            						</div>
-            						<div class="form-group">
-              							<input type="text" class="form-control input-lg" placeholder="Username">
-            						</div>
-            						<div class="form-group">
-              							<input type="password" class="form-control input-lg" placeholder="Password">
-            						</div>
-            						<div class="form-group">
-              							<button class="btn btn-primary btn-lg btn-block">Sign Up</button>
-              						<!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
-            						</div>
-          						</form>
-         					</div>
-         						<div class="modal-footer">
-            						<!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
-         						</div>
-      						</div><!-- /.modal-content -->
-   						</div><!-- /.modal-dialog -->
-					</div><!-- /.modal -->
-					<script>
-   					$(function () { $('#signUpForm').modal({
-      					keyboard: true
-   					})});
-					</script>
+		<div class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpFormLabel" aria-hidden="true">
+   			<div class="modal-dialog">
+      			<div class="modal-content">
+         			<div class="modal-header">
+            			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+            			</button>
+            			<h4 class="modal-title" id="myModalLabel">Join Grey Matter</h4>
+         			</div>
+         		<div class="modal-body">
+         			<form class="form col-md-12 center-block">
+            			<div class="form-group">
+              				<input type="text" class="form-control input-lg" placeholder="Username">
+            			</div>
+            			<div class="form-group">
+              				<input type="password" class="form-control input-lg" placeholder="Password">
+            			</div>
+            			<div class="form-group">
+              				<input type="password" class="form-control input-lg" placeholder="Confirm Password">
+            			</div>
+            			<div class="form-group">
+              				<input type="email" class="form-control input-lg" placeholder="Email">
+            			</div>
+            			<div class="form-group">
+              				<button class="btn btn-primary btn-lg btn-block">Sign Up</button>
+              				<!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
+            			</div>
+          			</form>
+         		</div>
+         			<div class="modal-footer">
+            		<!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+         			</div>
+      			</div><!-- /.modal-content -->
+   			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	<!-- /.Modal -->
 	
 	<!--Logo/Search Bar-->
@@ -178,7 +176,7 @@
                         <div class="row">
            					<div id="custom-search-input">
                         		<div class="input-group col-md-8" style="float:none; margin:auto">
-                            		<input type="text" class="search-query form-control" placeholder="Search by artist or album title..." />
+                            		<input type="search" class="search-query form-control" placeholder="Search by artist or album title..." />
                             	<span class="input-group-btn">
                                 	<button class="btn btn-danger" type="button">
                                     	<span class=" glyphicon glyphicon-search"></span>
