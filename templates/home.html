@@ -101,56 +101,47 @@
 		});
 		</script>
 	</head>
-<body id="homebody">
-	<div id="top">
-		<div id="logoHolder_home">
-			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
-		</div>
-		<nav id="loginNav">
-			<ul>
-				<li id="me-container">
-					<a id="me-trigger" href="#">
-						{{user.username}}
-					</a>
-					<div id="me-content">
-						<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
-						<span id="profileDropdownUsername">{{user.username}}</span>
-						<br>
-						<table>
-							<tr>
-								<td>
-									<a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</div>
-	<div id="heading_container_home">
-		<div id="description">
-			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
-		</div>
-		<br>
-		<br>
-		<div id="searchBar_home">
-			<form method="post" action="/reviews">
-			<input type="text" id="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
-			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
-			</form>
-		</div>
-	</div>
-	<div id="main_container_home">
-		<div id="profile_info_container">
+<body>
+	<header>
+		<a class= "logo" href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=100 height=100></a>
+			<nav id="loginNav">
+				<ul>
+					<li>
+						<form method="post" action="/reviews">
+						<input type="text" id="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
+						<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
+						</form>
+					</li>
+					<li id="me-container">
+						<a id="me-trigger" href="#">
+							{{user.username}}
+						</a>
+						<div id="me-content">
+							<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
+							<span id="profileDropdownUsername">{{user.username}}</span>
+							<table>
+								<tr>
+									<td>
+										<a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</li>
+				</ul>
+			</nav>		
+	</header>
+		
+
+		<div class="profile">
 			<div id="name_and_rank">
 				<h3 id="profile_name">{{user.username}}</h3>
-				<h6 id="rank">Guru</h6>	<!--placeholder for our ranking system--!>
+				<h6 id="rank">Guru</h6>	<!--placeholder for our ranking system-->
 			</div>	
 			<div id="profile_info">
 				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
@@ -202,8 +193,7 @@
 				</div> <!– End of Content_Area Div –>
 				</div> <!– End of Tabs Div –>
 			</div>	
-		</div>
-		<div id="activity_container">	
+		</div>	
 			<div id="profilefeed">
 				<h4 id="myactivitylabel">My Activity</h4>
 				{% if reviews|length == 0: %}
@@ -228,7 +218,5 @@
 					<br>
 				{% endfor %}
 			</div>
-		</div>
-	</div>	
 </body>
 </html>
