@@ -3,7 +3,7 @@
         <head>
                 <title>Grey Matter</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
-                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
+                <!--<link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
 				<script type="text/javascript" src="../scripts/jquery-1.9.1.min.js"></script>
 				<script type="text/javascript" src="../scripts/jquery.blockUI.js"></script>
@@ -103,120 +103,106 @@
 	</head>
 <body>
 	<header>
-		<a class= "logo" href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=100 height=100></a>
-			<nav id="loginNav">
+		<a class= "logo" href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=50 height=50></a>
+			<nav>
 				<ul>
 					<li>
 						<form method="post" action="/reviews">
-						<input type="text" id="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
+						<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
 						<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
 						</form>
 					</li>
-					<li id="me-container">
-						<a id="me-trigger" href="#">
-							{{user.username}}
-						</a>
-						<div id="me-content">
-							<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
-							<span id="profileDropdownUsername">{{user.username}}</span>
-							<table>
-								<tr>
-									<td>
-										<a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
-									</td>
-								</tr>
-							</table>
-						</div>
+					<li>
+						<a id="me-trigger" href="#">{{user.username}}</a>
+						<table id="me-content"> 
+							<tr>
+								<td><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></td>
+							</tr>
+							<tr>
+								<td><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></td>
+							</tr>
+						</table>
 					</li>
 				</ul>
 			</nav>		
 	</header>
 		
-
-		<div class="profile">
-			<div id="name_and_rank">
-				<h3 id="profile_name">{{user.username}}</h3>
-				<h6 id="rank">Guru</h6>	<!--placeholder for our ranking system-->
+	<main>
+		<section class="profile">	
+			<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
+			<ul class="name-rank">
+				<li><h3>{{user.username}}</h3></li>
+				<li><h6>Guru</h6></li> <!--placeholder for our ranking system-->
+			</ul>		
+			<table class="stats">
+				<tr>
+					<th>Reviews</th>
+					<th>Following</th>
+					<th>Followers</th>
+				</tr>
+				<tr>
+					<th style="cursor:pointer;">{{user.numberOfReviews}}</th>
+					<th style="cursor:pointer;">{{user.following}}</th>	
+					<th style="cursor:pointer;">{{user.followers}}</th>	
+				</tr>
+			</table>	
+		</section>		
+				<div id="top10container_home">
+					<H6>Top 10</H6>
+					<div id=”Tabs”>
+						<ul>
+							<li id="li_Day" onclick="tab('Day')" style="cursor:pointer">Day</li>
+							<li id="li_Week" onclick="tab('Week')" style="cursor:pointer">Week</li>
+							<li id="li_Month" onclick="tab('Month')" style="cursor:pointer">Month</li>
+							<li id="li_Year" onclick="tab('Year')" style="cursor:pointer">Year</li>
+							<li id="li_Ever" onclick="('Ever')" style="cursor:pointer">Ever</li>
+						</ul>
+						<div id="Tab_Content">
+						<div id="Day">
+						<p>Day</p>
+					</div>
+					<div id="Week" style="display: none;"> <!--We set its display as none because we don’t want to make this
+					tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
+						<p>Week</p>
+					</div>
+					<div id="Month" style="display: none;">
+						<p>Month</p>
+					</div>
+					<div id="Year" style="display: none;">
+						<p>Year</p>
+					</div>
+					<div id="Ever" style="display: none;">
+						<p>Ever</p>
+					</div>
+					</div> <!– End of Content_Area Div –>
+					</div> <!– End of Tabs Div –>
+				</div>
+		</section>		
 			</div>	
-			<div id="profile_info">
-				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
-						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
-					<div id="changeprofileimage"><a href="#" id="changeprofileimagebtn">Edit Profile Image</a></div>
-				</div>
-				<div id="profile_stats">
-					<div id="reviewsBox">
-						<label class="statLabel">Reviews</label>
-						<div class="numberLabel">{{user.numberOfReviews}}</div>
-					</div>
-					<div id="followingBox">
-						<label class="statLabel">Following</label>
-						<div class="numberLabel" id="followingLabel" style="cursor:pointer;">{{user.following}}</div>
-					</div>
-					<div id="followersBox">
-						<label class="statLabel">Followers</label>
-						<div class="numberLabel" id="followersLabel" style="cursor:pointer;">{{user.followers}}</div>
-					</div>
-				</div>
-			</div>
-			<div id="top10container_home">
-				<H6>Top 10</H6>
-				<div id=”Tabs”>
-					<ul>
-						<li id="li_Day" onclick="tab('Day')" style="cursor:pointer">Day</li>
-						<li id="li_Week" onclick="tab('Week')" style="cursor:pointer">Week</li>
-						<li id="li_Month" onclick="tab('Month')" style="cursor:pointer">Month</li>
-						<li id="li_Year" onclick="tab('Year')" style="cursor:pointer">Year</li>
-						<li id="li_Ever" onclick="('Ever')" style="cursor:pointer">Ever</li>
-					</ul>
-					<div id="Tab_Content">
-					<div id="Day">
-					<p>Day</p>
-				</div>
-				<div id="Week" style="display: none;"> <!--We set its display as none because we don’t want to make this
-				tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
-					<p>Week</p>
-				</div>
-				<div id="Month" style="display: none;">
-					<p>Month</p>
-				</div>
-				<div id="Year" style="display: none;">
-					<p>Year</p>
-				</div>
-				<div id="Ever" style="display: none;">
-					<p>Ever</p>
-				</div>
-				</div> <!– End of Content_Area Div –>
-				</div> <!– End of Tabs Div –>
-			</div>	
-		</div>	
-			<div id="profilefeed">
-				<h4 id="myactivitylabel">My Activity</h4>
-				{% if reviews|length == 0: %}
-					<p>You've never made a review! Search for an album to review by artist or album title</p>
-					<button id="Sam">Click me!</button>
-				{% endif %}
-				{% for review in reviews: %}
-					<div class="profileReview">
-					{% if not review.rating: %}
-						<span id="reviewRating">5 / 10</span>
-					{% else: %}
-						<span id="reviewRating">{{review.rating}} / 10</span>
+				<div id="profilefeed">
+					<h4 id="myactivitylabel">My Activity</h4>
+					{% if reviews|length == 0: %}
+						<p>You've never made a review! Search for an album to review by artist or album title</p>
+						<button id="Sam">Click me!</button>
 					{% endif %}
-					<br>
-					Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
-					<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
-					<br>
-					Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
-					<br>
-					Review: {{review.reviewText}}
-					</div>
-					<br>
-				{% endfor %}
-			</div>
+					{% for review in reviews: %}
+						<div class="profileReview">
+						{% if not review.rating: %}
+							<span id="reviewRating">5 / 10</span>
+						{% else: %}
+							<span id="reviewRating">{{review.rating}} / 10</span>
+						{% endif %}
+						<br>
+						Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
+						<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+						<br>
+						Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
+						<br>
+						Review: {{review.reviewText}}
+						</div>
+						<br>
+					{% endfor %}
+				</div>
+	</main>			
 </body>
 </html>

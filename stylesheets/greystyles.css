@@ -1,4 +1,4 @@
- html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section {
+ html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table {
  	padding:0;
  	border:0;
  	margin:0;
@@ -31,15 +31,14 @@ header {
 	 	opacity: 1;
 	 }	
 		 header .logo {
-		 	display:inline;
 		 	padding-left:10px;
 		 }	
 		 header nav {
-		 	float:right;
+		 	display:inline;
 		 }
 		 header nav li{
 		 	list-style-type: none;
-		 	display:inline;
+		 	float:right;
 		 	padding-right:40px;
 		 }
 
@@ -290,12 +289,30 @@ p.copyright {
 /*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
 /*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
 
+.searchinput_home {
+    border: 0 none;
+    font: 14px Garamond,Helvetica,Sans-serif;
+    color: black;
+    width: 200px;
+    height:25px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }
 
+.searchinput_home:focus {
+    width: 350px;
+    }
 
-
-
-
-#searchBar_home {
+/*#searchBar_home {
 	position:absolute;
 	left:215px;
 	top:46px;
@@ -319,58 +336,24 @@ p.copyright {
   background-color: #F5F5F5;
   border-color: #700000;
   outline: none;
-}
+}*/
 
-.profile{
-	width:350px;
-	position:absolute;
-	margin-left:50px;
-	top:50px;
-	background:#ECECEC;
-	border:2px solid black;
-	border-radius:2px;
-	box-shadow: 2px 2px 5px;
-}
+main {
+	 	width:1100px;
+	 	height:448px;
+	 	margin:auto;
+	 	position:relative;
+	}
 
-#name_and_rank {
-	position:absolute;
-	margin-top:50px;
-	margin-left:175px;
-	text-align:center;	
-}
-
-#profile_name {
-	color:black;
-	font-family: Book Antiqua;
-	margin:auto;
-}
-
-#rank {
-	color:black;
-	font-family:Book Antiqua;
-	margin:auto;
-}
-
-#profile_image {
-	position:relative;
-	width:100%;
-	margin-top:20px;
-	margin-left:20px;
-}
-
-#changeprofileimage {
-	position:absolute;
-	top:80%;
-	left:20%;
-	background:#BDC3C7;
-	display:none;
-	border:1px solid #000000;
-	font-size:12px;
-}
-
-#changeprofileimagebtn {
-	text-decoration:none;
-}
+.profile {
+		display:inline;
+		width:400px;
+		border:1px black solid;
+	 	background-color:white;
+	 	position:relative;
+	 	border-radius:2px;
+	 	box-shadow: 2px 3px 5px;
+	}
 
 #top10container_home {
 	width:350px;
@@ -424,59 +407,6 @@ p.copyright {
 #followOrUnfollow {
 	position:absolute;
 	margin-left:auto;
-}
-
-/*HOME&USER*//*HOME&USER*/
-/*HOME&USER*//*HOME&USER*/
-/*HOME&USER*//*HOME&USER*/
-/*HOME&USER*//*HOME&USER*/
-
-#profile_stats {
-	margin-top:15px;
-	margin-left:50px;
-	margin-right:50px;
-	background:#BDC3C7;
-	-webkit-border-radius:6px;
-	-moz-border-radius:6px;
-	border-radius:0px;
-	border-top:1px solid black;
-}
-
-#reviewsBox {
-	margin:auto;
-	display:inline-block;
-	text-align:center;
-	width:70px;
-	float:left;
-}
-
-#followingBox {
-	margin-left:17px;
-	display:inline-block;
-	text-align:center;
-	width:70px;
-}
-
-#followersBox {
-	margin:auto;
-	display:inline-block;
-	text-align:center;
-	float:right;
-	width:70px;
-}
-
-.statLabel {
-	font-size:18px;
-	font-family: Book Antiqua;
-	text-align:center;
-}
-
-.numberLabel {
-	font-size:14px;
-	text-align:center;
-	font-style:bold;
-	color:#000000;
-	text-decoration:none;
 }
 
 /*ALBUM&ARTISTS*//*ALBUM&ARTISTS*/
@@ -613,49 +543,12 @@ p.copyright {
 
 /*CAN'T FIND HTML FOR THESE*/
 
-#title {
-	color:# ;
-	text-decoration:none;
-	font-weight:bold;
-	padding:0;
-	top:0;
-	margin-top:6px;
-	display:inline;
-	float:left;
-	margin-left:10px;
-	font-size:24px;
-}
 
 
 
 
 
 
-
-#inputForms {
-	left:50%;
-	position:relative;
-}
-
-
-
-#links {
-	left:30%;
-	top:92%;
-	position:absolute;
-}
-
-.link {
-	font-size:16px;
-	display:inline;
-	padding:20px;
-	text-decoration:none;
-	color:#2771AD;
-}
-
-a.link:visited{
-	color:#5B8FBA;
-}
 
 
 
@@ -1546,7 +1439,7 @@ input:focus,textarea:focus {
 	margin-top:5px;
 }
 
-#loginNav ul {
+nav ul {
 	margin: 0;
 	list-style: none;
 	position: relative;
@@ -1561,7 +1454,7 @@ input:focus,textarea:focus {
 	text-align:center;
 }
 
-#loginNav #login-container {
+nav #login-container {
 	float: left;     
 	padding: 3px;
 	margin-right:20px;
@@ -1570,7 +1463,7 @@ input:focus,textarea:focus {
 	-webkit-border-radius: 6px;
 }
 
-#loginNav #signup-container {
+nav #signup-container {
 	float: left;
 	padding: 3px; 
 	border-radius:6px;
@@ -1578,8 +1471,8 @@ input:focus,textarea:focus {
 	-webkit-border-radius: 6px;
 }
 
-#loginNav #login-trigger,
-#loginNav #signup-trigger {
+nav #login-trigger,
+nav #signup-trigger {
 	display: inline-block;
 	*display: inline;
 	*zoom: 1;
@@ -1598,7 +1491,7 @@ input:focus,textarea:focus {
   	font-weight: normal;
 }
 
-#loginNav #me-trigger {
+nav #me-trigger {
 	display: inline-block;
 	*display: inline;
 	*zoom: 1;
@@ -1613,8 +1506,8 @@ input:focus,textarea:focus {
 	border-radius: 3px;
 }
 
-#loginNav #login-content,
-#loginNav #signup-content {
+nav #login-content,
+nav #signup-content {
   display: none;
   position: absolute;
   border: solid 1px black;
@@ -1630,7 +1523,7 @@ input:focus,textarea:focus {
   width: 250px;  
 }
 
-#loginNav #me-content{
+nav #me-content{
 	display: none;
 	position: absolute;
 	border: solid 1px black;
@@ -1646,27 +1539,27 @@ input:focus,textarea:focus {
 	color:#000000;
 }
 
-#loginNav #me-content table {
+nav #me-content table {
 	position:relative;
 	width:100%;
 	border-collapse: collapse
 }
 
-#loginNav #me-content tr {
+nav #me-content tr {
 	height:34px;
 }
 
-#loginNav #me-content td {
+nav #me-content td {
 	position:relative;
 	font-size:16px;
 	font-family: Book Antiqua;
 }
 
-#loginNav #me-content td:hover{
+nav #me-content td:hover{
 	background:#BDC3C7;
 }
 
-#loginNav #me-content a{
+nav #me-content a{
 	float:left;
 	text-decoration:none;
 }
