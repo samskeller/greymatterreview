@@ -103,13 +103,13 @@
 	</head>
 <body>
 	<header>
-		<a class= "logo" href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=50 height=50></a>
+			<a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=35 height=35></a></li>
 			<nav>
 				<ul>
 					<li>
 						<form method="post" action="/reviews">
 						<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
-						<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
+						<button type="submit" id="searchbtn">Search</button>
 						</form>
 					</li>
 					<li>
@@ -146,8 +146,8 @@
 					<th style="cursor:pointer;">{{user.followers}}</th>	
 				</tr>
 			</table>	
-		</section>		
-				<div id="top10container_home">
+		</section>
+		<section class="top-10-home"		
 					<H6>Top 10</H6>
 					<div id=”Tabs”>
 						<ul>
@@ -176,7 +176,6 @@
 					</div>
 					</div> <!– End of Content_Area Div –>
 					</div> <!– End of Tabs Div –>
-				</div>
 		</section>		
 			</div>	
 				<div id="profilefeed">
@@ -202,7 +201,8 @@
 						</div>
 						<br>
 					{% endfor %}
-				</div>
-	</main>			
+				</div>			
+	</main>	
+
 </body>
 </html>

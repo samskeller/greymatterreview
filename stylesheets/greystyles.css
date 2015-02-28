@@ -1,4 +1,4 @@
- html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table {
+ html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table, header {
  	padding:0;
  	border:0;
  	margin:0;
@@ -14,33 +14,60 @@ body {
 
 header {
 	 	position:fixed;
+	 	top:0;
+	 	padding: 5px 0 5px 0;
 	 	background-color: #ECECEC;
 	 	margin:auto;
 	 	width:100%;
 	 	z-index:999;
-	 	padding-top: 5px;
-	 	padding-bottom: -5px;
 	 	font-size:30px;
 	 	border-bottom:2px solid black;
 	 	border-radius:2px;
 	 	box-shadow: 2px 2px 5px;
-	 	opacity:.95;
-	 	transition: opacity 1s ease;
 	 	}
-	 header:hover {
-	 	opacity: 1;
-	 }	
-		 header .logo {
-		 	padding-left:10px;
-		 }	
-		 header nav {
-		 	display:inline;
-		 }
-		 header nav li{
-		 	list-style-type: none;
+		nav {
 		 	float:right;
-		 	padding-right:40px;
 		 }
+		 nav li{
+		 	list-style-type: none;
+		 	display:inline-block;
+		 	position:relative;
+		 	padding-right: 30px;
+		 }
+		 nav li input {
+		    border: 0 none;
+		    font: 14px Garamond,Helvetica,Sans-serif;
+		    color: black;
+		    width: 200px;
+		    height:30px;
+		    padding: 0px 15px 0px 15px;
+		    -webkit-border-radius: 8px;
+		    -moz-border-radius: 8px;
+		    border-radius: 8px;
+		    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+		    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+		    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+		    -webkit-transition: all 0.7s ease 0s;
+		    -moz-transition: all 0.7s ease 0s;
+		    -o-transition: all 0.7s ease 0s;
+		    transition: all 0.7s ease 0s;
+		    }
+
+		nav li input:focus {
+		    width: 350px;
+		    }
+		 nav li button {
+		 	border-radius: 8px;
+		 }
+		 #me-trigger {
+		 	text-decoration: none;
+		 	font-size: 20px;
+		 	padding-top: 5px;
+		 }
+		 #me-trigger:hover {
+		 	color:#550B0B;
+		 }
+
 
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
@@ -289,28 +316,7 @@ p.copyright {
 /*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
 /*HOME PAGE*//*HOME PAGE*//*HOME PAGE*/
 
-.searchinput_home {
-    border: 0 none;
-    font: 14px Garamond,Helvetica,Sans-serif;
-    color: black;
-    width: 200px;
-    height:25px;
-    padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-    }
 
-.searchinput_home:focus {
-    width: 350px;
-    }
 
 /*#searchBar_home {
 	position:absolute;
@@ -339,27 +345,30 @@ p.copyright {
 }*/
 
 main {
-	 	width:1100px;
-	 	height:448px;
+	 	width:1200px;
 	 	margin:auto;
-	 	position:relative;
+	 	border-left:1px solid black;
+	 	border-right:1px solid black;
 	}
 
 .profile {
-		display:inline;
-		width:400px;
-		border:1px black solid;
-	 	background-color:white;
-	 	position:relative;
-	 	border-radius:2px;
-	 	box-shadow: 2px 3px 5px;
+		position:absolute;
+		margin-top:100px;
+		width:390px;
+		height:200px;
+		margin-left:50px;
+		background:#ECECEC;
+	border:2px solid black;
+	border-radius:2px;
+	box-shadow: 2px 2px 5px;
 	}
 
-#top10container_home {
-	width:350px;
-	height:480px;
+.top-10-home {
 	position:absolute;
-	margin-top:50px;
+	width:390px;
+	height:480px;
+	margin-top:310px;
+	margin-left:50px;
 	background:#ECECEC;
 	border:2px solid black;
 	border-radius:2px;
@@ -367,13 +376,12 @@ main {
 }
 
 #profilefeed {
-	position:relative;
+	position: absolute;
 	overflow:auto;
+	width:700px;
+	margin-top:100px;
+	margin-left:450px;
 	float:right;
-	display:inline-block;
-	width:680px;
-	margin-top:20px;
-	margin-bottom:20px;
 	padding:10px;
 	background:#ECECEC;
 	border:2px solid black;
@@ -1439,20 +1447,7 @@ input:focus,textarea:focus {
 	margin-top:5px;
 }
 
-nav ul {
-	margin: 0;
-	list-style: none;
-	position: relative;
-	margin-right:20px;
-	margin-top:5px;
-	float: right;
-	color:#F5F5F5;
-	font-family:Book Antiqua;
-	font-size: 15px;
-	line-height:20px;
-	text-decoration:none;
-	text-align:center;
-}
+
 
 nav #login-container {
 	float: left;     
@@ -1491,20 +1486,7 @@ nav #signup-trigger {
   	font-weight: normal;
 }
 
-nav #me-trigger {
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-	height: 35px;
-	font-size:35px;
-	line-height: 23px;
-	text-decoration:none;
-	padding: 0px;
-	color: #F5F5F5;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
+
 
 nav #login-content,
 nav #signup-content {
@@ -1527,14 +1509,11 @@ nav #me-content{
 	display: none;
 	position: absolute;
 	border: solid 1px black;
-	top: 36px;
-	right: 0;
 	z-index: 999;    
 	background: #F5F5F5;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	right: 0;
 	width: 200px; 
 	color:#000000;
 }
@@ -1543,6 +1522,7 @@ nav #me-content table {
 	position:relative;
 	width:100%;
 	border-collapse: collapse
+	font-size:16px;
 }
 
 nav #me-content tr {
