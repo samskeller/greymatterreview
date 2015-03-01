@@ -103,28 +103,30 @@
 	</head>
 <body>
 	<header>
-			<a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=35 height=35></a></li>
-			<nav>
-				<ul>
-					<li>
-						<form method="post" action="/reviews">
-						<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
-						<button type="submit" id="searchbtn">Search</button>
-						</form>
-					</li>
-					<li>
-						<a id="me-trigger" href="#">{{user.username}}</a>
-						<table id="me-content"> 
-							<tr>
-								<td><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></td>
-							</tr>
-							<tr>
-								<td><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></td>
-							</tr>
-						</table>
-					</li>
-				</ul>
-			</nav>		
+		<ul class="left">	
+			<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=50 height=50></a></li>
+			<li><p>grey matter</p></li>
+			<li>
+				<form method="post" action="/reviews">
+				<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
+				<button type="submit">Search</button>
+				</form>
+			</li>
+		</ul>	
+		<ul class="right">
+			<li><button type="submit">Review</button></li>
+			<li>
+				<a id="me-trigger" href="#">{{user.username}}</a>
+				<table id="me-content"> 
+					<tr>
+						<td><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></td>
+					</tr>
+					<tr>
+						<td><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></td>
+					</tr>
+				</table>
+			</li>
+		</ul>	
 	</header>
 		
 	<main>
