@@ -2,7 +2,8 @@
 <html>
         <head>
                 <title>Grey Matter</title>
-                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">
                 <!--<link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
 				<script type="text/javascript" src="../scripts/jquery-1.9.1.min.js"></script>
@@ -109,12 +110,12 @@
 			<li>
 				<form method="post" action="/reviews">
 				<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
-				<button type="submit">Search</button>
+				<button id="button" type="submit"><i class="fa fa-search"></i></button>
 				</form>
 			</li>
 		</ul>	
 		<ul class="right">
-			<li><button type="submit">Review</button></li>
+			<li><button id="button" type="submit"><i class="fa fa-pencil"></i>Review</button></li>
 			<li>
 				<a id="me-trigger" href="#">{{user.username}}</a>
 				<table id="me-content"> 
