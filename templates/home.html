@@ -32,13 +32,13 @@
 			$('html').click(function(event) {
 				// Hide menus
 				var meTrigger = $("#me-trigger");
-				//meTrigger.next('#me-content').toggle(false);
-				meTrigger.next('#me-content').slideUp(100);
+				//meTrigger.next('.dropdown').toggle(false);
+				meTrigger.next('.dropdown').slideUp(100);
 				meTrigger.removeClass('active');
 			});
 			
 			// If we clicked on the profile box, though, don't do the code from above
-			$("#me-content").click(function(event){
+			$(".dropdown").click(function(event){
 				event.stopPropagation();
 			});
 			
@@ -47,12 +47,12 @@
 				event.stopPropagation();
 				var signupTrigger = $("#signup-trigger");
 				if ($(this).hasClass('active')) {
-					//$(this).next('#me-content').toggle(false);
-					$(this).next('#me-content').slideUp(100);
+					//$(this).next('.dropdown').toggle(false);
+					$(this).next('.dropdown').slideUp(100);
 					$(this).toggleClass('active');
 				} else {
-					//$(this).next('#me-content').toggle(true);
-					$(this).next('#me-content').slideDown(100);
+					//$(this).next('.dropdown').toggle(true);
+					$(this).next('.dropdown').slideDown(100);
 					$(this).addClass('active');
 				}
 			});
@@ -105,28 +105,25 @@
 <body>
 	<header>
 		<ul class="left">	
-			<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=50 height=50></a></li>
+			<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
 			<li><p>grey matter</p></li>
 			<li>
 				<form method="post" action="/reviews">
-				<input type="text" class="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
+				<input type="text" placeholder="Enter artist or album name" name="searchinput">
 				<button id="button" type="submit"><i class="fa fa-search"></i></button>
 				</form>
 			</li>
 		</ul>	
 		<ul class="right">
-			<li><button id="button" type="submit"><i class="fa fa-pencil"></i>Review</button></li>
+			
 			<li>
-				<a id="me-trigger" href="#">{{user.username}}</a>
-				<table id="me-content"> 
-					<tr>
-						<td><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></td>
-					</tr>
-					<tr>
-						<td><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></td>
-					</tr>
-				</table>
+				<a id="me-trigger" href="#">a</a><!--eventually use profile pic here-->
+				<ul class="dropdown"> 
+					<li><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></li>
+					<li><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></li>
+				</ul>
 			</li>
+			<li><button id="button" type="submit"><i class="fa fa-pencil"></i> Review</button></li>
 		</ul>	
 	</header>
 		
