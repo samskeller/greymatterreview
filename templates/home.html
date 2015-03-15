@@ -115,9 +115,7 @@
 			</li>
 		</ul>	
 		<ul class="right">
-			
-			<li>
-				<a id="me-trigger" href="#">a</a><!--eventually use profile pic here-->
+			<li><a id="me-trigger" href="#"><img src="#"></a><!--eventually use profile pic here-->
 				<ul class="dropdown"> 
 					<li><a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a></li>
 					<li><a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a></li>
@@ -128,11 +126,58 @@
 	</header>
 		
 	<main>
-		<section class="profile">	
+		<section class="content-left">
+				<div class="profile">
+					<img src="/stylesheets/profile-pic.jpg" alt="Unknown Person" width="100" height="100">
+					<h3>{{user.username}} - founder</h3>
+					<table>
+						<tr class="table-header">
+							<th>Reviews</th>
+							<th>Following</th>
+							<th>Followers</th>
+						</tr>
+						<tr class="table-numbers">
+							<th>{{user.numberOfReviews}}</th>
+							<th>{{user.following}}</th>	
+							<th>{{user.followers}}</th>	
+						</tr>
+					</table>
+				</div>	
+				<ul class="top-10">
+					<h3>Top 10</h3>
+				</ul>
+			</section>
+			<section class="content-right">
+				<h3>global feed | my network</h3>
+				<div class="profilefeed">
+					{% if reviews|length == 0: %}
+						<p>You've never made a review! Search for an album to review by artist or album title.</p>
+					{% endif %}
+					{% for review in reviews: %}
+						<div class="profileReview">
+						{% if not review.rating: %}
+							<span id="reviewRating">5 / 10</span>
+						{% else: %}
+							<span id="reviewRating">{{review.rating}} / 10</span>
+						{% endif %}
+						<br>
+						Artist: <a href="/artists/{{review.artist|escape}}">{{review.artist}}</a>
+						<span id="reviewDate">{{review.reviewDate.strftime('%a %B %d, %Y %I:%M%p')}}</span>
+						<br>
+						Album: <a href="/albums/{{review.reviewMBID}}">{{review.album}}</a>
+						<br>
+						Review: {{review.reviewText}}
+						</div>
+						<br>
+					{% endfor %}
+				</div>	
+			</section>
+
+		<!--<section class="profile">	
 			<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
 			<ul class="name-rank">
 				<li><h3>{{user.username}}</h3></li>
-				<li><h6>Guru</h6></li> <!--placeholder for our ranking system-->
+				<li><h6>Guru</h6></li> 
 			</ul>		
 			<table class="stats">
 				<tr>
@@ -161,8 +206,7 @@
 						<div id="Day">
 						<p>Day</p>
 					</div>
-					<div id="Week" style="display: none;"> <!--We set its display as none because we don’t want to make this
-					tab visible by default. The only visible/active tab should be Tab 1 until the visitor clicks on Tab 2. -->
+					<div id="Week" style="display: none;"> 
 						<p>Week</p>
 					</div>
 					<div id="Month" style="display: none;">
@@ -177,8 +221,7 @@
 					</div> <!– End of Content_Area Div –>
 					</div> <!– End of Tabs Div –>
 		</section>		
-			</div>	
-				<div id="profilefeed">
+		<section class="profilefeed">
 					<h4 id="myactivitylabel">My Activity</h4>
 					{% if reviews|length == 0: %}
 						<p>You've never made a review! Search for an album to review by artist or album title</p>
@@ -201,7 +244,7 @@
 						</div>
 						<br>
 					{% endfor %}
-				</div>			
+			</section>-->		
 	</main>	
 
 </body>

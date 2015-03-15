@@ -1,4 +1,4 @@
- html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table, header {
+ html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table, header, a {
  	padding:0;
  	border:0;
  	margin:0;
@@ -89,10 +89,8 @@ header {
 			}
 
 			.right li a {
-				margin: 0 auto;
-				border:1px solid #a7a7a7;
-				width:32px;
-		    	height:32px;
+				margin-right:15px;
+				border: 1px solid #a7a7a7;
 			}
 
 			.right li button {
@@ -420,27 +418,122 @@ p.copyright {
 main {
 	 	width:1200px;
 	 	margin:auto;
+	 	margin-top:100px;
+	 }
+		 .content-left {
+		 	display:inline;
+		 	float:left;
+		 	width:340px;
+		 	border:1px black solid;
+	 		background-color:white;
+	 		border-radius:2px;
+	 		box-shadow: 2px 3px 5px;
+		 }
+			 .content-left h3 {
+			 	text-align:center;
+			 	padding:10px 0 10px 0;
+			 	font-size: 18px;
+			 	border-top:1px solid black;
+			 	letter-spacing: 1px;
+			 }
+			 
+			 .profile {
+			 	list-style-type: none;
+			 	height:110px;
+			 	background-color: #ECECEC;
+			 }
+
+			 	.profile img {
+			 		float:left;
+			 		padding:5px 0 5px 5px;
+			 	}
+
+			 	.profile h3 {
+			 		text-align:center;
+				 	padding:30px 0 20px 0;
+				 	font-size: 20px;
+				 	letter-spacing: 1px;
+			 	}
+
+			 	.profile table {
+			 		margin:auto;
+			 	}
+			 		
+			 		.profile table th {
+			 			font-weight: 100;
+			 			padding:0 12px 0 12px;
+			 		}
+
+			 		.table-header {
+			 			font-size:12px;
+			 		}
+			 		.table-numbers {
+			 			font-size:20px;
+			 			cursor: pointer;
+			 			color: #6DACFF;
+			 		}
+
+			 .top-10 {
+			 	list-style-type: none;
+			 	height:275px;
+			 }
+
+			 	.top-10 h3 {
+			 		text-align:center;
+				 	padding:10px 0 10px 0;
+				 	font-size: 18px;
+				 	border-top:1px solid black;
+				 	letter-spacing: 1px;
+			 	}
+			 
+		 .content-right {
+		 	display:inline;
+		 	float:right;
+		 	width:849px;
+		 	border:1px black solid;
+	 		background-color:white;
+	 		border-radius:2px;
+	 		box-shadow: 2px 3px 5px;
+		 	height:500px;
+		 	overflow-y:scroll;
+		 }
+
+		 	.content-right h3 {
+		 		padding:8px 0 8px 10px;
+			 	font-size: 20px;
+			 	border-bottom:1px solid black;
+			 	border-top:1px solid black;
+		 	}
+
+		 	.content-right p {
+		 		padding:10px;
+		 	}
+
+
+/*main {
+	 	width:1400px;
+	 	margin:auto;
 	 	border-left:1px solid black;
 	 	border-right:1px solid black;
 	}
 
 .profile {
-		position:absolute;
-		margin-top:100px;
-		width:390px;
+		position:relative;
+		margin-top:70px;
+		width:300px;
 		height:200px;
 		margin-left:50px;
 		background:#ECECEC;
-	border:2px solid black;
-	border-radius:2px;
-	box-shadow: 2px 2px 5px;
-	}
+		border:2px solid black;
+		border-radius:2px;
+		box-shadow: 2px 2px 5px;
+		}
 
 .top-10-home {
-	position:absolute;
+	position:relative;
 	width:390px;
 	height:480px;
-	margin-top:310px;
+	margin-top:280px;
 	margin-left:50px;
 	background:#ECECEC;
 	border:2px solid black;
@@ -448,11 +541,11 @@ main {
 	box-shadow: 2px 2px 5px;
 }
 
-#profilefeed {
-	position: absolute;
+.profilefeed {
+	position:relative;
 	overflow:auto;
-	width:700px;
-	margin-top:100px;
+	width:900px;
+	margin-top:70px;
 	margin-left:450px;
 	float:right;
 	padding:10px;
@@ -462,10 +555,6 @@ main {
 	box-shadow: 2px 2px 5px;
 }
 
-#myactivitylabel {
-	display:block;
-	margin-top:5px;	
-}
 
 /*USER*//*USER*//*USER*/
 /*USER*//*USER*//*USER*/
