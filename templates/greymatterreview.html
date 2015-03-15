@@ -5,7 +5,7 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Grey Matter</title>
 		<link href="/stylesheets/greystyles.css"/ rel="stylesheet">
-		<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+		<!--<link href="/stylesheets/bootstrap.css" rel="stylesheet">-->
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>	
 		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
@@ -100,34 +100,41 @@
 		</script>
 <body>
 	
-	<!-- Fixed Navbar -->
-    <nav class="col-md-12 col-lg-12 navbar navbar-default navbar-fixed-top" role="navigation">
-   		<div class="navbar-header">
-      		<a class="navbar-brand" style="font-family:cacavia01; font-size:30px; color:#700000; border-right:1px solid grey;">GREY MATTER</a>
-      	</div>	
-      	<div>	
-      		<a class= "pull-left" href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Unknown Person" width=50 height=50></a>	
-      	</div>
-   		<div>
-   			<form class="navbar-form pull-right" role="search">
-         		<button class="btn btn-default" data-toggle="modal" data-target="#signUpForm">Sign up</button>   
-	 		</form>	
-   			<form class="navbar-form pull-right" role="search">
-         		<button type="submit" class="btn btn-primary">Login</button>   
-	 		</form>	
-      		<form class="navbar-form pull-right" role="search">
-         		<div class="form-group">
-            		<input type="email" class="form-control" placeholder="Email address">
-         		</div>
-         		<div class="form-group">
-            		<input type="password" class="form-control" placeholder="Password">
-         		</div>
-         	</form>			 
-   		</div>
-	</nav>
-	<!-- /.Fixed Navbar -->
-	
-	<!-- Modal -->
+    <header>
+		<ul class="landing-page-left">	
+			<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
+			<li><p>grey matter</p></li>
+		</ul>	
+		<ul class="landing-page-right">
+			<li>
+				<form method="post" action="/signup">
+				<button class="sign-up-button" type="submit" value="Signup">Sign up</button>
+				</form>
+			</li>
+			<li>
+				<ul>
+					<form method="post" action="/reviews">
+						<li><button id="button" type="submit" value="Login">Login</li>
+						<li><input id="input" type="password" name="password" placeholder="Password" required></li>
+						<li><input id="input" type="post" name="username" placeholder="Username" required></li>      
+					</form>
+				</ul>			
+			</li>
+		</ul>	
+	</header>
+
+    <section class="landing-page">
+        <img src="/stylesheets/greymatterbiglogo2.png" alt="Unknown Person" width=522 height=212></a>
+        <form method="post" action="/reviews">
+			<input id="input" type="text" placeholder="Enter artist or album name" name="searchinput">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+    </section>
+   
+
+
+
+<!-- Modal
 		<div class="modal fade" id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="signUpFormLabel" aria-hidden="true">
    			<div class="modal-dialog">
       			<div class="modal-content">
@@ -152,7 +159,7 @@
             			</div>
             			<div class="form-group">
               				<button class="btn btn-primary btn-lg btn-block">Sign Up</button>
-              				<!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
+              				<!-<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
             			</div>
           			</form>
          		</div>
@@ -165,602 +172,17 @@
                            		<i class="btn fa fa-google-plus fa-3x"></i>
                         	</div>
                         </div>
-            		<!--<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>-->
+            		<!<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
          			</div>
-      			</div><!-- /.modal-content -->
-   			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	<!-- /.Modal -->
+      			</div><!/.modal-content
+   			</div>
+		</div>
+	/.Modal -->
+
 	
-	<!--Logo/Search Bar-->
-    <div class="intro-header">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo">
-                        <img src="/stylesheets/greymatterbiglogo2.png" alt="Unknown Person" width=522 height=212></a>
-                        
-                        <div class="row">
-           					<div id="custom-search-input">
-                        		<div class="input-group col-md-8" style="float:none; margin:auto">
-                            		<input type="search" class="search-query form-control" placeholder="Search by artist or album title..." />
-                            	<span class="input-group-btn">
-                                	<button class="btn btn-danger" type="button">
-                                    	<span class=" glyphicon glyphicon-search"></span>
-                       		     	</button>
-                            	</span>
-                        		</div>
-                    		</div>
-						</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        
-    </div>
-    <!-- /.Logo/Search Bar -->
-
-	<!-- Content A -->
-	<div class="content-section-a">
-		<div class="container-fluid">
-			<div class="row ">
-				<!-- Top 10 -->
-				<div class="top-10">
-					<div class="col-sm-4">
-    	        		<div class="panel panel-primary">
-        	        		<div class="panel-heading">
-                    		<h3 class="panel-title">Top 10</h3>
-                    		<span class="pull-right">
-                        		<!-- Tabs -->
-                        		<ul class="nav panel-tabs">
-		                            <li class="active"><a href="#tab1" data-toggle="tab">Day</a></li>
-        		                    <li><a href="#tab2" data-toggle="tab">Week</a></li>
-                		            <li><a href="#tab3" data-toggle="tab">Month</a></li>
-                        		    <li><a href="#tab4" data-toggle="tab">Year</a></li>
-		                            <li><a href="#tab5" data-toggle="tab">Ever</a></li>
-        		                </ul>
-                		    </span>
-		                </div>
-        			        <div class="panel-body">
-                	    		<div class="tab-content">
-		                        <div class="tab-pane active" id="tab1">
-                        	<div><table class="table table-striped">
-								<tbody>
-					  				<tr>
-										<td>1</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-					  				<tr>
-										<td>2</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								 	</tr>
-							  		<tr>
-										<td>4</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								  	</tr>
-							  		<tr>
-										<td>5</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-							  		<tr>
-										<td>6</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-					  				<tr>
-										<td>7</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								  	<tr>
-										<td>8</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>9</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>10</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								</tbody>
-						  	</table></div>
-                        </div>
-        		                <div class="tab-pane" id="tab2">
-                        	<table class="table table-striped">
-								<tbody>
-					  				<tr>
-										<td>1</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-					  				<tr>
-										<td>2</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								 	</tr>
-							  		<tr>
-										<td>4</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								  	</tr>
-							  		<tr>
-										<td>5</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-							  		<tr>
-										<td>6</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-					  				<tr>
-										<td>7</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								  	<tr>
-										<td>8</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>9</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>10</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								</tbody>
-						  	</table>
-						</div>
-                		        <div class="tab-pane" id="tab3">
-                        	<table class="table table-striped">
-								<tbody>
-					  				<tr>
-										<td>1</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-					  				<tr>
-										<td>2</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								 	</tr>
-							  		<tr>
-										<td>4</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								  	</tr>
-							  		<tr>
-										<td>5</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-							  		<tr>
-										<td>6</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-					  				<tr>
-										<td>7</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								  	<tr>
-										<td>8</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>9</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>10</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								</tbody>
-						  	</table></div>
-		                        <div class="tab-pane" id="tab4">
-                        	<table class="table table-striped">
-								<tbody>
-					  				<tr>
-										<td>1</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-					  				<tr>
-										<td>2</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								 	</tr>
-							  		<tr>
-										<td>4</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								  	</tr>
-							  		<tr>
-										<td>5</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-							  		<tr>
-										<td>6</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-					  				<tr>
-										<td>7</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								  	<tr>
-										<td>8</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>9</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>10</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								</tbody>
-						  	</table></div>
-								<div class="tab-pane" id="tab5">
-							<table class="table table-striped">
-								<tbody>
-					  				<tr>
-										<td>1</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-					  				<tr>
-										<td>2</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								 	</tr>
-							  		<tr>
-										<td>4</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-								  	</tr>
-							  		<tr>
-										<td>5</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-							  		<tr>
-										<td>6</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-							  		</tr>
-					  				<tr>
-										<td>7</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								  	<tr>
-										<td>8</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>9</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-							  		<tr>
-										<td>10</td>
-										<td>
-											<div class="media"><a class="pull-left" href="#">
-    										<img class="media-object" src="..." alt="..."></a>
-  											<div class="media-body">
-    										<h4 class="media-heading">Artist - Album</h4>
-    										</div> </div>
-										</td>
-					  				</tr>
-								</tbody>
-						  	</table></div>	
-		                    </div>
-        		    	    </div>
-			            </div>
-			        </div>
-				</div>				        		      
-  				<!-- /.Top 10 -->
+	
 		
-				<!-- Recent Reviews -->
+				<!-- Recent Reviews
 				<div class="recent-reviews">
 			<div class="col-sm-8">
 				<div class="panel panel-primary">
@@ -782,7 +204,7 @@
 											<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 											{% endif %}
 									</ol>
-									<!-- Carousel items -->
+
 									<div class="carousel-inner">
 									{% if reviews|length > 0 %}
 										<div class="item active">
@@ -821,7 +243,7 @@
 										</div>
 										{% endif %}
 									</div>
-									<!-- Carousel Nav -->
+
 									<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 										<span class="glyphicon glyphicon-chevron-left"></span>
 									</a>
@@ -835,13 +257,9 @@
 				</div>
 			</div>
 		</div>
-				<!-- /.Recent Reviews -->
-			</div>
-		</div>
-	</div>
-	<!-- /.Content A -->
+				Recent Reviews -->
 	
-	<!-- Banner -->	
+	<!-- Banner	
 	<div class="banner">
         <div class="container">
             <div class="row">
@@ -851,9 +269,9 @@
             </div>
         </div>
     </div>
-    <!-- /.banner -->
+    /.banner -->
 
-    <!-- Footer -->
+    <!-- Footer
     <footer>
         <div class="container">
             <div class="row">
@@ -880,7 +298,7 @@
             </div>
         </div>
     </footer>
-	<!-- /.Footer -->
+	/.Footer -->
     
     <!--<div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">

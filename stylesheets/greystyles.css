@@ -1,4 +1,4 @@
- html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table, header, a {
+ html, body, h1, h2, h3, h4, p, div, ul, ol, li, figure, img, section, table, header, a, form {
  	padding:0;
  	border:0;
  	margin:0;
@@ -8,7 +8,8 @@
 
 body {
 	background-color:#ECECEC;
-	background-image:url("/stylesheets/grey.jpg");
+	background: url("/stylesheets/bostoncalling.jpg") no-repeat center center;
+    background-size: cover;
  	margin-bottom: 15px;
 }
 
@@ -45,6 +46,26 @@ header {
 			#button:active{
 				background:-webkit-linear-gradient(top, #d1d1d1 0%,#a7a7a7 100%);
 			}
+
+	#input {
+	    border: 0 none;
+	    font: 16px Garamond,Helvetica,Sans-serif;
+	    color: black;
+	    height:37px;
+	    padding: 0px 15px 0px 15px;
+	    -webkit-border-radius: 3px;
+	    -moz-border-radius: 3px;
+	    border-radius: 3px;
+	    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+	    }
+
+		#input:focus {
+		    outline: none;
+    		border-color: #6DACFF;
+    		box-shadow: 0 0 10px #6DACFF;
+		    }
 		
 		.left li {
  			float:left;
@@ -58,19 +79,8 @@ header {
 				}
 		
 			.left li input {
-			    border: 0 none;
-			    font: 16px Garamond,Helvetica,Sans-serif;
-			    color: black;
 			    width: 350px;
-			    height:37px;
-			    padding: 0px 15px 0px 15px;
 			    margin: 4px 2px 0 20px;
-			    -webkit-border-radius: 8px;
-			    -moz-border-radius: 8px;
-			    border-radius: 8px;
-			    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-			    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-			    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
 			    }
 
 				.left li input:focus {
@@ -134,120 +144,78 @@ header {
 					color:black;
 				}
 
-.intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+.landing-page {
+    padding-top: 50px;
     padding-bottom: 50px;
     text-align: center;
     background: url("/stylesheets/bostoncalling.jpg") no-repeat center center;
     background-size: cover;
 }
 
-.logo {
-    position: relative;
-    padding-top: 15%;
-    padding-bottom: 18%;
-}
+	.landing-page-left li {
+ 			float:left;
+			}
 
-.logo h1 {
-	color:#DBDBDB;
-}
+		.landing-page-left li p {
+			font-family:cacavia01;
+			color:#700000;
+			font-size:36px;
+			padding-top: 2px;
+			}
 
-.logo h3 {
-	color:#DBDBDB;
-}
+	.landing-page-right li {
+			float:right;
+			padding:5px;
+			}
 
-.content-section-a {
-	position:relative;
-	display:inline;
-	padding:50px;
-}
+		.landing-page-right li button {
+			width:70px;
+	    	height:32px;
+	    	margin-right: 10px;
+	    	margin-left: 3px;
+		}
 
-/*top-10*/
+		.sign-up-button {
+			background: #700000;
+			border-radius: 3px;
+			display: inline-block;
+			color:#fff;
+			text-decoration: none;
+			border:1px solid #a7a7a7;
+			box-shadow:0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
+				}
+				.sign-up-button:active{
+					background:-webkit-linear-gradient(top, #700000 0%,#a7a7a7 100%);
+				}
 
-.top-10 {
+	.landing-page img {
+	    position: relative;
+	    padding-top: 10%;
+	}
 
-}
+	.landing-page form {
+		margin-right: 20px;
+	}
 
-.panel-tabs {
-    position: relative;
-    bottom: 30px;
-    border-bottom: 1px solid transparent;
-}
+	.landing-page input {
+			    width: 400px;
+			    padding: 0px 15px 0px 15px;
+			    margin: auto;
+			    margin-right: 5px;
+			    }
 
-.panel-tabs > li {
-    float: left;
-    margin-bottom: -1px;
-}
+		.landing-page input:focus {
+		    outline: none;
+    		border-color: #6DACFF;
+    		box-shadow: 0 0 10px #6DACFF;
+		    }
 
-.panel-tabs > li > a {
-    margin-right: 2px;
-    margin-top: 4px;
-    line-height: .85;
-    border: 1px solid transparent;
-    border-radius: 4px 4px 0 0;
-    color: #ffffff;
-}
+	.landing-page button {
+		width:35px;
+		height:35px;
+		margin:auto;
+	}
 
-.panel-tabs > li > a:hover {
-    border-color: transparent;
-    color: #DBDBDB;
-    background-color: transparent;
-}
-
-.panel-tabs > li.active > a,
-.panel-tabs > li.active > a:hover,
-.panel-tabs > li.active > a:focus {
-    color: #fff;
-    cursor: default;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    background-color: rgba(255,255,255, .23);
-    border-bottom-color: transparent;
-}
-
-.recent-reviews {
-
-}
-
-#custom-search-input {
-        margin:0;
-        margin-top: 10px;
-        padding: 0;
-    }
- 
-    #custom-search-input .search-query {
-        padding-right: 3px;
-        padding-right: 4px \9;
-        padding-left: 3px;
-        padding-left: 4px \9;
-        /* IE7-8 doesn't have border-radius, so don't indent the padding */
- 
-        margin-bottom: 0;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-    }
- 
-    #custom-search-input button {
-        border: 0;
-        background: none;
-        /** belows styles are working good */
-        padding: 2px 5px;
-        margin-top: 2px;
-        position: relative;
-        left:-28px;
-        /* IE7-8 doesn't have border-radius, so don't indent the padding */
-        margin-bottom: 0;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        color:#D9230F;
-    }
- 
-    .search-query:focus + button {
-        z-index: 3;   
-    }
 
 .banner {
     padding: 100px 0;
