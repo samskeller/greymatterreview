@@ -21,8 +21,12 @@ header {
 	 	z-index:999;
 	 	font-size:30px;
 	 	border-bottom:2px solid black;
-	 	border-radius:2px;
 	 	box-shadow: 2px 2px 5px;
+	 	}
+
+	 	header li {
+	 		display:inline;
+	 		margin:-5px -12px -8px 3px;
 	 	}
 	 
 	 #button {
@@ -43,9 +47,7 @@ header {
 			}
 		
 		.left li {
-			display:inline;
  			float:left;
- 			margin:-5px -12px -8px 3px;
 			}
 
 			.left li p {
@@ -84,17 +86,17 @@ header {
 		    }
 
 		.right li {
-			display:inline;
 			float:right;
+			padding:5px;
 			}
 
-			.right li a {
-				margin-right:15px;
-				border: 1px solid #a7a7a7;
+			.right li img {
+				padding-top:3px;
+				margin:0 15px 0 8px;
+				cursor:pointer;
 			}
 
 			.right li button {
-				margin-right: 8px;
 				width:70px;
 		    	height:32px;
 			}
@@ -102,43 +104,35 @@ header {
 		 .dropdown {
 			display: none;
 			position: absolute;
-			border: solid 1px black;
 			z-index: 999;    
-			background: #F5F5F5;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
-			border-radius: 3px;
-			width: 100px; 
+			background: #ECECEC;
+			width: 120px; 
+			right:0px;
+			top:50px;
 			color:#000000;
+			border-left:1px solid black;
+			border-bottom:1px solid black;
 		}
 
-		.dropdown ul {
-			position:relative;
-			width:100%;
-			border-collapse: collapse;
-			font-size:16px;
-		}
+			.dropdown li {
+				font-size:14px;
+				display:block;
+				line-height: 28px;
+				float:none;
+				text-align: center;
+				outline:none;
+				margin:0;
+				border-top: 1px solid #a7a7a7;
+			}
 
-		#me-content tr {
-			height:34px;
-		}
+			.dropdown li:hover {
+				background-color:#6DACFF; 
+			}
 
-		#me-content td {
-			position:relative;
-			font-size:16px;
-			font-family: Book Antiqua;
-		}
-
-		#me-content td:hover{
-			background:#BDC3C7;
-		}
-
-		#me-content a{
-			float:left;
-			text-decoration:none;
-		}
-
-
+				.dropdown li a {
+					text-decoration: none;
+					color:black;
+				}
 
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
@@ -475,7 +469,7 @@ main {
 
 			 .top-10 {
 			 	list-style-type: none;
-			 	height:275px;
+			 	height:389px;
 			 }
 
 			 	.top-10 h3 {
@@ -503,10 +497,11 @@ main {
 			 	font-size: 20px;
 			 	border-bottom:1px solid black;
 			 	border-top:1px solid black;
+			 	letter-spacing: 1px;
 		 	}
 
 		 	.content-right p {
-		 		padding:10px;
+		 		padding:15px;
 		 	}
 
 
