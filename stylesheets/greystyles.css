@@ -6,15 +6,15 @@
  	font-size:100%;
  	}
 
-body {
+html {
 	background-color:#ECECEC;
 	background: url("/stylesheets/bostoncalling.jpg") no-repeat center center;
     background-size: cover;
- 	margin-bottom: 15px;
+ 	margin-top: 30px;
  	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 header {
