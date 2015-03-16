@@ -11,6 +11,10 @@ body {
 	background: url("/stylesheets/bostoncalling.jpg") no-repeat center center;
     background-size: cover;
  	margin-bottom: 15px;
+ 	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 header {
