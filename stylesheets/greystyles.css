@@ -220,65 +220,6 @@ header {
 		margin:auto;
 	}
 
-
-.banner {
-    padding: 100px 0;
-    color: #f8f8f8;
-    background: url(/stylesheets/guitar.jpg) no-repeat center center;
-    background-size: cover;
-}
-
-	.banner h2 {
-	    margin: 0;
-	    color:white;
-	    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-	    font-size: 3em;
-	}
-
-.banner ul {
-    margin-bottom: 0;
-}
-
-@media(max-width:1199px) {
-    ul.banner-social-buttons {
-        float: left;
-        margin-top: 15px;
-    }
-}
-
-@media(max-width:767px) {
-    .banner h2 {
-        margin: 0;
-        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-        font-size: 3em;
-    }
-
-    ul.banner-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
-    }
-
-    ul.banner-social-buttons > li:last-child {
-        margin-bottom: 0;
-    }
-}
-
-footer {
-    padding: 50px 0;
-    text-align: center;
-}
-
-p.copyright {
-    margin: 15px 0 0;
-}
-
-
-
-
-
-
-
 #top10container {
 	border-radius:6px;
 	width:550px;
@@ -476,6 +417,83 @@ main {
 		 		padding:15px;
 		 	}
 
+	 	.content-left-search {
+		 	display:inline;
+		 	float:left;
+		 	width:593px;
+		 	height:500px;
+		 	border:1px black solid;
+	 		background-color:white;
+	 		border-radius:2px;
+	 		box-shadow: 2px 3px 5px;
+	 		overflow-y:scroll;
+		 }
+
+		 .content-left-search h3, .content-right-search h3 {
+			 	text-align:center;
+			 	padding:10px 0 10px 0;
+			 	font-size: 22px;
+			 	border-bottom:1px solid black;
+			 	border-top:1px solid black;
+			 	letter-spacing: 3px;
+			 }
+
+		 	.fixed-header {
+		 	width:593px;
+			position:fixed;
+			z-index: 999;
+			background-color:white;
+		 }
+		 	
+			.search-list {
+
+			}
+			 
+				.search-list ul {
+				  list-style-type: none;
+				  width: 100%;
+				}
+
+				.search-list li {
+				  overflow: auto;
+				}
+
+					.search-list li img {
+					  float: left;
+					  margin: 55px 25px 10px 10px;
+					  height:auto;
+					  width:150px;
+					}
+				 
+					.search-list li:hover {
+					  background: #eee;
+					}
+
+					.search-list h4 {
+						margin-top:120px;
+						margin-left: 100px;
+						z-index: 999;
+						font-family: Garamond;
+						list-style-type: none;
+						text-decoration: none;
+						font-size: 24px;
+					}
+
+					.search-list li a:hover {
+						color:black;
+					}
+
+		 .content-right-search {
+		 	display:inline;
+		 	float:right;
+		 	width:593px;
+		 	height:500px;
+		 	border:1px black solid;
+	 		background-color:white;
+	 		border-radius:2px;
+	 		box-shadow: 2px 3px 5px;
+		 	overflow-y:scroll;
+		 }
 
 /*main {
 	 	width:1400px;
@@ -558,57 +576,6 @@ main {
 }
 
 
-/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
-/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
-/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
-/*UNIVERSAL*//*UNIVERSAL*//*UNIVERSAL*/
-
-/*#top {
-	position:fixed;
-	top:0;
-	left:0;
-	display:block;
-	margin:0 auto;
-	text-align:center;
-	width:100%;
-	background-color:#5B8FBA;
-	border-bottom:2px solid #6A737A;
-	height:45px;
-	z-index:100;
-}
-
-#toplogo {
-	display:inline;
-	padding-left:10px;
-	padding-right:10px;
-	float:left;
-}*/
-
-#description {
-	left:20px;
-	line-height:40px;
-	width:220px;
-	top:15px;
-	height:90px;
-	padding-bottom:10px;
-	font-family: Book Antiqua;
-	position:relative;
-	display:inline-block;
-	text-align:center;
-	border-right:1px solid #000000;
-	letter-spacing: 1px;
-}
-
-#website_title {
-	font-size:50px; 
-	line-height:50px;
-	font-family: blackout;
-	color:#700000;
-	position:relative:
-	left:250px;
-	width:600px;
-	cursor:pointer;
-}
 
 
 /*TABS*//*TABS*//*TABS*/
@@ -710,13 +677,6 @@ main {
 	float:left;
 	margin-left:20px;
 }
-
-
-
-#mission_content {
-	font-size:28px;
-}???????
-
 
 
 #signin {
@@ -1050,11 +1010,6 @@ p {
 	background-color:#AB3030;
 }
 
-#artistlisting {
-	text-decoration:none;
-	list-style-type: none;
-	cursor:pointer;
-}
 
 .searchresult {
 	border:1px solid #000000;
@@ -1328,55 +1283,7 @@ tr.albumListEntry:hover {
 	text-decoration:none;
 	margin-left:10px;
 }
-
-#artistSearchResults {
-	width:525px;
-	margin-left:50px;
-	display:inline-block;
-	vertical-align:top;
-	background:#BDC3C7;
-	height:600px;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	margin-bottom:20px;
-}
-
-#albumSearchResults {
-	width:525px;
-	margin-left:50px;
-	display:inline-block;
-	vertical-align:top;
-	background:#BDC3C7;
-	height:600px;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	margin-bottom:20px;
-}
-
-#artistlisting {
-	margin-left:30px;
-	font-size:32px;
-	line-height:32px;
-	color:#black;
-}
-
-#albumListing {
-	margin:auto;
-	color:black;
-	border:1px solid #000000;
-	width:375px;
-	padding:0px;
-	-moz-border-radius: 13px;
-	-webkit-border-radius: 13px;
-	border-radius: 13px;
-	background: #F5F5F5;*/
-}
-
-#albumListing ul {
-	width:375px;
-}	
+	
 
 #albumListing ul li {
 	list-style-type:none;

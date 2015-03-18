@@ -2,9 +2,8 @@
 <html>
         <head>
                 <title>Grey Matter</title>
-                <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
-                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
-                <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+                <link rel="stylesheet" href="/stylesheets/greystyles.css"/>
+                <link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">
                 <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
                 <script>
                 
@@ -87,114 +86,76 @@
 		  		});
 		  		</script>
         </head>
-<body id="homebody">
-	<div id="top">
-		<div id="logoHolder">
-			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
-		</div>
-		<nav id="loginNav">
-			<ul>
-				{% if user: %}
-				<li id="me-container">
-					<a id="me-trigger" href="#">
-						{{user.username}}
-					</a>
-					<div id="me-content">
-						<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
-						<span id="profileDropdownUsername">{{user.username}}</span>
-						<br>
-						<table>
-							<tr>
-								<td>
-									<a href="/home" style="color:#700000;margin-left:65px;">Profile<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</li>
-		        {% else %}
-				<li id="login-container">
-					<a id="login-trigger" href="#">
-						Log in
-					</a>
-					<div id="login-content">
-						<form method="post" action="/">
-							<fieldset id="inputs">
-								<input id="login_username" name="username" placeholder="Username" required>   
-								<input id="login_password" type="password" name="password" placeholder="Password" required>
-							</fieldset>
-							<fieldset id="actions">
-								<button class="btn btn-wide btn-info mrm" type="submit">Log In</button>
-								<input name="loginbutton" type="hidden" value="login"/>
-							</fieldset>
+		<body>
+		{% if user: %}
+			<header>
+				<ul class="left">	
+					<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
+					<li><p>grey matter</p></li>
+					<li>
+						<form method="post" action="/reviews">
+						<input id="input" type="text" placeholder="Enter artist or album name" name="searchinput">
+						<button id="button" type="submit"><i class="fa fa-search"></i></button>
 						</form>
-					</div>                     
-				</li>
-				<li id="signup-container">
-					<a id="signup-trigger" href="#">
-						Sign up
-					</a>
-					<div id="signup-content">
-						<form method="post" action="/">
-							<fieldset id="inputs">
-								<input id="signup_username" name="signupUsername" placeholder="Username" required>
-								<input id="signup_email" name="signupEmail" placeholder="Email" required>
-								<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
-							</fieldset>
-							<fieldset id="actions">
-								<button class="btn btn-wide btn-danger mrm" type="submit">Sign up</button>
-								<input name="signupbutton" type="hidden" value="signup"/>
-							</fieldset>
+					</li>
+				</ul>	
+				<ul class="right">
+					<li><a id="me-trigger"><img src="/stylesheets/profile-pic.jpg" alt="profile pic" width=32 height=32></a><!--eventually use profile pic here-->
+						<ul class="dropdown"> 
+							<li><a href="/home">Profile</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</li>
+					<li><button id="button" type="submit"><i class="fa fa-pencil"></i> Review</button></li>
+				</ul>	
+			</header>
+		{% else %}
+			<header>
+				<ul class="landing-page-left">	
+					<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
+					<li><p>grey matter</p></li>
+				</ul>	
+				<ul class="landing-page-right">
+					<li>
+						<form method="post" action="/signup">
+						<button class="sign-up-button" type="submit" value="Signup">Sign up</button>
 						</form>
-					</div>
-				</li>
-        		{% endif %}
-			</ul>
-		</nav>
-	</div>
-	<div id="heading_container_home">
-		<div id="description">
-			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
-		</div>
-		<br>
-		<br>
-		<div id="searchBar_home">
-			<form method="post" action="/reviews">
-			<input type="text" id="searchinput_home" placeholder="Enter artist or album name" name="searchinput">
-			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
-			</form>
-		</div>
-	  	<br>
-	</div>
-	<div id="main_container_home">  	
-	  	<div id="artistSearchResults">
-	  		<center style="font-size:26px;">Artists</center>
-	  		<br>
-	  		{% for artist in artists: %}
-	  		<div id="artistlisting"><a href="/artists/{{artist}}" style="text-decoration:none;color:#444444;">- {{artist}}<a/></div>
-	  		<br>
-	  		{% endfor %}
-	  	</div>
-	  	<div id="albumSearchResults">
-	  		<center style="font-size:26px;color:black">Albums</center>
-	  		<br>
-	  		{% for album in albums: %}
-		  		<div id="albumListing">
-		  			<ul>
-		  				<li>
-		  					<img src=>
-		  					<h4><a href="/albums/{{album['mb-id']}}"><em>{{album['album']}}</em></a></h4>	
-		  					<h6><a href="/artists/{{album['artist']}}">{{album['artist']}}</a></h6>
-		  				</li>
-		  			</ul>		
-		  		</div>
-	  		{% endfor %}
-	  	</div>
-	</div>
+					</li>
+					<li>
+						<ul>
+							<form method="post" action="/reviews">
+								<li><button id="button" type="submit" value="Login">Login</li>
+								<li><input id="input" type="password" name="password" placeholder="Password" required></li>
+								<li><input id="input" type="post" name="username" placeholder="Username" required></li>      
+							</form>
+						</ul>			
+					</li>
+				</ul>	
+			</header>
+        {% endif %}
+	
+		<main>
+			<section class="content-left-search">
+				<h3 class="fixed-header">Artists</h3>
+					<div class="search-list">
+					    {% for artist in artists: %}
+					    <ul>
+					  		<li><img src="#"><h4><a href="/artists/{{artist}}">{{artist}}<a/></h4></li>
+	  					</ul>
+	  				</div>
+	  			{% endfor %}
+			</section>
+			<section class="content-right-search">
+				<h3 class="fixed-header">Albums</h3>
+					<div class="search-list">
+	  					{% for album in albums: %}
+		  				<ul>
+		  					<li><img src="#"><h4><a href="/artists/{{album['artist']}}">{{album['artist']}}</a> - <a href="/albums/{{album['mb-id']}}"><em>{{album['album']}}</em></a></h4></li>	
+		  				</ul>
+		  			</div>		
+	  			{% endfor %}	
+			</section>
+		</main>
 </body>
 </html>
