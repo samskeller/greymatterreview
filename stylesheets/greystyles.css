@@ -38,6 +38,8 @@ header {
 		background: #ECECEC;
 		border-radius: 3px;
 		display: inline-block;
+		font-family: Lato;
+		font-size: 13px;
 		color:#000000;
 		text-decoration: none;
 		text-shadow:0px 1px 0px #fff;
@@ -53,7 +55,8 @@ header {
 
 	#input {
 	    border: 0 none;
-	    font: 16px Garamond,Helvetica,Sans-serif;
+	    font-family: Lato;
+		font-size: 15px;
 	    color: black;
 	    height:37px;
 	    padding: 0px 15px 0px 15px;
@@ -120,6 +123,7 @@ header {
 			position: absolute;
 			z-index: 999;    
 			background: #ECECEC;
+			font-family: lora;
 			width: 120px; 
 			right:0px;
 			top:50px;
@@ -181,6 +185,8 @@ header {
 
 		.sign-up-button {
 			background: #700000;
+			font-family: Lato;
+			font-size: 13px;
 			border-radius: 3px;
 			display: inline-block;
 			color:#fff;
@@ -335,11 +341,12 @@ main {
 	 		background-color:white;
 	 		border-radius:2px;
 	 		box-shadow: 2px 3px 5px;
+	 		font-family: lora;
 		 }
 			 .content-left h3 {
 			 	text-align:center;
 			 	padding:10px 0 10px 0;
-			 	font-size: 18px;
+			 	font-size: 14px;
 			 	border-top:1px solid black;
 			 	letter-spacing: 1px;
 			 }
@@ -357,7 +364,7 @@ main {
 
 			 	.profile h3 {
 			 		text-align:center;
-				 	padding:30px 0 20px 0;
+				 	padding:20px 0 15px 0;
 				 	font-size: 20px;
 				 	letter-spacing: 1px;
 			 	}
@@ -368,7 +375,7 @@ main {
 			 		
 			 		.profile table th {
 			 			font-weight: 100;
-			 			padding:0 12px 0 12px;
+			 			padding:0 9px 0 9px;
 			 		}
 
 			 		.table-header {
@@ -383,6 +390,7 @@ main {
 			 .top-10 {
 			 	list-style-type: none;
 			 	height:389px;
+			 	font-family: lora;
 			 }
 
 			 	.top-10 h3 {
@@ -403,6 +411,7 @@ main {
 	 		box-shadow: 2px 3px 5px;
 		 	height:500px;
 		 	overflow-y:scroll;
+		 	font-family: lora;
 		 }
 
 		 	.content-right h3 {
@@ -427,6 +436,7 @@ main {
 	 		border-radius:2px;
 	 		box-shadow: 2px 3px 5px;
 	 		overflow-y:scroll;
+	 		font-family: lora;
 		 }
 
 		 .content-left-search h3, .content-right-search h3 {
@@ -493,6 +503,7 @@ main {
 	 		border-radius:2px;
 	 		box-shadow: 2px 3px 5px;
 		 	overflow-y:scroll;
+		 	font-family: lora;
 		 }
 
 /*main {
