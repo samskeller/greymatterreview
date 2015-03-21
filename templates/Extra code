@@ -1,0 +1,6 @@
+<div id="profile_info">
+				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
+						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
+				</div>
+
+				<center><h1 id="albumTitle">Reviews for "{{album}}" by <a href="/artists/{{artist}}" style="text-decoration:none;color:black">{{artist}}</a></h1></center>

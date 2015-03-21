@@ -3,7 +3,9 @@
         <head>
                 <title>Grey Matter</title>
                 <link rel="stylesheet" type="text/css" href="/stylesheets/greystyles.css"/>
-                <link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
+                <link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">
+                <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+				<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
                 <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
                 <script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
                 <script>
@@ -88,116 +90,86 @@
                 
                 </script>
         </head>
-<body id="homebody">
-	<div id="top">
-		<div id="logoHolder">
-			<a href="/"><span id="emptySpan"></span></a><img id="toplogo" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=40 height=40>
-		</div>
-		<nav id="loginNav">
-			<ul>
-				{% if user: %}
-				<li id="me-container">
-					<a id="me-trigger" href="#">
-						{{user.username}}
-					</a>
-					<div id="me-content">
-						<img id="smallProfileImg" src="/stylesheets/GMLOGO_grey.jpg" alt="Unknown Person" width=28 height=28> 
-						<span id="profileDropdownUsername">{{user.username}}</span>
-						<br>
-						<table>
-							<tr>
-								<td>
-									<a href="/home" style="color:#700000;margin-left:65px;">My Page<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href="/logout" style="color:#700000;margin-left:65px;">Logout<span id="emptySpan"></span></a>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</li>
-		        {% else %}
-				<li id="login-container">
-					<a id="login-trigger" href="#">
-						Log in
-					</a>
-					<div id="login-content">
-						<form method="post" action="/">
-							<fieldset id="inputs">
-								<input id="login_username" name="username" placeholder="Username" required>   
-								<input id="login_password" type="password" name="password" placeholder="Password" required>
-							</fieldset>
-							<fieldset id="actions">
-								<button class="btn btn-wide btn-info mrm" type="submit">Log In</button>
-								<input name="loginbutton" type="hidden" value="login"/>
-							</fieldset>
+<body>
+		{% if user: %}
+			<header>
+				<ul class="left">	
+					<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
+					<li><p>grey matter</p></li>
+					<li>
+						<form method="post" action="/reviews">
+						<input id="input" type="text" placeholder="Enter artist or album name" name="searchinput">
+						<button id="button" type="submit"><i class="fa fa-search"></i></button>
 						</form>
-					</div>                     
-				</li>
-				<li id="signup-container">
-					<a id="signup-trigger" href="#">
-						Sign up
-					</a>
-					<div id="signup-content">
-						<form method="post" action="/">
-							<fieldset id="inputs">
-								<input id="signup_username" name="signupUsername" placeholder="Username" required>
-								<input id="signup_email" name="signupEmail" placeholder="Email" required>
-								<input id="signup_password" type="password" name="signupPassword" placeholder="Password" required>
-							</fieldset>
-							<fieldset id="actions">
-								<button class="btn btn-wide btn-danger mrm" type="submit">Sign up</button>
-								<input name="signupbutton" type="hidden" value="signup"/>
-							</fieldset>
+					</li>
+				</ul>	
+				<ul class="right">
+					<li><a id="me-trigger"><img src="/stylesheets/profile-pic.jpg" alt="profile pic" width=32 height=32></a><!--eventually use profile pic here-->
+						<ul class="dropdown"> 
+							<li><a href="/home">Profile</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</li>
+					<li><button id="button" type="submit"><i class="fa fa-pencil"></i> Review</button></li>
+				</ul>	
+			</header>
+		{% else %}
+			<header>
+				<ul class="landing-page-left">	
+					<li><a href="#" title="Grey Matter"><img src="/stylesheets/greymatterlogo2.png" alt="Logo" width=42 height=42></a></li>
+					<li><p>grey matter</p></li>
+				</ul>	
+				<ul class="landing-page-right">
+					<li>
+						<form method="post" action="/signup">
+						<button class="sign-up-button" type="submit" value="Signup">Sign up</button>
 						</form>
-					</div>
-				</li>
-        		{% endif %}
-			</ul>
-		</nav>
-	</div>
-	<div id="heading_container_home">
-		<div id="description">
-			<a href="/" style="text-decoration:none;"><label id="website_title"><span id="emptySpan"></span>grey<br>matter</label></a>
-		</div>
-		<br>
-		<br>
-		<div id="searchBar_home">
-			<form method="post" action="/reviews">
-			<input type="text" id="searchinput" placeholder="Enter artist or album name" name="searchinput">
-			<button class="btn btn-wide btn-primary mrm" type="submit" style="background-color:#700000" id="searchbtn">Search</button>
-			</form>
-		</div>
-	</div>
-	<div id="main_container_home">
-		<div id="profile_info_container">
-			<div id="name_and_rank">
-				<h4 id="profile_name">{{artist}}</h4>
-				<h6 id="rating">8.2</h6><!--placeholder for future average rating of all albums--!>
-			</div>
-			<div id="profile_info">
-				<div id="profile_image" onmouseover="document.getElementById('changeprofileimage').style.display='block';" onmouseout="document.getElementById('changeprofileimage').style.display='none';">
-						<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
-				</div>
-			</div>			
-			<div id="top10container_home">
-				Top 10 Albums Placeholder
-			</div>
-		</div>					
-	 	<div id="activity_container">
-			<table id="albumList">
-			{% for album in albums: %}
-				<tr class="albumListEntry">
-				<td><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" width="50" height="50" align="middle" onerror="this.src='/stylesheets/GMLOGO.jpg';" style="float:left;">
-				<a href="/albums/{{album['mb-id']}}" class="albumListEntryLink"><span id="emptySpan"></span>{{album['title']}}</a>			
-				<p style="font-size:14px;margin-left:60px;">Released in {{album['date']}}</p>
-				</td>
-				</tr>
-			{% endfor %}
-			</table>
-		</div>
-	</div>	
+					</li>
+					<li>
+						<ul>
+							<form method="post" action="/reviews">
+								<li><button id="button" type="submit" value="Login">Login</li>
+								<li><input id="input" type="password" name="password" placeholder="Password" required></li>
+								<li><input id="input" type="post" name="username" placeholder="Username" required></li>      
+							</form>
+						</ul>			
+					</li>
+				</ul>	
+			</header>
+        {% endif %}
+        <main>
+		<section class="content-left">
+				<div class="profile">
+					<img src="/stylesheets/greymatterlogo2.png" alt="Unknown Person" width="100" height="100">
+					<h3>{{artist}}</h3>
+					<table>
+						<tr class="table-header">
+							<th>Reviews</th>
+							<th>Following</th>
+							<th>Followers</th>
+						</tr>
+						<tr class="table-numbers">
+							<th>{{user.numberOfReviews}}</th>
+							<th>{{user.following}}</th>	
+							<th>{{user.followers}}</th>	
+						</tr>
+					</table>
+				</div>	
+				<ul class="top-10">
+					<h3>Top 10</h3>
+				</ul>
+			</section>
+			<section class="content-right">
+				<h3>albums | history</h3>
+					<div class="search-list">
+	  					{% for album in albums: %}
+		  				<ul>
+		  					<li><img src="http://www.coverartarchive.com/release/{{album['mb-id']}}/front" onerror="this.src='/stylesheets/greymatterlogo2.png';"><h4><a href="/albums/{{album['mb-id']}}">{{album['title']}}</a> ({{album['date']}})<a href="/albums/{{album['mb-id']}}"><em>{{album['album']}}</em></a></h4></li>	
+		  				</ul>
+		  			</div>		
+	  			{% endfor %}	
+			</section>
+	</main>
 </body>
 </html>

@@ -659,37 +659,6 @@ main {
 /*CAN'T FIND HTML FOR THESE*/
 
 
-
-
-
-
-
-
-
-
-#welcome_message {
-	font-size:25px; 
-	font-family: Book Antiqua;
-	color:#700000;
-	position:relative;
-	left:10px;
-	top:0px;
-	width:250px;
-	white-space:nowrap;
-} /* There's a welcome_message and a welcomemessage*/
-
-#welcomemessage {
-	color:#700000;
-	font-weight:bold;
-	padding:0;
-	top:0;
-	margin-top:6px;
-	display:block;
-	float:left;
-	margin-left:20px;
-}
-
-
 #signin {
 	background-color:#700000;
 	padding:10px;
@@ -885,17 +854,6 @@ main {
 
 
 
-#reviewDate {
-	float:right;
-}
-
-#myactivity {
-	position:relative;
-	display:inline;
-}??????
-
-
-
 
 
 .profileReview {
@@ -1086,10 +1044,6 @@ p {
 	font-size:36px;
 }
 
-#albumArt {
-	left:100px;
-	position:relative;
-}
 
 
 
@@ -1244,40 +1198,9 @@ p {
 	margin:0 40px;
 }
 
-#albumList {
-	height:300px;
-	overflow:auto;
-	column-count:1;
-	column-width:400px;
-	list-style-type:none;
-	width:400px;
-}
-
-tr.albumListEntry {
-	float:left;
-	position:relative;
-	width:400px;
-	height:70px;
-	-moz-border-radius:12px;
-	-webkit-border-radius:12px;
-	background:#F5F5F5;
-	padding-top:10px;
-	font-size:24px;
-	font-family: Book Antiqua, serif;
-	margin:5px;
-	margin-left:60px;
-}
 
 tr.albumListEntry:nth-child(even) {
 	background:#F5F5F5;
-}
-
-tr.albumListEntry:nth-child(even):hover {
-	background:#F5F5F5;
-}
-
-tr.albumListEntry:hover {
-	background:#BDC3C7;
 }
 
 #emptySpan {
