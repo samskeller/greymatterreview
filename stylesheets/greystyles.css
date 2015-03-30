@@ -53,6 +53,27 @@ header {
 				background:-webkit-linear-gradient(top, #d1d1d1 0%,#a7a7a7 100%);
 			}
 
+	#overlay {
+	     visibility: hidden;
+	     position: absolute;
+	     left: 0px;
+	     top: 0px;
+	     width:100%;
+	     height:100%;
+	     text-align:center;
+	     z-index: 1000;
+		}
+
+		#overlay div {
+		     width:300px;
+		     margin: 100px auto;
+		     background-color: #ECECEC;
+		     border:1px solid black;
+		     padding:15px;
+		     text-align:center;
+			}	
+
+
 	#input {
 	    border: 0 none;
 	    font-family: Lato;
@@ -1009,12 +1030,8 @@ p {
 }
 
 #ratingContainer{
-	margin-top:10px;
-	display:none;
-	position:absolute;
-	height:320px;
-	width:100px;
-	margin-left:2%;
+	width:200px;
+	height:50px;
 }
 
 #rateItLabel{

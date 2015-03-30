@@ -4,14 +4,11 @@
                 <title>Grey Matter</title>
                 <link rel="stylesheet" href="/stylesheets/greystyles.css"/>
                 <link rel="stylesheet" href="/stylesheets/font-awesome/css/font-awesome.min.css">
-                <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-				<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-                <!--<link rel="stylesheet" type="text/css" href="/stylesheets/flat-ui.css"/>
-                <!--Source of background image: http://cstpdx.com/show/specticast-concert-series-andr%C3%A9-rieu -->
+                <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet'>
+				<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 				<script type="text/javascript" src="../scripts/jquery-1.9.1.min.js"></script>
 				<script type="text/javascript" src="../scripts/jquery.blockUI.js"></script>
-		<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
-		
+				<script type="text/javascript" src="/scripts/jquery-1.9.1.min.js"></script>
 		<script>
 		function tab(tab_number) {
 			$('#Day').hide();
@@ -26,6 +23,11 @@
 			$('#li_Ever').attr("class", "");
 			$('#'+tab_number).show();
 			$('#li_'+tab_number).attr("class", "active");
+		}
+
+		function overlay() {
+			el = document.getElementById("overlay");
+			el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
 		}
 		
 		
@@ -124,7 +126,7 @@
 					<li><a href="/logout">Logout</a></li>
 				</ul>
 			</li>
-			<li><button id="button" type="submit"><i class="fa fa-pencil"></i> Review</button></li>
+			<li><button id="button" type="submit"><a href='#' onclick='overlay()'><i class="fa fa-pencil"></i> Review</button></a></li>
 		</ul>	
 	</header>
 		
@@ -175,6 +177,41 @@
 					{% endfor %}
 				</div>	
 			</section>
+
+			<div id="overlay">
+				<form method="post" action="/albums/mb_id">
+					<input type="hidden" name="artisthidden" id="artisthidden" value="{{artist}}"></input>
+					<input type="hidden" name="albumhidden" id="albumhidden" value="{{album}}"></input>
+					<input type="hidden" name="mb_id" id="mb_id" value="{{mb_id}}"></input>
+				<form>
+		       <fieldset>
+		          <p>
+		             <label>Rating</label>
+		             <select id = "myList">
+		               <option value = "1">1</option>
+		               <option value = "2">2</option>
+		               <option value = "3">three</option>
+		               <option value = "4">four</option>
+		             </select>
+		          </p>
+		       </fieldset>
+		    </form>
+				<span class="ratingNumber" id="rating1" onclick="javascript:ratingSwitch(1);">1</span><br>
+				<span class="ratingNumber" id="rating2" onclick="javascript:ratingSwitch(2);">2</span><br>
+				<span class="ratingNumber" id="rating3" onclick="javascript:ratingSwitch(3);">3</span><br>
+				<span class="ratingNumber" id="rating4" onclick="javascript:ratingSwitch(4);">4</span><br>
+				<span class="ratingNumber" id="rating5" onclick="javascript:ratingSwitch(5);">5</span><br>
+				<span class="ratingNumber" id="rating6" onclick="javascript:ratingSwitch(6);">6</span><br>
+				<span class="ratingNumber" id="rating7" onclick="javascript:ratingSwitch(7);">7</span><br>
+				<span class="ratingNumber" id="rating8" onclick="javascript:ratingSwitch(8);">8</span><br>
+				<span class="ratingNumber" id="rating9" onclick="javascript:ratingSwitch(9);">9</span><br>
+				<span class="ratingNumber" id="rating10" onclick="javascript:ratingSwitch(10);">10</span>
+				<input type="hidden" name="ratingInput" id="ratingInput" value=""></input>
+			<textarea id="reviewbody" name="reviewbody"></textarea>
+			<input type="submit" name="newreviewbtn" id="newreviewbtn">
+		</form>
+					<p>Click here to <a href='#' onclick='overlay()'>close</a></p>
+			</div>	
 
 		<!--<section class="profile">	
 			<img src="/stylesheets/GMLOGO.jpg" alt="Unknown Person" width="120" height="120">
